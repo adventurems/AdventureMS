@@ -71,7 +71,7 @@ You will start by installing the database server and client, and then run some s
 You will start by cloning the repository, then configure the database properties and lastly start the server.
 
 #### Prerequisites
-* Java 21+ (I recommend [Amazon Corretto](https://aws.amazon.com/corretto))
+* Java 21 (I recommend [Amazon Corretto](https://aws.amazon.com/corretto))
 * IDE (I recommend [IntelliJ IDEA](https://www.jetbrains.com/idea/))
 
 #### Steps
