@@ -105,7 +105,6 @@ public class ServerConfig {
     public boolean USE_BUFF_MOST_SIGNIFICANT;
     public boolean USE_BUFF_EVERLASTING;
     public boolean USE_MULTIPLE_SAME_EQUIP_DROP;
-    public boolean USE_BANISHABLE_TOWN_SCROLL;
     public boolean USE_ENABLE_FULL_RESPAWN;
     public boolean USE_ENABLE_CHAT_LOG;
     public boolean USE_REBIRTH_SYSTEM;

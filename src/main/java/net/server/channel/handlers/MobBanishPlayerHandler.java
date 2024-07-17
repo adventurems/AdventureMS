@@ -29,17 +29,18 @@ import server.life.Monster;
 public final class MobBanishPlayerHandler extends AbstractPacketHandler {
 
     @Override
-    public final void handlePacket(InPacket p, Client c) {
-        int mobid = p.readInt();     // mob banish handling detected thanks to MedicOP
+    public void handlePacket(InPacket p, Client c) {
+        int mobId = p.readInt();     // mob banish handling detected thanks to MedicOP
 
         Character chr = c.getPlayer();
-        Monster mob = chr.getMap().getMonsterById(mobid);
+        Monster mob = chr.getMap().getMonsterById(mobId);
+        if (mob == null) {
+            return;
+        }
 
-        if (mob != null) {
-            BanishInfo banishInfo = mob.getBanish();
-            if (banishInfo != null) {
-                chr.changeMapBanish(banishInfo.getMap(), banishInfo.getPortal(), banishInfo.getMsg());
-            }
+        BanishInfo banishInfo = mob.getBanish();
+        if (banishInfo != null) {
+            chr.changeMapBanish(banishInfo.getMap(), banishInfo.getPortal(), banishInfo.getMsg());
         }
     }
 }
