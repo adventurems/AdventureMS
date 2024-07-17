@@ -116,6 +116,7 @@ import server.events.Events;
 import server.events.RescueGaga;
 import server.events.gm.Fitness;
 import server.events.gm.Ola;
+import server.life.BanishInfo;
 import server.life.MobSkill;
 import server.life.MobSkillFactory;
 import server.life.MobSkillId;
@@ -1353,13 +1354,13 @@ public class Character extends AbstractCharacterObject {
         }
     }
 
-    public void changeMapBanish(int mapid, String portal, String msg) {
-        if (msg != null) {
-            dropMessage(5, msg);
+    public void changeMapBanish(BanishInfo banishInfo) {
+        if (banishInfo.msg() != null) {
+            dropMessage(5, banishInfo.msg());
         }
 
         MapleMap map_ = getWarpMap(mapid);
-        Portal portal_ = map_.getPortal(portal);
+        Portal portal_ = map_.getPortal(banishInfo.portal());
         changeMap(map_, portal_ != null ? portal_ : map_.getRandomPlayerSpawnpoint());
     }
 

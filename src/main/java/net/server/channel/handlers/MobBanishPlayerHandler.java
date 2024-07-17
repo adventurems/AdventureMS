@@ -23,7 +23,7 @@ import client.Character;
 import client.Client;
 import net.AbstractPacketHandler;
 import net.packet.InPacket;
-import server.life.LifeFactory.BanishInfo;
+import server.life.BanishInfo;
 import server.life.Monster;
 
 public final class MobBanishPlayerHandler extends AbstractPacketHandler {
@@ -39,8 +39,9 @@ public final class MobBanishPlayerHandler extends AbstractPacketHandler {
         }
 
         BanishInfo banishInfo = mob.getBanish();
-        if (banishInfo != null) {
-            chr.changeMapBanish(banishInfo.getMap(), banishInfo.getPortal(), banishInfo.getMsg());
+        if (banishInfo == null) {
+            return;
         }
+        chr.changeMapBanish(banishInfo);
     }
 }
