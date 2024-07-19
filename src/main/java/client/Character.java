@@ -154,7 +154,6 @@ import tools.LongTool;
 import tools.PacketCreator;
 import tools.Pair;
 import tools.Randomizer;
-import tools.exceptions.NotEnabledException;
 import tools.packets.WeddingPackets;
 
 import java.awt.*;
@@ -10960,70 +10959,6 @@ public class Character extends AbstractCharacterObject {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public void setReborns(int value) {
-        if (!YamlConfig.config.server.USE_REBIRTH_SYSTEM) {
-            yellowMessage("Rebirth system is not enabled!");
-            throw new NotEnabledException();
-        }
-
-        try (Connection con = DatabaseConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement("UPDATE characters SET reborns=? WHERE id=?;")) {
-            ps.setInt(1, value);
-            ps.setInt(2, id);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void addReborns() {
-        setReborns(getReborns() + 1);
-    }
-
-    public int getReborns() {
-        if (!YamlConfig.config.server.USE_REBIRTH_SYSTEM) {
-            yellowMessage("Rebirth system is not enabled!");
-            throw new NotEnabledException();
-        }
-
-        try (Connection con = DatabaseConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement("SELECT reborns FROM characters WHERE id=?;")) {
-            ps.setInt(1, id);
-
-            try (ResultSet rs = ps.executeQuery()) {
-                rs.next();
-                return rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        throw new RuntimeException();
-    }
-
-    public void executeReborn() {
-        // default to beginner: job id = 0
-        // this prevents a breaking change
-        executeRebornAs(Job.BEGINNER);
-    }
-
-    public void executeRebornAsId(int jobId) {
-        executeRebornAs(Job.getById(jobId));
-    }
-
-    public void executeRebornAs(Job job) {
-        if (!YamlConfig.config.server.USE_REBIRTH_SYSTEM) {
-            yellowMessage("Rebirth system is not enabled!");
-            throw new NotEnabledException();
-        }
-        if (getLevel() != getMaxClassLevel()) {
-            return;
-        }
-        addReborns();
-        changeJob(job);
-        setLevel(0);
-        levelUp(true);
     }
 
     //EVENTS
