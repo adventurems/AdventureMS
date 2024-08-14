@@ -117,7 +117,7 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
     public static class AttackInfo {
 
         public int numAttacked, numDamage, numAttackedAndDamage, skill, skilllevel, stance, direction, rangedirection, charge, display;
-        public Map<Integer, List<Integer>> allDamage;
+        public Map<Integer, AttackTarget> targets;
         public boolean ranged, magic;
         public int speed = 4;
         public Point position = new Point();
@@ -145,6 +145,9 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
             return mySkill.getEffect(skillLevel);
         }
     }
+
+    // TODO: add position
+    public record AttackTarget(short delay, List<Integer> damageLines) {}
 
     protected void applyAttack(AttackInfo attack, final Character player, int attackCount) {
         final MapleMap map = player.getMap();
@@ -216,7 +219,7 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
 
             if (attack.skill == ChiefBandit.MESO_EXPLOSION) {
                 int delay = 0;
-                for (Integer oned : attack.allDamage.keySet()) {
+                for (Integer oned : attack.targets.keySet()) {
                     MapObject mapobject = map.getMapObject(oned);
                     if (mapobject != null && mapobject.getType() == MapObjectType.ITEM) {
                         final MapItem mapitem = (MapItem) mapobject;
@@ -249,7 +252,7 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
                     }
                 }
             }
-            for (Integer oned : attack.allDamage.keySet()) {
+            for (Integer oned : attack.targets.keySet()) {
                 final Monster monster = map.getMonsterByOid(oned);
                 if (monster != null) {
                     double distance = player.getPosition().distanceSq(monster.getPosition());
@@ -285,7 +288,7 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
                     }
 
                     int totDamageToOneMonster = 0;
-                    List<Integer> onedList = attack.allDamage.get(oned);
+                    List<Integer> onedList = attack.targets.get(oned).damageLines();
 
                     if (attack.magic) { // thanks BHB, Alex (CanIGetaPR) for noticing no immunity status check here
                         if (monster.isBuffed(MonsterStatus.MAGIC_IMMUNITY)) {
@@ -600,7 +603,7 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
         ret.numAttackedAndDamage = p.readByte();
         ret.numAttacked = (ret.numAttackedAndDamage >>> 4) & 0xF;
         ret.numDamage = ret.numAttackedAndDamage & 0xF;
-        ret.allDamage = new HashMap<>();
+        ret.targets = new HashMap<>();
         ret.skill = p.readInt();
         ret.ranged = ranged;
         ret.magic = magic;
@@ -629,7 +632,7 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
                 for (int j = 0; j < bullets; j++) {
                     int mesoid = p.readInt();
                     p.skip(1);
-                    ret.allDamage.put(mesoid, null);
+                    ret.targets.put(mesoid, null);
                 }
                 return ret;
             } else {
@@ -638,6 +641,7 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
             for (int i = 0; i < ret.numAttacked + 1; i++) {
                 int oid = p.readInt();
                 if (i < ret.numAttacked) {
+                    // TODO: read delay in from these skipped bytes
                     p.skip(12);
                     int bullets = p.readByte();
                     List<Integer> allDamageNumbers = new ArrayList<>();
@@ -645,14 +649,14 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
                         int damage = p.readInt();
                         allDamageNumbers.add(damage);
                     }
-                    ret.allDamage.put(oid, allDamageNumbers);
+                    ret.targets.put(oid, new AttackTarget((short) 0, allDamageNumbers));
                     p.skip(4);
                 } else {
                     int bullets = p.readByte();
                     for (int j = 0; j < bullets; j++) {
                         int mesoid = p.readInt();
                         p.skip(1);
-                        ret.allDamage.put(mesoid, null);
+                        ret.targets.put(mesoid, null);
                     }
                 }
             }
@@ -814,10 +818,12 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
         }
         for (int i = 0; i < ret.numAttacked; i++) {
             int oid = p.readInt();
-            p.skip(14);
-            List<Integer> allDamageNumbers = new ArrayList<>();
-            Monster monster = chr.getMap().getMonsterByOid(oid);
-
+            p.skip(4);
+            Point curPos = p.readPos();
+            Point nextPos = p.readPos();
+            short delay = p.readShort();
+            List<Integer> damageLines = new ArrayList<>();
+            final Monster monster = chr.getMap().getMonsterByOid(oid);
             if (chr.getBuffEffect(BuffStat.WK_CHARGE) != null) {
                 // Charge, so now we need to check elemental effectiveness
                 int sourceID = chr.getBuffSource(BuffStat.WK_CHARGE);
@@ -941,21 +947,17 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
                     }
                 }
 
-                allDamageNumbers.add(damage);
+                damageLines.add(damage);
             }
             if (ret.skill != Corsair.RAPID_FIRE || ret.skill != Aran.HIDDEN_FULL_DOUBLE || ret.skill != Aran.HIDDEN_FULL_TRIPLE || ret.skill != Aran.HIDDEN_OVER_DOUBLE || ret.skill != Aran.HIDDEN_OVER_TRIPLE) {
                 p.skip(4);
             }
-            ret.allDamage.put(oid, allDamageNumbers);
+            ret.targets.put(oid, new AttackTarget(delay, damageLines));
         }
         if (ret.skill == NightWalker.POISON_BOMB) { // Poison Bomb
             p.skip(4);
             ret.position.setLocation(p.readShort(), p.readShort());
         }
         return ret;
-    }
-
-    private static int rand(int l, int u) {
-        return (int) ((Math.random() * (u - l + 1)) + l);
     }
 }

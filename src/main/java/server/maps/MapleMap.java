@@ -1337,22 +1337,23 @@ public class MapleMap {
                 }
             }
         }
-        if (monster.isAlive()) {
-            boolean killed = monster.damage(chr, damage, false);
-
-            selfDestruction selfDestr = monster.getStats().selfDestruction();
-            if (selfDestr != null && selfDestr.getHp() > -1) {// should work ;p
-                if (monster.getHp() <= selfDestr.getHp()) {
-                    killMonster(monster, chr, true, selfDestr.getAction());
-                    return true;
-                }
-            }
-            if (killed) {
-                killMonster(monster, chr, true);
-            }
-            return true;
+        if (!monster.isAlive()) {
+            return false;
         }
-        return false;
+
+        boolean killed = monster.damage(chr, damage, false);
+
+        selfDestruction selfDestr = monster.getStats().selfDestruction();
+        if (selfDestr != null && selfDestr.getHp() > -1) {// should work ;p
+            if (monster.getHp() <= selfDestr.getHp()) {
+                killMonster(monster, chr, true, selfDestr.getAction());
+                return true;
+            }
+        }
+        if (killed) {
+            killMonster(monster, chr, true);
+        }
+        return true;
     }
 
     public void broadcastBalrogVictory(String leaderName) {
@@ -1406,12 +1407,17 @@ public class MapleMap {
                 broadcastMessage(PacketCreator.killMonster(monster.getObjectId(), animation), monster.getPosition());
                 monster.aggroSwitchController(null, false);
             }
-        } else {
-            if (removeKilledMonsterObject(monster)) {
-                try {
-                    if (monster.getStats().getLevel() >= chr.getLevel() + 30 && !chr.isGM()) {
-                        AutobanFactory.GENERAL.alert(chr, " for killing a " + monster.getName() + " which is over 30 levels higher.");
-                    }
+            return;
+        }
+
+        if (!removeKilledMonsterObject(monster)) {
+            return;
+        }
+
+        try {
+            if (monster.getStats().getLevel() >= chr.getLevel() + 30 && !chr.isGM()) {
+                AutobanFactory.GENERAL.alert(chr, " for killing a " + monster.getName() + " which is over 30 levels higher.");
+            }
 
                     /*if (chr.getQuest(Quest.getInstance(29400)).getStatus().equals(QuestStatus.Status.STARTED)) {
                      if (chr.getLevel() >= 120 && monster.getStats().getLevel() >= 120) {
@@ -1420,74 +1426,74 @@ public class MapleMap {
                      }
                      }*/
 
-                    if (monster.getCP() > 0 && chr.getMap().isCPQMap()) {
-                        chr.gainCP(monster.getCP());
-                    }
+            if (monster.getCP() > 0 && chr.getMap().isCPQMap()) {
+                chr.gainCP(monster.getCP());
+            }
 
-                    int buff = monster.getBuffToGive();
-                    if (buff > -1) {
-                        ItemInformationProvider mii = ItemInformationProvider.getInstance();
-                        for (MapObject mmo : this.getPlayers()) {
-                            Character character = (Character) mmo;
-                            if (character.isAlive()) {
-                                StatEffect statEffect = mii.getItemEffect(buff);
-                                character.sendPacket(PacketCreator.showOwnBuffEffect(buff, 1));
-                                broadcastMessage(character, PacketCreator.showBuffEffect(character.getId(), buff, 1), false);
-                                statEffect.applyTo(character);
-                            }
-                        }
+            int buff = monster.getBuffToGive();
+            if (buff > -1) {
+                ItemInformationProvider mii = ItemInformationProvider.getInstance();
+                for (MapObject mmo : this.getPlayers()) {
+                    Character character = (Character) mmo;
+                    if (character.isAlive()) {
+                        StatEffect statEffect = mii.getItemEffect(buff);
+                        character.sendPacket(PacketCreator.showOwnBuffEffect(buff, 1));
+                        broadcastMessage(character, PacketCreator.showBuffEffect(character.getId(), buff, 1), false);
+                        statEffect.applyTo(character);
                     }
-
-                    if (MobId.isZakumArm(monster.getId())) {
-                        boolean makeZakReal = true;
-                        Collection<MapObject> objects = getMapObjects();
-                        for (MapObject object : objects) {
-                            Monster mons = getMonsterByOid(object.getObjectId());
-                            if (mons != null) {
-                                if (MobId.isZakumArm(mons.getId())) {
-                                    makeZakReal = false;
-                                    break;
-                                }
-                            }
-                        }
-                        if (makeZakReal) {
-                            MapleMap map = chr.getMap();
-
-                            for (MapObject object : objects) {
-                                Monster mons = map.getMonsterByOid(object.getObjectId());
-                                if (mons != null) {
-                                    if (mons.getId() == MobId.ZAKUM_1) {
-                                        makeMonsterReal(mons);
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    Character dropOwner = monster.killBy(chr);
-                    if (withDrops && !monster.dropsDisabled()) {
-                        if (dropOwner == null) {
-                            dropOwner = chr;
-                        }
-                        dropFromMonster(dropOwner, monster, false);
-                    }
-
-                    if (monster.hasBossHPBar()) {
-                        for (Character mc : this.getAllPlayers()) {
-                            if (mc.getTargetHpBarHash() == monster.hashCode()) {
-                                mc.resetPlayerAggro();
-                            }
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {     // thanks resinate for pointing out a memory leak possibly from an exception thrown
-                    monster.dispatchMonsterKilled(true);
-                    broadcastMessage(PacketCreator.killMonster(monster.getObjectId(), animation), monster.getPosition());
                 }
             }
+
+            if (MobId.isZakumArm(monster.getId())) {
+                boolean makeZakReal = true;
+                Collection<MapObject> objects = getMapObjects();
+                for (MapObject object : objects) {
+                    Monster mons = getMonsterByOid(object.getObjectId());
+                    if (mons != null) {
+                        if (MobId.isZakumArm(mons.getId())) {
+                            makeZakReal = false;
+                            break;
+                        }
+                    }
+                }
+                if (makeZakReal) {
+                    MapleMap map = chr.getMap();
+
+                    for (MapObject object : objects) {
+                        Monster mons = map.getMonsterByOid(object.getObjectId());
+                        if (mons != null) {
+                            if (mons.getId() == MobId.ZAKUM_1) {
+                                makeMonsterReal(mons);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            Character dropOwner = monster.killBy(chr);
+            if (withDrops && !monster.dropsDisabled()) {
+                if (dropOwner == null) {
+                    dropOwner = chr;
+                }
+                dropFromMonster(dropOwner, monster, false);
+            }
+
+            if (monster.hasBossHPBar()) {
+                for (Character mc : this.getAllPlayers()) {
+                    if (mc.getTargetHpBarHash() == monster.hashCode()) {
+                        mc.resetPlayerAggro();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {     // thanks resinate for pointing out a memory leak possibly from an exception thrown
+            monster.dispatchMonsterKilled(true);
+            broadcastMessage(PacketCreator.killMonster(monster.getObjectId(), animation), monster.getPosition());
         }
+
+
     }
 
     public void killFriendlies(Monster mob) {
