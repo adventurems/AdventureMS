@@ -178,7 +178,7 @@ public final class TakeDamageHandler extends AbstractPacketHandler {
                             if (bouncedamage > attacker.getMaxHp() / 5) {
                                 bouncedamage = attacker.getMaxHp() / 5;
                             }
-                            map.damageMonster(chr, attacker, bouncedamage);
+                            map.damageMonster(chr, attacker, bouncedamage, (short) 0);
                             map.broadcastMessage(chr, PacketCreator.damageMonster(oid, bouncedamage), true);
                             chr.sendPacket(PacketCreator.showOwnBuffEffect(id, 5));
                             map.broadcastMessage(chr, PacketCreator.showBuffEffect(chr.getId(), id, 5), false);
@@ -211,7 +211,7 @@ public final class TakeDamageHandler extends AbstractPacketHandler {
                         int bouncedamage = (int) (damage * (chr.getBuffedValue(BuffStat.POWERGUARD).doubleValue() / (attacker.isBoss() ? 200 : 100)));
                         bouncedamage = Math.min(bouncedamage, attacker.getMaxHp() / 10);
                         damage -= bouncedamage;
-                        map.damageMonster(chr, attacker, bouncedamage);
+                        map.damageMonster(chr, attacker, bouncedamage, (short) 0);
                         map.broadcastMessage(chr, PacketCreator.damageMonster(oid, bouncedamage), false, true);
                         attacker.aggroMonsterDamage(chr, bouncedamage);
                     }

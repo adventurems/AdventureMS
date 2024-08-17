@@ -172,7 +172,8 @@ public class ReactorActionManager extends AbstractPlayerInteraction {
                     int range = maxMeso - minMeso;
                     int displayDrop = (int) (Math.random() * range) + minMeso;
                     int mesoDrop = (displayDrop * c.getWorldServer().getMesoRate());
-                    reactor.getMap().spawnMesoDrop(mesoDrop, reactor.getMap().calcDropPos(dropPos, reactor.getPosition()), reactor, c.getPlayer(), false, (byte) 2);
+                    reactor.getMap().spawnMesoDrop(mesoDrop, reactor.getMap().calcDropPos(dropPos,
+                            reactor.getPosition()), reactor, c.getPlayer(), false, (byte) 2, (short) 0);
                 } else {
                     Item drop;
 
@@ -192,6 +193,7 @@ public class ReactorActionManager extends AbstractPlayerInteraction {
 
             dropPos.x -= (12 * items.size());
 
+            // TODO: simply use "delay" drop packet instead of this scheduled task
             sprayTask = TimerManager.getInstance().register(() -> {
                 if (dropItems.isEmpty()) {
                     sprayTask.cancel(false);
@@ -203,7 +205,8 @@ public class ReactorActionManager extends AbstractPlayerInteraction {
                     int range = maxMeso - minMeso;
                     int displayDrop = (int) (Math.random() * range) + minMeso;
                     int mesoDrop = (displayDrop * worldMesoRate);
-                    r.getMap().spawnMesoDrop(mesoDrop, r.getMap().calcDropPos(dropPos, r.getPosition()), r, chr, false, (byte) 2);
+                    r.getMap().spawnMesoDrop(mesoDrop, r.getMap().calcDropPos(dropPos, r.getPosition()), r, chr,
+                            false, (byte) 2, (short) 0);
                 } else {
                     Item drop;
 

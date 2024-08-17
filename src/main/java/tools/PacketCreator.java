@@ -1816,7 +1816,8 @@ public class PacketCreator {
         return p;
     }
 
-    public static Packet dropItemFromMapObject(Character player, MapItem drop, Point dropfrom, Point dropto, byte mod) {
+    public static Packet dropItemFromMapObject(Character player, MapItem drop, Point dropfrom, Point dropto, byte mod,
+                                               short delay) {
         int dropType = drop.getDropType();
         if (drop.hasClientsideOwnership(player) && dropType < 3) {
             dropType = 2;
@@ -1834,7 +1835,7 @@ public class PacketCreator {
 
         if (mod != 2) {
             p.writePos(dropfrom);
-            p.writeShort(0);//Fh?
+            p.writeShort(delay);
         }
         if (drop.getMeso() == 0) {
             addExpirationTime(p, drop.getItem().getExpiration());

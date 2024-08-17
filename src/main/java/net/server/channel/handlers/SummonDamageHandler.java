@@ -92,7 +92,7 @@ public final class SummonDamageHandler extends AbstractDealDamageHandler {
         p.skip(8); // I failed lol (mob x,y and summon x,y), Thanks Gerald
         for (int x = 0; x < numAttacked; x++) {
             int monsterOid = p.readInt(); // attacked oid
-            p.skip(18);
+            p.skip(18); // TODO: find "delay" among these 18 skipped bytes
             int damage = p.readInt();
             allDamage.add(new SummonAttackEntry(monsterOid, damage));
         }
@@ -121,7 +121,7 @@ public final class SummonDamageHandler extends AbstractDealDamageHandler {
                         target.applyStatus(player, new MonsterStatusEffect(summonEffect.getMonsterStati(), summonSkill, null, false), summonEffect.isPoison(), 4000);
                     }
                 }
-                player.getMap().damageMonster(player, target, damage);
+                player.getMap().damageMonster(player, target, damage, (short) 0);
             }
         }
 

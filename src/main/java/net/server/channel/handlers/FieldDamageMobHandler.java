@@ -56,7 +56,7 @@ public class FieldDamageMobHandler extends AbstractPacketHandler {
             }
 
             map.broadcastMessage(chr, PacketCreator.damageMonster(mobOid, dmg), true);
-            map.damageMonster(chr, mob, dmg);
+            map.damageMonster(chr, mob, dmg, (short) 0);
         }
     }
 }
