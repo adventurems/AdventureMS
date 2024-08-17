@@ -70,7 +70,7 @@ import net.server.Server;
 import net.server.channel.Channel;
 import net.server.channel.handlers.AbstractDealDamageHandler.AttackTarget;
 import net.server.channel.handlers.PlayerInteractionHandler;
-import net.server.channel.handlers.SummonDamageHandler.SummonAttackEntry;
+import net.server.channel.handlers.SummonDamageHandler.SummonAttackTarget;
 import net.server.channel.handlers.WhisperHandler;
 import net.server.guild.Alliance;
 import net.server.guild.Guild;
@@ -2305,18 +2305,18 @@ public class PacketCreator {
         return p;
     }
 
-    public static Packet summonAttack(int cid, int summonOid, byte direction, List<SummonAttackEntry> allDamage) {
+    public static Packet summonAttack(int cid, int summonOid, byte direction, List<SummonAttackTarget> targets) {
         OutPacket p = OutPacket.create(SendOpcode.SUMMON_ATTACK);
         //b2 00 29 f7 00 00 9a a3 04 00 c8 04 01 94 a3 04 00 06 ff 2b 00
         p.writeInt(cid);
         p.writeInt(summonOid);
         p.writeByte(0);     // char level
         p.writeByte(direction);
-        p.writeByte(allDamage.size());
-        for (SummonAttackEntry attackEntry : allDamage) {
-            p.writeInt(attackEntry.getMonsterOid()); // oid
+        p.writeByte(targets.size());
+        for (SummonAttackTarget target : targets) {
+            p.writeInt(target.monsterOid()); // oid
             p.writeByte(6); // who knows
-            p.writeInt(attackEntry.getDamage()); // damage
+            p.writeInt(target.damage()); // damage
         }
 
         return p;
