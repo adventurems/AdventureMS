@@ -82,7 +82,6 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -121,7 +120,6 @@ public class MapleMap {
     private final Map<String, Integer> environment = new LinkedHashMap<>();
     private final Map<MapItem, Long> droppedItems = new LinkedHashMap<>();
     private final LinkedList<WeakReference<MapObject>> registeredDrops = new LinkedList<>();
-    private final Map<MobLootEntry, Long> mobLootEntries = new HashMap(20);
     private final List<Runnable> statUpdateRunnables = new ArrayList(50);
     private final List<Rectangle> areas = new ArrayList<>();
     private FootholdTree footholds = null;
@@ -160,7 +158,6 @@ public class MapleMap {
     private MonsterAggroCoordinator aggroMonitor = null;   // aggroMonitor activity in sync with itemMonitor
     private ScheduledFuture<?> itemMonitor = null;
     private ScheduledFuture<?> expireItemsTask = null;
-    private ScheduledFuture<?> mobSpawnLootTask = null;
     private ScheduledFuture<?> characterStatUpdateTask = null;
     private short itemMonitorTimeout;
     private Pair<Integer, String> timeMob = null;
@@ -654,10 +651,10 @@ public class MapleMap {
         }
     }
 
-    private byte dropItemsFromMonsterOnMap(List<MonsterDropEntry> dropEntry, Point pos, byte d, int chRate,
+    private byte dropItemsFromMonsterOnMap(List<MonsterDropEntry> dropEntry, Point pos, byte index, int chRate,
                                            byte droptype, int mobpos, Character chr, Monster mob, short delay) {
         if (dropEntry.isEmpty()) {
-            return d;
+            return index;
         }
 
         Collections.shuffle(dropEntry);
@@ -671,9 +668,9 @@ public class MapleMap {
 
             if (Randomizer.nextInt(999999) < dropChance) {
                 if (droptype == 3) {
-                    pos.x = mobpos + ((d % 2 == 0) ? (40 * ((d + 1) / 2)) : -(40 * (d / 2)));
+                    pos.x = mobpos + ((index % 2 == 0) ? (40 * ((index + 1) / 2)) : -(40 * (index / 2)));
                 } else {
-                    pos.x = mobpos + ((d % 2 == 0) ? (25 * ((d + 1) / 2)) : -(25 * (d / 2)));
+                    pos.x = mobpos + ((index % 2 == 0) ? (25 * ((index + 1) / 2)) : -(25 * (index / 2)));
                 }
                 if (de.itemId == 0) { // meso
                     int mesos = Randomizer.nextInt(de.Maximum - de.Minimum) + de.Minimum;
@@ -698,11 +695,11 @@ public class MapleMap {
                     }
                     spawnDrop(idrop, calcDropPos(pos, mob.getPosition()), mob, chr, droptype, de.questid, delay);
                 }
-                d++;
+                index++;
             }
         }
 
-        return d;
+        return index;
     }
 
     private byte dropGlobalItemsFromMonsterOnMap(List<MonsterGlobalDropEntry> globalEntry, Point pos, byte d,
@@ -742,7 +739,6 @@ public class MapleMap {
         final byte droptype = (byte) (mob.getStats().isExplosiveReward() ? 3 : mob.getStats().isFfaLoot() ? 2 : chr.getParty() != null ? 1 : 0);
         final int mobpos = mob.getPosition().x;
         int chRate = !mob.isBoss() ? chr.getDropRate() : chr.getBossDropRate();
-        byte d = 1;
         Point pos = new Point(0, mob.getPosition().y);
 
         MonsterStatusEffect stati = mob.getStati(MonsterStatus.SHOWDOWN);
@@ -768,8 +764,17 @@ public class MapleMap {
             return;
         }
 
-        registerMobItemDrops(droptype, mobpos, chRate, pos, dropEntry, visibleQuestEntry, otherQuestEntry, globalEntry,
-                chr, mob, delay);
+
+        byte index = 1;
+        // Normal Drops
+        index = dropItemsFromMonsterOnMap(dropEntry, pos, index, chRate, droptype, mobpos, chr, mob, delay);
+
+        // Global Drops
+        index = dropGlobalItemsFromMonsterOnMap(globalEntry, pos, index, droptype, mobpos, chr, mob, delay);
+
+        // Quest Drops
+        index = dropItemsFromMonsterOnMap(visibleQuestEntry, pos, index, chRate, droptype, mobpos, chr, mob, delay);
+        dropItemsFromMonsterOnMap(otherQuestEntry, pos, index, chRate, droptype, mobpos, chr, mob, delay);
     }
 
     public void dropItemsFromMonster(List<MonsterDropEntry> list, final Character chr, final Monster mob, short delay) {
@@ -801,11 +806,6 @@ public class MapleMap {
 
         expireItemsTask.cancel(false);
         expireItemsTask = null;
-
-        if (YamlConfig.config.server.USE_SPAWN_LOOT_ON_ANIMATION) {
-            mobSpawnLootTask.cancel(false);
-            mobSpawnLootTask = null;
-        }
 
         characterStatUpdateTask.cancel(false);
         characterStatUpdateTask = null;
@@ -862,17 +862,6 @@ public class MapleMap {
             }, YamlConfig.config.server.ITEM_MONITOR_TIME, YamlConfig.config.server.ITEM_MONITOR_TIME);
 
             expireItemsTask = TimerManager.getInstance().register(() -> makeDisappearExpiredItemDrops(), YamlConfig.config.server.ITEM_EXPIRE_CHECK, YamlConfig.config.server.ITEM_EXPIRE_CHECK);
-
-            if (YamlConfig.config.server.USE_SPAWN_LOOT_ON_ANIMATION) {
-                lootLock.lock();
-                try {
-                    mobLootEntries.clear();
-                } finally {
-                    lootLock.unlock();
-                }
-
-                mobSpawnLootTask = TimerManager.getInstance().register(() -> spawnMobItemDrops(), 200, 200);
-            }
 
             characterStatUpdateTask = TimerManager.getInstance().register(() -> runCharacterStatUpdate(), 200, 200);
 
@@ -967,67 +956,6 @@ public class MapleMap {
             }
         } finally {
             objectWLock.unlock();
-        }
-    }
-
-    private void registerMobItemDrops(byte droptype, int mobpos, int chRate, Point pos,
-                                      List<MonsterDropEntry> dropEntry, List<MonsterDropEntry> visibleQuestEntry,
-                                      List<MonsterDropEntry> otherQuestEntry, List<MonsterGlobalDropEntry> globalEntry,
-                                      Character chr, Monster mob, short delay) {
-        MobLootEntry mle = new MobLootEntry(droptype, mobpos, chRate, pos, delay, dropEntry, visibleQuestEntry,
-                otherQuestEntry, globalEntry, chr, mob);
-
-        if (YamlConfig.config.server.USE_SPAWN_LOOT_ON_ANIMATION) {
-            int animationTime = mob.getAnimationTime("die1");
-
-            lootLock.lock();
-            try {
-                long timeNow = Server.getInstance().getCurrentTime();
-                mobLootEntries.put(mle, timeNow + ((long) (0.42 * animationTime)));
-            } finally {
-                lootLock.unlock();
-            }
-        } else {
-            mle.run();
-        }
-    }
-
-    private void spawnMobItemDrops() {
-        Set<Entry<MobLootEntry, Long>> mleList;
-
-        lootLock.lock();
-        try {
-            mleList = new HashSet<>(mobLootEntries.entrySet());
-        } finally {
-            lootLock.unlock();
-        }
-
-        long timeNow = Server.getInstance().getCurrentTime();
-        List<MobLootEntry> toRemove = new LinkedList<>();
-        for (Entry<MobLootEntry, Long> mlee : mleList) {
-            if (mlee.getValue() < timeNow) {
-                toRemove.add(mlee.getKey());
-            }
-        }
-
-        if (!toRemove.isEmpty()) {
-            List<MobLootEntry> toSpawnLoot = new LinkedList<>();
-
-            lootLock.lock();
-            try {
-                for (MobLootEntry mle : toRemove) {
-                    Long mler = mobLootEntries.remove(mle);
-                    if (mler != null) {
-                        toSpawnLoot.add(mle);
-                    }
-                }
-            } finally {
-                lootLock.unlock();
-            }
-
-            for (MobLootEntry mle : toSpawnLoot) {
-                mle.run();
-            }
         }
     }
 
@@ -4448,11 +4376,6 @@ public class MapleMap {
             if (expireItemsTask != null) {
                 expireItemsTask.cancel(false);
                 expireItemsTask = null;
-            }
-
-            if (mobSpawnLootTask != null) {
-                mobSpawnLootTask.cancel(false);
-                mobSpawnLootTask = null;
             }
 
             if (characterStatUpdateTask != null) {
