@@ -1339,11 +1339,9 @@ public class MapleMap {
         return count;
     }
 
-    /* TODO: start using once all erroneous damageMonster() callers have been fixed
-     public boolean damageMonster(final Character chr, final Monster monster, final int damage) {
-        damageMonster(chr, monster, damage, (short) 0);
+     public boolean damageMonster(Character chr, Monster monster, int damage) {
+        return damageMonster(chr, monster, damage, (short) 0);
      }
-     */
 
     public boolean damageMonster(final Character chr, final Monster monster, final int damage, short delay) {
         if (monster.getId() == MobId.ZAKUM_1) {

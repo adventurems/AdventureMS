@@ -72,7 +72,7 @@ public final class MobDamageMobHandler extends AbstractPacketHandler {
             dmg = maxDmg;
         }
 
-        map.damageMonster(chr, damaged, dmg, (short) 0);
+        map.damageMonster(chr, damaged, dmg);
         map.broadcastMessage(chr, PacketCreator.damageMonster(to, dmg), false);
 
     }

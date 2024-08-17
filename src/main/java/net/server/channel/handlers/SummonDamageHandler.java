@@ -121,7 +121,7 @@ public final class SummonDamageHandler extends AbstractDealDamageHandler {
                         target.applyStatus(player, new MonsterStatusEffect(summonEffect.getMonsterStati(), summonSkill, null, false), summonEffect.isPoison(), 4000);
                     }
                 }
-                player.getMap().damageMonster(player, target, damage, (short) 0);
+                player.getMap().damageMonster(player, target, damage);
             }
         }
 

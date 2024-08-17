@@ -591,11 +591,11 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
         if (animationTime > 0) { // be sure to only use LIMITED ATTACKS with animation time here
             TimerManager.getInstance().schedule(() -> {
                 map.broadcastMessage(PacketCreator.damageMonster(monster.getObjectId(), damage), monster.getPosition());
-                map.damageMonster(attacker, monster, damage, (short) 0);
+                map.damageMonster(attacker, monster, damage);
             }, animationTime);
         } else {
             map.broadcastMessage(PacketCreator.damageMonster(monster.getObjectId(), damage), monster.getPosition());
-            map.damageMonster(attacker, monster, damage, (short) 0);
+            map.damageMonster(attacker, monster, damage);
         }
     }
 
