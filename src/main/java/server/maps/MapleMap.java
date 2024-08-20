@@ -795,9 +795,10 @@ public class MapleMap {
         dropFromMonster(chr, mob, true, (short) 0);
     }
 
-    public void dropFromReactor(final Character chr, final Reactor reactor, Item drop, Point dropPos, short questid) {
+    public void dropFromReactor(final Character chr, final Reactor reactor, Item drop, Point dropPos, short questid,
+                                short delay) {
         spawnDrop(drop, this.calcDropPos(dropPos, reactor.getPosition()), reactor, chr,
-                (byte) (chr.getParty() != null ? 1 : 0), questid, (short) 0);
+                (byte) (chr.getParty() != null ? 1 : 0), questid, delay);
     }
 
     private void stopItemMonitor() {
