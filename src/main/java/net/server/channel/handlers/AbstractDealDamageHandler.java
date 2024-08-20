@@ -121,6 +121,8 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
         public boolean ranged, magic;
         public int speed = 4;
         public Point position = new Point();
+        public List<Integer> explodedMesos;
+        public Short attackDelay;
 
         public StatEffect getAttackEffect(Character chr, Skill theSkill) {
             Skill mySkill = theSkill;
@@ -629,42 +631,9 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
         ret.direction = p.readByte();
         ret.stance = p.readByte();
         if (ret.skill == ChiefBandit.MESO_EXPLOSION) {
-            if (ret.numAttackedAndDamage == 0) {
-                p.skip(10);
-                int bullets = p.readByte();
-                for (int j = 0; j < bullets; j++) {
-                    int mesoid = p.readInt();
-                    p.skip(1);
-                    ret.targets.put(mesoid, null);
-                }
-                return ret;
-            } else {
-                p.skip(6);
-            }
-            for (int i = 0; i < ret.numAttacked + 1; i++) {
-                int oid = p.readInt();
-                if (i < ret.numAttacked) {
-                    // TODO: read delay in from these skipped bytes
-                    p.skip(12);
-                    int bullets = p.readByte();
-                    List<Integer> allDamageNumbers = new ArrayList<>();
-                    for (int j = 0; j < bullets; j++) {
-                        int damage = p.readInt();
-                        allDamageNumbers.add(damage);
-                    }
-                    ret.targets.put(oid, new AttackTarget((short) 0, allDamageNumbers));
-                    p.skip(4);
-                } else {
-                    int bullets = p.readByte();
-                    for (int j = 0; j < bullets; j++) {
-                        int mesoid = p.readInt();
-                        p.skip(1);
-                        ret.targets.put(mesoid, null);
-                    }
-                }
-            }
-            return ret;
+            return parseMesoExplosion(p, ret);
         }
+
         if (ranged) {
             p.readByte();
             ret.speed = p.readByte();
@@ -962,5 +931,44 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
             ret.position.setLocation(p.readShort(), p.readShort());
         }
         return ret;
+    }
+
+    private AttackInfo parseMesoExplosion(InPacket p, AttackInfo attackInfo) {
+        p.skip(6);
+
+        Map<Integer, List<Integer>> targetDamage = new HashMap<>();
+        for (int i = 0; i < attackInfo.numAttacked; i++) {
+            int mobOid = p.readInt();
+            p.skip(4);
+            Point curPos = p.readPos();
+            Point nextPos = p.readPos();
+            int damageLines = p.readByte();
+            List<Integer> allDamageNumbers = new ArrayList<>();
+            for (int j = 0; j < damageLines; j++) {
+                int damage = p.readInt();
+                allDamageNumbers.add(damage);
+            }
+            p.skip(4);
+            targetDamage.put(mobOid, allDamageNumbers);
+        }
+
+        p.skip(4);
+
+        List<Integer> explodedMesos = new ArrayList<>();
+        int explodedMesoCount = p.readByte();
+        for (int j = 0; j < explodedMesoCount; j++) {
+            int mesoOid = p.readInt();
+            p.skip(1);
+            explodedMesos.add(mesoOid);
+        }
+        attackInfo.explodedMesos = explodedMesos;
+
+        final short attackDelay = p.readShort();
+        attackInfo.attackDelay = attackDelay;
+
+        Map<Integer, AttackTarget> targets = new HashMap<>();
+        targetDamage.forEach((id, damage) -> targets.put(id, new AttackTarget(attackDelay, damage)));
+        attackInfo.targets = targets;
+        return attackInfo;
     }
 }
