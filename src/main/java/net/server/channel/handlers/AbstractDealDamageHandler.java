@@ -96,7 +96,6 @@ import server.life.MonsterDropEntry;
 import server.life.MonsterInformationProvider;
 import server.maps.MapItem;
 import server.maps.MapObject;
-import server.maps.MapObjectType;
 import server.maps.MapleMap;
 import tools.PacketCreator;
 import tools.Randomizer;
@@ -212,48 +211,12 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
                 return;
             }
 
-            //WTF IS THIS F3,1
-            /*if (attackCount != attack.numDamage && attack.skill != ChiefBandit.MESO_EXPLOSION && attack.skill != NightWalker.VAMPIRE && attack.skill != WindArcher.WIND_SHOT && attack.skill != Aran.COMBO_SMASH && attack.skill != Aran.COMBO_FENRIR && attack.skill != Aran.COMBO_TEMPEST && attack.skill != NightLord.NINJA_AMBUSH && attack.skill != Shadower.NINJA_AMBUSH) {
-                return;
-            }*/
-
             int totDamage = 0;
 
             if (attack.skill == ChiefBandit.MESO_EXPLOSION) {
-                int delay = 0;
-                for (Integer oned : attack.targets.keySet()) {
-                    MapObject mapobject = map.getMapObject(oned);
-                    if (mapobject != null && mapobject.getType() == MapObjectType.ITEM) {
-                        final MapItem mapitem = (MapItem) mapobject;
-                        if (mapitem.getMeso() == 0) { //Maybe it is possible some how?
-                            return;
-                        }
-
-                        mapitem.lockItem();
-                        try {
-                            if (mapitem.isPickedUp()) {
-                                return;
-                            }
-                            TimerManager.getInstance().schedule(() -> {
-                                mapitem.lockItem();
-                                try {
-                                    if (mapitem.isPickedUp()) {
-                                        return;
-                                    }
-                                    map.pickItemDrop(PacketCreator.removeItemFromMap(mapitem.getObjectId(), 4, 0), mapitem);
-                                } finally {
-                                    mapitem.unlockItem();
-                                }
-                            }, delay);
-                            delay += 100;
-                        } finally {
-                            mapitem.unlockItem();
-                        }
-                    } else if (mapobject != null && mapobject.getType() != MapObjectType.MONSTER) {
-                        return;
-                    }
-                }
+                removeExplodedMesos(map, attack);
             }
+
             for (Map.Entry<Integer, AttackTarget> target : attack.targets.entrySet()) {
                 final Monster monster = map.getMonsterByOid(target.getKey());
                 if (monster != null) {
@@ -970,5 +933,29 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
         targetDamage.forEach((id, damage) -> targets.put(id, new AttackTarget(attackDelay, damage)));
         attackInfo.targets = targets;
         return attackInfo;
+    }
+
+    private void removeExplodedMesos(MapleMap map, AttackInfo attack) {
+        short delay = attack.attackDelay;
+        for (Integer mesoId : attack.explodedMesos) {
+            MapObject mapobject = map.getMapObject(mesoId);
+            if (!(mapobject instanceof MapItem mapItem)) {
+                return;
+            }
+            if (mapItem.getMeso() == 0) {
+                return;
+            }
+
+            mapItem.lockItem();
+            try {
+                if (mapItem.isPickedUp()) {
+                    return;
+                }
+                map.pickItemDrop(PacketCreator.removeExplodedMesoFromMap(mapItem.getObjectId(), delay), mapItem);
+            } finally {
+                mapItem.unlockItem();
+            }
+            delay += 100;
+        }
     }
 }

@@ -2595,7 +2595,6 @@ public class PacketCreator {
      * @param slot
      * @return
      */
-    // TODO: look for a "delay" in case animation = 4 (explode). Doesn't make sense for it to be server-sided.
     public static Packet removeItemFromMap(int objId, int animation, int chrId, boolean pet, int slot) {
         OutPacket p = OutPacket.create(SendOpcode.REMOVE_ITEM_FROM_MAP);
         p.writeByte(animation); // expire
@@ -2606,6 +2605,14 @@ public class PacketCreator {
                 p.writeByte(slot);
             }
         }
+        return p;
+    }
+
+    public static Packet removeExplodedMesoFromMap(int mapObjectId, short delay) {
+        OutPacket p = OutPacket.create(SendOpcode.REMOVE_ITEM_FROM_MAP);
+        p.writeByte(4);
+        p.writeInt(mapObjectId);
+        p.writeShort(delay);
         return p;
     }
 
