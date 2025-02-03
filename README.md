@@ -91,9 +91,9 @@ Making changes becomes a bit more tedious though as you have to rebuild the serv
 On the first launch, the database container will run the scripts which may take so long that the server fails to start. In that case, just wait until the database is done running the scripts and then retry (Ctrl+C and re-run the command).
 
 #### Jar
-Another option is to start the server from a terminal by running a jar file. You first need to build the jar file from source which requires [Maven](https://maven.apache.org/).
+Another option is to start the server from a terminal by running a jar file. You first need to build the jar file from source which requires [Maven](https://maven.apache.org/). Fortunately, [Maven Wrapper](https://maven.apache.org/wrapper/) is provided so you don't have to install Maven separately.
 
-Building the jar file is as easy as running ``mvn clean package``. The project is configured to produce a "fat" jar which contains all dependencies (by utilizing the _maven-assembly-plugin_). Note that the WZ XML files are __not__ included in the jar.
+Building the jar file is as easy as running ``./mvnw.cmd clean package``. The project is configured to produce a "fat" jar which contains all dependencies (by utilizing the _maven-assembly-plugin_). Note that the WZ XML files are __not__ included in the jar.
 
 To run the jar, a ``launch.bat`` file is provided for convenience. Simply double-click it and the server will start in a new terminal window. 
 
