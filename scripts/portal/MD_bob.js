@@ -11,7 +11,7 @@ function enter(pi)
 {
     if (pi.getMapId() == baseid)
     {
-        if (pi.getPlayer().getLevel >= 10)
+        if (pi.getPlayer().getLevel() >= 10)
         {
             if (pi.getParty() != null)
             {
@@ -42,8 +42,7 @@ function enter(pi)
         // It doesn't think we are level 10
         else
         {
-            pi.playerMessage(5, "Current Level: " + pi.getPlayer().getLevel());
-            // pi.playerMessage(5, "You must be level 10 to challenge the zone boss!");
+            pi.playerMessage(5, "You must be level 10 to challenge the zone boss!");
             return false;
         }
     }
