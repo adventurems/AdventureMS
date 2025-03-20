@@ -1,4 +1,4 @@
-// Huckle - Wandering Merchant
+// Huckle - AdventureMS Custom
 
 var status;
 

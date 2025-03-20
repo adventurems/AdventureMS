@@ -286,6 +286,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction {
         getPlayer().gainExp(gain, true, true);
     }
 
+    public int getZoneProgress() {return getPlayer().getZoneProgress();} // AdventureMS Specific
+
     @Override
     public void showEffect(String effect) {
         getPlayer().getMap().broadcastMessage(PacketCreator.environmentChange(effect, 3));
