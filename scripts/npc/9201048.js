@@ -1,92 +1,213 @@
-/*
-    This file is part of the HeavenMS MapleStory Server
-    Copyleft (L) 2016 - 2019 RonanLana
+// AdventureMS Job Advance - Amos the Strong
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation version 3 as published by
-    the Free Software Foundation. You may not use, modify or distribute
-    this program under any other version of the GNU Affero General Public
-    License.
+function start() {status = -1; action(1,0,0);}
+function action(mode, type, selection) { if (mode == 1) {status++;} else {status--;} if (status == -1) {cm.dispose();}
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
+    else if (status == 0)
+    {
+        // Variables
+        actionx = {"1stJob" : false, "2ndJob" : false, "2ndJobT" : false, "3thJobI" : false, "3thJobC" : false};
+        Job = cm.getJobId();
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+        // They are an aran
+        if (Job == 2000)
+        {
+            // Set Action to 1st Job
+            actionx["1stJob"] = true;
 
-/**
- * @author: Ronan
- * @npc: Amos
- * @map: Entrance of Amorian Challenge (670010100)
- * @func: Amoria PQ
- */
+            // Start the Prompt
+            cm.sendNext("You look like a good candidate for an #raran#k! Let's see if you've met the requirements.");   // thanks Vcoc for noticing a need to state and check requirements on first job adv starting message
+        }
 
-var status = 0;
-var em = null;
-
-function start() {
-    status = -1;
-    action(1, 0, 0);
-}
-
-function action(mode, type, selection) {
-    if (mode == -1) {
-        cm.dispose();
-    } else {
-        if (mode == 0 && status == 0) {
+        // They are ready for 2nd job
+        else if (cm.getLevel() >= 30 && Job == 2100)
+        {
+            // Disable 2nd job
+            cm.sendOk("2nd job is not currently available :(, I'm working on it...");
             cm.dispose();
-            return;
-        }
-        if (mode == 1) {
-            status++;
-        } else {
-            status--;
-        }
 
-        if (status == 0) {
-            em = cm.getEventManager("AmoriaPQ");
-            if (em == null) {
-                cm.sendOk("The Amoria PQ has encountered an error.");
-                cm.dispose();
-                return;
-            } else if (cm.isUsingOldPqNpcStyle()) {
-                action(1, 0, 0);
-                return;
+            /*/ Set Action to 1st Job
+            actionx["2ndJob"] = true;
+
+            if (cm.getZoneProgress() == 3)
+            {
+                // Start the prompt
+                cm.sendNext("Ah #h #, you've done it!\r\n\r\nYou are looking great, congratulations on reaching level 30 and clearing #bZone 3#k!" +
+                "\r\n\r\nI will now advance your aran skills!");
             }
 
-            cm.sendSimple("#e#b<Party Quest: Amorian Challenge>\r\n#k#n" + em.getProperty("party") + "\r\n\r\nIf you're brave enough to attempt the Amorian Challenge, join with others like you and let your #bparty leader#k talk to me. If a party filled with whole married couples register to the challenge, better prizes awaits there.#b\r\n#L0#I want to participate in the party quest.\r\n#L1#I would like to " + (cm.getPlayer().isRecvPartySearchInviteEnabled() ? "disable" : "enable") + " Party Search.\r\n#L2#I would like to hear more details.");
-        } else if (status == 1) {
-            if (selection == 0) {
-                if (cm.getParty() == null) {
-                    cm.sendOk("You can participate in the party quest only if you are in a party.");
-                    cm.dispose();
-                } else if (!cm.isLeader()) {
-                    cm.sendOk("Your party leader must talk to me to start this party quest.");
-                    cm.dispose();
-                } else {
-                    var eli = em.getEligibleParty(cm.getParty());
-                    if (eli.size() > 0) {
-                        if (!em.startInstance(cm.getParty(), cm.getPlayer().getMap(), 1)) {
-                            cm.sendOk("Another party has already entered the #rParty Quest#k in this channel. Please try another channel, or wait for the current party to finish.");
-                        }
-                    } else {
-                        cm.sendOk("You cannot start this party quest yet, because either your party is not in the range size, some of your party members are not eligible to attempt it or they are not in this map. If you're having trouble finding party members, try Party Search.");
-                    }
+            else
+            {
+                cm.sendOk("You are level 30, but you have not cleared #bZone 3#k! Clear #bThe Vault#k!");
+                cm.dispose();
+            }*/
+        }
 
+        // Not ready for a job advancement
+        else
+        {
+            switch (Job)
+            {
+                // Aran
+                case 2000:
+                case 2100:
+                case 2110:
+                case 2111:
+                {
+                    cm.sendOk("You are not ready for the next advancement...\r\n\r\nSee me at levels #r10#k, #r30#k, #r70#k and #r120#k!");
                     cm.dispose();
+                    break;
                 }
-            } else if (selection == 1) {
-                var psState = cm.getPlayer().toggleRecvPartySearchInvite();
-                cm.sendOk("Your Party Search status is now: #b" + (psState ? "enabled" : "disabled") + "#k. Talk to me whenever you want to change it back.");
+
+                // Any other job
+                default:
+                {
+                    cm.sendOk("Looks like you have chosen another path...");
+                    cm.dispose();
+                    break;
+                }
+            }
+        }
+    }
+
+    else if (status == 1)
+    {
+        if (actionx["1stJob"])
+        {
+            if (cm.getLevel() >= 10 && cm.haveItem(4032120))
+            {
+                cm.sendYesNo("You are the correct #blevel#k and have the #bProof of Qualification#k. This decision is #rfinal#k. Would you like to become an #raran#k?");
+            }
+
+            else if (cm.getLevel() <= 9)
+            {
+                cm.sendOk("Looks like you aren't level 10 yet! Come back after you've done some more training.");
                 cm.dispose();
-            } else {
-                cm.sendOk("#e#b<Party Quest: Amorian Challenge>#k#n\r\nI am Amos, hoster of the well-round famed Amorian Challenge. The instance consist of many team puzzles, where cooperation is the fundamental key for progress. Team up with other players to attempt for the bonus stage, where many goodies can be obtained at the end of the instance. If an all-couple party is formed, they can get even better prizes on the extra bonus stage.");
+            }
+
+            else
+            {
+                cm.sendOk("You've not proven your worth. You don't have the #bProof of Qualification#k! Defeat #bBob#k and return with proof.")
                 cm.dispose();
             }
         }
+
+        else if (actionx["2ndJob"])
+        {
+            // Confirmed their job selection
+            newJobName = "Aran 2";
+            newJob = 2110;
+
+            // Send Message
+            cm.sendOk("Congratulations on your success! You've proven to be a great adventurer and have achieved a new level of power! You are now a #r" + newJobName + "#k!\r\n\r\n" +
+            "As part of your transformation, you've gained 4 slots in each category!\r\n\r\nIf your exp was locked, it is now UNLOCKED." +
+            "\r\n\r\nGood luck on your journey, come back to me once you've reached level 70!");
+
+            // Change Job
+            cm.changeJobById(newJob);
+
+            // Add Slots
+            cm.getPlayer().gainSlots(1, 4, true);
+            cm.getPlayer().gainSlots(2, 4, true);
+            cm.getPlayer().gainSlots(3, 4, true);
+            cm.getPlayer().gainSlots(4, 4, true);
+
+            // Turn off EXP Block
+            cm.getPlayer().stopExpOff();
+
+            // Take Proof
+            if (cm.haveItem(4031012))
+            {
+                cm.gainItem(4031012, -1);
+            }
+
+            cm.dispose();
+        }
+    }
+
+    else if (status == 2)
+    {
+        if (actionx["1stJob"])
+        {
+            // Required Variables
+            var jobid = 2100;
+            var weapon1 = 1442077;
+
+            // Optional Variables
+            var weapon2;
+            var throwable;
+            var throwableAmount;
+
+            // Required Variables
+            var randy = Math.floor(Math.random() * 101);
+            var pet; if (randy < 45) {pet = 5000000;} else if (randy < 90) {pet = 5000001;} else {pet = 5000005;} // Brown Kitty / Brown Puppy / White Bunny
+
+            // Check for room
+            if (cm.canHoldAll([weapon1, weapon1, 1142085, pet, 5140000, 2000000, 2000003, 2000003]))
+            {
+                // Variable
+                cm.changeJobById(jobid); // Change Job
+                cm.gainItem(weapon1, 1); // Gain weapon1
+                if (weapon2) {cm.gainItem(weapon2, 1);} // Gain weapon2
+                if (throwable) {cm.gainItem(throwable, throwableAmount)}; // Gain Throwable
+
+                // The Same for All Jobs
+                if (cm.haveItem(3991000)) {cm.gainItem(3991000, -1);} // Remove Key if they have it
+                cm.gainItem(4032120, -1); // Take Proof
+                cm.gainItem(1142085, 1); // Medal
+                cm.gainItem(pet, 1, false, true, 7700000000); // Gain a Random Pet
+                cm.gainItem(5140000, 1); // Gain Shop Permit
+                cm.gainItem(2000000, 50); // Red Pots
+                cm.gainItem(2000003, 25); // Blue Pots
+                cm.resetStats(); // Reset Player Stats for job advancement
+                cm.getPlayer().gainSlots(1, 12, true); // Gain Slots
+                cm.getPlayer().gainSlots(2, 4, true); // Gain Slots
+                cm.getPlayer().gainSlots(3, 4, true); // Gain Slots
+                cm.getPlayer().gainSlots(4, 4, true); // Gain Slots
+                cm.getPlayer().stopExpOff(); // Turn off EXP Block
+                cm.getPlayer().updateZoneProgress(); // Update Zone Progress
+
+                // Send Message
+                var defaultString = "Congratulations on becoming a(n) #b#e" + cm.getPlayer().getJob() +  "#k#n!\r\n\r\n#r#eThe following changes have occurred:#n#k\r\n\r\n- Your exp has been unlocked\r\n- You've gained 4 slots in each tab\r\n- Huckles shop has been updated\r\n\r\n#r#eYou've gained the following items as well:#n#k\r\n\r\n#v1142085# #t1142085#\r\n#v" + pet + "# #t" + pet + "#\r\n#v5140000# #t5140000#\r\n#v" + weapon1 + "# #t" + weapon1 + "#";
+                if (weapon2) {defaultString += "\r\n#v" + weapon2 + "# #t" + weapon2 + "#";}
+                if (throwable) {defaultString += "\r\n#v" + throwable + "# #t" + throwable + "# " + throwableAmount;}
+                defaultString += "\r\n#v2000000# #t2000000# 50\r\n#v2000003# #t2000003# 25";
+
+                // Send Compiled Message
+                cm.sendNext(defaultString);
+            }
+
+            // They can't hold stuff
+            else
+            {
+                cm.sendNext("I'd like to give you some gifts! You need the following room:\r\n\r\n- 3 slots in EQUIP\r\n- 3 slots in USE\r\n- 2 slots in CASH");
+                cm.dispose();
+            }
+        }
+    }
+
+    // Further Status
+    else if (status == 3)
+    {
+        if (actionx["1stJob"])
+        {
+            cm.sendNextPrev("You've gotten much stronger now. You've earned some #bSkill Points#k. Use skill points in the skill book!");
+        }
+    }
+
+    // Further Status
+    else if (status == 4)
+    {
+        if (actionx["1stJob"])
+        {
+            cm.sendOk("You can go #rDEXless#k without worry! You should put all your points into #rSTR#k. This is all I can teach you for now. Visit me again at Lvl 30. Good luck on your journey, young aran!");
+            cm.dispose();
+        }
+    }
+
+    // Status gets out of whack? Dispose?
+    else
+    {
+        cm.dispose();
     }
 }

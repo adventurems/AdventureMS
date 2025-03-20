@@ -1,219 +1,219 @@
-/*
-	This file is part of the OdinMS Maple Story Server
-    Copyright (C) 2008 Patrick Huy <patrick.huy@frz.cc>
-		       Matthias Butz <matze@odinms.de>
-		       Jan Christian Meyer <vimes@odinms.de>
+// AdventureMS Job Advance - Athena
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation version 3 as published by
-    the Free Software Foundation. You may not use, modify or distribute
-    this program under any other version of the GNU Affero General Public
-    License.
+function start() {status = -1; action(1,0,0);}
+function action(mode, type, selection) { if (mode == 1) {status++;} else {status--;} if (status == -1) {cm.dispose();}
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
+    else if (status == 0)
+    {
+        // Variables
+        actionx = {"1stJob" : false, "2ndJob" : false, "2ndJobT" : false, "3thJobI" : false, "3thJobC" : false};
+        Job = cm.getJobId();
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-/*      Athena Pierce
-	Bowman Job Advancement
-	Victoria Road : Bowman Instructional School (100000201)
-*/
-
-status = -1;
-actionx = {"1stJob": false, "2ndjob": false, "3thJobI": false, "3thJobC": false};
-job = 310;
-
-spawnPnpc = false;
-spawnPnpcFee = 7000000;
-jobType = 3;
-
-function start() {
-    const GameConstants = Java.type('constants.game.GameConstants');
-    if (parseInt(cm.getJobId() / 100) == jobType && cm.canSpawnPlayerNpc(GameConstants.getHallOfFameMapid(cm.getJob()))) {
-        spawnPnpc = true;
-
-        var sendStr = "You have walked a long way to reach the power, wisdom and courage you hold today, haven't you? What do you say about having right now #ra NPC on the Hall of Fame holding the current image of your character#k? Do you like it?";
-        if (spawnPnpcFee > 0) {
-            sendStr += " I can do it for you, for the fee of #b " + cm.numberWithCommas(spawnPnpcFee) + " mesos.#k";
-        }
-
-        cm.sendYesNo(sendStr);
-    } else {
-        if (cm.getJobId() == 0) {
+        // They are beginners
+        if (Job == 0)
+        {
+            // Set Action to 1st Job
             actionx["1stJob"] = true;
-            cm.sendNext("So you decided to become a #rbowman#k? There are some standards to meet, y'know... #bYour level should be at least 10, with at least " + cm.getFirstJobStatRequirement(jobType) + "#k. Let's see.");   // thanks Vcoc for noticing a need to state and check requirements on first job adv starting message
-        } else if (cm.getLevel() >= 30 && cm.getJobId() == 300) {
+
+            // Start the Prompt
+            cm.sendNext("You look like a good candidate for an #rarcher#k! Let's see if you've met the requirements.");   // thanks Vcoc for noticing a need to state and check requirements on first job adv starting message
+        }
+
+        // They are ready for 2nd job
+        else if (cm.getLevel() >= 30 && Job == 300)
+        {
+            // Disable 2nd job
+            cm.sendOk("2nd job is not currently available :(, I'm working on it...");
+            cm.dispose();
+
+            /*/ Set Action to 1st Job
             actionx["2ndJob"] = true;
-            if (cm.haveItem(4031012)) {
-                cm.sendNext("Haha...I knew you'd breeze through that test. I'll admit, you are a great bowman. I'll make you much stronger than you're right now. before that, however... you;ll need to choose one of two paths given to you. It'll be a difficult decision for you to make, but... if there's any question to ask, please do so.");
-            } else if (cm.haveItem(4031011)) {
-                cm.sendOk("Go and see the #b#p1072002##k.");
+
+            if (cm.getZoneProgress() == 3)
+            {
+                // Start the prompt
+                cm.sendSimple("Ah #h #, you've done it!\r\n\r\nYou are looking great, congratulations on reaching level 30 and clearing #bZone 3#k!" +
+                "\r\n\r\n#r#eThis decision is FINAL! Which class would you like to be#k#n?\r\n\r\n#L1#I'd like to be a #rHunter#k!#l\r\n#L2#I'd like to be a #rCrossbowman#k!#l");
+            }
+
+            else
+            {
+                cm.sendOk("You are level 30, but you have not cleared #bZone 3#k! Clear #bThe Vault#k!");
                 cm.dispose();
-            } else {
-                cm.sendYesNo("Hmmm... you have grown a lot since I last saw you. I don't see the weakling I saw before, and instead, look much more like a bowman now. Well, what do you think? Don't you want to get even more powerful than that? Pass a simple test and I'll do just that for you. Do you want to do it?");
-            }
-        } else if (actionx["3thJobI"] || (cm.getPlayer().gotPartyQuestItem("JB3") && cm.getLevel() >= 70 && cm.getJobId() % 10 == 0 && parseInt(cm.getJobId() / 100) == 3 && !cm.getPlayer().gotPartyQuestItem("JBP"))) {
-            actionx["3thJobI"] = true;
-            cm.sendNext("There you are. A few days ago, #b#p2020010##k of Ossyria talked to me about you. I see that you are interested in making the leap to the amazing world of the third job advancement for archers. To achieve that goal, I will have to test your strength in order to see whether you are worthy of the advancement. There is an opening in the middle of a deep forest in Victoria Island, where it'll lead you to a secret passage. Once inside, you'll face a clone of myself. Your task is to defeat her and bring #b#t4031059##k back with you.");
-        } else if (cm.getPlayer().gotPartyQuestItem("JBP") && !cm.haveItem(4031059)) {
-            cm.sendNext("Please, bring me the #b#t4031059##k.");
-            cm.dispose();
-        } else if (cm.haveItem(4031059) && cm.getPlayer().gotPartyQuestItem("JBP")) {
-            actionx["3thJobC"] = true;
-            cm.sendNext("Nice work. You have defeated my clone and brought #b#t4031059##k back safely. You have now proven yourself worthy of the 3rd job advancement from the physical standpoint. Now you should give this necklace to #b#p2020011##k in Ossyria to take on the second part of the test. Good luck. You'll need it.");
-        } else {
-            cm.sendOk("You have chosen wisely.");
-            cm.dispose();
+            }*/
         }
-    }
-}
 
-function action(mode, type, selection) {
-    status++;
-    if (mode == -1 && selection == -1) {
-        cm.dispose();
-        return;
-    } else if (mode == 0 && type != 1) {
-        status -= 2;
-    }
-
-    if (status == -1) {
-        start();
-        return;
-    } else {
-        if (spawnPnpc) {
-            if (mode > 0) {
-                if (cm.getMeso() < spawnPnpcFee) {
-                    cm.sendOk("Sorry, you don't have enough mesos to purchase your place on the Hall of Fame.");
+        // Not ready for a job advancement
+        else
+        {
+            switch (Job)
+            {
+                // Archers
+                case 300:
+                case 310:
+                case 311:
+                case 312:
+                case 320:
+                case 321:
+                case 322:
+                {
+                    cm.sendOk("You are not ready for the next advancement...\r\n\r\nSee me at levels #r10#k, #r30#k, #r70#k and #r120#k!");
                     cm.dispose();
-                    return;
+                    break;
                 }
 
-                const PlayerNPC = Java.type('server.life.PlayerNPC');
-                const GameConstants = Java.type('constants.game.GameConstants');
-                if (PlayerNPC.spawnPlayerNPC(GameConstants.getHallOfFameMapid(cm.getJob()), cm.getPlayer())) {
-                    cm.sendOk("There you go! Hope you will like it.");
-                    cm.gainMeso(-spawnPnpcFee);
-                } else {
-                    cm.sendOk("Sorry, the Hall of Fame is currently full...");
-                }
-            }
-
-            cm.dispose();
-            return;
-        } else {
-            if (mode != 1 || status == 7 && type != 1 || (actionx["1stJob"] && status == 4) || (cm.haveItem(4031008) && status == 2) || (actionx["3thJobI"] && status == 1)) {
-                if (mode == 0 && status == 2 && type == 1) {
-                    cm.sendOk("You know there is no other choice...");
-                }
-                if (!(mode == 0 && type != 1)) {
+                // Any other job
+                default:
+                {
+                    cm.sendOk("Looks like you have chosen another path...");
                     cm.dispose();
-                    return;
+                    break;
                 }
             }
         }
     }
 
-    if (actionx["1stJob"]) {
-        if (status == 0) {
-            if (cm.getLevel() >= 10 && cm.canGetFirstJob(jobType)) {
-                cm.sendNextPrev("It is an important and final choice. You will not be able to turn back.");
-            } else {
-                cm.sendOk("Train a bit more until you reach the base requirements and I can show you the way of the #rBowman#k.");
-                cm.dispose();
+    else if (status == 1)
+    {
+        if (actionx["1stJob"])
+        {
+            if (cm.getLevel() >= 10 && cm.haveItem(4032120))
+            {
+                cm.sendYesNo("You are the correct #blevel#k and have the #bProof of Qualification#k. This decision is #rfinal#k. Would you like to become an #rarcher#k?");
             }
-        } else if (status == 1) {
-            if (cm.canHold(1452051) && cm.canHold(2070000)) {
-                if (cm.getJobId() == 0) {
-                    cm.changeJobById(300);
-                    cm.gainItem(1452051, 1);
-                    cm.gainItem(2060000, 1000);
-                    cm.resetStats();
-                }
-                cm.sendNext("Alright, from here out, you are a part of us! You'll be living the life of a wanderer at ..., but just be patient as soon, you'll be living the high life. Alright, it ain't much, but I'll give you some of my abilities... HAAAHHH!!!");
-            } else {
-                cm.sendNext("Make some room in your inventory and talk back to me.");
-                cm.dispose();
-            }
-        } else if (status == 2) {
-            cm.sendNextPrev("You've gotten much stronger now. Plus every single one of your inventories have added slots. A whole row, to be exact. Go see for it yourself. I just gave you a little bit of #bSP#k. When you open up the #bSkill#k menu on the lower left corner of the screen, there are skills you can learn by using SP's. One warning, though: You can't raise it all together all at once. There are also skills you can acquire only after having learned a couple of skills first.");
-        } else if (status == 3) {
-            cm.sendNextPrev("Now a reminder. Once you have chosen, you cannot change up your mind and try to pick another path. Go now, and live as a proud Bowman.");
-        } else {
-            cm.dispose();
-        }
-    } else if (actionx["2ndJob"]) {
-        if (status == 0) {
-            if (cm.haveItem(4031012)) {
-                cm.sendSimple("Alright, when you have made your decision, click on [I'll choose my occupation] at the bottom.#b\r\n#L0#Please explain to me what being the Hunter is all about.\r\n#L1#Please explain to me what being the Crossbowman is all about.\r\n#L3#I'll choose my occupation!");
-            } else {
-                cm.sendNext("Good decision. You look strong, but I need to see if you really are strong enough to pass the test, it's not a difficult test, so you'll do just fine. Here, take my letter first... make sure you don't lose it!");
-                if (!cm.isQuestStarted(100000)) {
-                    cm.startQuest(100000);
-                }
-            }
-        } else if (status == 1) {
-            if (!cm.haveItem(4031012)) {
-                if (cm.canHold(4031010)) {
-                    if (!cm.haveItem(4031010)) {
-                        cm.gainItem(4031010, 1);
-                    }
-                    cm.sendNextPrev("Please get this letter to #b#p1072002##k who's around #b#m106010000##k near Henesys. She is taking care of the job of an instructor in place of me. Give her the letter and she'll test you in place of me. Best of luck to you.");
-                    cm.dispose();
-                } else {
-                    cm.sendNext("Please, make some space in your inventory.");
-                    cm.dispose();
-                }
-            } else {
-                if (selection < 3) {
-                    if (selection == 0) {    //hunter
-                        cm.sendNext("Archers that master #rBows#k.\r\n\r\n#bHunters#k have a higher damage/minute output in early levels, with attacks having a faster pace but slightly weaker than Crossbowmans. #bHunters#k get #rArrow Bomb#k, a slightly weaker attack that can cause up to 6 enemies to get stunned.");
-                    } else if (selection == 1) {    //crossbowman
-                        cm.sendNext("Archers that master #rCrossbows#k.\r\n\r\n#bCrossbowmans'#k attack power grows higher the higher level you are, when compared to Hunters. #bCrossbowmans#k get #rIron Arrow#k, a stronger attack that does not home on enemies but can go through walls.");
-                    }
 
-                    status -= 2;
-                } else {
-                    cm.sendSimple("Now... have you made up your mind? Please choose the job you'd like to select for your 2nd job advancement. #b\r\n#L0#Hunter\r\n#L1#Crossbowman");
-                }
+            else if (cm.getLevel() <= 9)
+            {
+                cm.sendOk("Looks like you aren't level 10 yet! Come back after you've done some more training.");
+                cm.dispose();
             }
-        } else if (status == 2) {
-            job += selection * 10;
-            cm.sendYesNo("So you want to make the second job advancement as the " + (job == 310 ? "#bHunter#k" : "#bCrossbowman#k") + "? You know you won't be able to choose a different job for the 2nd job advancement once you make your desicion here, right?");
-        } else if (status == 3) {
-            if (cm.haveItem(4031012)) {
+
+            else
+            {
+                cm.sendOk("You've not proven your worth. You don't have the #bProof of Qualification#k! Defeat #bBob#k and return with proof.")
+                cm.dispose();
+            }
+        }
+
+        else if (actionx["2ndJob"])
+        {
+            // Confirmed their job selection
+            if (selection == 1) {newJob = 310; newJobName = "Hunter";} else if (selection == 2) {newJob = 320; newJobName = "Crossbowman";}
+
+            // Send Message
+            cm.sendOk("Congratulations on your success! You've proven to be a great adventurer and have achieved a new level of power! You are now a #r" + newJobName + "#k!\r\n\r\n" +
+            "As part of your transformation, you've gained 4 slots in each category!\r\n\r\nIf your exp was locked, it is now UNLOCKED." +
+            "\r\n\r\nGood luck on your journey, come back to me once you've reached level 70!");
+
+            // Change Job
+            cm.changeJobById(newJob);
+
+            // Add Slots
+            cm.getPlayer().gainSlots(1, 4, true);
+            cm.getPlayer().gainSlots(2, 4, true);
+            cm.getPlayer().gainSlots(3, 4, true);
+            cm.getPlayer().gainSlots(4, 4, true);
+
+            // Turn off EXP Block
+            cm.getPlayer().stopExpOff();
+
+            // Take Proof
+            if (cm.haveItem(4031012))
+            {
                 cm.gainItem(4031012, -1);
             }
 
-            cm.sendNext("Alright, you're the " + (job == 310 ? "#bHunter#k" : "#bCrossbowman#k") + " from here on out. " + (job == 310 ? "#bHunter#k" : "#bCrossbowman#k") + "s are the intelligent bunch with incredible vision, able to pierce the arrow through the heart of the monsters with ease... please train yourself each and everyday. I'll help you become even stronger than you already are.");
-            if (cm.getJobId() != job) {
-                cm.changeJobById(job);
-            }
-        } else if (status == 4) {
-            cm.sendNextPrev("I have just given you a book that gives you the list of skills you can acquire as a " + (job == 310 ? "hunter" : "crossbowman") + ". Also your etc inventory has expanded by adding another row to it. Your max HP and MP have increased, too. Go check and see for it yourself.");
-        } else if (status == 5) {
-            cm.sendNextPrev("I have also given you a little bit of #bSP#k. Open the #bSkill Menu#k located at the bottomleft corner. you'll be able to boost up the newer acquired 2nd level skills. A word of warning, though. You can't boost them up all at once. Some of the skills are only available after you have learned other skills. Make sure yo remember that.");
-        } else if (status == 6) {
-            cm.sendNextPrev((job == 310 ? "Hunter" : "Crossbowman") + " need to be strong. But remember that you can't abuse that power and use it on a weakling. Please use your enormous power the right way, because... for you to use that the right way, that is much harden than just getting stronger. Please find me after you have advanced much further. I'll be waiting for you.");
+            cm.dispose();
         }
-    } else if (actionx["3thJobI"]) {
-        if (status == 0) {
-            if (cm.getPlayer().gotPartyQuestItem("JB3")) {
-                cm.getPlayer().removePartyQuestItem("JB3");
-                cm.getPlayer().setPartyQuestItemObtained("JBP");
+    }
+
+    else if (status == 2)
+    {
+        if (actionx["1stJob"])
+        {
+            // Required Variables
+            var jobid = 300;
+            var weapon1 = 1452051;
+            var skill1 = 3100000;
+            var skill2 = 3200000;
+
+            // Optional Variables
+            var weapon2;
+            var throwable = 2060000;
+            var throwableAmount = 1000;
+
+            // Required Variables
+            var randy = Math.floor(Math.random() * 101);
+            var pet; if (randy < 45) {pet = 5000000;} else if (randy < 90) {pet = 5000001;} else {pet = 5000005;} // Brown Kitty / Brown Puppy / White Bunny
+
+            // Check for room
+            if (cm.canHoldAll([weapon1, weapon1, 1142085, pet, 5140000, 2000000, 2000003, 2000003]))
+            {
+                // Variable
+                cm.changeJobById(jobid); // Change Job
+                cm.gainItem(weapon1, 1); // Gain weapon1
+                if (weapon2) {cm.gainItem(weapon2, 1);} // Gain weapon2
+                if (throwable) {cm.gainItem(throwable, throwableAmount)}; // Gain Throwable
+                cm.teachSkill(skill1, 10, 30, -1, true); // Teach Mastery
+                cm.teachSkill(skill2, 10, 30, -1, true); // Teach Mastery
+
+                // The Same for All Jobs
+                if (cm.haveItem(3991000)) {cm.gainItem(3991000, -1);} // Remove Key if they have it
+                cm.gainItem(4032120, -1); // Take Proof
+                cm.gainItem(1142085, 1); // Medal
+                cm.gainItem(pet, 1, false, true, 7700000000); // Gain a Random Pet
+                cm.gainItem(5140000, 1); // Gain Shop Permit
+                cm.gainItem(2000000, 50); // Red Pots
+                cm.gainItem(2000003, 25); // Blue Pots
+                cm.resetStats(); // Reset Player Stats for job advancement
+                cm.getPlayer().gainSlots(1, 12, true); // Gain Slots
+                cm.getPlayer().gainSlots(2, 4, true); // Gain Slots
+                cm.getPlayer().gainSlots(3, 4, true); // Gain Slots
+                cm.getPlayer().gainSlots(4, 4, true); // Gain Slots
+                cm.getPlayer().stopExpOff(); // Turn off EXP Block
+                cm.getPlayer().updateZoneProgress(); // Update Zone Progress
+
+                // Send Message
+                var defaultString = "Congratulations on becoming a(n) #b#e" + cm.getPlayer().getJob() +  "#k#n!\r\n\r\n#r#eThe following changes have occurred:#n#k\r\n\r\n- Your exp has been unlocked\r\n- You've gained 4 slots in each tab\r\n- Huckles shop has been updated\r\n\r\n#r#eYou've gained the following items as well:#n#k\r\n\r\n#v1142085# #t1142085#\r\n#v" + pet + "# #t" + pet + "#\r\n#v5140000# #t5140000#\r\n#v" + weapon1 + "# #t" + weapon1 + "#";
+                if (weapon2) {defaultString += "\r\n#v" + weapon2 + "# #t" + weapon2 + "#";}
+                if (throwable) {defaultString += "\r\n#v" + throwable + "# #t" + throwable + "# " + throwableAmount;}
+                defaultString += "\r\n#v2000000# #t2000000# 50\r\n#v2000003# #t2000003# 25";
+
+                // Send Compiled Message
+                cm.sendNext(defaultString);
             }
-            cm.sendNextPrev("Since she is a clone of myself, you can expect a tough battle ahead. He uses a number of special attacking skills unlike any you have ever seen, and it is your task to successfully take him one on one. There is a time limit in the secret passage, so it is crucial that you defeat him within the time limit. I wish you the best of luck, and I hope you bring the #b#t4031059##k with you.");
+
+            // Can't hold stuff
+            else
+            {
+                cm.sendNext("I'd like to give you some gifts! You need the following room:\r\n\r\n- 3 slots in EQUIP\r\n- 3 slots in USE\r\n- 2 slots in CASH");
+                cm.dispose();
+            }
         }
-    } else if (actionx["3thJobC"]) {
-        cm.getPlayer().removePartyQuestItem("JBP");
-        cm.gainItem(4031059, -1);
-        cm.gainItem(4031057, 1);
+    }
+
+    // Further Status
+    else if (status == 3)
+    {
+        if (actionx["1stJob"])
+        {
+            cm.sendNextPrev("You've gotten much stronger now. You've earned some \r\n#bSkill Points#k. Use skill points in the skill book!");
+        }
+    }
+
+    // Further Status
+    else if (status == 4)
+    {
+        if (actionx["1stJob"])
+        {
+            cm.sendOk("Make sure to put your ability points into DEX. You can go \r\n#rSTRless#k without worry! This is all I can teach you for now. Visit me again at Lvl 30. Good luck on your journey, young archer!");
+            cm.dispose();
+        }
+    }
+
+    // Status gets out of whack? Dispose?
+    else
+    {
         cm.dispose();
     }
 }

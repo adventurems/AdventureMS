@@ -19,45 +19,20 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+// Mari - Common Goods
 
-/* 2001002 - Metal Bucket Snowman
-    @author Ronan
- */
-
-// Old Snowman
-/*
-var status = -1;
-
-function start() { 
-    action(1, 0, 0);
-} 
-function action(mode, type, selection) { 
-    if (mode < 0)
-        cm.dispose();
-    else {
-        if (mode == 1)
-            status++;
-        else
-            status--;
-        
-        if (status == 0) {
-            cm.sendYesNo("We have a beautiful christmas tree.\r\nDo you want to see/decorate it?");
-        } else if(status == 1) {
-            cm.warp(209000002);
-            cm.dispose();
-        }
-    }
-} */
-
-// AdventureMS
+// Open the shop
 function start() {
-	if (cm.getQuestStatus(2217) == 2)
-	{
-	    cm.sendOk("Ya know, it's not so bad around here after cleaning up the pollution. I actually stay pretty white now.\r\n\r\nThanks for getting Gold Richie out of here and helping with the trash...");
-	    cm.dispose();
-	} else
-	{
-        cm.sendOk("Don't ask questions, I don't know why either. I'm the god damn garbageman around here, Frosty...");
+
+    // Open Zone 1 Shop
+    if (cm.getZoneProgress() == 1) {
+        cm.openShopNPC(200);
         cm.dispose();
-	}
+
+    // Open basic shop
+    } else
+    {
+        cm.openShopNPC(100);
+        cm.dispose();
+    }
 }

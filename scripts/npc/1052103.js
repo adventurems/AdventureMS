@@ -1,4 +1,4 @@
-/*
+        /*
 	This file is part of the OdinMS Maple Story Server
     Copyright (C) 2008 Patrick Huy <patrick.huy@frz.cc>
 		       Matthias Butz <matze@odinms.de>
@@ -19,45 +19,18 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+// Author: Pepa
 
-/* 2001002 - Metal Bucket Snowman
-    @author Ronan
- */
+// AdventureMS Nella
 
-// Old Snowman
-/*
-var status = -1;
-
-function start() { 
-    action(1, 0, 0);
-} 
-function action(mode, type, selection) { 
-    if (mode < 0)
-        cm.dispose();
-    else {
-        if (mode == 1)
-            status++;
-        else
-            status--;
-        
-        if (status == 0) {
-            cm.sendYesNo("We have a beautiful christmas tree.\r\nDo you want to see/decorate it?");
-        } else if(status == 1) {
-            cm.warp(209000002);
-            cm.dispose();
-        }
-    }
-} */
-
-// AdventureMS
 function start() {
-	if (cm.getQuestStatus(2217) == 2)
+	if (cm.getQuestStatus(2213) == 2)
 	{
-	    cm.sendOk("Ya know, it's not so bad around here after cleaning up the pollution. I actually stay pretty white now.\r\n\r\nThanks for getting Gold Richie out of here and helping with the trash...");
+	    cm.sendOk("If you want to know anything, I'm the person to talk to. Gossiper extraordinaire...\r\n\r\nOh you want to know more about the Mayor? Another time perhaps...");
 	    cm.dispose();
 	} else
 	{
-        cm.sendOk("Don't ask questions, I don't know why either. I'm the god damn garbageman around here, Frosty...");
+        cm.sendOk("So, here's the scoop.\r\n\r\nI'm Nella, I know everything about everyone. People tell me everything with the hope that I got information about what they want to know, ya get it?\r\n\r\nI don't trust you because I don't know you. You'll need someone to vouch for you...");
         cm.dispose();
 	}
 }

@@ -1,4 +1,4 @@
-/*
+        /*
 	This file is part of the OdinMS Maple Story Server
     Copyright (C) 2008 Patrick Huy <patrick.huy@frz.cc>
 		       Matthias Butz <matze@odinms.de>
@@ -19,45 +19,18 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+// Author: Pepa
 
-/* 2001002 - Metal Bucket Snowman
-    @author Ronan
- */
+// AdventureMS Don Hwang
 
-// Old Snowman
-/*
-var status = -1;
-
-function start() { 
-    action(1, 0, 0);
-} 
-function action(mode, type, selection) { 
-    if (mode < 0)
-        cm.dispose();
-    else {
-        if (mode == 1)
-            status++;
-        else
-            status--;
-        
-        if (status == 0) {
-            cm.sendYesNo("We have a beautiful christmas tree.\r\nDo you want to see/decorate it?");
-        } else if(status == 1) {
-            cm.warp(209000002);
-            cm.dispose();
-        }
-    }
-} */
-
-// AdventureMS
 function start() {
 	if (cm.getQuestStatus(2217) == 2)
 	{
-	    cm.sendOk("Ya know, it's not so bad around here after cleaning up the pollution. I actually stay pretty white now.\r\n\r\nThanks for getting Gold Richie out of here and helping with the trash...");
+	    cm.sendOk("Hey, you're the one that took down King Slime, right?\r\n\r\nCities much better off with people like you around.\r\n\r\n*zap*!?!?! Whoa, look out. I think a fuse just blew. Damn electricity been all out of whack lately. I could've sworn I saw a squirrel get launched from the electricity pole...");
 	    cm.dispose();
 	} else
 	{
-        cm.sendOk("Don't ask questions, I don't know why either. I'm the god damn garbageman around here, Frosty...");
+        cm.sendOk("Don's the name, Hwang's the...Wait, that's not right...\r\n\r\nAnyways, I'm Don. I run this joint. It's not much but it's an honest living. My family migrated here from SG many moons ago.\r\n\r\nMy family owes a lot to Kerning. Kerning giveth and Kerning taketh away, is what I always say.\r\n\r\nWell, quit jib jabbin and buy something will ya?");
         cm.dispose();
 	}
 }

@@ -21,18 +21,18 @@
 
 /*
 MiniDungeon - Mushroom
-*/
+*/ 
 
 var baseid = 105050100;
-var dungeonid = 105050101;
-var dungeons = 30;
+var dungeonid = 1010200;
+var dungeons = 1;
 
 function enter(pi) {
     if (pi.getMapId() == baseid) {
         if (pi.getParty() != null) {
             if (pi.isLeader()) {
                 for (var i = 0; i < dungeons; i++) {
-                    if (pi.startDungeonInstance(dungeonid + i)) {
+                    if(pi.startDungeonInstance(dungeonid + i)) {
                         pi.playPortalSound();
                         pi.warpParty(dungeonid + i, "out00");
                         return true;
@@ -44,7 +44,7 @@ function enter(pi) {
             }
         } else {
             for (var i = 0; i < dungeons; i++) {
-                if (pi.startDungeonInstance(dungeonid + i)) {
+                if(pi.startDungeonInstance(dungeonid + i)) {
                     pi.playPortalSound();
                     pi.warp(dungeonid + i, "out00");
                     return true;
@@ -54,8 +54,8 @@ function enter(pi) {
         pi.playerMessage(5, "All of the Mini-Dungeons are in use right now, please try again later.");
         return false;
     } else {
-        pi.playPortalSound();
-        pi.warp(baseid, "MD00");
-        return true;
+    	pi.playPortalSound();
+    	pi.warp(baseid, "MD00");
+    	return true;
     }
 }

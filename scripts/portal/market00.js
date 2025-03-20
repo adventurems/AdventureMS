@@ -1,32 +1,22 @@
-/*
-	This file is part of the OdinMS Maple Story Server
-    Copyright (C) 2008 Patrick Huy <patrick.huy@frz.cc>
-		       Matthias Butz <matze@odinms.de>
-		       Jan Christian Meyer <vimes@odinms.de>
+// Author - Pepa
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation version 3 as published by
-    the Free Software Foundation. You may not use, modify or distribute
-    this program under any other version of the GNU Affero General Public
-    License.
+function enter(pi)
+{
+    // Store the target map
+    var toMap = pi.getPlayer().getSavedLocation("FREE_MARKET");
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-function enter(pi) {
-    try {
-        var toMap = pi.getPlayer().getSavedLocation("FREE_MARKET");
-        pi.playPortalSound();
-        pi.warp(toMap, pi.getMarketPortalId(toMap));
-    } catch (err) {
-        pi.playPortalSound();
-        pi.warp(100000000, 0);
+    // Make sure it's not empty
+    if (toMap === -1)
+    {
+       pi.playerMessage(5, "You do not have a stored map to return to... Press the home button from another map.");
+       return false;
     }
-    return true;
+
+    // They have a valid map
+    else
+    {
+        pi.playPortalSound();
+        pi.warp(toMap, "out00");
+        return true;
+    }
 }
