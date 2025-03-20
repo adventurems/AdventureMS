@@ -1,7 +1,6 @@
 // AdventureMS - Cash Gachapon
 
 // Variable Declaration
-var NPC = cm.npc;
 var cashTicket = 5220000;
 var petTicket = 5220020;
 var status;
@@ -9,6 +8,8 @@ var status;
 // Start the chat
 function start() {status = -1; action(1,0,0);}
 function action(mode, type, selection) { if (mode == 1) {status++;} else {status--;} if (status == -1) {cm.dispose();}
+
+    var NPC = cm.npc;
 
     // Conversation Start
     else if (status == 0)
