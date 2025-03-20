@@ -1,97 +1,90 @@
 // AdventureMS - Cash Gachapon
 
+var cashTicket = 5220000;
+var petTicket = 5220020;
 var status;
 
-function start()
-{
-    status = -1;
-    action(1, 0, 0);
-}
+// Open the shop
+function start() {status = -1; action(1,0,0);}
+function action(mode, type, selection) { if (mode == 1) {status++;} else {status--;} if (status == -1) {cm.dispose();}
 
-function action(mode, type, selection) { if (mode < 0) { cm.dispose(); } else { if (mode == 1) { status++; } else { status--; }
-
-    // Variable Declaration
-    var NPC = cm.npc;
-    var cashTicket = 5220000;
-    var petTicket = 5220020;
-
-    // Conversation Start
-    if (status == 0 && mode == 1)
-    {
-        // Check for Cash Gachapon NPC
-        if (NPC == 9100100)
+        // Conversation Start
+        if (status == 0)
         {
-            // Check for Cash Ticket
-            if (cm.haveItem(cashTicket))
+            // Get NPC
+            var NPC = cm.npc;
+
+            // Check for Cash Gachapon NPC
+            if (NPC == 9100100)
             {
-                cm.sendYesNo("You have #rcash gachapon#k tickets. Would you like to try your luck?");
+                // Check for Cash Ticket
+                if (cm.haveItem(cashTicket))
+                {
+                    cm.sendYesNo("You have #rcash gachapon#k tickets. Would you like to try your luck?");
+                }
+
+                // No tickets in Inventory
+                else
+                {
+                    cm.sendOk("You don't have any #rcash gachapon#k tickets...");
+                    cm.dispose();
+                }
             }
 
-            // No tickets in Inventory
-            else
+            // Check for Pet Gachapon NPC
+            else if (NPC == 9100101)
             {
-                cm.sendOk("You don't have any #rcash gachapon#k tickets...");
-                cm.dispose();
+                // Check for Pet Ticket
+                if (cm.haveItem(petTicket))
+                {
+                    cm.sendYesNo("You have #rpet gachapon#k tickets. Would you like to try your luck?");
+                }
+
+                // No tickets in Inventory
+                else
+                {
+                    cm.sendOk("You don't have any #rpet gachapon#k tickets...");
+                    cm.dispose();
+                }
             }
         }
 
-        // Check for Pet Gachapon NPC
-        else if (NPC == 9100101)
+        // They want to use a ticket
+        else if(status == 1)
         {
-            // Check for Pet Ticket
-            if (cm.haveItem(petTicket))
+            // Get NPC
+            var NPC = cm.npc;
+
+            // Check if it is Cash Gachapon NPC
+            if (NPC == 9100100)
             {
-                cm.sendYesNo("You have #rpet gachapon#k tickets. Would you like to try your luck?");
+                // Make sure they have a slot available in equip inventory
+                if(cm.canHold(1300007))
+                {
+                    cm.gainItem(cashTicket, -1);
+                    cm.doCashGachapon();
+                }
+
+                // They don't have any space
+                else
+                {
+                    cm.sendOk("Please have at least one slot in your #rEQUIP#k inventory free.");
+                }
             }
 
-            // No tickets in Inventory
-            else
+            // Check if it is Pet Gachapon NPC
+            else if (NPC == 9100101)
             {
-                cm.sendOk("You don't have any #rpet gachapon#k tickets...");
-                cm.dispose();
+                // Make sure they have a slot available in cash inventory
+                if(cm.canHold(5010000))
+                {
+                    cm.gainItem(petTicket, -1);
+                    cm.doPetGachapon();
+                }
             }
+
+            // Dispose no matter what
+            cm.dispose();
         }
     }
-
-    // They want to use a ticket
-    else if(status == 1)
-    {
-        // Check if it is Cash Gachapon NPC
-        if (NPC == 9100100)
-        {
-            // Make sure they have a slot available in equip inventory
-            if(cm.canHold(1300007))
-            {
-                cm.gainItem(cashTicket, -1);
-                cm.doCashGachapon();
-            }
-
-            // They don't have any space
-            else
-            {
-                cm.sendOk("Please have at least one slot in your #rEQUIP#k inventory free.");
-            }
-        }
-
-        // Check if it is Pet Gachapon NPC
-        else if (NPC == 9100101)
-        {
-            // Make sure they have a slot available in cash inventory
-            if(cm.canHold(5010000))
-            {
-                cm.gainItem(petTicket, -1);
-                cm.doPetGachapon();
-            }
-        }
-
-        // Dispose no matter what
-        cm.dispose();
-    }
-
-    // Any other status, dispose
-    else
-    {
-        cm.dispose();
-    }
-}
 }
