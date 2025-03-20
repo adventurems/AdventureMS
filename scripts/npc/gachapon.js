@@ -1,22 +1,17 @@
 // AdventureMS - Cash Gachapon
 
+// Variable Declaration
+var NPC = cm.npc;
+var cashTicket = 5220000;
+var petTicket = 5220020;
 var status;
 
-function start()
-{
-    status = -1;
-    action(1, 0, 0);
-}
-
-function action(mode, type, selection) { if (mode < 0) { cm.dispose(); } else { if (mode == 1) { status++; } else { status--; }
-
-    // Variable Declaration
-    var NPC = cm.npc;
-    var cashTicket = 5220000;
-    var petTicket = 5220020;
+// Start the chat
+function start() {status = -1; action(1,0,0);}
+function action(mode, type, selection) { if (mode == 1) {status++;} else {status--;} if (status == -1) {cm.dispose();}
 
     // Conversation Start
-    if (status == 0 && mode == 1)
+    else if (status == 0)
     {
         // Check for Cash Gachapon NPC
         if (NPC == 9100100)
@@ -93,5 +88,4 @@ function action(mode, type, selection) { if (mode < 0) { cm.dispose(); } else { 
     {
         cm.dispose();
     }
-}
 }
