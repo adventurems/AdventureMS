@@ -359,10 +359,10 @@ public final class PlayerInteractionHandler extends AbstractPacketHandler {
                 } else {
                     p.readShort();
                     int birthday = p.readInt();
-                    if (!CashOperationHandler.checkBirthday(c, birthday)) { // birthday check here found thanks to lucasziron
+                    /*if (!CashOperationHandler.checkBirthday(c, birthday)) { // birthday check here found thanks to lucasziron
                         c.sendPacket(PacketCreator.serverNotice(1, "Please check again the birthday date."));
                         return;
-                    }
+                    }*/ // AdventureMS Custom
 
                     c.sendPacket(PacketCreator.hiredMerchantOwnerMaintenanceLeave());
                 }

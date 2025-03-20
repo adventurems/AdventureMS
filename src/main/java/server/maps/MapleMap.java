@@ -1067,6 +1067,12 @@ public class MapleMap {
         mdrop.setDropTime(Server.getInstance().getCurrentTime());
         spawnAndAddRangedMapObject(mdrop, c -> {
             Character chr1 = c.getPlayer();
+            int itemId = idrop.getItemId(); // AdventureMS Custom
+            int cardCount = chr.getMonsterBook().getCardCount(itemId); // AdventureMS Custom
+
+            if (cardCount >= 5) {
+                return;
+            }
 
             if (chr1.needQuestItem(questid, idrop.getItemId())) {
                 mdrop.lockItem();

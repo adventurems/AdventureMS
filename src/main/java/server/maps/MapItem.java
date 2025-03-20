@@ -205,6 +205,13 @@ public class MapItem extends AbstractMapObject {
     public void sendSpawnData(final Client client) {
         Character chr = client.getPlayer();
 
+        int cardCount = chr.getMonsterBook().getCardCount(getItemId()); // AdventureMS Custom
+
+        // AdventureMS Custom
+        if (cardCount >= 5) {
+            return;
+        }
+
         if (chr.needQuestItem(questid, getItemId())) {
             this.lockItem();
             try {

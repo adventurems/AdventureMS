@@ -172,6 +172,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -2032,7 +2033,7 @@ public class Character extends AbstractCharacterObject {
                                 this.getCashShop().gainCash(1, nxGain);
 
                                 if (YamlConfig.config.server.USE_ANNOUNCE_NX_COUPON_LOOT) {
-                                    showHint("You have earned #e#b" + nxGain + " NX#k#n. (" + this.getCashShop().getCash(CashShop.NX_CREDIT) + " NX)", 300);
+                                    // showHint("You have earned #e#b" + nxGain + " NX#k#n. (" + this.getCashShop().getCash(CashShop.NX_CREDIT) + " NX)", 300); AdventureMS Custom
                                 }
 
                                 this.getMap().pickItemDrop(pickupPacket, mapitem);
@@ -2084,7 +2085,7 @@ public class Character extends AbstractCharacterObject {
                         this.getCashShop().gainCash(1, nxGain);
 
                         if (YamlConfig.config.server.USE_ANNOUNCE_NX_COUPON_LOOT) {
-                            showHint("You have earned #e#b" + nxGain + " NX#k#n. (" + this.getCashShop().getCash(CashShop.NX_CREDIT) + " NX)", 300);
+                            // showHint("You have earned #e#b" + nxGain + " NX#k#n. (" + this.getCashShop().getCash(CashShop.NX_CREDIT) + " NX)", 300); AdventureMS Custom
                         }
                     } else if (applyConsumeOnPickup(mItem.getItemId())) {
                     } else if (InventoryManipulator.addFromDrop(client, mItem, true)) {
@@ -3144,45 +3145,70 @@ public class Character extends AbstractCharacterObject {
         sendPacket(PacketCreator.getShowExpGain((int) gain, equip, party, inChat, white));
     }
 
-    private synchronized void gainExpInternal(long gain, int equip, int party, boolean show, boolean inChat, boolean white) {   // need of method synchonization here detected thanks to MedicOP
+    // Player gained Experience - AdventureMS Custom
+    private synchronized void gainExpInternal(long gain, int equip, int party, boolean show, boolean inChat, boolean white)
+    {
+        // Calculate total exp to gain
         long total = Math.max(gain + equip + party, -exp.get());
 
-        if (level < getMaxLevel() && (allowExpGain || this.getEventInstance() != null)) {
+        // (allowExpGain || this.getEventInstance() != null) Removed from below check
+
+        // Ensure we are not max level and that we are able to gain exp currently
+        if (level < getMaxLevel() && expoff == 0)
+        {
             long leftover = 0;
             long nextExp = exp.get() + total;
 
-            if (nextExp > (long) Integer.MAX_VALUE) {
+            // Ensures that we aren't gaining more than the max for a long integer (2,147,483,647)
+            if (nextExp > (long) Integer.MAX_VALUE)
+            {
                 total = Integer.MAX_VALUE - exp.get();
                 leftover = nextExp - Integer.MAX_VALUE;
             }
+
+            // Adds the Exp to the player
             updateSingleStat(Stat.EXP, exp.addAndGet((int) total));
-            totalExpGained += total;
-            if (show) {
-                announceExpGain(gain, equip, party, inChat, white);
-            }
-            while (exp.get() >= ExpTable.getExpNeededForLevel(level)) {
+
+            // Sends a white message on bottom right
+            if (show) {announceExpGain(gain, equip, party, inChat, white);}
+
+            // Check if we should level and loop until we shouldn't
+            while (exp.get() >= ExpTable.getExpNeededForLevel(level))
+            {
+                // We aren't max level, and we aren't exp locked, and we had enough exp to level
                 levelUp(true);
-                if (level == getMaxLevel()) {
+
+                // Recheck our level and stop leveling / reset exp if it should be zone locked or we are max level now
+                if (level == getMaxLevel() || (level == 10 && zoneprogress == 0) || (level == 23 && zoneprogress == 1) || level == 32)
+                {
                     setExp(0);
                     updateSingleStat(Stat.EXP, 0);
+                    stopExpOn();
                     break;
                 }
             }
 
-            if (leftover > 0) {
+            // If there is leftover exp, start this process over
+            if(leftover > 0)
+            {
                 gainExpInternal(leftover, equip, party, false, inChat, white);
-            } else {
+            }
+
+            // Otherwise, log the last time we gained exp
+            else
+            {
                 lastExpGainTime = System.currentTimeMillis();
 
                 if (YamlConfig.config.server.USE_EXP_GAIN_LOG) {
                     ExpLogRecord expLogRecord = new ExpLogger.ExpLogRecord(
-                        getWorldServer().getExpRate(),
-                        expCoupon,
-                        totalExpGained,
-                        exp.get(),
-                        new Timestamp(lastExpGainTime),
-                        id
+                            getWorldServer().getExpRate(),
+                            expCoupon,
+                            totalExpGained,
+                            exp.get(),
+                            new Timestamp(lastExpGainTime),
+                            id
                     );
+
                     ExpLogger.putExpLogRecord(expLogRecord);
                 }
 
@@ -5319,6 +5345,11 @@ public class Character extends AbstractCharacterObject {
         return meso.get();
     }
 
+    // AdventureMS Specific //
+    public int getZoneProgress() {
+        return zoneprogress;
+    }
+
     public int getMerchantMeso() {
         return merchantmeso;
     }
@@ -6929,6 +6960,8 @@ public class Character extends AbstractCharacterObject {
                     ret.buddylist = new BuddyList(buddyCapacity);
                     ret.lastExpGainTime = rs.getTimestamp("lastExpGainTime").getTime();
                     ret.canRecvPartySearchInvite = rs.getBoolean("partySearch");
+                    ret.expoff = rs.getInt("expoff"); // AdventureMS Specific
+                    ret.zoneprogress = rs.getInt("zoneprogress"); // AdventureMS Specific
 
                     wserv = Server.getInstance().getWorld(ret.world);
 
@@ -8046,6 +8079,341 @@ public class Character extends AbstractCharacterObject {
         } catch (SQLException se) {
             se.printStackTrace();
         }
+    }
+
+    // AdventureMS Custom
+    // EXP Locking stopExpOn stopExpOff
+    public void stopExpOn()
+    {
+        try
+        {
+            // Open DB Connection
+            Connection con = DatabaseConnection.getConnection();
+
+            // Update DB
+            try (PreparedStatement ps = con.prepareStatement("UPDATE characters SET expoff = 1 WHERE id = ?"))
+            {
+                ps.setInt(1, id);
+                ps.executeUpdate();
+            }
+
+            // Close DB Connection
+            con.close();
+
+            // Update expoff locally as well
+            expoff = 1;
+        }
+
+        catch (SQLException se)
+        {
+            se.printStackTrace();
+        }
+    }
+
+    // AdventureMS Custom
+    // EXP Locking stopExpOn stopExpOff
+    public void stopExpOff()
+    {
+        try
+        {
+            // Open DB Connection
+            Connection con = DatabaseConnection.getConnection();
+
+            // Update DB
+            try (PreparedStatement ps = con.prepareStatement("UPDATE characters SET expoff = 0 WHERE id = ?"))
+            {
+                ps.setInt(1, id);
+                ps.executeUpdate();
+            }
+
+            // Close DB Connection
+            con.close();
+
+            // Update expoff locally as well
+            expoff = 0;
+        }
+
+        catch (SQLException se)
+        {
+            se.printStackTrace();
+        }
+    }
+
+    // AdventureMS Custom
+    public void updateZoneProgress()
+    {
+        try
+        {
+            // Open DB Connection
+            Connection con = DatabaseConnection.getConnection();
+
+            // Update DB
+            try (PreparedStatement ps = con.prepareStatement("UPDATE characters SET zoneprogress = ? WHERE id = ?"))
+            {
+                ps.setInt(1, zoneprogress + 1);
+                ps.setInt(2, id);
+                ps.executeUpdate();
+            }
+
+            // Close DB Connection
+            con.close();
+
+            // Update zoneprogress locally as well
+            zoneprogress++;
+        }
+
+        catch (SQLException se)
+        {
+            se.printStackTrace();
+        }
+    }
+
+    // AdventureMS Custom
+    public boolean addCollectorStatus()
+    {
+        boolean isAdded = false;  // Default to false, meaning the account exists.
+
+        try {
+            // Open DB Connection
+            Connection con = DatabaseConnection.getConnection();
+
+            // First, check if the account already exists in the collector table
+            String checkQuery = "SELECT COUNT(*) FROM collector WHERE id = ?";
+            try (PreparedStatement checkStmt = con.prepareStatement(checkQuery))
+            {
+                checkStmt.setInt(1, accountid);
+                ResultSet rs = checkStmt.executeQuery();
+                if (rs.next() && rs.getInt(1) == 0)
+                {
+                    // Account does not exist, proceed with insertion
+                    String insertQuery = "INSERT INTO collector (id) VALUES (?)";
+                    try (PreparedStatement insertStmt = con.prepareStatement(insertQuery))
+                    {
+                        insertStmt.setInt(1, accountid);
+                        insertStmt.executeUpdate();
+                        isAdded = true;  // Account was added
+                    }
+                }
+            } catch (SQLException e)
+            {
+                e.printStackTrace();
+            } finally
+            {
+                con.close();  // Ensure the connection is closed after use
+            }
+        } catch (SQLException se)
+        {
+            se.printStackTrace();
+        }
+
+        return isAdded;  // Return true if account was added, false if it already exists
+    }
+
+    // AdventureMS Custom
+    public int[] getCollectorStatus()
+    {
+        int[] collectorData = null;
+
+        try {
+            // Open DB Connection
+            Connection con = DatabaseConnection.getConnection();
+
+            // Prepare and execute the query
+            try (PreparedStatement ps = con.prepareStatement("SELECT * FROM collector WHERE id = ?")) {
+                ps.setInt(1, accountid);  // Use the accountid to query the collector table
+                ResultSet rs = ps.executeQuery();  // Execute the query and retrieve the result set
+
+                // Process the result set
+                if (rs.next()) {
+                    // Get the number of columns in the result set
+                    int numberOfColumns = rs.getMetaData().getColumnCount();
+                    collectorData = new int[numberOfColumns];  // Create an integer array to store the values
+
+                    for (int i = 1; i <= numberOfColumns; i++) {
+                        collectorData[i - 1] = rs.getInt(i);  // Populate the array with the integer values
+                    }
+                }
+            }
+
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+
+            // Close DB Connection
+            con.close();
+
+        } catch (SQLException se) {
+            se.printStackTrace();
+        }
+
+        // Return the array containing the collected data
+        return collectorData;
+    }
+
+    // AdventureMS Custom
+    public String[] getCollectorMissing() {
+        List<String> collectorMissing = new ArrayList<>();  // List to store column names where value is 0
+
+        try {
+            // Open DB Connection
+            Connection con = DatabaseConnection.getConnection();
+
+            // Prepare and execute the query
+            try (PreparedStatement ps = con.prepareStatement("SELECT * FROM collector WHERE id = ?")) {
+                ps.setInt(1, accountid);  // Use the accountid to query the collector table
+                ResultSet rs = ps.executeQuery();  // Execute the query and retrieve the result set
+
+                // Process the result set
+                if (rs.next()) {
+                    // Get the number of columns in the result set
+                    int numberOfColumns = rs.getMetaData().getColumnCount();
+
+                    // Iterate over each column
+                    for (int i = 1; i <= numberOfColumns; i++) {
+                        int value = rs.getInt(i);  // Get the value of the column
+                        String columnName = rs.getMetaData().getColumnName(i);  // Get the column name
+
+                        // If value is 0, add the column name to the list
+                        if (value == 0) {
+                            collectorMissing.add(columnName);
+                        }
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            // Close DB Connection
+            con.close();
+
+        } catch (SQLException se) {
+            se.printStackTrace();
+        }
+
+        // Return the list as an array
+        return collectorMissing.toArray(new String[0]);
+    }
+
+    // AdventureMS Custom
+    public Map<String, Integer> getCollectorAll() {
+        Map<String, Integer> collectorMap = new HashMap<>();  // Map to store column names and their integer values
+
+        try {
+            // Open DB Connection
+            Connection con = DatabaseConnection.getConnection();
+
+            // Prepare and execute the query
+            try (PreparedStatement ps = con.prepareStatement("SELECT * FROM collector WHERE id = ?")) {
+                ps.setInt(1, accountid);  // Use the accountid to query the collector table
+                ResultSet rs = ps.executeQuery();  // Execute the query and retrieve the result set
+
+                // Process the result set
+                if (rs.next()) {
+                    // Get the number of columns in the result set
+                    int numberOfColumns = rs.getMetaData().getColumnCount();
+
+                    // Iterate over each column
+                    for (int i = 1; i <= numberOfColumns; i++) {
+                        String columnName = rs.getMetaData().getColumnName(i);  // Get the column name
+
+                        // Get the integer value of the column
+                        collectorMap.put(columnName, rs.getInt(i));
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            // Close DB Connection
+            con.close();
+
+        } catch (SQLException se) {
+            se.printStackTrace();
+        }
+
+        // Return the map of column names and their corresponding integer values
+        return collectorMap;
+    }
+
+    // AdventureMS Custom
+    public void updateCollector(List<String> collectableItems)
+    {
+        try
+        {
+            // Open DB Connection
+            Connection con = DatabaseConnection.getConnection();
+
+            // Prepare the base SQL query
+            StringBuilder sql = new StringBuilder("UPDATE collector SET ");
+
+            // Dynamically build the column names part of the SQL
+            for (int i = 0; i < collectableItems.size(); i++)
+            {
+                String itemId = collectableItems.get(i);
+
+                // Wrap the itemId (column name) in backticks to ensure MySQL treats it as a column identifier
+                String columnName = "`" + itemId + "`"; // Adding backticks around the itemId
+
+                // Add this column update to the query
+                sql.append(columnName).append(" = 1");
+
+                // If it's not the last item, add a comma for the next column
+                if (i < collectableItems.size() - 1)
+                {
+                    sql.append(", ");
+                }
+            }
+
+            // Add the WHERE clause for the specific accountId
+            sql.append(" WHERE id = ?");
+
+            // Prepare and execute the SQL statement
+            try (PreparedStatement ps = con.prepareStatement(sql.toString()))
+            {
+                ps.setInt(1, accountid);
+                ps.executeUpdate();
+            }
+
+            // Close DB Connection
+            con.close();
+        }
+
+        catch (SQLException se)
+        {
+            se.printStackTrace();
+        }
+    }
+
+    // AdventureMS Custom
+    public int[] getEquipStats()
+    {
+        int[] equipStats = new int[11]; // Array to hold all stats
+
+        for (Item item : getInventory(InventoryType.EQUIPPED))
+        {
+            Equip equip = (Equip) item;
+            equipStats[0] += equip.getHp();
+            equipStats[1] += equip.getMp();
+            equipStats[2] += equip.getSpeed();
+            equipStats[3] += equip.getJump();
+            equipStats[4] += equip.getWdef();
+            equipStats[5] += equip.getMdef();
+            equipStats[6] += equip.getAvoid();
+            equipStats[7] += equip.getStr();
+            equipStats[8] += equip.getDex();
+            equipStats[9] += equip.getInt();
+            equipStats[10] += equip.getLuk();
+        }
+
+        return equipStats; // Return the array
+    }
+
+    // AdventureMS Custom
+    public boolean isWeaponEquipped()
+    {
+        Item weapon_item = getInventory(InventoryType.EQUIPPED).getItem((short) -11);
+        return weapon_item != null;
     }
 
     public void saveLocationOnWarp() {  // suggestion to remember the map before warp command thanks to Lei

@@ -53,42 +53,45 @@ public final class MonsterBook {
         }
     }
 
+    // AdventureMS Custom
+    public int getCardCount(final int cardId) {
+        Integer qty = cards.get(cardId);
+        return (qty != null) ? qty : 0;
+    }
+
+    // AdventureMS Custom
     public void addCard(final Client c, final int cardid) {
         c.getPlayer().getMap().broadcastMessage(c.getPlayer(), PacketCreator.showForeignCardEffect(c.getPlayer().getId()), false);
 
         Integer qty;
         lock.lock();
-        try {
+
+        try
+        {
             qty = cards.get(cardid);
 
-            if (qty != null) {
-                if (qty < 5) {
-                    cards.put(cardid, qty + 1);
-                }
-            } else {
-                cards.put(cardid, 1);
-                qty = 0;
+            // Set Card Amount to 5
+            cards.put(cardid, 5);
 
-                if (cardid / 1000 >= 2388) {
-                    specialCard++;
-                } else {
-                    normalCard++;
-                }
+            // Increment the amount of cards collected
+            if (cardid / 1000 >= 2388) {
+                specialCard++;
+            } else {
+                normalCard++;
             }
-        } finally {
+        }
+
+        finally
+        {
             lock.unlock();
         }
 
-        if (qty < 5) {
-            if (qty == 0) {     // leveling system only accounts unique cards
-                calculateLevel();
-            }
+        // Get new card collect level
+        calculateLevel();
 
-            c.sendPacket(PacketCreator.addCard(false, cardid, qty + 1));
-            c.sendPacket(PacketCreator.showGainCard());
-        } else {
-            c.sendPacket(PacketCreator.addCard(true, cardid, 5));
-        }
+        // Announce to player and update card to max collected
+        c.sendPacket(PacketCreator.addCard(false, cardid, 5));
+        c.sendPacket(PacketCreator.showGainCard());
     }
 
     private void calculateLevel() {
@@ -102,7 +105,7 @@ public final class MonsterBook {
                 expToNextlevel += level * 10;
             } while (collectionExp >= expToNextlevel);
 
-            bookLevel = level;  // thanks IxianMace for noticing book level differing between book UI and character info UI
+            bookLevel = level;
         } finally {
             lock.unlock();
         }

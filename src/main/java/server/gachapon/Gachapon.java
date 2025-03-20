@@ -41,19 +41,20 @@ public class Gachapon {
 
     public enum GachaponType {
 
-        GLOBAL(-1, -1, -1, -1, new Global()),
-        HENESYS(NpcId.GACHAPON_HENESYS, 90, 8, 2, new Henesys()),
-        ELLINIA(NpcId.GACHAPON_ELLINIA, 90, 8, 2, new Ellinia()),
-        PERION(NpcId.GACHAPON_PERION, 90, 8, 2, new Perion()),
-        KERNING_CITY(NpcId.GACHAPON_KERNING, 90, 8, 2, new KerningCity()),
-        SLEEPYWOOD(NpcId.GACHAPON_SLEEPYWOOD, 90, 8, 2, new Sleepywood()),
-        MUSHROOM_SHRINE(NpcId.GACHAPON_MUSHROOM_SHRINE, 90, 8, 2, new MushroomShrine()),
-        SHOWA_SPA_MALE(NpcId.GACHAPON_SHOWA_MALE, 90, 8, 2, new ShowaSpaMale()),
-        SHOWA_SPA_FEMALE(NpcId.GACHAPON_SHOWA_FEMALE, 90, 8, 2, new ShowaSpaFemale()),
-        LUDIBRIUM(NpcId.GACHAPON_LUDIBRIUM, 90, 8, 2, new Ludibrium()),
-        NEW_LEAF_CITY(NpcId.GACHAPON_NLC, 90, 8, 2, new NewLeafCity()),
-        EL_NATH(NpcId.GACHAPON_EL_NATH, 90, 8, 2, new ElNath()),
-        NAUTILUS_HARBOR(NpcId.GACHAPON_NAUTILUS, 90, 8, 2, new NautilusHarbor());
+        // AdventureMS Custom
+        // GLOBAL(-1, -1, -1, -1, new Global()),
+        HENESYS(9100100, 99, 0, 1, new Henesys()),
+        ELLINIA(9100101, 100, 0, 0, new Ellinia());
+        // PERION(9100102, 90, 8, 2, new Perion()),
+        // KERNING_CITY(9100103, 90, 8, 2, new KerningCity()),
+        // SLEEPYWOOD(9100104, 90, 8, 2, new Sleepywood()),
+        // MUSHROOM_SHRINE(9100105, 90, 8, 2, new MushroomShrine()),
+        // SHOWA_SPA_MALE(9100106, 90, 8, 2, new ShowaSpaMale()),
+        // SHOWA_SPA_FEMALE(9100107, 90, 8, 2, new ShowaSpaFemale()),
+        // LUDIBRIUM(9100108, 90, 8, 2, new Ludibrium()),
+        // NEW_LEAF_CITY(9100109, 90, 8, 2, new NewLeafCity()),
+        // EL_NATH(9100110, 90, 8, 2, new ElNath()),
+        // NAUTILUS_HARBOR(9100117, 90, 8, 2, new NautilusHarbor());
 
         private static final GachaponType[] values = GachaponType.values();
 
@@ -86,11 +87,14 @@ public class Gachapon {
             return gachapon.getItems(tier);
         }
 
+        // AdventureMS Custom
         public int getItem(int tier) {
             int[] gacha = getItems(tier);
-            int[] global = GLOBAL.getItems(tier);
-            int chance = Randomizer.nextInt(gacha.length + global.length);
-            return chance < gacha.length ? gacha[chance] : global[chance - gacha.length];
+            // int[] global = GLOBAL.getItems(tier); AdventureMS Custom
+            // int chance = Randomizer.nextInt(gacha.length + global.length); AdventureMS Custom
+            int chance = Randomizer.nextInt(gacha.length);
+            // return chance < gacha.length ? gacha[chance] : global[chance - gacha.length]; AdventureMS Custom
+            return gacha[chance]; // AdventureMS Custom
         }
 
         public static GachaponType getByNpcId(int npcId) {
@@ -168,6 +172,6 @@ public class Gachapon {
 
     public static void log(Character player, int itemId, String map) {
         String itemName = ItemInformationProvider.getInstance().getName(itemId);
-        log.info("{} got a {} ({}) from the {} gachapon.", player.getName(), itemName, itemId, map);
+        log.info("{} got a {} from the {} gachapon.", player.getName(), itemName, map);
     }
 }
