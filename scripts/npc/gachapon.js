@@ -12,12 +12,8 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
     if (status == 0)
     {
         // Get NPC
-        var NPC = cm.npc;
+        var NPC = cm.getNpc();
 
-        cm.sendOk("You don't have any #rcash gachapon#k tickets...");
-        cm.dispose();
-
-        /*
         // Check for Cash Gachapon NPC
         if (NPC == 9100100)
         {
@@ -50,14 +46,14 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 cm.sendOk("You don't have any #rpet gachapon#k tickets...");
                 cm.dispose();
             }
-        }*/
+        }
     }
 
     // They want to use a ticket
     else if(status == 1)
     {
         // Get NPC
-        var NPC = cm.npc;
+        var NPC = cm.getNpc();
 
         // Check if it is Cash Gachapon NPC
         if (NPC == 9100100)
