@@ -9,11 +9,12 @@ var status;
 function start() {status = -1; action(1,0,0);}
 function action(mode, type, selection) { if (mode == 1) {status++;} else {status--;} if (status == -1) {cm.dispose();}
 
-    var NPC = cm.npc;
-
     // Conversation Start
     else if (status == 0)
     {
+        // Declare NPC
+        var NPC = cm.npc;
+
         // Check for Cash Gachapon NPC
         if (NPC == 9100100)
         {
@@ -52,6 +53,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
     // They want to use a ticket
     else if(status == 1)
     {
+        // Declare NPC
+        var NPC = cm.npc;
+
         // Check if it is Cash Gachapon NPC
         if (NPC == 9100100)
         {
