@@ -1,6 +1,6 @@
 // Author: Pepa
 
-// AdventureMS - Grubby, The Collector
+// AdventureMS The Collector
 
 // Global Variables
 var turnIn = false; // Used for the first option which is to turn in items
@@ -89,7 +89,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 var itemId = missingItems[i];
 
                 // Check if the player has the item in their inventory
-                if (cm.haveItem(itemId))
+                if (cm.haveItem(parseInt(itemId)))
                 {
                     collectableItems.push(itemId); // Add item to the new array if it's in the inventory
                     defaultString += "\r\n#v" + missingItems[i] + "# #t" + missingItems[i] + "#";
