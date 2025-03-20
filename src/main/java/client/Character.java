@@ -208,6 +208,8 @@ public class Character extends AbstractCharacterObject {
     private int fame, quest_fame;
     private int initialSpawnPoint;
     private int mapid;
+    private int expoff; // AdventureMS Specific
+    private int zoneprogress; // AdventureMS Specific
     private int currentPage, currentType = 0, currentTab = 1;
     private int itemEffect;
     private int guildid, guildRank, allianceRank;
