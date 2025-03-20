@@ -7,13 +7,18 @@ var baseid = 104040000;
 var dungeonid = 1010200;
 var dungeons = 5;
 
-function enter(pi) {
-    if (pi.getMapId() == baseid) {
-        if (pi.getPlayer().level >= 10) {
-            if (pi.getParty() != null) {
-                    pi.playerMessage(5, "You may only challenge the zone boss alone!");
-                    return false;
-                }
+function enter(pi)
+{
+    if (pi.getMapId() == baseid)
+    {
+        if (pi.getPlayer().getLevel >= 10)
+        {
+            if (pi.getParty() != null)
+            {
+                pi.playerMessage(5, "You may only challenge the zone boss alone!");
+                return false;
+            }
+
             else
             {
                 for (var i = 0; i < dungeons; i++)
@@ -32,11 +37,19 @@ function enter(pi) {
                 pi.playerMessage(5, "All instances of the zone boss are occupied, try again in a few moments!");
                 return false;
             }
-        } else {
+        }
+
+        // It doesn't think we are level 10
+        else
+        {
             pi.playerMessage(5, "You must be level 10 to challenge the zone boss!");
             return false;
         }
-    } else {
+    }
+
+    // We are leaving the boss room
+    else
+    {
     	var map = pi.getMap();
         map.clearDrops();
     	pi.playPortalSound();

@@ -6506,6 +6506,7 @@ public class Character extends AbstractCharacterObject {
             ThreadManager.getInstance().newTask(r);
         }
 
+        levelUpMessages(); // AdventureMS Custom
         guildUpdate();
 
         FamilyEntry familyEntry = getFamilyEntry();
@@ -6544,6 +6545,23 @@ public class Character extends AbstractCharacterObject {
             return false;
         }
     }
+
+    // EXP Locking stopExpOn stopExpOff AdventureMS Custom
+    private void levelUpMessages() {
+        if (level == 8) {
+            yellowMessage("You can job advance at Lvl 10. Mages are NOT penalized for over leveling!");
+        } else if (level == 10) {
+            yellowMessage("Your EXP has been LOCKED until you make your first job advancement!");
+        } else if (level == 23 && zoneprogress == 1) {
+            yellowMessage("Your EXP has been LOCKED until you clear Zone 2!");
+        } else if (level == 30) {
+            yellowMessage("2nd Job advancement is not available for open beta :(");
+        }
+        else if (level == 32) {
+            yellowMessage("Your EXP has been LOCKED for the open beta!");
+        }
+    }
+
     public void setPlayerRates() {
         this.expRate *= GameConstants.getPlayerBonusExpRate(this.level / 20);
         this.mesoRate *= GameConstants.getPlayerBonusMesoRate(this.level / 20);
