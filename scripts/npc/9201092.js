@@ -302,7 +302,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 defaultString += "\r\n#v" + itemId + "# #t" + itemId + "#";
 
                 // Remove the item from the player
-                cm.gainItem(itemId, -1);
+                cm.gainItem(parseInt(itemId), -1);
             }
 
             // Update the DB
