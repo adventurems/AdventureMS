@@ -42,7 +42,8 @@ function enter(pi)
         // It doesn't think we are level 10
         else
         {
-            pi.playerMessage(5, "You must be level 10 to challenge the zone boss!");
+            pi.playerMessage(5, "Current Level: " + pi.getPlayer().level;
+            // pi.playerMessage(5, "You must be level 10 to challenge the zone boss!");
             return false;
         }
     }
