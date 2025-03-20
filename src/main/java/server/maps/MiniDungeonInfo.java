@@ -29,7 +29,11 @@ import constants.id.MapId;
 
 public enum MiniDungeonInfo {
 
-    //http://bbb.hidden-street.net/search_finder/mini%20dungeon
+    // Custom AdventureMS MiniDungeons
+    THE_FIRST_TEST(104040000, 1010200, 5),
+    ABANDONED_SUBWAY(103000000, 103000910, 4),
+    BLAZING_MOUNTAIN_PEAK(101040002, 260020100, 3),
+    THE_VAULT(198000000, 198000100, 5),
 
     CAVE_OF_MUSHROOMS(MapId.ANT_TUNNEL_2, MapId.CAVE_OF_MUSHROOMS_BASE, 30), // Horny Mushroom, Zombie Mushroom
     GOLEM_CASTLE_RUINS(MapId.SLEEPY_DUNGEON_4, MapId.GOLEMS_CASTLE_RUINS_BASE, 34), // Stone Golem, Mixed Golem
