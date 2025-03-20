@@ -33,7 +33,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 cm.sendOk("You don't have any #rcash gachapon#k tickets...");
                 cm.dispose();
             }
-        }*/
+        }
 
         // Check for Pet Gachapon NPC
         else if (NPC == 9100101)
@@ -50,7 +50,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 cm.sendOk("You don't have any #rpet gachapon#k tickets...");
                 cm.dispose();
             }
-        }
+        }*/
     }
 
     // They want to use a ticket
