@@ -1,24 +1,3 @@
-/*
- This file is part of the OdinMS Maple Story Server
- Copyright (C) 2008 Patrick Huy <patrick.huy@frz.cc>
- Matthias Butz <matze@odinms.de>
- Jan Christian Meyer <vimes@odinms.de>
-
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU Affero General Public License as
- published by the Free Software Foundation version 3 as published by
- the Free Software Foundation. You may not use, modify or distribute
- this program under any other version of the GNU Affero General Public
- License.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU Affero General Public License for more details.
-
- You should have received a copy of the GNU Affero General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package net.server.handlers.login;
 
 import client.Client;
@@ -65,6 +44,27 @@ public final class LoginPasswordHandler implements PacketHandler {
         if (remoteHost.contentEquals("null")) {
             c.sendPacket(PacketCreator.getLoginFailed(14));          // thanks Alchemist for noting remoteHost could be null
             return;
+        }
+
+        // AdventureMS Custom
+
+        // Check if GMSERVER is true and validate IP
+        if (YamlConfig.config.server.GMSERVER) {
+            // Define a list of allowed IPs (you can modify this logic as needed)
+            String[] allowedIps = {"76.121.7.141"}; // Allowed IPs, update as necessary
+            boolean isValidIp = false;
+
+            for (String allowedIp : allowedIps) {
+                if (remoteHost.equals(allowedIp)) {
+                    isValidIp = true;
+                    break;
+                }
+            }
+
+            if (!isValidIp) {
+                c.sendPacket(PacketCreator.getLoginFailed(15)); // Custom failure code for invalid IP
+                return;
+            }
         }
 
         String login = p.readString();
