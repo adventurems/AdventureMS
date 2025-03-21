@@ -67,18 +67,44 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Clear any existing debuffs on the player
             cm.getPlayer().dispelDebuffs();
 
-            // Get the disease for SEAL using the Disease enum
-            var sealDisease = Disease.getBySkill(Disease.SEAL.getMobSkillType());  // Correctly accessing the MobSkillType from Disease
+            // Define the available diseases array (including SEAL, SLOW, SEDUCE, etc.)
+            var availableDiseases = [
+                Disease.SEAL,
+                Disease.SLOW,
+                Disease.SEDUCE,
+                Disease.CONFUSE,
+                Disease.STUN,
+                Disease.POISON,
+                Disease.DARKNESS,
+                Disease.WEAKEN,
+                Disease.CURSE
+            ];
 
-            // If a valid disease exists for SEAL
-            if (sealDisease != null)
-            {
-                // Get the corresponding MobSkill for SEAL at level 1 using the new method
-                var sealMobSkill = cm.getMobSkillByType(sealDisease.getMobSkillType(), 1);
-
-                // Apply the SEAL debuff to the player using Disease (not MobSkillType)
-                cm.getPlayer().giveDebuff(sealDisease, sealMobSkill); // Pass Disease (not MobSkillType) to giveDebuff
+            // Function to get random diseases
+            function getRandomDiseases(diseases, count) {
+                var selectedDiseases = [];
+                var diseasesCopy = diseases.slice(); // Copy the array to avoid mutation
+                while (selectedDiseases.length < count && diseasesCopy.length > 0) {
+                    var randomIndex = Math.floor(Math.random() * diseasesCopy.length);
+                    var disease = diseasesCopy.splice(randomIndex, 1)[0]; // Remove the selected disease
+                    selectedDiseases.push(disease); // Add the selected disease
+                }
+                return selectedDiseases;
             }
+
+            // Randomly select 3 diseases
+            var selectedDiseases = getRandomDiseases(availableDiseases, 3);
+
+            // Apply debuffs for the randomly selected diseases
+            selectedDiseases.forEach(function(disease) {
+                // Get the corresponding MobSkill for the disease at level 1
+                var mobSkill = cm.getMobSkillByType(disease.getMobSkillType(), 1);
+
+                // If a valid mobSkill exists, apply the debuff to the player
+                if (mobSkill != null) {
+                    cm.getPlayer().giveDebuff(disease, mobSkill); // Pass Disease (not MobSkillType) to giveDebuff
+                }
+            });
         }
 	}
 }
