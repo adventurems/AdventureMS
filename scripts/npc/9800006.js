@@ -61,42 +61,44 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             cm.sendOk("(you reach out to touch the statue...)\r\n\r\n#r#e(the statue infects you with several diseases...)");
             cm.dispose();
 
-            // Define Variables
+            // Get Disease enum
             var Disease = Java.type('client.Disease');
 
-            // Create an array of pairs, where each pair contains a disease and its corresponding skill
-            var debuffs = [
-                { disease: Disease.getBySkill(Disease.SEAL.getMobSkillType()), skill: cm.getMobSkill(120, 1) },
-                { disease: Disease.getBySkill(Disease.POISON.getMobSkillType()), skill: cm.getMobSkill(125, 1) },
-                { disease: Disease.getBySkill(Disease.CONFUSE.getMobSkillType()), skill: cm.getMobSkill(132, 1) },
-                { disease: Disease.getBySkill(Disease.SLOW.getMobSkillType()), skill: cm.getMobSkill(126, 1) },
-                { disease: Disease.getBySkill(Disease.CURSE.getMobSkillType()), skill: cm.getMobSkill(124, 1) }
-            ];
+            // Clear any existing debuffs on the player
+            pi.getPlayer().dispelDebuffs();
 
-            // Function to get a random integer between min (inclusive) and max (exclusive)
-            function getRandomInt(min, max) {
-                return Math.floor(Math.random() * (max - min)) + min;
-            }
+            // Define the available skills array
+            var skills = ['SEAL', 'POISON', 'CONFUSE', 'SLOW', 'CURSE'];
 
-            // Set how many curses you want to apply (up to 3)
-            var curseCount = 3; // You can change this value as needed
-
-            // Loop to apply random curses up to 'curseCount' times (e.g., 3 times)
-            var appliedCurses = new Set(); // To avoid applying the same curse more than once
-
-            for (var i = 0; i < curseCount; i++) {
-                var randomIndex = getRandomInt(0, debuffs.length); // Get a random index
-                var debuff = debuffs[randomIndex]; // Select a random debuff
-
-                // Ensure we don't apply the same curse multiple times
-                if (!appliedCurses.has(debuff.disease)) {
-                    cm.getPlayer().giveDebuff(debuff.disease, debuff.skill); // Apply the debuff
-                    appliedCurses.add(debuff.disease); // Mark this curse as applied
-                } else {
-                    // If the curse was already applied, retry the loop to get a different one
-                    i--;
+            // Function to get a random element from the skills array
+            function getRandomSkills(skills, count) {
+                var selectedSkills = [];
+                var skillsCopy = skills.slice(); // Copy the array to avoid mutation
+                while (selectedSkills.length < count && skillsCopy.length > 0) {
+                    var randomIndex = Math.floor(Math.random() * skillsCopy.length);
+                    var skill = skillsCopy.splice(randomIndex, 1)[0]; // Remove the selected skill
+                    selectedSkills.push(skill);
                 }
+                return selectedSkills;
             }
+
+            // Randomly select 3 skills
+            var selectedSkills = getRandomSkills(skills, 3);
+
+            // Apply debuffs for the randomly selected skills
+            selectedSkills.forEach(function(skill) {
+                // Get the disease for the selected skill using the Disease enum
+                var disease = Disease.getBySkill(Disease[skill].getMobSkillType());
+
+                // If a valid disease exists for the selected skill
+                if (disease != null) {
+                    // Get the corresponding MobSkill for the skill at level 1 using the new method
+                    var mobSkill = pi.getMobSkillByType(disease.getMobSkillType(), 1);
+
+                    // Apply the debuff to the player
+                    pi.getPlayer().giveDebuff(disease, mobSkill); // Pass Disease (not MobSkillType) to giveDebuff
+                }
+            });
         }
 	}
 }
