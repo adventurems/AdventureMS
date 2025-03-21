@@ -28,21 +28,20 @@ function enter(pi)
                     // Cancel Buffs
                     pi.getPlayer().cancelAllBuffs(false);
 
-                    // Get Disease enum and MobSkillType for SEAL
+                    // Get Disease enum
                     var Disease = Java.type('client.Disease');
-                    var MobSkillType = Java.type('client.MobSkillType');
                     var MobSkillFactory = Java.type('client.MobSkillFactory');
 
                     // Clear any existing debuffs on the player
                     pi.getPlayer().dispelDebuffs();
 
-                    // Get the disease (SEAL) by the corresponding MobSkillType
-                    var sealDisease = Disease.getBySkill(MobSkillType.SEAL);
+                    // Get the disease for SEAL (this will internally reference MobSkillType.SEAL)
+                    var sealDisease = Disease.getBySkill(Disease.MobSkillType.SEAL);
 
                     // If a valid disease exists for SEAL
                     if (sealDisease != null) {
                         // Get the corresponding MobSkill for SEAL at level 1
-                        var sealMobSkill = MobSkillFactory.getMobSkill(MobSkillType.SEAL, 1);
+                        var sealMobSkill = MobSkillFactory.getMobSkill(sealDisease.getMobSkillType(), 1);
 
                         // Apply the SEAL debuff to the player
                         pi.getPlayer().giveDebuff(sealDisease.getMobSkillType(), sealMobSkill);
