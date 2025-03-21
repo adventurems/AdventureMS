@@ -29,7 +29,7 @@ function enter(pi)
                     pi.getPlayer().cancelAllBuffs(false);
 
                     // Get path to MapleDisease, Clear Debuffs, Seal the player
-                    var MapleDisease = Java.type('client.Disease');
+                    var Disease = Java.type('client.Disease');
                     pi.getPlayer().dispelDebuffs();
                     pi.getPlayer().giveDebuff(Disease.SEAL, pi.getMobSkill(120, 1));
 
