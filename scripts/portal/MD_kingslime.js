@@ -81,7 +81,7 @@ function enter(pi)
     else
     {
     	var map = pi.getMapId();
-        map.clearDrops();
+        pi.getMap.clearDrops();
         pi.resetMapObjects(map);
     	pi.playPortalSound();
     	pi.warp(baseid, "MD00");
