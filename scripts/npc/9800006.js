@@ -65,38 +65,41 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             var Disease = Java.type('client.Disease');
 
             // Clear any existing debuffs on the player
-            cm.getPlayer().dispelDebuffs();
+            pi.getPlayer().dispelDebuffs();
 
-            // Define the available skills array
-            var skills = ['SEAL', 'POISON', 'CONFUSE', 'SLOW', 'CURSE'];
+            // Define the available skills array and their corresponding Disease enum values
+            var skillMap = {
+                'SEAL': Disease.SEAL,
+                'POISON': Disease.POISON,
+                'CONFUSE': Disease.CONFUSE,
+                'SLOW': Disease.SLOW,
+                'CURSE': Disease.CURSE
+            };
 
-            // Function to get a random element from the skills array
-            function getRandomSkills(skills, count) {
+            // Function to get a random element from an array
+            function getRandomSkills(skillMap, count) {
                 var selectedSkills = [];
-                var skillsCopy = skills.slice(); // Copy the array to avoid mutation
+                var skillNames = Object.keys(skillMap); // Get the names of the skills
+                var skillsCopy = skillNames.slice(); // Copy the array to avoid mutation
                 while (selectedSkills.length < count && skillsCopy.length > 0) {
                     var randomIndex = Math.floor(Math.random() * skillsCopy.length);
-                    var skill = skillsCopy.splice(randomIndex, 1)[0]; // Remove the selected skill
-                    selectedSkills.push(skill);
+                    var skillName = skillsCopy.splice(randomIndex, 1)[0]; // Remove the selected skill
+                    selectedSkills.push(skillMap[skillName]); // Add the corresponding Disease enum
                 }
                 return selectedSkills;
             }
 
             // Randomly select 3 skills
-            var selectedSkills = getRandomSkills(skills, 3);
+            var selectedDiseases = getRandomSkills(skillMap, 3);
 
             // Apply debuffs for the randomly selected skills
-            selectedSkills.forEach(function(skill) {
-                // Get the disease for the selected skill using the Disease enum
-                var disease = Disease.getBySkill(Disease[skill].getMobSkillType());
+            selectedDiseases.forEach(function(disease) {
+                // Get the corresponding MobSkill for the selected disease at level 1
+                var mobSkill = pi.getMobSkillByType(disease.getMobSkillType(), 1);
 
-                // If a valid disease exists for the selected skill
-                if (disease != null) {
-                    // Get the corresponding MobSkill for the skill at level 1 using the new method
-                    var mobSkill = pi.getMobSkillByType(disease.getMobSkillType(), 1);
-
-                    // Apply the debuff to the player
-                    cm.getPlayer().giveDebuff(disease, mobSkill); // Pass Disease (not MobSkillType) to giveDebuff
+                // Apply the debuff to the player
+                if (disease != null && mobSkill != null) {
+                    pi.getPlayer().giveDebuff(disease, mobSkill); // Pass Disease (not MobSkillType) to giveDebuff
                 }
             });
         }
