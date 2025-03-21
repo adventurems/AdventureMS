@@ -65,7 +65,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             var Disease = Java.type('client.Disease');
 
             // Clear any existing debuffs on the player
-            pi.getPlayer().dispelDebuffs();
+            cm.getPlayer().dispelDebuffs();
 
             // Define the available skills array
             var skills = ['SEAL', 'POISON', 'CONFUSE', 'SLOW', 'CURSE'];
@@ -96,7 +96,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                     var mobSkill = pi.getMobSkillByType(disease.getMobSkillType(), 1);
 
                     // Apply the debuff to the player
-                    pi.getPlayer().giveDebuff(disease, mobSkill); // Pass Disease (not MobSkillType) to giveDebuff
+                    cm.getPlayer().giveDebuff(disease, mobSkill); // Pass Disease (not MobSkillType) to giveDebuff
                 }
             });
         }
