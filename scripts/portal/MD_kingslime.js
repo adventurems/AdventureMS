@@ -80,7 +80,7 @@ function enter(pi)
     // Leaving the dungeon
     else
     {
-    	var map = pi.getMap();
+    	var map = pi.getMapId();
         map.clearDrops();
         pi.resetMapObjects(map);
     	pi.playPortalSound();
