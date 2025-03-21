@@ -34,7 +34,7 @@ function enter(pi)
                     // Clear any existing debuffs on the player
                     pi.getPlayer().dispelDebuffs();
 
-                    // Get the disease for SEAL using the Disease enum directly
+                    // Get the disease for SEAL using the Disease enum
                     var sealDisease = Disease.getBySkill(Disease.SEAL.getMobSkillType());  // Correctly accessing the MobSkillType from Disease
 
                     // If a valid disease exists for SEAL
@@ -42,8 +42,8 @@ function enter(pi)
                         // Get the corresponding MobSkill for SEAL at level 1 using the new method
                         var sealMobSkill = pi.getMobSkillByType(sealDisease.getMobSkillType(), 1);
 
-                        // Apply the SEAL debuff to the player
-                        pi.getPlayer().giveDebuff(sealDisease.getMobSkillType(), sealMobSkill);
+                        // Apply the SEAL debuff to the player using Disease (not MobSkillType)
+                        pi.getPlayer().giveDebuff(sealDisease, sealMobSkill); // Pass Disease (not MobSkillType) to giveDebuff
                     }
 
                     // Warp the player
