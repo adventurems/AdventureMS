@@ -62,15 +62,15 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             cm.dispose();
 
             // Define Variables
-            var MapleDisease = Java.type('client.MapleDisease');
+            var Disease = Java.type('client.Disease');
 
             // Create an array of pairs, where each pair contains a disease and its corresponding skill
             var debuffs = [
-                { disease: MapleDisease.SEAL, skill: cm.getMobSkill(120, 1) },
-                { disease: MapleDisease.POISON, skill: cm.getMobSkill(125, 1) },
-                { disease: MapleDisease.CONFUSE, skill: cm.getMobSkill(132, 1) },
-                { disease: MapleDisease.SLOW, skill: cm.getMobSkill(126, 1) },
-                { disease: MapleDisease.CURSE, skill: cm.getMobSkill(124, 1) }
+                { disease: Disease.getBySkill(Disease.SEAL.getMobSkillType()), skill: cm.getMobSkill(120, 1) },
+                { disease: Disease.getBySkill(Disease.POISON.getMobSkillType()), skill: cm.getMobSkill(125, 1) },
+                { disease: Disease.getBySkill(Disease.CONFUSE.getMobSkillType()), skill: cm.getMobSkill(132, 1) },
+                { disease: Disease.getBySkill(Disease.SLOW.getMobSkillType()), skill: cm.getMobSkill(126, 1) },
+                { disease: Disease.getBySkill(Disease.CURSE.getMobSkillType()), skill: cm.getMobSkill(124, 1) }
             ];
 
             // Function to get a random integer between min (inclusive) and max (exclusive)
@@ -78,11 +78,24 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 return Math.floor(Math.random() * (max - min)) + min;
             }
 
-            // Loop to apply a random curse multiple times (e.g., 3 times)
-            for (var i = 0; i < 2; i++) {
+            // Set how many curses you want to apply (up to 3)
+            var curseCount = 3; // You can change this value as needed
+
+            // Loop to apply random curses up to 'curseCount' times (e.g., 3 times)
+            var appliedCurses = new Set(); // To avoid applying the same curse more than once
+
+            for (var i = 0; i < curseCount; i++) {
                 var randomIndex = getRandomInt(0, debuffs.length); // Get a random index
                 var debuff = debuffs[randomIndex]; // Select a random debuff
-                cm.getPlayer().giveDebuff(debuff.disease, debuff.skill);
+
+                // Ensure we don't apply the same curse multiple times
+                if (!appliedCurses.has(debuff.disease)) {
+                    cm.getPlayer().giveDebuff(debuff.disease, debuff.skill); // Apply the debuff
+                    appliedCurses.add(debuff.disease); // Mark this curse as applied
+                } else {
+                    // If the curse was already applied, retry the loop to get a different one
+                    i--;
+                }
             }
         }
 	}
