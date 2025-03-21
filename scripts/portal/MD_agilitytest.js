@@ -28,10 +28,25 @@ function enter(pi)
                     // Cancel Buffs
                     pi.getPlayer().cancelAllBuffs(false);
 
-                    // Get path to MapleDisease, Clear Debuffs, Seal the player
+                    // Get Disease enum and MobSkillType for SEAL
                     var Disease = Java.type('client.Disease');
+                    var MobSkillType = Java.type('client.MobSkillType');
+                    var MobSkillFactory = Java.type('client.MobSkillFactory');
+
+                    // Clear any existing debuffs on the player
                     pi.getPlayer().dispelDebuffs();
-                    pi.getPlayer().giveDebuff(Disease.SEAL, pi.getMobSkill(120, 1));
+
+                    // Get the disease (SEAL) by the corresponding MobSkillType
+                    var sealDisease = Disease.getBySkill(MobSkillType.SEAL);
+
+                    // If a valid disease exists for SEAL
+                    if (sealDisease != null) {
+                        // Get the corresponding MobSkill for SEAL at level 1
+                        var sealMobSkill = MobSkillFactory.getMobSkill(MobSkillType.SEAL, 1);
+
+                        // Apply the SEAL debuff to the player
+                        pi.getPlayer().giveDebuff(sealDisease.getMobSkillType(), sealMobSkill);
+                    }
 
                     // Warp the player
                     pi.playPortalSound();
