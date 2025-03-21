@@ -34,8 +34,8 @@ function enter(pi)
                     // Clear any existing debuffs on the player
                     pi.getPlayer().dispelDebuffs();
 
-                    // Get the disease for SEAL (this will internally reference MobSkillType.SEAL)
-                    var sealDisease = Disease.getBySkill(Disease.MobSkillType.SEAL);
+                    // Get the disease for SEAL using the Disease enum directly
+                    var sealDisease = Disease.getBySkill(Disease.SEAL.getMobSkillType());  // Correctly accessing the MobSkillType from Disease
 
                     // If a valid disease exists for SEAL
                     if (sealDisease != null) {
