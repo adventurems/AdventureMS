@@ -982,6 +982,18 @@ public class AbstractPlayerInteraction {
         return LifeFactory.getMonster(mid);
     }
 
+    // AdventureMS Custom
+    public MobSkill getMobSkillByType(MobSkillType skillType, int level) {
+        // Get the MobSkill from the factory and handle it explicitly
+        Optional<MobSkill> optionalSkill = MobSkillFactory.getMobSkill(skillType, level);
+        if (optionalSkill.isPresent()) {
+            return optionalSkill.get(); // Return the MobSkill if present
+        } else {
+            // Handle the case where the skill is not found (e.g., throw an exception or return a default)
+            throw new IllegalArgumentException("MobSkill not found for skillType: " + skillType + " and level: " + level);
+        }
+    }
+
     public void spawnGuide() {
         c.sendPacket(PacketCreator.spawnGuide(true));
     }
