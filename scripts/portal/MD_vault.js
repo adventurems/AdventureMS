@@ -77,7 +77,8 @@ function enter(pi) {
     } else
     {
     	var map = pi.getMapId();
-        map.clearDrops();
+        pi.resetMapObjects(map);
+        pi.getMap().clearDrops();
     	pi.playPortalSound();
     	pi.warp(baseid, "in00");
     	return true;
