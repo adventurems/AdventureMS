@@ -171,21 +171,49 @@ public final class RangedAttackHandler extends AbstractDealDamageHandler {
 
                             // AdventureMS Custom
                             else if (id >= 2330000 && id <= 2330006) {
-                                // Set the projectile based on character's level
-                                if (chr.getLevel() >= 60) {
-                                    projectile = 2330005;  // For level 60 and above
-                                } else if (chr.getLevel() >= 50) {
-                                    projectile = 2330004;  // For level 50 to 59
-                                } else if (chr.getLevel() >= 40) {
-                                    projectile = 2330003;  // For level 40 to 49
-                                } else if (chr.getLevel() >= 30) {
-                                    projectile = 2330002;  // For level 30 to 39
-                                } else if (chr.getLevel() >= 20) {
-                                    projectile = 2330001;  // For level 20 to 29
-                                } else if (chr.getLevel() >= 10) {
-                                    projectile = 2330000;  // For level 10 to 19
-                                } else {
-                                    projectile = 2330006;  // For level 0 to 9
+                                boolean validBulletFound = false;
+
+                                // Loop through the inventory and find a valid bullet
+                                for (int index = 1; index <= inv.getSlotLimit(); index++) {  // Use 'index' for the loop variable
+                                    Item currentItem = inv.getItem((short) index);  // Use 'currentItem' to avoid conflict with the 'item' variable
+
+                                    if (currentItem != null) {
+                                        int bulletId = currentItem.getItemId();  // Rename 'id' to 'bulletId' to avoid conflicts
+
+                                        if (bulletId >= 2330000 && bulletId <= 2330006) {  // Check if the item is a valid bullet range
+                                            if (chr.getLevel() >= 60 && bulletId == 2330005) {
+                                                projectile = bulletId;  // Allow level 60 bullet
+                                                validBulletFound = true;
+                                                break;
+                                            } else if (chr.getLevel() >= 50 && bulletId == 2330004) {
+                                                projectile = bulletId;  // Allow level 50-59 bullet
+                                                validBulletFound = true;
+                                                break;
+                                            } else if (chr.getLevel() >= 40 && bulletId == 2330003) {
+                                                projectile = bulletId;  // Allow level 40-49 bullet
+                                                validBulletFound = true;
+                                                break;
+                                            } else if (chr.getLevel() >= 30 && bulletId == 2330002) {
+                                                projectile = bulletId;  // Allow level 30-39 bullet
+                                                validBulletFound = true;
+                                                break;
+                                            } else if (chr.getLevel() >= 20 && bulletId == 2330001) {
+                                                projectile = bulletId;  // Allow level 20-29 bullet
+                                                validBulletFound = true;
+                                                break;
+                                            } else if (chr.getLevel() >= 10 && bulletId == 2330000) {
+                                                projectile = bulletId;  // Allow level 10-19 bullet
+                                                validBulletFound = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                // If no valid bullet was found, prevent using any projectile
+                                if (!validBulletFound) {
+                                    // Optionally, you can add logic here to notify the user that no valid bullets are available
+                                    projectile = 0;  // Prevent any projectile from being used
                                 }
                                 break;
                             }
