@@ -167,7 +167,7 @@ public final class RangedAttackHandler extends AbstractDealDamageHandler {
                                     projectile = id;
                                     break;
                                 }
-                            } else if (chr.getLevel() >= (id % 6) * 10 + 10) {
+                            } else if (chr.getLevel() > (id % 10) * 10 + 9) {
                                 projectile = id;
                                 break;
                             }
