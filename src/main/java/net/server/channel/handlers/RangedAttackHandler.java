@@ -167,8 +167,23 @@ public final class RangedAttackHandler extends AbstractDealDamageHandler {
                                     projectile = id;
                                     break;
                                 }
-                            } else if (chr.getLevel() > (id % 10) * 20 + 9) {
-                                projectile = id;
+                            } else if (id >= 2330000 && id <= 2330006) {
+                                // Set the projectile based on character's level
+                                if (chr.getLevel() >= 60) {
+                                    projectile = 2330006;
+                                } else if (chr.getLevel() >= 50) {
+                                    projectile = 2330005;
+                                } else if (chr.getLevel() >= 40) {
+                                    projectile = 2330004;
+                                } else if (chr.getLevel() >= 30) {
+                                    projectile = 2330003;
+                                } else if (chr.getLevel() >= 20) {
+                                    projectile = 2330002;
+                                } else if (chr.getLevel() >= 10) {
+                                    projectile = 2330001;
+                                } else {
+                                    projectile = 2330000;  // For players below level 10, use the first bullet
+                                }
                                 break;
                             }
                         } else if ((type == WeaponType.BOW && bow) || (type == WeaponType.CROSSBOW && cbow) || (weapon.getItemId() == ItemId.MAGICAL_MITTEN && (bow || cbow))) {
