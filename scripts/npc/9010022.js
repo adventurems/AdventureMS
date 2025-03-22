@@ -10,7 +10,8 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         {
             if (cm.getLevel() < 20)
             {
-                cm.sendDimensionalMirror("#-1# There is no place for you to transport to from here.");
+                cm.sendOk("You haven't unlocked any warps!");
+                // cm.sendDimensionalMirror("#-1# There is no place for you to transport to from here.");
                 cm.dispose();
             }
 
