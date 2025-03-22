@@ -1,4 +1,4 @@
-// Huckle - AdventureMS Custom
+// AdventureMS Huckle
 
 var status;
 

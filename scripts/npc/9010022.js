@@ -1,31 +1,24 @@
+// AdventureMS Dimensional Mirror
+
 var status;
-var sel;
 
-function start() {
-    status = -1;
-    action(1, 0, 0);
-}
+// Start the conversation
+function start() {status = -1; action(1,0,0);}
+function action(mode, type, selection) { if (mode == 1) {status++;} else {status--;} if (status == -1) {cm.dispose();}
 
-function action(mode, type, selection) {
-    if (mode == -1) {
-        cm.dispose();
-    } else {
-        if (mode == 0) {
-            cm.dispose();
-            return;
-        }
-        if (mode == 1) {
-            status++;
-        } else {
-            status--;
-        }
-        if (status == 0) {
-            if (cm.getLevel() < 20) {
+        else if (status == 0)
+        {
+            if (cm.getLevel() < 20)
+            {
                 cm.sendDimensionalMirror("#-1# There is no place for you to transport to from here.");
                 cm.dispose();
-            } else {
+            }
+
+            else
+            {
                 var selStr = "";
-                if (cm.getLevel() >= 20 && cm.getLevel() <= 30) {
+                if (cm.getLevel() >= 20 && cm.getLevel() <= 30)
+                {
                     selStr += "#0# Ariant Coliseum";
                 }
 
@@ -53,9 +46,13 @@ function action(mode, type, selection) {
 
                 cm.sendDimensionalMirror(selStr);
             }
-        } else if (status == 1) {
+        }
+
+        else if (status == 1)
+        {
             cm.getPlayer().saveLocation("MIRROR");
-            switch (selection) {
+            switch (selection)
+            {
                 case 0:
                     cm.warp(980010000, 3);
                     break;
