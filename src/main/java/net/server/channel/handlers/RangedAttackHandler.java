@@ -173,19 +173,19 @@ public final class RangedAttackHandler extends AbstractDealDamageHandler {
                             else if (id >= 2330000 && id <= 2330006) {
                                 // Set the projectile based on character's level
                                 if (chr.getLevel() >= 60) {
-                                    projectile = 2330006;  // For level 60 and above
+                                    projectile = 2330005;  // For level 60 and above
                                 } else if (chr.getLevel() >= 50) {
-                                    projectile = 2330005;  // For level 50 to 59
+                                    projectile = 2330004;  // For level 50 to 59
                                 } else if (chr.getLevel() >= 40) {
-                                    projectile = 2330004;  // For level 40 to 49
+                                    projectile = 2330003;  // For level 40 to 49
                                 } else if (chr.getLevel() >= 30) {
-                                    projectile = 2330003;  // For level 30 to 39
+                                    projectile = 2330002;  // For level 30 to 39
                                 } else if (chr.getLevel() >= 20) {
-                                    projectile = 2330002;  // For level 20 to 29
+                                    projectile = 2330001;  // For level 20 to 29
                                 } else if (chr.getLevel() >= 10) {
-                                    projectile = 2330001;  // For level 10 to 19
+                                    projectile = 2330000;  // For level 10 to 19
                                 } else {
-                                    projectile = 2330000;  // For level 0 to 9
+                                    projectile = 2330006;  // For level 0 to 9
                                 }
                                 break;
                             }
