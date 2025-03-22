@@ -167,22 +167,45 @@ public final class RangedAttackHandler extends AbstractDealDamageHandler {
                                     projectile = id;
                                     break;
                                 }
-                            } else if (id >= 2330000 && id <= 2330006) {
+                            }
+
+                            // AdventureMS Custom
+                            else if (id >= 2330000 && id <= 2330006)
+                            {
                                 // Set the projectile based on character's level
-                                if (chr.getLevel() >= 60) {
-                                    projectile = 2330006;
-                                } else if (chr.getLevel() >= 50) {
+                                if (chr.getLevel() >= 60)
+                                {
                                     projectile = 2330005;
-                                } else if (chr.getLevel() >= 40) {
+                                }
+
+                                else if (chr.getLevel() >= 50)
+                                {
                                     projectile = 2330004;
-                                } else if (chr.getLevel() >= 30) {
+                                }
+
+                                else if (chr.getLevel() >= 40)
+                                {
                                     projectile = 2330003;
-                                } else if (chr.getLevel() >= 20) {
+                                }
+
+                                else if (chr.getLevel() >= 30)
+                                {
                                     projectile = 2330002;
-                                } else if (chr.getLevel() >= 10) {
+                                }
+
+                                else if (chr.getLevel() >= 20)
+                                {
                                     projectile = 2330001;
-                                } else {
-                                    projectile = 2330000;  // For players below level 10, use the first bullet
+                                }
+
+                                else if (chr.getLevel() >= 10)
+                                {
+                                    projectile = 2330000;
+                                }
+
+                                else
+                                {
+                                    projectile = 2330006;  // For players below level 10, use beginner bullets
                                 }
                                 break;
                             }
