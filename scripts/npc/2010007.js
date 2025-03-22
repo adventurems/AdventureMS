@@ -1,79 +1,98 @@
-/*
-	This file is part of the OdinMS Maple Story Server
-    Copyright (C) 2008 Patrick Huy <patrick.huy@frz.cc>
-		       Matthias Butz <matze@odinms.de>
-		       Jan Christian Meyer <vimes@odinms.de>
+// Author: Pepa
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation version 3 as published by
-    the Free Software Foundation. You may not use, modify or distribute
-    this program under any other version of the GNU Affero General Public
-    License.
+// AdventureMS Heracle
+var status;
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
+// Standard Status Code
+function start() {status = -1; action(1,0,0);}
+function action(mode, type, selection) { if (mode == 1) {status++;} else {status--;} if (status == -1) {cm.dispose();}
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/* guild creation npc */
-var status = 0;
-var sel;
-
-function start() {
-    cm.sendSimple("What would you like to do?\r\n#b#L0#Create a Guild#l\r\n#L1#Disband your Guild#l\r\n#L2#Increase your Guild's capacity#l#k");
-}
-
-function action(mode, type, selection) {
-    if (mode == -1) {
-        cm.dispose();
-    } else {
-        if (mode == 0 && status == 0) {
-            cm.dispose();
-            return;
+        // Start the conversation
+        if (status == 0)
+        {
+            cm.sendSimple("What would you like to do?\r\n#b#L0#Create a Guild#l\r\n#L1#Disband your Guild#l\r\n#L2#Increase your Guild's capacity#l#k");
         }
-        if (mode == 1) {
-            status++;
-        } else {
-            status--;
-        }
-        if (status == 1) {
-            sel = selection;
-            if (selection == 0) {
-                if (cm.getPlayer().getGuildId() > 0) {
-                    cm.sendOk("You may not create a new Guild while you are in one.");
+
+        // They made a selection
+        else if (status == 1)
+        {
+            // They want to create a guild
+            if (selection == 0)
+            {
+                // Check if they are in a guild
+                if (cm.getPlayer().getGuildId() > 0)
+                {
+                    cm.sendOk("You're already in one! Stay loyal or cut ties. Don't be so sneaky...");
                     cm.dispose();
-                } else {
+                }
+
+                // They aren't in one, ask to create
+                else
+                {
                     cm.sendYesNo("Creating a Guild costs #b 1500000 mesos#k, are you sure you want to continue?");
                 }
-            } else if (selection == 1) {
-                if (cm.getPlayer().getGuildId() < 1 || cm.getPlayer().getGuildRank() != 1) {
-                    cm.sendOk("You can only disband a Guild if you are the leader of that Guild.");
+            }
+
+            // They chose to disband their guild
+            else if (selection == 1)
+            {
+                // Check if they are in a guild and that t hey are the leader
+                if (cm.getPlayer().getGuildId() < 1 || cm.getPlayer().getGuildRank() != 1)
+                {
+                    cm.sendOk("You must be in a guild and you must be the guild leader in order to do so. Talk to your leader...");
                     cm.dispose();
-                } else {
-                    cm.sendYesNo("Are you sure you want to disband your Guild? You will not be able to recover it afterward and all your GP will be gone.");
                 }
-            } else if (selection == 2) {
-                if (cm.getPlayer().getGuildId() < 1 || cm.getPlayer().getGuildRank() != 1) {
-                    cm.sendOk("You can only increase your Guild's capacity if you are the leader.");
-                    cm.dispose();
-                } else {
-                    var Guild = Java.type("net.server.guild.Guild");  // thanks Conrad for noticing an issue due to call on a static method here
-                    cm.sendYesNo("Increasing your Guild capacity by #b5#k costs #b " + Guild.getIncreaseGuildCost(cm.getPlayer().getGuild().getCapacity()) + " mesos#k, are you sure you want to continue?");
+
+                // They are in a guild and they are the leader
+                else
+                {
+                    cm.sendYesNo("Are you sure you want to disband your Guild?\r\n\r\nAll your legacy will be lost and you will not be able to recover it.\r\n\r\nThis decision is final...");
                 }
             }
-        } else if (status == 2) {
-            if (sel == 0 && cm.getPlayer().getGuildId() <= 0) {
+
+            // They want to increase guild capacity
+            else if (selection == 2)
+            {
+                // Check that they are in a guild and that they are the leader
+                if (cm.getPlayer().getGuildId() < 1 || cm.getPlayer().getGuildRank() != 1)
+                {
+                    cm.sendOk("You can only increase your Guild's capacity if you are the leader.");
+                    cm.dispose();
+                }
+
+                // They are in a guild and they are the leader
+                else
+                {
+                    var Guild = Java.type("net.server.guild.Guild");  // thanks Conrad for noticing an issue due to call on a static method here
+                    cm.sendYesNo("Increasing your Guild capacity by #r5#k costs #r " + Guild.getIncreaseGuildCost(cm.getPlayer().getGuild().getCapacity()) + " mesos#k, are you sure you want to continue?");
+                }
+            }
+
+        }
+
+        // They chose yes on something
+        else if (status == 2)
+        {
+            // Create a guild
+            if (selection == 0 && cm.getPlayer().getGuildId() <= 0)
+            {
                 cm.getPlayer().genericGuildMessage(1);
                 cm.dispose();
-            } else if (cm.getPlayer().getGuildId() > 0 && cm.getPlayer().getGuildRank() == 1) {
-                if (sel == 1) {
+            }
+
+            // They chose yes to disbanding or to increasing capacity
+            else if (cm.getPlayer().getGuildId() > 0 && cm.getPlayer().getGuildRank() == 1)
+            {
+                // Disband Guild
+                if (selection == 1)
+                {
                     cm.getPlayer().disbandGuild();
                     cm.dispose();
-                } else if (sel == 2) {
+                }
+
+                // Increase guild capacity
+                else if (selection == 2)
+                {
                     cm.getPlayer().increaseGuildCapacity();
                     cm.dispose();
                 }
