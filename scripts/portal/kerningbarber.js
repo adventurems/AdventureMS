@@ -7,7 +7,7 @@ function enter(pi)
     if (pi.getPlayer().getQuestStatus(1010) == 2)
     {
         pi.playPortalSound();
-        pi.warp(100020000, "west00");
+        pi.warp(103000005, "out00");
         return true;
     }
 
