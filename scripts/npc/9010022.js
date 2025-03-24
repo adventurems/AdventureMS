@@ -4,6 +4,7 @@ var status;
 var tokens = [3997006, 3997007, 3997008];
 var quests = [1007, 1008, 1009];
 var tokenTurnIn = false;
+var hasQuest = false;
 
 // Start the conversation
 function start() {status = -1; action(1,0,0);}
@@ -65,6 +66,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 // If we have completed any quest, open the warper
                 if (cm.getQuestStatus(quests[j]) == 2)
                 {
+                    // Set hasQuest to tru
+                    hasQuest = true;
+
                     // Create empty string to store locations available
                     var selStr = "";
 
@@ -88,17 +92,36 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
                     // Send the completed string for the dimensional mirror to handle
                     cm.sendDimensionalMirror(selStr);
-                    cm.dispose();
-                    return;  // Exit here to prevent further code execution
+                    break;
                 }
             }
+
+            // They have no tokens, and they haven't completed any quests
+             if (!tokenTurnIn && !hasQuest)
+            {
+                cm.sendOk("Go find me some of those tasty #r#eS.T.I.D.I.B#n#k's!");
+                cm.dispose();
+            }
+        }
+    }
+
+    // They've chosen a map to warp to
+    else if (status == 1)
+    {
+        switch (selection)
+        {
+            case 2:
+                cm.warp(101040002, 0);
+                break;
+            case 1:
+                cm.warp(103000000, 0);
+                break;
+            case 0:
+                cm.warp(104040000, 0);
+                break;
         }
 
-        // They have no tokens, and they haven't completed any quests
-        else if (!tokenTurnIn)
-        {
-            cm.sendOk("Go find me some of those tasty #r#eS.T.I.D.I.B#n#k's!");
-            cm.dispose();
-        }
+        // Kill the convo
+        cm.dispose();
     }
 }
