@@ -27,7 +27,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                         cm.gainItem(tokens[i], -1);
 
                         // Complete the quest
-                        cm.completeQuest(quests[j]);  // Ensure this references quests[j] instead of quests[i]
+                        cm.completeQuest(quests[i]);
 
                         // Mark this done so it can only execute once
                         tokenTurnIn = true;
