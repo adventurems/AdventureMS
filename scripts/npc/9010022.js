@@ -3,6 +3,7 @@
 var status;
 var tokens = [3997006, 3997007, 3997008];
 var quests = [1007, 1008, 1009];
+var tokenTurnIn = false;
 
 // Start the conversation
 function start() {status = -1; action(1,0,0);}
@@ -14,7 +15,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             for (var i = 0; i < tokens.length; i++)
             {
                 // If we have a token in our possession, stop
-                if (cm.haveItem(tokens[i]))
+                if (cm.haveItem(tokens[i]) && tokenTurnIn == false)
                 {
                     // Loop through the quest array
                     for (var j = 0; j < quests.length; j++)
@@ -27,6 +28,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
                             // Complete the quest
                             cm.completeQuest(quests[i]);
+
+                            // Mark this done so it can only execute once
+                            tokenTurnIn = true;
 
                             // They've turned in at least one token
                             cm.sendOk("Ah! Another one! Yes, it looks delicious. Quick throw it in!\r\n\r\n(Om nom nom 'crunch', 'munch'...)\r\n\r\nThat WAS delicious! I suppose I could open up another passage for you...");
@@ -91,7 +95,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             }
 
             // They have no tokens, and they haven't completed any quests
-            else
+            else if (tokenTurnIn == false)
             {
                 cm.sendOk("Go find me some of those tasty #r#eS.T.I.D.I.B#n#k's!");
                 cm.dispose();
