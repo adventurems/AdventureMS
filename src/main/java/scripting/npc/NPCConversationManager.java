@@ -219,15 +219,6 @@ public class NPCConversationManager extends AbstractPlayerInteraction {
         getClient().sendPacket(PacketCreator.getNPCTalkText(npc, text, ""));
     }
 
-    /*
-     * 0 = ariant colliseum
-     * 1 = Dojo
-     * 2 = Carnival 1
-     * 3 = Carnival 2
-     * 4 = Ghost Ship PQ?
-     * 5 = Pyramid PQ
-     * 6 = Kerning Subway
-     */
     public void sendDimensionalMirror(String text) {
         getClient().sendPacket(PacketCreator.getDimensionalMirror(text));
     }
