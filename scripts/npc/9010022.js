@@ -1,8 +1,8 @@
 // AdventureMS Omnar
 
 var status;
-var tokens[3997006, 3997007, 3997008];
-var quests[1007, 1008, 1009];
+var tokens = [3997006, 3997007, 3997008];
+var quests = [1007, 1008, 1009];
 
 // Start the conversation
 function start() {status = -1; action(1,0,0);}
