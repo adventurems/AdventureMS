@@ -11,14 +11,14 @@ function start()
         if (cm.getPlayer().getFame() > 0)
         {
             // Gain the item
-            cm.gainItem(4070014, 1);
+            cm.gainItem(4007014, 1);
 
             // Complete the quest
             cm.completeQuest(1010);
 
             // Instruct them to go see Andre in the barbershop
             cm.sendOk("Hmph, seems like you are getting more popular...\r\n\r\nHere have this:\r\n" +
-            "#v4070014# #t4070014#\r\nTake that over to the #bKerning Barbershop#k and see #rAndre#k, he'll take care of you...");
+            "#v4007014# #t4007014#\r\nTake that over to the #bKerning Barbershop#k and see #rAndre#k, he'll take care of you...");
 
             // Kill Convo
             cm.dispose();
