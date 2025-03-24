@@ -1,27 +1,19 @@
-/*
-	This file is part of the OdinMS Maple Story Server
-    Copyright (C) 2008 Patrick Huy <patrick.huy@frz.cc>
-		       Matthias Butz <matze@odinms.de>
-		       Jan Christian Meyer <vimes@odinms.de>
+// AdventureMS Kerning Barber Shop
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation version 3 as published by
-    the Free Software Foundation. You may not use, modify or distribute
-    this program under any other version of the GNU Affero General Public
-    License.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
+// Player pressed up on portal
 function enter(pi)
 {
-    pi.getPlayer().yellowMessage("The Kerning Barbershop is closed as Don and Andre are out of town...");
-    return false;
+    // Check to see if they've completed Shumi's popularity requirement
+    if (pi.getPlayer().getQuestStatus(1010) == 2)
+    {
+        pi.playPortalSound();
+        pi.warp(100020000, "west00");
+        return true;
+    }
+
+    // Hasn't completed Shumi's quest yet
+    {
+        pi.getPlayer().yellowMessage("Don and Andre are only accepting high-profile clients from #bShumi#k...");
+        return false;
+    }
 }

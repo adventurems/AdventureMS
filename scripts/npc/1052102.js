@@ -1,36 +1,55 @@
-        /*
-	This file is part of the OdinMS Maple Story Server
-    Copyright (C) 2008 Patrick Huy <patrick.huy@frz.cc>
-		       Matthias Butz <matze@odinms.de>
-		       Jan Christian Meyer <vimes@odinms.de>
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation version 3 as published by
-    the Free Software Foundation. You may not use, modify or distribute
-    this program under any other version of the GNU Affero General Public
-    License.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
 // Author: Pepa
 
-// AdventureMS
+// AdventureMS Shumi
 
-function start() {
-	if (cm.getQuestStatus(2217) == 2)
+function start()
+{
+    // Check Fame Level & Quest Status
+    if (cm.getQuestStatus(1010) == 0)
+    {
+        // Check if they have the fame yet
+        if (cm.getPlayer().getFame() > 0)
+        {
+            // Gain the item
+            cm.gainItem(4070014, 1);
+
+            // Complete the quest
+            cm.completeQuest(1010);
+
+            // Instruct them to go see Andre in the barbershop
+            cm.sendOk("Hmph, seems like you are getting more popular...\r\n\r\nHere have this:\r\n" +
+            "#v4070014# #t4070014#\r\nTake that over to the #bKerning Barbershop#k and see #rAndre#k, he'll take care of you...");
+
+            // Kill Convo
+            cm.dispose();
+        }
+
+        // They have completed the zone boss
+        else if (cm.getQuestStatus(2217) == 2)
+        {
+            cm.sendOk("Well, you killed the king... So thanks for that.\r\n\r\nYou still aren't popular though...");
+            cm.dispose();
+        }
+
+        // They've not completed the zone boss
+        else
+        {
+            cm.sendOk("Earthquakes, smog, my money is in the sewer... Ugh...\r\n\r\nWho are you...? My agent says I should only hang around other popular people...\r\n\r\nMy stylists backed him up and said to send other popular people their way...\r\n\r\nCome back when you are more popular...");
+            cm.dispose();
+        }
+    }
+
+    // They have completed the zone boss
+	else if (cm.getQuestStatus(2217) == 2)
 	{
-	    cm.sendOk("I'm still trying to get back on my feet, physically and financially. Maybe you would be up for a jum...Ah nevermind. I'll make the money up somewhere else...\r\n\r\nWhy are you staring?");
+	    cm.sendOk("Well, you killed the king... and you got a free makeover. Whether your like it or not, seems like a win! Come watch one of my concerts some day, okay?");
 	    cm.dispose();
-	} else
+	}
+
+	// They've not completed the zone boss
+	else
 	{
-        cm.sendOk("I'm okay, it's alright. I fell over when the earthquake hit. I think my money fell through the sewer grate into the subway...\r\n\r\nI hope everyone else is okay...");
+        cm.sendOk("Earthquakes, smog, my money is in the sewer... Ugh...\r\n\r\nWell, at least you got a free makeover, your day is a little better than mine.");
         cm.dispose();
 	}
 }
