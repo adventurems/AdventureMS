@@ -96,7 +96,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                     }
 
                     // Ensure they can pay the fee
-                    if (cm.getMeso() > mesoCost[questCounter])
+                    if (cm.getMeso() >= mesoCost[questCounter])
                     {
                         // Send the completed string for the dimensional mirror to handle
                         cm.sendDimensionalMirror(selStr);
