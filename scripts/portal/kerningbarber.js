@@ -13,7 +13,7 @@ function enter(pi)
 
     // Hasn't completed Shumi's quest yet
     {
-        pi.getPlayer().yellowMessage("Don and Andre are only accepting high-profile clients from #bShumi#k...");
+        pi.getPlayer().yellowMessage("Don and Andre are only accepting high-profile clients from Shumi...");
         return false;
     }
 }
