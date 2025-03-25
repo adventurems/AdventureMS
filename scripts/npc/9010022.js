@@ -3,6 +3,8 @@
 var status;
 var tokens = [4007015, 4007016, 4007017];
 var quests = [1007, 1008, 1009];
+var mesoCost = [0, 10000, 25000];
+var questCounter = 0;
 var tokenTurnIn = false;
 var hasQuest = false;
 
@@ -50,7 +52,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                     cm.completeQuest(quests[i]);
 
                     // It's our first time here
-                    cm.sendOk("Ooooooo, a #rWarp Token#k!\r\n\r\nWell, that's what your lot call 'em anyway. Us wardens call 'em super-tasty, incredibly-delicious, interdimensional biscuits! #r#eS.T.I.D.I.B#n#k's\r\n\r\nAnyway, here's how it works. You toss it in my mouth, yes, the portal is my mouth. I munch and crunch it up. Voila, you get a new fast warp! Throw it in there!\r\n\r\n(Om nom nom 'crunch', 'munch'...)\r\n\r\nDelicious! Just like that, you get a new warp! Thanks!");
+                    cm.sendOk("Ooooooo, a #rWarp Token#k!\r\n\r\nWell, that's what your lot call 'em anyway. Us wardens call 'em super-tasty, incredibly-delicious, interdimensional biscuits! #r#eS.T.I.D.I.B#n#k's\r\n\r\nAnyway, here's how it works. You toss it in my mouth, yes, the portal is my mouth. I munch and crunch it up. Voila, you get a new fast warp!\r\n\r\nOh yeah, #e#rit costs mesos to warp#k#n! The cost goes up as you unlock more warps!\r\n\r\nThrow it in there! (Om nom nom 'crunch', 'munch'...)\r\n\r\nDelicious! Just like that, you get a new warp! Thanks!");
                     cm.dispose();
                     return;  // Exit here too to prevent further code execution
                 }
@@ -66,7 +68,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 // If we have completed any quest, open the warper
                 if (cm.getQuestStatus(quests[j]) == 2)
                 {
-                    // Set hasQuest to tru
+                    // Set hasQuest to true
                     hasQuest = true;
 
                     // Create empty string to store locations available
@@ -76,23 +78,39 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                     if (cm.getQuestStatus(1007) == 2)
                     {
                         selStr += "#0# Kora Garden";
+                        questCounter++;
                     }
 
                     // Kerning Check
                     if (cm.getQuestStatus(1008) == 2)
                     {
                         selStr += "#1# Kerning City";
+                        questCounter++;
                     }
 
                     // Check Quests, one by one
                     if (cm.getQuestStatus(1009) == 2)
                     {
                         selStr += "#2# Stoneweaver Village";
+                        questCounter++;
                     }
 
-                    // Send the completed string for the dimensional mirror to handle
-                    cm.sendDimensionalMirror(selStr);
-                    break;
+                    // Ensure they can pay the fee
+                    if (cm.getMeso() > mesoCost[questCounter])
+                    {
+                        // Send the completed string for the dimensional mirror to handle
+                        cm.sendDimensionalMirror(selStr);
+                        break;
+                    }
+
+                    // They can't afford the fee
+                    else
+                    {
+                        // Send insufficient funds
+                        cm.sendOk("Doesn't look like you can afford the fee... Go farm!");
+                        cm.dispose();
+                        return;
+                    }
                 }
             }
 
@@ -120,6 +138,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 cm.warp(104040000, 0);
                 break;
         }
+
+        // Pay the fee
+        cm.gainMeso(-mesoCost[questCounter]);
 
         // Kill the convo
         cm.dispose();
