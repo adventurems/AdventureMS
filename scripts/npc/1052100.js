@@ -13,7 +13,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Check if they have the recommendation
             if (cm.haveItem(4007014))
             {
-                cm.sendYesNo("Hello! I'm Don Giovanni, head of the beauty salon!\r\n\r\nI see you have a #rrecommendation from Shumi#k! That means I can give you a #eone-time, full-body makeover#n! Free of charge of course.\r\n\r\nWell, what do you think? Ready for a new up-do?\r\n\r\n#eFINE PRINT: This will randomize your face, eye color, hair, hair color and skin color!#n Results may vary...");
+                cm.sendYesNo("Hello! I'm Don Giovanni, head of the beauty salon!\r\n\r\nI see you have a #rrecommendation from Shumi#k! That means I can give you a #eone-time, full-body makeover#n! Free of charge of course.\r\n\r\nWell, what do you think? Ready for a new up-do?\r\n\r\n#eFINE PRINT: #rThis will randomize your face, eye color, hair, hair color and skin color!#n Results may vary...#k");
             }
 
             // They are in the barbershop, have not gotten a makeover, but lost their recommendation?
