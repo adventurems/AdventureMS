@@ -4,7 +4,7 @@ var status;
 var tokens = [4007015, 4007016, 4007017];
 var quests = [1007, 1008, 1009];
 var mesoCost = [0, 10000, 25000];
-var questCounter = 0;
+var questCounter = -1;
 var tokenTurnIn = false;
 var hasQuest = false;
 
