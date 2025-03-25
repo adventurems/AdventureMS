@@ -27,7 +27,8 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // They already turned in the recommendation
         else
         {
-            cm.sendOk("Well, hope you read the 'fine print'! No take backs...\r\n\r\nThe #rBeauty Queen#k will be #eVERY#n pleased with this one! Hah!")
+            cm.sendOk("Well, hope you read the 'fine print'! No take backs...\r\n\r\nThe #rBeauty Queen#k will be #eVERY#n pleased with this one! Hah!");
+            cm.dispose();
         }
     }
 
