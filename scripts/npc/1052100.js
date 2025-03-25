@@ -8,7 +8,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
     else if (status == 0)
     {
         // Check if they've already done this once
-        if (cm.getQuestStatus(1011 == 0))
+        if (cm.getQuestStatus(1011) == 0)
         {
             // Check if they have the recommendation
             if (cm.haveItem(4007014))
