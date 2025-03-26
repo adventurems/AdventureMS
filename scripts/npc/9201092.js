@@ -299,13 +299,6 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
              // Use the selection to get the correct item from collectableItems
              var selectedItemId = collectableItems[selection]; // Get the selected item using the index
 
-             // Check if selectedItemId is a valid number
-             if (isNaN(selectedItemId) || selectedItemId <= 0) {
-                cm.sendOk("Selected Item Index: " + selection + "\r\n\r\nCollectable Items: " + collectableItems.join(", ") + "\r\n\r\nItem ID: " + selectedItemId);
-                 cm.dispose();
-                 return;
-             }
-
              // Append a picture and text for the selected item
              defaultString += "\r\n#v" + selectedItemId + "# #t" + selectedItemId + "#";
 
