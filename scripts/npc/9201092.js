@@ -305,7 +305,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
              // Check if it is bullets or stars
              if ([233, 207].includes(Math.floor(parseInt(selectedItemId) / 10000)))
              {
-                pi.removeItemFromSlot(selectedItemId);
+                cm.removeItemFromSlot(selectedItemId);
              }
 
              else
