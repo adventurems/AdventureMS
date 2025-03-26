@@ -302,11 +302,24 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
              // Append a picture and text for the selected item
              defaultString += "\r\n#v" + selectedItemId + "# #t" + selectedItemId + "#";
 
-             // Remove the item from the player’s inventory
-             cm.gainItem(parseInt(selectedItemId), -1);  // Ensure itemId is an integer
+             // Check if it is bullets or stars
+             if ([233, 207].includes(Math.floor(parseInt(selectedItemId) / 10000)))
+             {
+                // Access the Inventory class
+                var Inventory = Java.type('client.Inventory');
+
+                // Remove the item from the player’s inventory
+                Inventory.removeItem(parseShort(selectedItemId), 2000, false);
+             }
+
+             else
+             {
+                 // Remove the item from the player’s inventory
+                 cm.gainItem(parseInt(selectedItemId), -1);
+             }
 
              // Update the DB (this line may need to be adjusted based on your specific DB interaction)
-             cm.getPlayer().updateCollector(selectedItemId);  // Assuming you're passing a valid itemId
+             cm.getPlayer().updateCollector(selectedItemId);
 
              // Send the final text
              cm.sendOk(defaultString);
