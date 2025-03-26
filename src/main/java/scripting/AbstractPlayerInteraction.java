@@ -948,6 +948,12 @@ public class AbstractPlayerInteraction {
         InventoryManipulator.removeFromSlot(c, InventoryType.EQUIPPED, slot, tempItem.getQuantity(), false, false);
     }
 
+    // AdventureMS Custom
+    public void removeUseFromSlot(short slot) {
+        Item tempItem = c.getPlayer().getInventory(InventoryType.USE).getItem(slot);
+        InventoryManipulator.removeFromSlot(c, InventoryType.USE, slot, tempItem.getQuantity(), false, false);
+    }
+
     public void gainAndEquip(int itemid, short slot) {
         final Item old = c.getPlayer().getInventory(InventoryType.EQUIPPED).getItem(slot);
         if (old != null) {
