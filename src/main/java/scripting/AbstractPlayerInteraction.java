@@ -949,9 +949,25 @@ public class AbstractPlayerInteraction {
     }
 
     // AdventureMS Custom
-    public void removeUseFromSlot(short slot) {
-        Item tempItem = c.getPlayer().getInventory(InventoryType.USE).getItem(slot);
-        InventoryManipulator.removeFromSlot(c, InventoryType.USE, slot, tempItem.getQuantity(), false, false);
+    public void removeItemFromSlot(int itemId)
+    {
+        // Get the inventory type
+        final var inventoryType = ItemConstants.getInventoryType(itemId);
+
+        // Store the item object based on finding it's position
+        final var item = getPlayer().getInventory(inventoryType).findById(itemId);
+
+        // If it's rechargeable, delete the stack
+        if (ItemConstants.isRechargeable(item.getItemId()))
+        {
+            InventoryManipulator.removeFromSlot(c, inventoryType, item.getPosition(), item.getQuantity(), false);
+        }
+
+        // If it's not rechargeable delete just one
+        else
+        {
+            InventoryManipulator.removeFromSlot(c, inventoryType, item.getPosition(), (short) 1, false);
+        }
     }
 
     public void gainAndEquip(int itemid, short slot) {

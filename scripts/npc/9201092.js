@@ -305,19 +305,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
              // Check if it is bullets or stars
              if ([233, 207].includes(Math.floor(parseInt(selectedItemId) / 10000)))
              {
-                 // Access the Inventory and Item Classes
-                 var Item = Java.type('client.inventory.Item');
-                 var InventoryType = Java.type('client.inventory.InventoryType');
-                 var Inventory = Java.type('client.inventory.Inventory');
-
-                 // Create an instance of Inventory
-                 var inventory = new Inventory(cm.getPlayer(), InventoryType.USE, 96);
-
-                 // Find the item by ID
-                 var inventoryItem = inventory.findById(parseInt(selectedItemId));
-
-                 var position = inventoryItem.getPosition(inventoryItem);
-                 pi.removeUseFromSlot(position);
+                pi.removeItemFromSlot(selectedItemId);
              }
 
              else
