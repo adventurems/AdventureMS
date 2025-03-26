@@ -6,6 +6,8 @@
 var turnIn = false; // Used for the first option which is to turn in items
 var newCollector = false; // Used to track collector status
 var collectableItems = []; // Creates an array of itemids that we have and can be turned in
+var itemId = 0;
+var i = 0;
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
@@ -81,18 +83,19 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             var missingItems = cm.getPlayer().getCollectorMissing();
 
             // Store the default string
-            var defaultString = "1. #r#eItems are taken from your inventory in order from top left to bottom right (it will not take equipped items).#n#k\r\n\r\n2. #e#rThe first copy of an item it finds, in that order, is the one that will be taken.#k#n\r\n\r\n3. #r#eThere are no refunds.#n#k\r\n\r\n4. #r#eAll items will be turned in!#k#n\r\n\r\n#eBelow are the items available for collection. Would you like to turn them all in?#n\r\n";
+            var defaultString = "1. #r#eItems are taken from your inventory in order from top left to bottom right (it will not take equipped items).#n#k\r\n\r\n2. #e#rThe first copy of an item it finds, in that order, is the one that will be taken.#k#n\r\n\r\n3. #r#eThere are no refunds.#n#k\r\n\r\n#eBelow are the items available for collection. Which one would you like to turn in?#n\r\n";
 
             // Iterate through each missing item
-            for (var i = 0; i < missingItems.length; i++)
+            for (i = 0; i < missingItems.length; i++)
             {
-                var itemId = missingItems[i];
+                // Set the current itemId to the missingItem id
+                itemId = missingItems[i];
 
                 // Check if the player has the item in their inventory
                 if (cm.haveItem(parseInt(itemId)))
                 {
                     collectableItems.push(itemId); // Add item to the new array if it's in the inventory
-                    defaultString += "\r\n#v" + missingItems[i] + "# #t" + missingItems[i] + "#";
+                    defaultString += "\r\n" + "#L" + i + "##v" + missingItems[i] + "# #t" + missingItems[i] + "##l";
                 }
             }
 
@@ -103,10 +106,10 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 turnIn = true;
 
                 // Send Compiled Message
-                cm.sendAcceptDecline(defaultString);
+                cm.sendSimple(defaultString);
             }
 
-            // If they don't have any collectable items right now, move them to their collection
+            // If they don't have any collectable items right now
             else
             {
                 cm.sendOk("Doesn't look like you have anything to turn in right now!\r\n\r\nTake a look at your collection and get back out there!");
@@ -290,20 +293,13 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         if (turnIn)
         {
             // Store new defaultString
-            var defaultString = "The following items have been removed from your inventory and added to your collection!\r\n";
+            var defaultString = "The following item has been removed from your inventory and added to your collection!\r\n";
 
-            // Iterate through each missing item
-            for (var i = 0; i < collectableItems.length; i++)
-            {
-                // Store the itemID
-                var itemId = collectableItems[i];
+            // Append a picture and text for each item in the array
+            defaultString += "\r\n#v" + collectableItems[itemId] + "# #t" + collectableItems[itemId] + "#";
 
-                // Append a picture and text for each item in the array
-                defaultString += "\r\n#v" + itemId + "# #t" + itemId + "#";
-
-                // Remove the item from the player
-                cm.gainItem(parseInt(itemId), -1);
-            }
+            // Remove the item from the player
+            cm.gainItem(parseInt(collectableItems[itemId]), -1);
 
             // Update the DB
             cm.getPlayer().updateCollector(collectableItems);
