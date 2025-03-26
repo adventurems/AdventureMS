@@ -22,6 +22,7 @@
 package server;
 
 import client.Client;
+import client.inventory.Equip;
 import client.inventory.InventoryType;
 import client.inventory.Item;
 import client.inventory.Pet;
@@ -191,25 +192,55 @@ public class Shop {
         return quantity;
     }
 
-    public void sell(Client c, InventoryType type, short slot, short quantity) {
-        if (quantity == 0xFFFF || quantity == 0) {
+    // AdventureMS Custom
+    public void sell(Client c, InventoryType type, short slot, short quantity)
+    {
+        // Ensure we have at least one to sell
+        if (quantity == 0xFFFF || quantity == 0)
+        {
             quantity = 1;
-        } else if (quantity < 0) {
+        }
+
+        // Item doesn't actually exist, stop
+        else if (quantity < 0)
+        {
             return;
         }
 
+        // Store the item object
         Item item = c.getPlayer().getInventory(type).getItem(slot);
-        if (canSell(item, quantity)) {
+        Equip equip = (Equip) c.getPlayer().getInventory(type).getItem(slot);
+
+        // Make sure we can sell it
+        if (canSell(item, quantity))
+        {
+            // Set the quantity to sell (if it's rechargeable or multiple)
             quantity = getSellingQuantity(item, quantity);
+
+            // Remove the item and all of the quantity suggested
             InventoryManipulator.removeFromSlot(c, type, (byte) slot, quantity, false);
 
             ItemInformationProvider ii = ItemInformationProvider.getInstance();
+
+            // Find and store the price of the item
             int recvMesos = ii.getPrice(item.getItemId(), quantity);
-            if (recvMesos > 0) {
+
+            // If there is a price associated with the item (in the wz) give to player
+            if (recvMesos > 0)
+            {
                 c.getPlayer().gainMeso(recvMesos, false);
             }
+
+            // Temp test message
+            c.getPlayer().yellowMessage("You sold " + item + " and received " + recvMesos + " mesos! The item had " + equip.getWatk() + " weapon attack!");
+
+            // Send sale success to client
             c.sendPacket(PacketCreator.shopTransaction((byte) 0x8));
-        } else {
+        }
+
+        // Can't sell, failed transaction
+        else
+        {
             c.sendPacket(PacketCreator.shopTransaction((byte) 0x5));
         }
     }
