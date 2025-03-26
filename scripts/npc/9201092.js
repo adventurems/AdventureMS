@@ -299,7 +299,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
              // Check if selectedItemId is a valid number
              if (isNaN(selectedItemId) || selectedItemId <= 0) {
-                 cm.sendOk("There was an error with the item selection.");
+                 cm.sendOk("Item ID: " + selectedItemId);
                  cm.dispose();
                  return;
              }
