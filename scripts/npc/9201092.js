@@ -6,7 +6,7 @@
 var turnIn = false; // Used for the first option which is to turn in items
 var newCollector = false; // Used to track collector status
 var collectableItems = []; // Creates an array of itemids that we have and can be turned in
-// var selectionSlot = -1;
+var selectionSlot = -1;
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
@@ -95,8 +95,8 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 if (cm.haveItem(parseInt(itemId)))
                 {
                     collectableItems.push(itemId); // Add item to the new array if it's in the inventory
-                    // selectionSlot++;
-                    defaultString += "\r\n" + i + " " + "#L" + i + "##v" + missingItems[i] + "# #t" + missingItems[i] + "##l";
+                    selectionSlot++;
+                    defaultString += "\r\n" + "#L" + selectionSlot + "##v" + missingItems[i] + "# #t" + missingItems[i] + "##l";
                 }
             }
 
