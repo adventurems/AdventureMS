@@ -306,9 +306,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
              if ([233, 207].includes(Math.floor(parseInt(selectedItemId) / 10000)))
              {
                  // Access the Inventory and Item Classes
-                 var Item = Java.type('path.to.Item');
-                 var InventoryType = Java.type('path.to.InventoryType');
-                 var Inventory = Java.type('path.to.Inventory');
+                 var Item = Java.type('client.inventory.Item');
+                 var InventoryType = Java.type('client.inventory.InventoryType');
+                 var Inventory = Java.type('client.inventory.Inventory');
 
                  // Create an instance of Inventory
                  var inventory = new Inventory(cm.getPlayer(), InventoryType.USE, Inventory.getSlotLimit());
