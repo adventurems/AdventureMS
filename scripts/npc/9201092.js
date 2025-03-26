@@ -306,11 +306,13 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
              if ([233, 207].includes(Math.floor(parseInt(selectedItemId) / 10000)))
              {
                 // Access the Inventory class
+                var Inventory = Java.type('client.inventory.Inventory');
                 var Item = Java.type('client.inventory.Item');
-                var inventoryUse = cm.getPlayer().getInventory(Java.type('client.inventory.InventoryType').USE);
+                var inventoryItem = Inventory.findById(parseInt(selectedItemId));
+                var position = Item.getPosition(inventoryItem);
 
-                // Remove the item from the player’s inventory
-                var position = inventoryUse.getPosition(selectedItemId);
+                // Remove the item
+                pi.removeUseFromSlot(position);
              }
 
              else
