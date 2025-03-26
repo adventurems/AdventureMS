@@ -40,6 +40,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 {
                     cm.gainItem(1112930, 1);
                     cm.sendOk("Hmmmm, you seem familiar...\r\n\r\nAh, yes, I see now. We've interacted before on one of your other alias'. That's gotta be it.\r\n\r\nI suppose you want a ring on this character as well then? I can do that for ya...");
+                    cm.dispose();
                 }
 
                 // First time chatting, and they have a ring already? Cheating probably
@@ -295,14 +296,17 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Store new defaultString
             var defaultString = "The following item has been removed from your inventory and added to your collection!\r\n";
 
-            // Append a picture and text for each item in the array
-            defaultString += "\r\n#v" + collectableItems[itemId] + "# #t" + collectableItems[itemId] + "#";
+            // Use the selection to get the correct item from collectableItems
+            var selectedItemId = collectableItems[selection]; // Get the selected item using the index
+
+            // Append a picture and text for the item removed
+            defaultString += "\r\n#v" + selectedItemId + "# #t" + selectedItemId + "#";
 
             // Remove the item from the player
-            cm.gainItem(parseInt(collectableItems[itemId]), -1);
+            cm.gainItem(parseInt(selectedItemId), -1);
 
             // Update the DB
-            cm.getPlayer().updateCollector(collectableItems);
+            cm.getPlayer().updateCollector(selectedItemId);
 
             // Send the final text
             cm.sendOk(defaultString);

@@ -8355,33 +8355,21 @@ public class Character extends AbstractCharacterObject {
     }
 
     // AdventureMS Custom
-    public void updateCollector(List<String> collectableItems)
+    public void updateCollector(String itemId)
     {
         try
         {
             // Open DB Connection
             Connection con = DatabaseConnection.getConnection();
 
-            // Prepare the base SQL query
+            // Prepare the SQL query to update a single item in the collector table
             StringBuilder sql = new StringBuilder("UPDATE collector SET ");
 
-            // Dynamically build the column names part of the SQL
-            for (int i = 0; i < collectableItems.size(); i++)
-            {
-                String itemId = collectableItems.get(i);
+            // Wrap the itemId (column name) in backticks to ensure MySQL treats it as a column identifier
+            String columnName = "`" + itemId + "`"; // Adding backticks around the itemId
 
-                // Wrap the itemId (column name) in backticks to ensure MySQL treats it as a column identifier
-                String columnName = "`" + itemId + "`"; // Adding backticks around the itemId
-
-                // Add this column update to the query
-                sql.append(columnName).append(" = 1");
-
-                // If it's not the last item, add a comma for the next column
-                if (i < collectableItems.size() - 1)
-                {
-                    sql.append(", ");
-                }
-            }
+            // Add the column update for this specific itemId
+            sql.append(columnName).append(" = 1");
 
             // Add the WHERE clause for the specific accountId
             sql.append(" WHERE id = ?");
