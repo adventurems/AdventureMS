@@ -306,7 +306,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
              if ([233, 207].includes(Math.floor(parseInt(selectedItemId) / 10000)))
              {
                 // Access the Inventory class
-                var Item = Java.type('client.Inventory.Item');
+                var Item = Java.type('client.inventory.Item');
 
                 // Remove the item from the player’s inventory
                 cm.getPlayer().removeUseFromSlot(Item.getPosition(selectedItemId));
