@@ -299,7 +299,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
              // Check if selectedItemId is a valid number
              if (isNaN(selectedItemId) || selectedItemId <= 0) {
-                 cm.sendOk("Item ID: " + selectedItemId);
+                cm.sendOk("Selected Item Index: " + selection + "\r\n\r\nCollectable Items: " + collectableItems.join(", ") + "\r\n\r\nItem ID: " + selectedItemId);
                  cm.dispose();
                  return;
              }
