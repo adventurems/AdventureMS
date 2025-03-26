@@ -286,29 +286,36 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         }
     }
 
-    else if (status == 2)
-    {
-        // They chose to add items to their collection
-        if (turnIn)
-        {
-            // Store new defaultString
-            var defaultString = "The following item has been removed from your inventory and added to your collection!\r\n";
+     else if (status == 2)
+     {
+         // They chose to add items to their collection
+         if (turnIn)
+         {
+             // Store new defaultString
+             var defaultString = "The following item has been removed from your inventory and added to your collection!\r\n";
 
-            // Use the selection to get the correct item from collectableItems
-            var selectedItemId = parseInt(collectableItems[selection]); // Get the selected item using the index
+             // Use the selection to get the correct item from collectableItems
+             var selectedItemId = collectableItems[selection]; // Get the selected item using the index
 
-            // Append a picture and text for the item removed
-            defaultString += "\r\n#v" + selectedItemId + "# #t" + selectedItemId + "#";
+             // Check if selectedItemId is a valid number
+             if (isNaN(selectedItemId) || selectedItemId <= 0) {
+                 cm.sendOk("There was an error with the item selection.");
+                 cm.dispose();
+                 return;
+             }
 
-            // Remove the item from the player
-            cm.gainItem(parseInt(selectedItemId), -1);
+             // Append a picture and text for the selected item
+             defaultString += "\r\n#v" + selectedItemId + "# #t" + selectedItemId + "#";
 
-            // Update the DB
-            cm.getPlayer().updateCollector(selectedItemId);
+             // Remove the item from the player’s inventory
+             cm.gainItem(parseInt(selectedItemId), -1);  // Ensure itemId is an integer
 
-            // Send the final text
-            cm.sendOk(defaultString);
-            cm.dispose();
-        }
+             // Update the DB (this line may need to be adjusted based on your specific DB interaction)
+             cm.getPlayer().updateCollector(selectedItemId);  // Assuming you're passing a valid itemId
+
+             // Send the final text
+             cm.sendOk(defaultString);
+             cm.dispose();
+         }
     }
 }
