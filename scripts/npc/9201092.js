@@ -84,20 +84,17 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Store the default string
             var defaultString = "1. #r#eItems are taken from your inventory in order from top left to bottom right (it will not take equipped items).#n#k\r\n\r\n2. #e#rThe first copy of an item it finds, in that order, is the one that will be taken.#k#n\r\n\r\n3. #r#eThere are no refunds.#n#k\r\n\r\n#eBelow are the items available for collection. Which one would you like to turn in?#n\r\n";
 
-            // Ensure the array is empty
-            collectableItems = [];
-
             // Iterate through each missing item
-            for (var i = 0; i < missingItems.length; i++)
+            for (i = 0; i < missingItems.length; i++)
             {
                 // Set the current itemId to the missingItem id
-                var itemId = missingItems[i];
+                itemId = missingItems[i];
 
                 // Check if the player has the item in their inventory
                 if (cm.haveItem(parseInt(itemId)))
                 {
                     collectableItems.push(itemId); // Add item to the new array if it's in the inventory
-                    defaultString += "\r\n" + "#L" + i + "##v" + missingItems[i] + "# #t" + missingItems[i] + "##l";
+                    defaultString += "\r\n" + "#L" + collectableItems.length - 1 + "##v" + missingItems[i] + "# #t" + missingItems[i] + "##l"; // Correct the index here
                 }
             }
 
