@@ -316,7 +316,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                  // Find the item by ID
                  var inventoryItem = inventory.findById(parseInt(selectedItemId));
 
-                 var position = inventoryItem.getPosition();
+                 var position = inventoryItem.getPosition(inventoryItem);
                  pi.removeUseFromSlot(position);
              }
 
