@@ -295,7 +295,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             var defaultString = "The following item has been removed from your inventory and added to your collection!\r\n";
 
             // Use the selection to get the correct item from collectableItems
-            var selectedItemId = collectableItems[selection]; // Get the selected item using the index
+            var selectedItemId = parseInt(collectableItems[selection]); // Get the selected item using the index
 
             // Append a picture and text for the item removed
             defaultString += "\r\n#v" + selectedItemId + "# #t" + selectedItemId + "#";
