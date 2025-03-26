@@ -6,8 +6,6 @@
 var turnIn = false; // Used for the first option which is to turn in items
 var newCollector = false; // Used to track collector status
 var collectableItems = []; // Creates an array of itemids that we have and can be turned in
-var itemId = 0;
-var i = 0;
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
@@ -87,10 +85,10 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             var defaultString = "1. #r#eItems are taken from your inventory in order from top left to bottom right (it will not take equipped items).#n#k\r\n\r\n2. #e#rThe first copy of an item it finds, in that order, is the one that will be taken.#k#n\r\n\r\n3. #r#eThere are no refunds.#n#k\r\n\r\n#eBelow are the items available for collection. Which one would you like to turn in?#n\r\n";
 
             // Iterate through each missing item
-            for (i = 0; i < missingItems.length; i++)
+            for (for i = 0; i < missingItems.length; i++)
             {
                 // Set the current itemId to the missingItem id
-                itemId = missingItems[i];
+                var itemId = missingItems[i];
 
                 // Check if the player has the item in their inventory
                 if (cm.haveItem(parseInt(itemId)))
