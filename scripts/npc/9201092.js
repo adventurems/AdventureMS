@@ -309,7 +309,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 var Item = Java.type('client.inventory.Item');
 
                 // Remove the item from the player’s inventory
-                var position = cm.getPlayer().getInventory().getPosition(selectedItemId);
+                var position = cm.getPlayer().getInventory(USE).getPosition(selectedItemId);
              }
 
              else
