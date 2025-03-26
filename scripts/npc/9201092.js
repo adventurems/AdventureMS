@@ -310,10 +310,8 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                  var InventoryType = Java.type('client.inventory.InventoryType');
                  var Inventory = Java.type('client.inventory.Inventory');
 
-                 var slotLimit = Inventory.getSlotLimit();
-
                  // Create an instance of Inventory
-                 var inventory = new Inventory(cm.getPlayer(), InventoryType.USE, Inventory.slotLimit);
+                 var inventory = new Inventory(cm.getPlayer(), InventoryType.USE, 96);
 
                  // Find the item by ID
                  var inventoryItem = inventory.findById(parseInt(selectedItemId));
