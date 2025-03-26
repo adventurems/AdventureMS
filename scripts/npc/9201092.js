@@ -1,6 +1,4 @@
-// Author: Pepa
-
-// AdventureMS The Collector
+// AdventureMS Collector
 
 // Global Variables
 var turnIn = false; // Used for the first option which is to turn in items

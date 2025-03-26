@@ -44,7 +44,6 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 	        {
                 cm.sendOk("(the statue recognizes that you have embraced vulnerability by laying down your weapon...#r#eallowing you to approach and take the key shaft#k#n)!");
                 cm.gainItem(3996009, 1); // Gain Vault Key shaft
-                cm.gainExp(10000);
                 cm.dispose();
             }
             // They do have the key shaft already

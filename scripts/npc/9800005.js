@@ -1,5 +1,3 @@
-// Author: Pepa
-
 // AdventureMS - Bleeding Statue
 
 // Standard Status Code
@@ -44,7 +42,6 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 cm.sendOk("(the statue opens his mouth and begins vacuuming all of your red potions...)\r\n\r\n(the statues bleeding recedes and the statue appears to heal revealing the key tip, #r#eallowing you to grab it#k#n!");
                 cm.gainItem(3997001, 1); // Gain Vault Key tip
                 cm.gainItem(2000000, -500); // Remove Red Potions
-                cm.gainExp(10000);
                 cm.dispose();
             }
             // They have red potions but not enough

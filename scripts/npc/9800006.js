@@ -44,7 +44,6 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 cm.sendOk("(you apply the #rpurifying water#k gathered from the hidden oasis...)\r\n\r\n(the statue begins to heal and a small compartment opens, revealing the handle to the vault key!");
                 cm.gainItem(3996008, 1); // Gain Vault Key Handle
                 cm.gainItem(4007012, -1); // Remove Holy Water
-                cm.gainExp(10000);
                 cm.dispose();
             }
             // They do have the key handle already
