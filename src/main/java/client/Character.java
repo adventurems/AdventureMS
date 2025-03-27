@@ -8340,7 +8340,7 @@ public class Character extends AbstractCharacterObject {
             while (resultSet.next())
             {
                 // Create a base equip
-                Equip equip = new Equip(resultSet.getInt("itemid"), (short) resultSet.getInt("position"));
+                Equip equip = new Equip(resultSet.getInt("itemid"), (short) 0);
 
                 // Setting values using setters
                 equip.setUpgradeSlots((byte) resultSet.getInt("upgradeslots"));
