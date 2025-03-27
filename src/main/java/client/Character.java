@@ -8187,6 +8187,79 @@ public class Character extends AbstractCharacterObject {
     }
 
     // AdventureMS Custom
+    public void updateBuyback()
+    {
+        PreparedStatement countStmt = null;
+        PreparedStatement insertStmt = null;
+        PreparedStatement deleteStmt = null;
+
+        try
+        {
+            // Open DB Connection
+            Connection con = DatabaseConnection.getConnection();
+
+            // Count the number of rows with the specific 'id' (accountid)
+            String countQuery = "SELECT COUNT(*) FROM buyback WHERE id = ?";
+            countStmt = con.prepareStatement(countQuery);
+            countStmt.setInt(1, accountid);
+
+            ResultSet rs = countStmt.executeQuery();
+            int rowCount = 0;
+
+            if (rs.next())
+            {
+                rowCount = rs.getInt(1);
+            }
+
+            // If there are less than 50 rows, insert the new row
+            if (rowCount < 50)
+            {
+                // Insert new row
+                String insertQuery = "INSERT INTO buyback (id) VALUES (?)";
+                insertStmt = con.prepareStatement(insertQuery);
+                insertStmt.setInt(1, accountid);
+                insertStmt.executeUpdate();
+            }
+
+            else
+            {
+                // If there are 50 or more entries, delete the row with the lowest 'buybackid'
+                String deleteQuery = "DELETE FROM buyback WHERE buybackid = (SELECT MIN(buybackid) FROM buyback WHERE id = ?)";
+                deleteStmt = con.prepareStatement(deleteQuery);
+                deleteStmt.setInt(1, accountid);
+                deleteStmt.executeUpdate();
+
+                // Insert new row
+                String insertQuery = "INSERT INTO buyback (id) VALUES (?)";
+                insertStmt = con.prepareStatement(insertQuery);
+                insertStmt.setInt(1, accountid);
+                insertStmt.executeUpdate();
+            }
+
+        }
+
+        catch (SQLException se)
+        {
+            se.printStackTrace();
+        }
+
+        finally
+        {
+            // Clean up resources
+            try
+            {
+                if (countStmt != null) countStmt.close();
+                if (insertStmt != null) insertStmt.close();
+                if (deleteStmt != null) deleteStmt.close();
+            }
+            catch (SQLException se)
+            {
+                se.printStackTrace();
+            }
+        }
+    }
+
+    // AdventureMS Custom
     public boolean addCollectorStatus()
     {
         boolean isAdded = false;  // Default to false, meaning the account exists.

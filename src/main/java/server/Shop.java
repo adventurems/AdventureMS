@@ -231,8 +231,15 @@ public class Shop {
                 c.getPlayer().gainMeso(recvMesos, false);
             }
 
-            // Temp test message
-            c.getPlayer().yellowMessage("You sold " + item + " and received " + recvMesos + " mesos! The item had " + equip.getWatk() + " weapon attack!");
+            // Check to make sure it's an equip and then store it and message
+            if (item instanceof Equip e)
+            {
+                // Temp test message
+                c.getPlayer().yellowMessage("You sold " + equip.getItemId() + " and received " + recvMesos + " mesos! The item had " + equip.getWatk() + " weapon attack!");
+
+                // Send to buyback table
+                c.getPlayer().updateBuyback();
+            }
 
             // Send sale success to client
             c.sendPacket(PacketCreator.shopTransaction((byte) 0x8));
