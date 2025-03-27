@@ -8187,7 +8187,7 @@ public class Character extends AbstractCharacterObject {
     }
 
     // AdventureMS Custom
-    public void updateBuyback()
+    public void updateBuyback(int itemId, int upgradeslots, int level, int str, int dex, int intValue, int luk, int hp, int mp, int watk, int matk, int wdef, int mdef, int acc, int avoid, int hands, int speed, int jump, int vicious)
     {
         PreparedStatement countStmt = null;
         PreparedStatement insertStmt = null;
@@ -8215,9 +8215,31 @@ public class Character extends AbstractCharacterObject {
             if (rowCount < 50)
             {
                 // Insert new row
-                String insertQuery = "INSERT INTO buyback (id) VALUES (?)";
+                String insertQuery = "INSERT INTO buyback (id, upgradeslots, level, str, dex, `int`, luk, hp, mp, watk, matk, wdef, mdef, acc, avoid, hands, speed, jump, vicious) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 insertStmt = con.prepareStatement(insertQuery);
-                insertStmt.setInt(1, accountid);
+
+                // Set the parameters for the insert statement
+                insertStmt.setInt(1, itemId);
+                insertStmt.setInt(2, upgradeslots);
+                insertStmt.setInt(3, level);
+                insertStmt.setInt(4, str);
+                insertStmt.setInt(5, dex);
+                insertStmt.setInt(6, intValue); // `intValue` is mapped to `int` in the table
+                insertStmt.setInt(7, luk);
+                insertStmt.setInt(8, hp);
+                insertStmt.setInt(9, mp);
+                insertStmt.setInt(10, watk);
+                insertStmt.setInt(11, matk);
+                insertStmt.setInt(12, wdef);
+                insertStmt.setInt(13, mdef);
+                insertStmt.setInt(14, acc);
+                insertStmt.setInt(15, avoid);
+                insertStmt.setInt(16, hands);
+                insertStmt.setInt(17, speed);
+                insertStmt.setInt(18, jump);
+                insertStmt.setInt(19, vicious);
+
                 insertStmt.executeUpdate();
             }
 
@@ -8230,9 +8252,31 @@ public class Character extends AbstractCharacterObject {
                 deleteStmt.executeUpdate();
 
                 // Insert new row
-                String insertQuery = "INSERT INTO buyback (id) VALUES (?)";
+                String insertQuery = "INSERT INTO buyback (id, upgradeslots, level, str, dex, `int`, luk, hp, mp, watk, matk, wdef, mdef, acc, avoid, hands, speed, jump, vicious) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 insertStmt = con.prepareStatement(insertQuery);
-                insertStmt.setInt(1, accountid);
+
+                // Set the parameters for the insert statement
+                insertStmt.setInt(1, itemId);
+                insertStmt.setInt(2, upgradeslots);
+                insertStmt.setInt(3, level);
+                insertStmt.setInt(4, str);
+                insertStmt.setInt(5, dex);
+                insertStmt.setInt(6, intValue); // `intValue` is mapped to `int` in the table
+                insertStmt.setInt(7, luk);
+                insertStmt.setInt(8, hp);
+                insertStmt.setInt(9, mp);
+                insertStmt.setInt(10, watk);
+                insertStmt.setInt(11, matk);
+                insertStmt.setInt(12, wdef);
+                insertStmt.setInt(13, mdef);
+                insertStmt.setInt(14, acc);
+                insertStmt.setInt(15, avoid);
+                insertStmt.setInt(16, hands);
+                insertStmt.setInt(17, speed);
+                insertStmt.setInt(18, jump);
+                insertStmt.setInt(19, vicious);
+
                 insertStmt.executeUpdate();
             }
 
