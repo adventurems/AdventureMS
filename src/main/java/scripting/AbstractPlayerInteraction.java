@@ -973,8 +973,14 @@ public class AbstractPlayerInteraction {
     // AdventureMS Custom
     public void addItemFromBuyback(Object equip)
     {
+        // Test Message
+        playerMessage(5, "Inside the method.");
+
         if (equip instanceof Item)
         {
+            // Test Message
+            playerMessage(5, "Equip is an instanceof Item.");
+
             Item item = (Item) equip;
             final var itemId = item.getItemId();
             final var inventoryType = ItemConstants.getInventoryType(itemId);
