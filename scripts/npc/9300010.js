@@ -3,7 +3,8 @@
 // AdventureMS Mr Moneybags
 
 // Declare Global Variables
-selectionSlot = 0;
+var selectionSlot = 0;
+var itemsToBuyBack = []; // For passing the buyback items to the next status
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
@@ -19,7 +20,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         if (buybackItems.size() > 0)
         {
             // Create a default text string
-            defaultString = "Sold something on accident did ya? Rookie mistake... What would you like to buy back?\r\n\r\n";
+            defaultString = "Welcome to the OFFICIAL #rBuyer Backer#k system!\r\n\r\nSold something on accident? Finger slipped? No worries, all completely normal mistakes for a #erookie#n?\r\n\r\n What would you like to buy back?\r\n\r\n";
 
             // Iterate through each item in the list
             for (var i = 0; i < buybackItems.length; i++)
@@ -29,6 +30,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
                 // Set the current itemId to the missingItem id
                 var itemId = equip.getItemId();
+
+                // Store the item object to pass to the next status
+                itemsToBuyBack.push(equip);
 
                 // Add to the text string
                 defaultString += "\r\n" + "#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
@@ -52,15 +56,21 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         }
     }
 
-    // After pressing yes/next
+    // After selecting an item to buyback
     else if (status == 1)
     {
+        // Store new defaultString
+        var defaultString = "Beep, boop... beep... beep...ding!\r\n\r\nThe following item has been bought back!\r\n\r\n";
 
-    }
+        // Use the selection to get the correct item from collectableItems
+        var selectedItem = itemsToBuyBack[selection];
+        var selectedItemId = selectedItem.getItemId();
 
-    // After Advancing one further
-    else if (status == 2)
-    {
+        // Add visual and item text
+        defaultString += "#v" + selectedItemId + "# #t" + selectedItemId + "#";
 
+        // Send the final text
+        cm.sendOk(defaultString);
+        cm.dispose();
     }
 }
