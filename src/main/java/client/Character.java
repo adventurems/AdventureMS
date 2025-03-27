@@ -8195,35 +8195,18 @@ public class Character extends AbstractCharacterObject {
         PreparedStatement countStmt = null;
         PreparedStatement insertStmt = null;
         PreparedStatement deleteStmt = null;
-        PreparedStatement accountCheckStmt = null;
 
         try
         {
             // Open DB Connection
             con = DatabaseConnection.getConnection();
 
-            // Check if the account ID exists in the 'accounts' table
-            String accountCheckQuery = "SELECT COUNT(*) FROM accounts WHERE id = ?";
-            accountCheckStmt = con.prepareStatement(accountCheckQuery);
-            accountCheckStmt.setInt(1, accountid);  // Check if the provided accountid exists in 'accounts'
-
-            ResultSet rs = accountCheckStmt.executeQuery();
-            int accountExists = 0;
-            if (rs.next()) {
-                accountExists = rs.getInt(1);
-            }
-
-            // If the account does not exist, throw an exception or handle it appropriately
-            if (accountExists == 0) {
-                throw new SQLException("Account ID does not exist in the accounts table");
-            }
-
-            // Count the number of rows with the specific 'accountid' (accountid)
+            // Step 1: Count the number of rows with the specific 'id' (accountid)
             String countQuery = "SELECT COUNT(*) FROM buyback WHERE id = ?";
             countStmt = con.prepareStatement(countQuery);
-            countStmt.setInt(1, accountid);  // Count buyback rows for the given accountid
+            countStmt.setInt(1, itemId);
 
-            rs = countStmt.executeQuery();
+            ResultSet rs = countStmt.executeQuery();
             int rowCount = 0;
             if (rs.next()) {
                 rowCount = rs.getInt(1);
@@ -8261,13 +8244,28 @@ public class Character extends AbstractCharacterObject {
 
                 insertStmt.executeUpdate();
             }
+
+            // More than 30 rows, need to delete the lowest row number
             else
             {
-                // If there are 30 or more entries, delete the row with the lowest 'buybackid'
-                String deleteQuery = "DELETE FROM buyback WHERE buybackid = (SELECT MIN(buybackid) FROM buyback WHERE id = ?)";
-                deleteStmt = con.prepareStatement(deleteQuery);
-                deleteStmt.setInt(1, accountid);  // Delete the row with the lowest buybackid for the given accountid
-                deleteStmt.executeUpdate();
+                // If there are 30 or more entries, get the row with the lowest buyback number
+                String selectMinQuery = "SELECT MIN(buybackid) FROM buyback WHERE id = ?";
+                PreparedStatement selectMinStmt = con.prepareStatement(selectMinQuery);
+                selectMinStmt.setInt(1, accountid);
+
+                ResultSet minRs = selectMinStmt.executeQuery();
+                int minBuybackId = 0;
+                if (minRs.next()) {
+                    minBuybackId = minRs.getInt(1);
+                }
+
+                // Now delete the row with the minimum 'buybackid'
+                if (minBuybackId > 0) {
+                    String deleteQuery = "DELETE FROM buyback WHERE buybackid = ?";
+                    deleteStmt = con.prepareStatement(deleteQuery);
+                    deleteStmt.setInt(1, minBuybackId);
+                    deleteStmt.executeUpdate();
+                }
 
                 // Insert the new row
                 String insertQuery = "INSERT INTO buyback (id, itemid, upgradeslots, level, str, dex, `int`, luk, hp, mp, watk, matk, wdef, mdef, acc, avoid, hands, speed, jump, vicious) " +
@@ -8311,7 +8309,6 @@ public class Character extends AbstractCharacterObject {
                 if (countStmt != null) countStmt.close();
                 if (insertStmt != null) insertStmt.close();
                 if (deleteStmt != null) deleteStmt.close();
-                if (accountCheckStmt != null) accountCheckStmt.close();
                 if (con != null) con.close();
             }
             catch (SQLException se)

@@ -236,9 +236,6 @@ public class Shop {
                 // Cast the item to equip
                 Equip equip = (Equip) item;
 
-                // Temp test message
-                c.getPlayer().yellowMessage("You sold " + equip.getItemId() + " and received " + recvMesos + " mesos! The item had " + equip.getWatk() + " weapon attack!");
-
                 // Send to buyback table
                 c.getPlayer().updateBuyback(c.getPlayer().getAccountID(), equip.getItemId(), equip.getUpgradeSlots(), equip.getLevel(), equip.getStr(), equip.getDex(), equip.getInt(), equip.getLuk(), equip.getHp(), equip.getMp(), equip.getWatk(), equip.getMatk(), equip.getWdef(), equip.getMdef(), equip.getAcc(), equip.getAvoid(), equip.getHands(), equip.getSpeed(), equip.getJump(), equip.getVicious());
             }
