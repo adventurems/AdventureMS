@@ -8216,7 +8216,7 @@ public class Character extends AbstractCharacterObject {
             {
                 // Insert new row
                 String insertQuery = "INSERT INTO buyback (id, itemid, upgradeslots, level, str, dex, `int`, luk, hp, mp, watk, matk, wdef, mdef, acc, avoid, hands, speed, jump, vicious) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 insertStmt = con.prepareStatement(insertQuery);
 
                 // Set the parameters for the insert statement
@@ -8254,7 +8254,7 @@ public class Character extends AbstractCharacterObject {
 
                 // Insert new row
                 String insertQuery = "INSERT INTO buyback (id, itemid, upgradeslots, level, str, dex, `int`, luk, hp, mp, watk, matk, wdef, mdef, acc, avoid, hands, speed, jump, vicious) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 insertStmt = con.prepareStatement(insertQuery);
 
                 // Set the parameters for the insert statement
