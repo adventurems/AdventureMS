@@ -8360,7 +8360,7 @@ public class Character extends AbstractCharacterObject {
                 equip.setHands((short) resultSet.getInt("hands"));
                 equip.setSpeed((short) resultSet.getInt("speed"));
                 equip.setJump((short) resultSet.getInt("jump"));
-                equip.setFlag((short) resultSet.getInt("flag"));
+                equip.setFlag((short) 0); // Locked
                 equip.setVicious((short) resultSet.getInt("vicious"));
                 equip.setItemLevel(resultSet.getByte("itemlevel"));
                 equip.setItemExp(resultSet.getInt("itemexp"));
