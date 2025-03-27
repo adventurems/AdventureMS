@@ -20,7 +20,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         if (buybackItems.size() > 0)
         {
             // Create a default text string
-            defaultString = "Welcome to the OFFICIAL #rBuyer Backer 2000#k system!\r\n\r\nSold something on accident? Finger slipped? No worries, all completely normal mistakes for a #erookie#n!\r\n\r\n What would you like to buy back?\r\n\r\n";
+            defaultString = "Welcome to the OFFICIAL #r#eBuyer Backer 2000#k#n system!\r\n\r\nSold something on accident? Finger slipped? No worries, all completely normal mistakes for a #erookie#n!\r\n\r\n What would you like to buy back?\r\n\r\n";
 
             // Iterate through each item in the list
             for (var i = 0; i < buybackItems.length; i++)
@@ -57,7 +57,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
     else if (status == 1)
     {
         // Store new defaultString
-        var defaultString = "Beep, boop... beep... beep...ding!\r\n\r\nThe following item has been bought back!\r\n\r\n";
+        var defaultString = "Beep, boop... beep... beep...ding!\r\n\r\n#eThe following item has been bought back:#n\r\n\r\n";
 
         // Use the selection to get the correct item from collectableItems
         var selectedItem = itemsToBuyBack[selection];
@@ -65,6 +65,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
         // Add visual and item text
         defaultString += "#v" + selectedItemId + "# #t" + selectedItemId + "#";
+
+        // Add the item to the players inventory
+        cm.addItemFromBuyback(selectedItem);
 
         // Send the final text
         cm.sendOk(defaultString);

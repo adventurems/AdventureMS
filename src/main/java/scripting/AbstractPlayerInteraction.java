@@ -970,6 +970,19 @@ public class AbstractPlayerInteraction {
         }
     }
 
+    // AdventureMS Custom
+    public void addItemFromBuyback(Object equip)
+    {
+        if (equip instanceof Item)
+        {
+            Item item = (Item) equip;
+            final var itemId = item.getItemId();
+            final var inventoryType = ItemConstants.getInventoryType(itemId);
+            final var inventory = getPlayer().getInventory(inventoryType);
+            inventory.addItem(item);
+        }
+    }
+
     public void gainAndEquip(int itemid, short slot) {
         final Item old = c.getPlayer().getInventory(InventoryType.EQUIPPED).getItem(slot);
         if (old != null) {
