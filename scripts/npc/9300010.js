@@ -24,8 +24,11 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Iterate through each item in the list
             for (var i = 0; i < buybackItems.length; i++)
             {
+                // Get the Item
+                var equip = buybackItems.get(i);
+
                 // Set the current itemId to the missingItem id
-                var itemId = buybackItems[i].itemId;
+                var itemId = equip.getItemId();
 
                 // Add to the text string
                 defaultString += "\r\n" + "#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
