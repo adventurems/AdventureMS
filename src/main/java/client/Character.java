@@ -8201,7 +8201,7 @@ public class Character extends AbstractCharacterObject {
             // Open DB Connection
             con = DatabaseConnection.getConnection();
 
-            // Step 1: Count the number of rows with the specific 'id' (accountid)
+            //Count the number of rows with the specific 'id' (accountid)
             String countQuery = "SELECT COUNT(*) FROM buyback WHERE id = ?";
             countStmt = con.prepareStatement(countQuery);
             countStmt.setInt(1, itemId);
@@ -8212,9 +8212,15 @@ public class Character extends AbstractCharacterObject {
                 rowCount = rs.getInt(1);
             }
 
+            // Temp Testing Message
+            yellowMessage("Total Rows in DB: " + rowCount);
+
             // If there are less than 30 rows, insert the new row
             if (rowCount < 30)
             {
+                // Temp Testing Message
+                yellowMessage("Inside rowCount <30");
+
                 // Insert new row into the buyback table with all parameters
                 String insertQuery = "INSERT INTO buyback (id, itemid, upgradeslots, level, str, dex, `int`, luk, hp, mp, watk, matk, wdef, mdef, acc, avoid, hands, speed, jump, vicious) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -8259,12 +8265,19 @@ public class Character extends AbstractCharacterObject {
                     minBuybackId = minRs.getInt(1);
                 }
 
+                // Temp Testing Message
+                yellowMessage("minBuybackId: " + minBuybackId);
+
                 // Now delete the row with the minimum 'buybackid'
-                if (minBuybackId > 0) {
+                if (minBuybackId > 0)
+                {
                     String deleteQuery = "DELETE FROM buyback WHERE buybackid = ?";
                     deleteStmt = con.prepareStatement(deleteQuery);
                     deleteStmt.setInt(1, minBuybackId);
                     deleteStmt.executeUpdate();
+
+                    // Temp Testing Message
+                    yellowMessage("Deleted row where minBuybackId was: " + minBuybackId);
                 }
 
                 // Insert the new row
