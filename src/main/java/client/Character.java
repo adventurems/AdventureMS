@@ -8187,34 +8187,52 @@ public class Character extends AbstractCharacterObject {
     }
 
     // AdventureMS Custom
-    public void updateBuyback(int accountid, int itemId, int upgradeslots, int level, int str, int dex, int intValue, int luk, int hp, int mp, int watk, int matk, int wdef, int mdef, int acc, int avoid, int hands, int speed, int jump, int vicious)
+    public void updateBuyback(int accountid, int itemId, int upgradeslots, int level, int str, int dex, int intValue,
+                              int luk, int hp, int mp, int watk, int matk, int wdef, int mdef, int acc, int avoid,
+                              int hands, int speed, int jump, int vicious)
     {
+        Connection con = null;
         PreparedStatement countStmt = null;
         PreparedStatement insertStmt = null;
         PreparedStatement deleteStmt = null;
+        PreparedStatement accountCheckStmt = null;
 
         try
         {
             // Open DB Connection
-            Connection con = DatabaseConnection.getConnection();
+            con = DatabaseConnection.getConnection();
 
-            // Count the number of rows with the specific 'id' (accountid)
+            // Check if the account ID exists in the 'accounts' table
+            String accountCheckQuery = "SELECT COUNT(*) FROM accounts WHERE id = ?";
+            accountCheckStmt = con.prepareStatement(accountCheckQuery);
+            accountCheckStmt.setInt(1, accountid);  // Check if the provided accountid exists in 'accounts'
+
+            ResultSet rs = accountCheckStmt.executeQuery();
+            int accountExists = 0;
+            if (rs.next()) {
+                accountExists = rs.getInt(1);
+            }
+
+            // If the account does not exist, throw an exception or handle it appropriately
+            if (accountExists == 0) {
+                throw new SQLException("Account ID does not exist in the accounts table");
+            }
+
+            // Count the number of rows with the specific 'accountid' (accountid)
             String countQuery = "SELECT COUNT(*) FROM buyback WHERE id = ?";
             countStmt = con.prepareStatement(countQuery);
-            countStmt.setInt(1, accountid);
+            countStmt.setInt(1, accountid);  // Count buyback rows for the given accountid
 
-            ResultSet rs = countStmt.executeQuery();
+            rs = countStmt.executeQuery();
             int rowCount = 0;
-
-            if (rs.next())
-            {
+            if (rs.next()) {
                 rowCount = rs.getInt(1);
             }
 
-            // If there are less than 50 rows, insert the new row
-            if (rowCount < 50)
+            // If there are less than 30 rows, insert the new row
+            if (rowCount < 30)
             {
-                // Insert new row
+                // Insert new row into the buyback table with all parameters
                 String insertQuery = "INSERT INTO buyback (id, itemid, upgradeslots, level, str, dex, `int`, luk, hp, mp, watk, matk, wdef, mdef, acc, avoid, hands, speed, jump, vicious) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 insertStmt = con.prepareStatement(insertQuery);
@@ -8243,16 +8261,15 @@ public class Character extends AbstractCharacterObject {
 
                 insertStmt.executeUpdate();
             }
-
             else
             {
-                // If there are 50 or more entries, delete the row with the lowest 'buybackid'
+                // If there are 30 or more entries, delete the row with the lowest 'buybackid'
                 String deleteQuery = "DELETE FROM buyback WHERE buybackid = (SELECT MIN(buybackid) FROM buyback WHERE id = ?)";
                 deleteStmt = con.prepareStatement(deleteQuery);
-                deleteStmt.setInt(1, accountid);
+                deleteStmt.setInt(1, accountid);  // Delete the row with the lowest buybackid for the given accountid
                 deleteStmt.executeUpdate();
 
-                // Insert new row
+                // Insert the new row
                 String insertQuery = "INSERT INTO buyback (id, itemid, upgradeslots, level, str, dex, `int`, luk, hp, mp, watk, matk, wdef, mdef, acc, avoid, hands, speed, jump, vicious) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 insertStmt = con.prepareStatement(insertQuery);
@@ -8281,14 +8298,11 @@ public class Character extends AbstractCharacterObject {
 
                 insertStmt.executeUpdate();
             }
-
         }
-
         catch (SQLException se)
         {
             se.printStackTrace();
         }
-
         finally
         {
             // Clean up resources
@@ -8297,6 +8311,8 @@ public class Character extends AbstractCharacterObject {
                 if (countStmt != null) countStmt.close();
                 if (insertStmt != null) insertStmt.close();
                 if (deleteStmt != null) deleteStmt.close();
+                if (accountCheckStmt != null) accountCheckStmt.close();
+                if (con != null) con.close();
             }
             catch (SQLException se)
             {
