@@ -8212,15 +8212,9 @@ public class Character extends AbstractCharacterObject {
                 rowCount = rs.getInt(1);
             }
 
-            // Temp Testing Message
-            yellowMessage("Total Rows in DB: " + rowCount);
-
             // If there are less than 30 rows, insert the new row
             if (rowCount < 30)
             {
-                // Temp Testing Message
-                yellowMessage("Inside rowCount <30");
-
                 // Insert new row into the buyback table with all parameters
                 String insertQuery = "INSERT INTO buyback (id, itemid, upgradeslots, level, str, dex, `int`, luk, hp, mp, watk, matk, wdef, mdef, acc, avoid, hands, speed, jump, vicious) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -8265,9 +8259,6 @@ public class Character extends AbstractCharacterObject {
                     minBuybackId = minRs.getInt(1);
                 }
 
-                // Temp Testing Message
-                yellowMessage("minBuybackId: " + minBuybackId);
-
                 // Now delete the row with the minimum 'buybackid'
                 if (minBuybackId > 0)
                 {
@@ -8275,9 +8266,6 @@ public class Character extends AbstractCharacterObject {
                     deleteStmt = con.prepareStatement(deleteQuery);
                     deleteStmt.setInt(1, minBuybackId);
                     deleteStmt.executeUpdate();
-
-                    // Temp Testing Message
-                    yellowMessage("Deleted row where minBuybackId was: " + minBuybackId);
                 }
 
                 // Insert the new row
@@ -8329,6 +8317,65 @@ public class Character extends AbstractCharacterObject {
                 se.printStackTrace();
             }
         }
+    }
+
+    // AdventureMS Custom
+    public List<Equip> getBuyback()
+    {
+        List<Equip> equipList = new ArrayList<>();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            // Open DB Connection
+            Connection con = DatabaseConnection.getConnection();
+
+            // SQL query to get all rows from 'buyback' where 'id' matches the 'accountid'
+            String query = "SELECT * FROM buyback WHERE id = ?";
+            statement = con.prepareStatement(query); // Assuming 'connection' is already defined
+            statement.setInt(1, accountid); // Set the 'accountid' value
+            resultSet = statement.executeQuery();
+
+            // Process the result set and convert rows to Equip objects
+            while (resultSet.next())
+            {
+                // Create a base equip
+                Equip equip = new Equip(resultSet.getInt("itemid"), (short) resultSet.getInt("position"));
+
+                // Setting values using setters
+                equip.setUpgradeSlots((byte) resultSet.getInt("upgradeslots"));
+                equip.setLevel(resultSet.getByte("level"));
+                equip.setStr((short) resultSet.getInt("str"));
+                equip.setDex((short) resultSet.getInt("dex"));
+                equip.setInt((short) resultSet.getInt("int"));
+                equip.setLuk((short) resultSet.getInt("luk"));
+                equip.setHp((short) resultSet.getInt("hp"));
+                equip.setMp((short) resultSet.getInt("mp"));
+                equip.setWatk((short) resultSet.getInt("watk"));
+                equip.setMatk((short) resultSet.getInt("matk"));
+                equip.setWdef((short) resultSet.getInt("wdef"));
+                equip.setMdef((short) resultSet.getInt("mdef"));
+                equip.setAcc((short) resultSet.getInt("acc"));
+                equip.setAvoid((short) resultSet.getInt("avoid"));
+                equip.setHands((short) resultSet.getInt("hands"));
+                equip.setSpeed((short) resultSet.getInt("speed"));
+                equip.setJump((short) resultSet.getInt("jump"));
+                equip.setFlag((short) resultSet.getInt("flag"));
+                equip.setVicious((short) resultSet.getInt("vicious"));
+                equip.setItemLevel(resultSet.getByte("itemlevel"));
+                equip.setItemExp(resultSet.getInt("itemexp"));
+                equip.setRingId(resultSet.getInt("ringid"));
+
+                equipList.add(equip);
+            }
+
+            // Close DB Connection
+            con.close();
+        } catch (SQLException se) {
+            se.printStackTrace();
+        }
+
+        return equipList;
     }
 
     // AdventureMS Custom

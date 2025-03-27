@@ -1,8 +1,8 @@
 package constants.id;
 
-public class NpcId {
+public class NpcId
+{
     public static final int CUSTOM_DEV = 9977777;
-
     public static final int MAPLE_ADMINISTRATOR = 9010000;
     public static final int STEWARD = 9201143;
     public static final int DIMENSIONAL_MIRROR = 9010022;
@@ -31,10 +31,8 @@ public class NpcId {
     public static final int GACHAPON_NLC = 9100109;
     public static final int GACHAPON_EL_NATH = 9100110;
     public static final int GACHAPON_NAUTILUS = 9100117;
-
     public static final int GACHAPON_MIN = GACHAPON_HENESYS;
     public static final int GACHAPON_MAX = GACHAPON_NAUTILUS;
-
     public static final int PLAYER_NPC_BASE = 9900000;
 
 }

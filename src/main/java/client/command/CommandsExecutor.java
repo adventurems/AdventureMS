@@ -24,6 +24,7 @@
 package client.command;
 
 import client.Client;
+import client.command.commands.gm0.BuyBackCommand;
 import client.command.commands.gm0.ChangeLanguageCommand;
 import client.command.commands.gm0.DisposeCommand;
 import client.command.commands.gm0.DropLimitCommand;
@@ -343,7 +344,7 @@ public class CommandsExecutor {
         addCommand(new String[]{"help", "commands"}, HelpCommand.class);
         // addCommand("droplimit", DropLimitCommand.class);
         // addCommand("time", TimeCommand.class);
-        addCommand("credits", StaffCommand.class);
+        // addCommand("credits", StaffCommand.class);
         // addCommand("uptime", UptimeCommand.class);
         // addCommand("gacha", GachaCommand.class);
         addCommand("dispose", DisposeCommand.class);
@@ -361,6 +362,7 @@ public class CommandsExecutor {
         addCommand("dex", StatDexCommand.class);
         addCommand("int", StatIntCommand.class);
         addCommand("luk", StatLukCommand.class);
+        addCommand("buyback", BuyBackCommand.class);
         // addCommand("enableauth", EnableAuthCommand.class);
         // addCommand("toggleexp", ToggleExpCommand.class);
         // addCommand("mylawn", MapOwnerClaimCommand.class);
