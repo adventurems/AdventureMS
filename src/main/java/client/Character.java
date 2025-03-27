@@ -8204,7 +8204,7 @@ public class Character extends AbstractCharacterObject {
             //Count the number of rows with the specific 'id' (accountid)
             String countQuery = "SELECT COUNT(*) FROM buyback WHERE id = ?";
             countStmt = con.prepareStatement(countQuery);
-            countStmt.setInt(1, itemId);
+            countStmt.setInt(1, this.accountid);
 
             ResultSet rs = countStmt.executeQuery();
             int rowCount = 0;
@@ -8257,7 +8257,7 @@ public class Character extends AbstractCharacterObject {
                 // If there are 30 or more entries, get the row with the lowest buyback number
                 String selectMinQuery = "SELECT MIN(buybackid) FROM buyback WHERE id = ?";
                 PreparedStatement selectMinStmt = con.prepareStatement(selectMinQuery);
-                selectMinStmt.setInt(1, accountid);
+                selectMinStmt.setInt(1, this.accountid);
 
                 ResultSet minRs = selectMinStmt.executeQuery();
                 int minBuybackId = 0;
