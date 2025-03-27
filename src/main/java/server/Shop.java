@@ -209,7 +209,6 @@ public class Shop {
 
         // Store the item object
         Item item = c.getPlayer().getInventory(type).getItem(slot);
-        Equip equip = (Equip) c.getPlayer().getInventory(type).getItem(slot);
 
         // Make sure we can sell it
         if (canSell(item, quantity))
@@ -234,6 +233,9 @@ public class Shop {
             // Check to make sure it's an equip and then store it and message
             if (item instanceof Equip e)
             {
+                // Cast the item to equip
+                Equip equip = (Equip) item;
+
                 // Temp test message
                 c.getPlayer().yellowMessage("You sold " + equip.getItemId() + " and received " + recvMesos + " mesos! The item had " + equip.getWatk() + " weapon attack!");
 
