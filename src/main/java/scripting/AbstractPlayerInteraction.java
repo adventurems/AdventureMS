@@ -973,19 +973,24 @@ public class AbstractPlayerInteraction {
     // AdventureMS Custom
     public void addItemFromBuyback(Object equip)
     {
-        // Test Message
-        playerMessage(5, "Inside the method.");
-
+        // Make sure it can be type cast
         if (equip instanceof Item)
         {
-            // Test Message
-            playerMessage(5, "Equip is an instanceof Item.");
-
+            // Cast the item object
             Item item = (Item) equip;
+
+            // Get ItemId
             final var itemId = item.getItemId();
+
+            // Get Inventory Type
             final var inventoryType = ItemConstants.getInventoryType(itemId);
+
+            // Get players instance of inventory
             final var inventory = getPlayer().getInventory(inventoryType);
+
+            // Push the item into the players inventory, next available slot
             inventory.addItem(item);
+            c.sendPacket(PacketCreator.modifyInventory(false, Collections.singletonList(new ModifyInventory(0, item))));
         }
     }
 
