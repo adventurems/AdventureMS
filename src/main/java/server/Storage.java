@@ -71,7 +71,8 @@ public class Storage {
 
     private static Storage create(int id, int world) throws SQLException {
         try (Connection con = DatabaseConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement("INSERT INTO storages (accountid, world, slots, meso) VALUES (?, ?, 4, 0)")) {
+             PreparedStatement ps = con.prepareStatement("INSERT INTO storages (accountid, world, slots, meso) VALUES (?, ?, 24, 0)")) // AdventureMS Custom
+        {
             ps.setInt(1, id);
             ps.setInt(2, world);
             ps.executeUpdate();
@@ -230,8 +231,8 @@ public class Storage {
     }
 
     public void sendStorage(Client c, int npcId) {
-        if (c.getPlayer().getLevel() < 15) {
-            c.getPlayer().dropMessage(1, "You may only use the storage once you have reached level 15.");
+        if (c.getPlayer().getLevel() < 10) {
+            c.getPlayer().dropMessage(1, "You may only use the storage once you have reached level 10.");
             c.sendPacket(PacketCreator.enableActions());
             return;
         }

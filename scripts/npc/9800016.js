@@ -20,7 +20,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         if (buybackItems.size() > 0)
         {
             // Create a default text string
-            defaultString = "Welcome to the OFFICIAL #r#eBuyer Backer 2000#k#n system!\r\n\r\nSold something on accident? Finger slipped? No worries, all completely normal mistakes for a #erookie#n!\r\n\r\n What would you like to buy back?\r\n\r\n";
+            defaultString = "Welcome to the OFFICIAL #r#eBuyer Backer 2000#k#n system!\r\n\r\nSold something on accident? Finger slipped? No worries, all completely normal mistakes for a #erookie#n!\r\n\r\n What would you like to buy back?\r\n";
 
             // Iterate through each item in the list
             for (var i = 0; i < buybackItems.length; i++)
