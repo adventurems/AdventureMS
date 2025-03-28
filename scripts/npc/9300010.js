@@ -89,6 +89,11 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
             // They successfully bought back the item
             case 3:
+
+            // Delete the item from the buyback table
+            cm.deleteBuybackItem(selection);
+
+            // Send finalized string
             cm.sendOk(defaultString);
             break;
         }

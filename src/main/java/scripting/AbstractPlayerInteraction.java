@@ -51,10 +51,14 @@ import server.maps.MapleMap;
 import server.partyquest.PartyQuest;
 import server.partyquest.Pyramid;
 import server.quest.Quest;
+import tools.DatabaseConnection;
 import tools.PacketCreator;
 import tools.Pair;
 
 import java.awt.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 import java.util.*;
 
@@ -1004,7 +1008,7 @@ public class AbstractPlayerInteraction {
             c.sendPacket(PacketCreator.modifyInventory(false, Collections.singletonList(new ModifyInventory(0, item))));
 
             // Remove the mesos cost
-            getPlayer().gainMeso(-itemPrice, true);
+            getPlayer().gainMeso(-itemPrice, false);
 
             // Save the character
             getPlayer().saveCharToDB();

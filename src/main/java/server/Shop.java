@@ -230,14 +230,11 @@ public class Shop {
                 c.getPlayer().gainMeso(recvMesos, false);
             }
 
-            // Check to make sure it's an equip and then store it and message
+            // Check to make sure it's an equip
             if (item instanceof Equip e)
             {
-                // Cast the item to equip
-                Equip equip = (Equip) item;
-
                 // Send to buyback table
-                c.getPlayer().updateBuyback(c.getPlayer().getAccountID(), equip.getItemId(), equip.getUpgradeSlots(), equip.getLevel(), equip.getStr(), equip.getDex(), equip.getInt(), equip.getLuk(), equip.getHp(), equip.getMp(), equip.getWatk(), equip.getMatk(), equip.getWdef(), equip.getMdef(), equip.getAcc(), equip.getAvoid(), equip.getHands(), equip.getSpeed(), equip.getJump(), equip.getVicious());
+                c.getPlayer().updateBuyback(c.getPlayer().getAccountID(), e.getItemId(), e.getUpgradeSlots(), e.getLevel(), e.getStr(), e.getDex(), e.getInt(), e.getLuk(), e.getHp(), e.getMp(), e.getWatk(), e.getMatk(), e.getWdef(), e.getMdef(), e.getAcc(), e.getAvoid(), e.getHands(), e.getSpeed(), e.getJump(), e.getVicious());
             }
 
             // Send sale success to client

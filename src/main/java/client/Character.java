@@ -8379,6 +8379,79 @@ public class Character extends AbstractCharacterObject {
     }
 
     // AdventureMS Custom
+    public void deleteBuybackItem(int selection)
+    {
+        Connection con = null;
+        PreparedStatement countStmt = null;
+        PreparedStatement selectStmt = null;
+        PreparedStatement deleteStmt = null;
+
+        try
+        {
+            // Open DB Connection
+            con = DatabaseConnection.getConnection();
+
+            // Count the total number of rows with the specific 'accountid'
+            String countQuery = "SELECT COUNT(*) FROM buyback WHERE id = ?";
+            countStmt = con.prepareStatement(countQuery);
+            countStmt.setInt(1, this.accountid);
+
+            ResultSet rs = countStmt.executeQuery();
+
+            if (rs.next())
+            {
+                // Prepare query to find the buybackid of the 'selection' row
+                String selectQuery = "SELECT buybackid FROM buyback WHERE id = ? LIMIT ?, 1";
+                selectStmt = con.prepareStatement(selectQuery);
+                selectStmt.setInt(1, this.accountid);
+                selectStmt.setInt(2, selection - 1); // Selection is 1-based, so subtract 1 to make it 0-based for LIMIT
+
+                ResultSet selectedRow = selectStmt.executeQuery();
+
+                if (selectedRow.next())
+                {
+                    // Now we have found the row, get the buybackid
+                    int buybackid = selectedRow.getInt("buybackid");
+
+                    // Delete that row using the buybackid
+                    String deleteQuery = "DELETE FROM buyback WHERE buybackid = ?";
+                    deleteStmt = con.prepareStatement(deleteQuery);
+                    deleteStmt.setInt(1, buybackid);
+
+                    deleteStmt.executeUpdate();
+
+                }
+            }
+
+            rs.close();
+        }
+
+        catch (SQLException se)
+        {
+            se.printStackTrace();
+        }
+
+        finally
+        {
+            // Clean up resources
+            try
+            {
+                if (countStmt != null) countStmt.close();
+                if (selectStmt != null) selectStmt.close();
+                if (deleteStmt != null) deleteStmt.close();
+                if (con != null) con.close();
+            }
+
+            catch (SQLException se)
+            {
+                se.printStackTrace();
+            }
+        }
+    }
+
+
+
+    // AdventureMS Custom
     public boolean addCollectorStatus()
     {
         boolean isAdded = false;  // Default to false, meaning the account exists.
