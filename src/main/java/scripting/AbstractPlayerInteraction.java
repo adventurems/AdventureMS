@@ -971,26 +971,58 @@ public class AbstractPlayerInteraction {
     }
 
     // AdventureMS Custom
-    public void addItemFromBuyback(Object equip)
+    public int addItemFromBuyback(Object equip)
     {
         // Make sure it can be type cast
-        if (equip instanceof Item)
+        if (equip instanceof Item item)
         {
-            // Cast the item object
-            Item item = (Item) equip;
+            // Store meso / price variables
+            final int curMesos = getPlayer().getMeso();
+            final int itemPrice = ItemInformationProvider.getInstance().getWholePrice(item.getItemId());
 
-            // Get ItemId
-            final var itemId = item.getItemId();
+            // Check that they can afford to buy it back
+            if (curMesos - itemPrice < 0)
+            {
+                // They don't have enough mesos to pay for the buyback
+                return 1;
+            }
 
-            // Get Inventory Type
-            final var inventoryType = ItemConstants.getInventoryType(itemId);
+            // Get instance of players equip inventory
+            final var inventory = getPlayer().getInventory(ItemConstants.getInventoryType(item.getItemId()));
 
-            // Get players instance of inventory
-            final var inventory = getPlayer().getInventory(inventoryType);
+            // Attempt to push the item into the players inventory
+            final short insertItem = inventory.addItem(item);
 
-            // Push the item into the players inventory, next available slot
-            inventory.addItem(item);
+            // make sure there is an available slot
+            if (insertItem == -1)
+            {
+                // There was not an available slot
+                return 2;
+            }
+
+            // Send the packet to update the players inventory
             c.sendPacket(PacketCreator.modifyInventory(false, Collections.singletonList(new ModifyInventory(0, item))));
+
+            // Remove the mesos cost
+            getPlayer().gainMeso(-itemPrice, true);
+
+            // Return that we were successful with everything
+            return 3;
+        }
+
+        // Wasn't an object / equip
+        return 0;
+    }
+
+    // AdventureMS Custom
+    public MobSkill getMobSkillByType(MobSkillType skillType, int level) {
+        // Get the MobSkill from the factory and handle it explicitly
+        Optional<MobSkill> optionalSkill = MobSkillFactory.getMobSkill(skillType, level);
+        if (optionalSkill.isPresent()) {
+            return optionalSkill.get(); // Return the MobSkill if present
+        } else {
+            // Handle the case where the skill is not found (e.g., throw an exception or return a default)
+            throw new IllegalArgumentException("MobSkill not found for skillType: " + skillType + " and level: " + level);
         }
     }
 
@@ -1026,18 +1058,6 @@ public class AbstractPlayerInteraction {
 
     public Monster getMonsterLifeFactory(int mid) {
         return LifeFactory.getMonster(mid);
-    }
-
-    // AdventureMS Custom
-    public MobSkill getMobSkillByType(MobSkillType skillType, int level) {
-        // Get the MobSkill from the factory and handle it explicitly
-        Optional<MobSkill> optionalSkill = MobSkillFactory.getMobSkill(skillType, level);
-        if (optionalSkill.isPresent()) {
-            return optionalSkill.get(); // Return the MobSkill if present
-        } else {
-            // Handle the case where the skill is not found (e.g., throw an exception or return a default)
-            throw new IllegalArgumentException("MobSkill not found for skillType: " + skillType + " and level: " + level);
-        }
     }
 
     public void spawnGuide() {

@@ -67,10 +67,33 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         defaultString += "#v" + selectedItemId + "# #t" + selectedItemId + "#";
 
         // Add the item to the players inventory
-        cm.addItemFromBuyback(selectedItem);
+        var buybackAttempt = cm.addItemFromBuyback(selectedItem);
 
-        // Send the final text
-        cm.sendOk(defaultString);
+        // Determine outcome of buybackAttempt
+        switch (buybackAttempt)
+        {
+            // Something wrong with the item
+            case 0:
+            cm.sendOk("#eERROR:#n There is an issue with your item, report it to a GM.");
+            break;
+
+            // They can't afford it
+            case 1:
+            cm.sendOk("#eERROR:#n Does not compute... You can't afford it...");
+            break;
+
+            // They don't have any room
+            case 2:
+            cm.sendOk("#eERROR:#n ... ... ... testing ... ... ... no slots available...");
+            break;
+
+            // They successfully bought back the item
+            case 3:
+            cm.sendOk(defaultString);
+            break;
+        }
+
+        // Kill convo
         cm.dispose();
     }
 }
