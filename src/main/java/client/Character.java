@@ -8404,7 +8404,7 @@ public class Character extends AbstractCharacterObject {
                 String selectQuery = "SELECT buybackid FROM buyback WHERE id = ? LIMIT ?, 1";
                 selectStmt = con.prepareStatement(selectQuery);
                 selectStmt.setInt(1, this.accountid);
-                selectStmt.setInt(2, selection - 1); // Selection is 1-based, so subtract 1 to make it 0-based for LIMIT
+                selectStmt.setInt(2, selection);
 
                 ResultSet selectedRow = selectStmt.executeQuery();
 
