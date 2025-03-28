@@ -8449,8 +8449,6 @@ public class Character extends AbstractCharacterObject {
         }
     }
 
-
-
     // AdventureMS Custom
     public boolean addCollectorStatus()
     {
