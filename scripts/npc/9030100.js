@@ -8,7 +8,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
     // Initial Click
     else if (status == 0)
     {
-        cm.sendSimple("#L0#Normal Storage#l\r\n#L1#Cash Storage#l");
+        cm.sendSimple("#L0#Normal Storage#l\r\n#L1##d#eCash Storage#n#k#l");
     }
 
     else if (status == 1)
@@ -28,3 +28,4 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             break;
         }
     }
+}
