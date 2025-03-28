@@ -13,6 +13,6 @@ public class BuyBackCommand extends Command {
     @Override
     public void execute(Client c, String[] params)
     {
-        c.getAbstractPlayerInteraction().openNpc(9300010);
+        c.getAbstractPlayerInteraction().openNpc(9800016);
     }
 }
