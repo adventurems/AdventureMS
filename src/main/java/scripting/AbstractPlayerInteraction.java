@@ -1006,6 +1006,9 @@ public class AbstractPlayerInteraction {
             // Remove the mesos cost
             getPlayer().gainMeso(-itemPrice, true);
 
+            // Save the character
+            getPlayer().saveCharToDB();
+
             // Return that we were successful with everything
             return 3;
         }
