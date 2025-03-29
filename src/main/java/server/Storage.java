@@ -61,6 +61,7 @@ public class Storage {
     private byte slots;
     private final Map<InventoryType, List<Item>> typeItems = new HashMap<>();
     private List<Item> items = new LinkedList<>();
+    private List<Item> cashitems = new LinkedList<>(); // AdventureMS Storage
     private final Lock lock = new ReentrantLock(true);
 
     private Storage(int id, byte slots, int meso) {
@@ -81,26 +82,44 @@ public class Storage {
         return loadOrCreateFromDB(id, world);
     }
 
-    public static Storage loadOrCreateFromDB(int id, int world) {
+    public static Storage loadOrCreateFromDB(int id, int world)
+    {
         Storage ret;
+
         try (Connection con = DatabaseConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement("SELECT storageid, slots, meso FROM storages WHERE accountid = ? AND world = ?")) {
+             PreparedStatement ps = con.prepareStatement("SELECT storageid, slots, meso FROM storages WHERE accountid = ? AND world = ?"))
+        {
             ps.setInt(1, id);
             ps.setInt(2, world);
 
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
+            try (ResultSet rs = ps.executeQuery())
+            {
+                if (rs.next())
+                {
                     ret = new Storage(rs.getInt("storageid"), (byte) rs.getInt("slots"), rs.getInt("meso"));
-                    for (Pair<Item, InventoryType> item : ItemFactory.STORAGE.loadItems(ret.id, false)) {
+
+                    for (Pair<Item, InventoryType> item : ItemFactory.CASH_EXPLORER.loadItems(ret.id, false))
+                    {
+                        ret.cashitems.add(item.getLeft());
+                    }
+
+                    for (Pair<Item, InventoryType> item : ItemFactory.STORAGE.loadItems(ret.id, false))
+                    {
                         ret.items.add(item.getLeft());
                     }
-                } else {
+                }
+
+                else
+                {
                     ret = create(id, world);
                 }
             }
 
             return ret;
-        } catch (SQLException ex) { // exceptions leading to deploy null storages found thanks to Jefe
+        }
+
+        catch (SQLException ex)
+        { // exceptions leading to deploy null storages found thanks to Jefe
             log.error("SQL error occurred when trying to load storage for accId {}, world {}", id, GameConstants.WORLD_NAMES[world], ex);
             throw new RuntimeException(ex);
         }
@@ -201,6 +220,15 @@ public class Storage {
         }
     }
 
+    public List<Item> getCashItems() {
+        lock.lock();
+        try {
+            return Collections.unmodifiableList(cashitems);
+        } finally {
+            lock.unlock();
+        }
+    }
+
     private List<Item> filterItems(InventoryType type) {
         List<Item> storageItems = getItems();
         List<Item> ret = new LinkedList<>();
@@ -230,34 +258,67 @@ public class Storage {
         }
     }
 
-    public void sendStorage(Client c, int npcId) {
-        if (c.getPlayer().getLevel() < 10) {
+    public void sendStorage(Client c, int npcId)
+    {
+        // Level Check
+        if (c.getPlayer().getLevel() < 10)
+        {
             c.getPlayer().dropMessage(1, "You may only use the storage once you have reached level 10.");
             c.sendPacket(PacketCreator.enableActions());
             return;
         }
 
         lock.lock();
-        try {
-            items.sort((o1, o2) -> {
-                if (o1.getInventoryType().getType() < o2.getInventoryType().getType()) {
+
+        try
+        {
+            items.sort((o1, o2) ->
+            {
+                if (o1.getInventoryType().getType() < o2.getInventoryType().getType())
+                {
                     return -1;
-                } else if (o1.getInventoryType() == o2.getInventoryType()) {
+                }
+
+                else if (o1.getInventoryType() == o2.getInventoryType())
+                {
                     return 0;
                 }
+
                 return 1;
             });
 
-            List<Item> storageItems = getItems();
-            for (InventoryType type : InventoryType.values()) {
-                typeItems.put(type, new ArrayList<>(storageItems));
+            List<Item> storageItems;
+
+            // AdventureMS Custom
+            // Cash Storage
+            if (npcId == 9030101)
+            {
+                storageItems = getCashItems();
+
+                for (InventoryType type : InventoryType.values())
+                {
+                    typeItems.put(type, new ArrayList<>(storageItems));
+                }
+
+            }
+
+            // Normal Storage
+            else
+            {
+                storageItems = getItems();
+
+                for (InventoryType type : InventoryType.values())
+                {
+                    typeItems.put(type, new ArrayList<>(storageItems));
+                }
+
             }
 
             currentNpcid = npcId;
             c.sendPacket(PacketCreator.getStorage(npcId, slots, storageItems, meso));
-        } finally {
-            lock.unlock();
         }
+
+        finally {lock.unlock();}
     }
 
     public void sendStored(Client c, InventoryType type) {
