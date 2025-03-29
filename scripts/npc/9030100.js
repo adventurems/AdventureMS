@@ -13,6 +13,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
     else if (status == 1)
     {
+        /*
         switch (selection)
         {
             // They chose normal storage
@@ -26,6 +27,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             cm.getPlayer().getStorage().sendStorage(cm.getClient(), 9030101);
             cm.dispose();
             break;
-        }
+        }*/
+
+        selection = 0;
+        status--;
     }
 }
