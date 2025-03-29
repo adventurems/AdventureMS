@@ -300,6 +300,19 @@ public class Storage {
                     typeItems.put(type, new ArrayList<>(storageItems));
                 }
 
+                var storagestatus = "null";
+
+                if (storageItems.isEmpty())
+                {
+                    storagestatus = "empty";
+                }
+
+                else
+                {
+                    storagestatus = "filled";
+                }
+
+                c.getPlayer().yellowMessage("In custom area!" + "storageitems is:" + storagestatus);
             }
 
             // Normal Storage
