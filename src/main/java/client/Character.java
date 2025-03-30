@@ -8192,6 +8192,7 @@ public class Character extends AbstractCharacterObject {
         Connection con = null;
         PreparedStatement countStmt = null;
         PreparedStatement getSlotsStmt = null;
+        PreparedStatement sumQuantityStmt = null;
         PreparedStatement updateStmt = null;
         PreparedStatement insertStmt = null;
 
@@ -8211,19 +8212,19 @@ public class Character extends AbstractCharacterObject {
                 totalCashSlots = rs.getInt("cashstorage");
             }
 
-            // Count the number of rows with the specific 'id' (accountid)
-            String countQuery = "SELECT COUNT(*) FROM cashstorage WHERE id = ?";
-            countStmt = con.prepareStatement(countQuery);
-            countStmt.setInt(1, accountid);
+            // Sum the quantity of rows with the specific 'id' (accountid)
+            String sumQuantityQuery = "SELECT SUM(quantity) FROM cashstorage WHERE id = ?";
+            sumQuantityStmt = con.prepareStatement(sumQuantityQuery);
+            sumQuantityStmt.setInt(1, accountid);
 
-            ResultSet countRs = countStmt.executeQuery();
-            int rowCount = 0;
-            if (countRs.next()) {
-                rowCount = countRs.getInt(1);
+            ResultSet sumRs = sumQuantityStmt.executeQuery();
+            int totalQuantity = 0;
+            if (sumRs.next()) {
+                totalQuantity = sumRs.getInt(1);
             }
 
             // If there is space, insert or update the item
-            if (rowCount < totalCashSlots)
+            if (totalQuantity < totalCashSlots)
             {
                 // Check if the row already exists in the cashstorage table
                 String checkItemQuery = "SELECT quantity FROM cashstorage WHERE id = ? AND itemid = ?";
@@ -8232,22 +8233,17 @@ public class Character extends AbstractCharacterObject {
                 checkItemStmt.setInt(2, itemId);
 
                 ResultSet checkRs = checkItemStmt.executeQuery();
-
-                // If the row exists, increment the quantity
-                if (checkRs.next())
-                {
+                if (checkRs.next()) {
+                    // If the row exists, increment the quantity
                     int quantity = checkRs.getInt("quantity");
                     String updateQuery = "UPDATE cashstorage SET quantity = ? WHERE id = ? AND itemid = ?";
                     updateStmt = con.prepareStatement(updateQuery);
-                    updateStmt.setInt(1, quantity + 1);
+                    updateStmt.setInt(1, quantity + 1);  // Increment the quantity
                     updateStmt.setInt(2, accountid);
                     updateStmt.setInt(3, itemId);
                     updateStmt.executeUpdate();
-                }
-
-                // If the row doesn't exist, insert a new row
-                else
-                {
+                } else {
+                    // If the row doesn't exist, insert a new row
                     String insertQuery = "INSERT INTO cashstorage (id, itemid, quantity) VALUES (?, ?, ?)";
                     insertStmt = con.prepareStatement(insertQuery);
                     insertStmt.setInt(1, accountid);
@@ -8257,23 +8253,33 @@ public class Character extends AbstractCharacterObject {
                 }
 
             }
-
-            // If there is no space, don't store the item
-            else {return false;}
+            else
+            {
+                // If there is no space, don't store the item
+                return false;
+            }
         }
 
-        catch (SQLException se) {se.printStackTrace();}
+        catch (SQLException se)
+        {
+            se.printStackTrace();
+        }
         finally
         {
+            // Clean up resources
             try
             {
                 if (countStmt != null) countStmt.close();
                 if (getSlotsStmt != null) getSlotsStmt.close();
+                if (sumQuantityStmt != null) sumQuantityStmt.close();
                 if (updateStmt != null) updateStmt.close();
                 if (insertStmt != null) insertStmt.close();
                 if (con != null) con.close();
             }
-            catch (SQLException se) {se.printStackTrace();}
+            catch (SQLException se)
+            {
+                se.printStackTrace();
+            }
         }
 
         return true;
