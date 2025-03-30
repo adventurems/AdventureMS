@@ -157,6 +157,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             {
                 cm.sendNext("Moving over to removing items...");
                 status = 1;
+                return;
             }
         }
 
@@ -257,6 +258,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         {
             cm.sendNext("Moving over to storing items...");
             status = 1;
+            return;
         }
     }
 }
