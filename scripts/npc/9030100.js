@@ -55,7 +55,6 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 // They don't have space
                 if (cm.getPlayer().getAvailableCashSlots() == 0)
                 {
-                    cm.getPlayer().yellowMessage("Status: " + status + " | Selection: " + selection);
                     cm.sendNext("You must #r#eremove#k#n items first, or visit #b#eThe Expander#k#n to earn more slots!");
                     status = 1;
                     removeItems = true;
@@ -90,6 +89,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 {
                     storeItems = false;
                     removeItems = true;
+                    selection = -1;
                     return;
                 }
 
@@ -145,6 +145,38 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // We are actively removing items
         if (removeItems)
         {
+            // Check if we did something beforehand
+            if (selection > -1)
+            {
+                if (selection == 0)
+                {
+                    storeItems = true;
+                    removeItems = false;
+                    return;
+                }
+
+                // They chose an item to store
+                else
+                {
+                    // Get the selected itemId
+                    selectedItemId = storableItems[selection - 1];
+
+                    // Store the item
+                    if (cm.getPlayer().storeCashItem(selectedItemId))
+                    {
+                        // If it was successful, remove it
+                        cm.gainItem(selectedItemId, -1);
+                    }
+
+                    // They don't have any space to store
+                    else
+                    {
+                        cm.sendOk("You have no more space in your #d#eCash Storage#k#n!\r\nVisit #b#eThe Expander#k#n to earn more!");
+                        cm.dispose();
+                        return;
+                    }
+                }
+            }
             // Default text at the top of the screen
             // defaultString = "You are currently #r#eREMOVING#k#n items\r\n\r\n#L0#Swap to #e#gSTORING#n#k items\r\n\r\nBelow are the items available to #e#rREMOVE#n#k:";
             cm.sendOk("You are now removing items!");
