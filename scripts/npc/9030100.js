@@ -217,7 +217,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                     // Append the item display string for the item
                     if (quantity > 1)
                     {
-                        defaultString += "\r\n" + "#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "##l";
+                        defaultString += "\r\n" + "#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                     }
 
                     else
