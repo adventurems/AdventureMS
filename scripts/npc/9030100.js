@@ -86,17 +86,16 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 }
             }
 
-            // Reset selection
+            // Reset variables
             selection = 0;
+            storableItems = [];
+            selectionSlot = 0;
 
             // Default text at the top of the screen
             defaultString = "#L0#Swap to #e#rREMOVING#n#k items#l\r\n\r\n\r\nBelow are the items available to #e#bSTORE#n#k:\r\n";
 
             // Get the list of available cash items to store
             var cashItems = cm.getCashItems();
-
-            // Clear storableItems
-            storableItems = [];
 
             // Iterate through equip inventory
             for (var i = 0; i < cashItems.length; i++)
