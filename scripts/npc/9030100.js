@@ -145,7 +145,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         if (removeItems)
         {
             // Default text at the top of the screen
-            defaultString = "You are currently #r#eREMOVING#k#n items\r\n\r\n#L0#Swap to #e#gSTORING#n#k items\r\n\r\nBelow are the items available to #e#rREMOVE#n#k:";
+            // defaultString = "You are currently #r#eREMOVING#k#n items\r\n\r\n#L0#Swap to #e#gSTORING#n#k items\r\n\r\nBelow are the items available to #e#rREMOVE#n#k:";
+            cm.sendOk("You are now removing items!");
+            cm.dispose();
         }
     }
 }
