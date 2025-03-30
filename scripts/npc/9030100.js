@@ -55,8 +55,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 // They don't have space
                 if (cm.getPlayer().getAvailableCashSlots() == 0)
                 {
+                    cm.getPlayer().yellowMessage("Status: " + status " | Selection: " + selection);
                     cm.sendNext("You must #r#eremove#k#n items first, or visit #b#eThe Expander#k#n to earn more slots!");
-                    status = 0;
+                    status = 1;
                     removeItems = true;
                     selection = -1;
                     return;
