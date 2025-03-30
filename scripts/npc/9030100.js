@@ -40,7 +40,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             var stringAdd = cm.getPlayer().getAvailableCashSlots();
             if (stringAdd == 0) {stringAdd = "#r#eFULL#k#n";}
 
-            cm.sendSimple("Current Transaction Fee: " + fee + "\r\n\r\n#L0##e#bStore Items#n#k | Slots Available: " + stringAdd + "#l\r\n#L1##r#eRetrieve Items#n#k#l");
+            cm.sendSimple("Per Transaction Fee: #e" + fee + "#n\r\n\r\n#L0##e#bStore Items#n#k | Slots Available: " + stringAdd + "#l\r\n#L1##r#eRetrieve Items#n#k#l");
             break;
         }
     }
@@ -53,7 +53,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         {
             // Store slots in real time
             cashSlots = cm.getPlayer().getAvailableCashSlots();
-            curMeso = cm.getPlayer().getMeso;
+            curMeso = cm.getPlayer().getMeso();
 
             switch (selection)
             {
