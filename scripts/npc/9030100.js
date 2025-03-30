@@ -23,14 +23,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
             // They chose cash storage
             case 1:
-            status++
+            cm.getPlayer().getStorage().sendStorage(cm.getClient(), 9030101);
+            cm.dispose();
             break;
         }
-    }
-
-    else if (status == 2)
-    {
-        cm.sendOk("Status 2!");
-        cm.dispose();
     }
 }

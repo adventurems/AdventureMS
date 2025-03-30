@@ -285,9 +285,7 @@ public class Storage {
                 storageItems = storageItems.stream()
                 .filter(item -> {
                     int itemId = item.getItemId();
-                    // Get the first digit by dividing itemId by 1,000,000
                     int firstDigit = itemId / 1_000_000;
-                    // Check if the first digit is 5
                     return firstDigit == 5;
                 })
                 .collect(Collectors.toList());
