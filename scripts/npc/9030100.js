@@ -170,7 +170,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 selectedItemId = removableItems[selection - 1];
 
                 // Make sure they have room
-                if (cm.canHold(selectedItemId))
+                if (cm.canHold(selectedItemId)
                 {
                     // Gain the Item
                     cm.gainItem(selectedItemId, 1);
