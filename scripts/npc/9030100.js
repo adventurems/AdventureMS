@@ -78,7 +78,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                     selectedItemId = storableItems[selection];
 
                     // Store the item
-                    if (cm.storeCashItem(selectedItemId))
+                    if (cm.getPlayer().storeCashItem(selectedItemId))
                     {
                         // If it was successful, remove it
                         cm.gainItem(selectedItemId, -1);
