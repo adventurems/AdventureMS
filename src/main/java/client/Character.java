@@ -8195,6 +8195,9 @@ public class Character extends AbstractCharacterObject {
 
         try
         {
+            // Open DB Connection
+            con = DatabaseConnection.getConnection();
+
             // Store slots variable
             var slotsAvailable = 0;
 
