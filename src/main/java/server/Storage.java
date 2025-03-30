@@ -46,6 +46,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.Collectors;
 
 /**
  * @author Matze
@@ -273,11 +274,40 @@ public class Storage {
             });
 
             List<Item> storageItems;
-            storageItems = getItems();
 
-            for (InventoryType type : InventoryType.values())
+            // AdventureMS Custom
+            // Cash Storage
+            if (npcId == 9030101)
             {
-                typeItems.put(type, new ArrayList<>(storageItems));
+                storageItems = getItems();
+
+                // Filter the storageItems to only include items where the first digit of itemId is 5
+                storageItems = storageItems.stream()
+                .filter(item -> {
+                    int itemId = item.getItemId();
+                    // Get the first digit by dividing itemId by 1,000,000
+                    int firstDigit = itemId / 1_000_000;
+                    // Check if the first digit is 5
+                    return firstDigit == 5;
+                })
+                .collect(Collectors.toList());
+
+                for (InventoryType type : InventoryType.values())
+                {
+                    typeItems.put(type, new ArrayList<>(storageItems));
+                }
+            }
+
+            // Normal Storage
+            else
+            {
+                storageItems = getItems();
+
+                for (InventoryType type : InventoryType.values())
+                {
+                    typeItems.put(type, new ArrayList<>(storageItems));
+                }
+
             }
 
             currentNpcid = npcId;
