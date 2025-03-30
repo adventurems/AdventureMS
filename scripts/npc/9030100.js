@@ -9,6 +9,7 @@ var selectionSlot = 0;
 var selectedItemId = 0;
 var storableItems = [];
 var removableItems = [];
+var cashSlots = 0;
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
@@ -48,13 +49,16 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // Only use selection here, if they weren't already performing operations
         if (!storeItems && !removeItems)
         {
+            // Store slots in real time
+            cashSlots = cm.getPlayer().getAvailableCashSlots();
+
             switch (selection)
             {
                 // They are storing items
                 case 0:
 
                 // They don't have space
-                if (cm.getPlayer().getAvailableCashSlots() == 0)
+                if (cashSlots == 0)
                 {
                     cm.sendNext("You must #r#eretrieve#k#n items first, or visit #b#eThe Expander#k#n to earn more slots!");
                     status = 1;
@@ -102,6 +106,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 {
                     // If it was successful, remove it
                     cm.gainItem(selectedItemId, -1);
+
+                    // Reduce visual slots
+                    cashSlots--;
                 }
 
                 // They don't have any space to store
@@ -121,7 +128,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 selectionSlot = 0;
 
                 // Default text at the top of the screen
-                defaultString = "#b#eITEM STORAGE#n#k\r\nBelow are the items available to #e#bSTORE#n#k:\r\n\r\n#L0#Move to item #e#rRETRIEVAL#n#k#l\r\n";
+                defaultString = "#b#eITEM STORAGE#n#k | Available Slots: " + cashSlots + "\r\nBelow are the items available to #e#bSTORE#n#k:\r\n\r\n#L0#Move to item #e#rRETRIEVAL#n#k#l\r\n";
 
                 // Get the list of available cash items to store
                 var cashItems = cm.getCashItems();
@@ -187,6 +194,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
                     // Delete from DB
                     cm.getPlayer().removeCashItem(selectedItemId);
+
+                    // Update visual slots
+                    cashSlots++;
                 }
 
                 else
