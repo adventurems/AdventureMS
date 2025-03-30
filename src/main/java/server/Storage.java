@@ -273,39 +273,11 @@ public class Storage {
                 return 1;
             });
 
-            List<Item> storageItems;
+            List<Item> storageItems = getItems();
 
-            // AdventureMS Custom
-            // Cash Storage
-            if (npcId == 9030101)
+            for (InventoryType type : InventoryType.values())
             {
-                storageItems = getItems();
-
-                // Filter the storageItems to only include items where the first digit of itemId is 5
-                storageItems = storageItems.stream()
-                .filter(item -> {
-                    int itemId = item.getItemId();
-                    int firstDigit = itemId / 1_000_000;
-                    return firstDigit == 5;
-                })
-                .collect(Collectors.toList());
-
-                for (InventoryType type : InventoryType.values())
-                {
-                    typeItems.put(type, new ArrayList<>(storageItems));
-                }
-            }
-
-            // Normal Storage
-            else
-            {
-                storageItems = getItems();
-
-                for (InventoryType type : InventoryType.values())
-                {
-                    typeItems.put(type, new ArrayList<>(storageItems));
-                }
-
+                typeItems.put(type, new ArrayList<>(storageItems));
             }
 
             currentNpcid = npcId;

@@ -8187,6 +8187,100 @@ public class Character extends AbstractCharacterObject {
     }
 
     // AdventureMS Custom
+    public boolean storeCashItem(int itemId)
+    {
+        Connection con = null;
+        PreparedStatement countStmt = null;
+        PreparedStatement getSlotsStmt = null;
+        PreparedStatement updateStmt = null;
+        PreparedStatement insertStmt = null;
+
+        try
+        {
+            // Open DB Connection
+            con = DatabaseConnection.getConnection();
+
+            // Get the totalCashSlots from the accounts table
+            String getSlotsQuery = "SELECT cashstorage FROM accounts WHERE id = ?";
+            getSlotsStmt = con.prepareStatement(getSlotsQuery);
+            getSlotsStmt.setInt(1, accountid);
+
+            ResultSet rs = getSlotsStmt.executeQuery();
+            int totalCashSlots = 0;
+            if (rs.next()) {
+                totalCashSlots = rs.getInt("cashstorage");
+            }
+
+            // Count the number of rows with the specific 'id' (accountid)
+            String countQuery = "SELECT COUNT(*) FROM cashstorage WHERE id = ?";
+            countStmt = con.prepareStatement(countQuery);
+            countStmt.setInt(1, accountid);
+
+            ResultSet countRs = countStmt.executeQuery();
+            int rowCount = 0;
+            if (countRs.next()) {
+                rowCount = countRs.getInt(1);
+            }
+
+            // If there is space, insert or update the item
+            if (rowCount < totalCashSlots)
+            {
+                // Check if the row already exists in the cashstorage table
+                String checkItemQuery = "SELECT quantity FROM cashstorage WHERE id = ? AND itemid = ?";
+                PreparedStatement checkItemStmt = con.prepareStatement(checkItemQuery);
+                checkItemStmt.setInt(1, accountid);
+                checkItemStmt.setInt(2, itemId);
+
+                ResultSet checkRs = checkItemStmt.executeQuery();
+
+                // If the row exists, increment the quantity
+                if (checkRs.next())
+                {
+                    int quantity = checkRs.getInt("quantity");
+                    String updateQuery = "UPDATE cashstorage SET quantity = ? WHERE id = ? AND itemid = ?";
+                    updateStmt = con.prepareStatement(updateQuery);
+                    updateStmt.setInt(1, quantity + 1);
+                    updateStmt.setInt(2, accountid);
+                    updateStmt.setInt(3, itemId);
+                    updateStmt.executeUpdate();
+                }
+
+                // If the row doesn't exist, insert a new row
+                else
+                {
+                    String insertQuery = "INSERT INTO cashstorage (id, itemid, quantity) VALUES (?, ?, ?)";
+                    insertStmt = con.prepareStatement(insertQuery);
+                    insertStmt.setInt(1, accountid);
+                    insertStmt.setInt(2, itemId);
+                    insertStmt.setInt(3, 1);  // Set the quantity to 1 for the new item
+                    insertStmt.executeUpdate();
+                }
+
+            }
+
+            // If there is no space, don't store the item
+            else {return false;}
+        }
+
+        catch (SQLException se) {se.printStackTrace();}
+        finally
+        {
+            try
+            {
+                if (countStmt != null) countStmt.close();
+                if (getSlotsStmt != null) getSlotsStmt.close();
+                if (updateStmt != null) updateStmt.close();
+                if (insertStmt != null) insertStmt.close();
+                if (con != null) con.close();
+            }
+            catch (SQLException se) {se.printStackTrace();}
+        }
+
+        return true;
+    }
+
+
+    // AdventureMS Custom
     public void updateBuyback(int accountid, int itemId, int upgradeslots, int level, int str, int dex, int intValue,
                               int luk, int hp, int mp, int watk, int matk, int wdef, int mdef, int acc, int avoid,
                               int hands, int speed, int jump, int vicious)

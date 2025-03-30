@@ -953,6 +953,35 @@ public class AbstractPlayerInteraction {
     }
 
     // AdventureMS Custom
+    public List<Integer> getCashItems()
+    {
+        // Create List to send back
+        List<Integer> cashItems = new ArrayList<>();
+
+        // Create Information Provider for probing
+        ItemInformationProvider ii = ItemInformationProvider.getInstance();
+
+        // Get the player inventories
+        var equipinventory = getInventory(1);
+
+        // Iterate through equip inventory
+        for (Item item : equipinventory)
+        {
+            // Set the current itemId
+            var itemId = item.getItemId();
+
+            // Check if the item is a cash item
+            if (ii.isCash(itemId))
+            {
+                // Add itemId to return list
+                cashItems.add(itemId);
+            }
+        }
+
+        return cashItems;
+    }
+
+    // AdventureMS Custom
     public void removeItemFromSlot(int itemId)
     {
         // Get the inventory type

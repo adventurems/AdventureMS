@@ -1,6 +1,14 @@
 // AdventureMS Storage System
 
-// On click
+// Global Variables
+var inCash = false;
+var storeItems = false;
+var removeItems = false;
+var defaultString;
+var selectionSlot = 0;
+var selectedItemId = 0;
+var storableItems = [];
+
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
 function action(mode, type, selection) { if (mode == 1) {status++;} else {status--;} if (status == -1) {cm.dispose();}
@@ -23,9 +31,93 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
             // They chose cash storage
             case 1:
-            cm.getPlayer().getStorage().sendStorage(cm.getClient(), 9030101);
-            cm.dispose();
+            cm.sendSimple("#L0##e#rStore Items#n#k#l\r\n#L1##g#eRemove Items#n#k#l");
             break;
+        }
+    }
+
+    // We are strictly in Cash Operations Now
+    else if (status == 2)
+    {
+        // Only use selection here, if they weren't already performing operations
+        if (!storeItems && !removeItems)
+        {
+            switch (selection)
+            {
+                // They are removing items
+                case 0:
+                storeItems = true;
+                selection = -1;
+                break;
+
+                // They are storing items
+                case 1:
+                removeItems = true;
+                selection = -1;
+                break;
+            }
+        }
+
+        // We are actively storing items
+        if (storeItems)
+        {
+            // Check if we did something beforehand
+            if (selection > -1)
+            {
+                if (selection == 0)
+                {
+                    storeItems = false;
+                    removeItems = true;
+                    return;
+                }
+
+                // They chose an item to store
+                else
+                {
+                    // Get the selected itemId
+                    selectedItemId = storableItems[selection];
+
+                    // Store the item
+                    if (cm.storeCashItem(selectedItemId))
+                    {
+                        // If it was successful, remove it
+                        cm.gainItem(selectedItemId, -1);
+                    }
+                }
+            }
+
+            // Reset selection
+            selection = 0;
+
+            // Default text at the top of the screen
+            defaultString = "You are currently #g#eSTORING#k#n items\r\n\r\n#L0#Swap to #e#rREMOVING#n#k items\r\n\r\nBelow are the items available to #e#gSTORE#n#k:\r\n";
+
+            // Get the list of available cash items to store
+            var cashItems = cm.getCashItems();
+
+            // Clear storableItems
+            storableItems = [];
+
+            // Iterate through equip inventory
+            for (var i = 0; i < cashItems.length; i++)
+            {
+                    selectionSlot++;
+                    storableItems.push(cashItems[i]);
+                    defaultString += "\r\n" + "#L" + selectionSlot + "##v" + cashItems[i] + "# #t" + cashItems[i] + "##l";
+            }
+
+            // Send the finalized string
+            cm.sendSimple(defaultString);
+
+            // Move us back one status so when we click, we come back here
+            status = 1;
+        }
+
+        // We are actively removing items
+        if (removeItems)
+        {
+            // Default text at the top of the screen
+            defaultString = "You are currently #r#eREMOVING#k#n items\r\n\r\n#L0#Swap to #e#gSTORING#n#k items\r\n\r\nBelow are the items available to #e#rREMOVE#n#k:";
         }
     }
 }

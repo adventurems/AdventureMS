@@ -76,14 +76,15 @@ public final class LoginPasswordHandler implements PacketHandler {
         Hwid hwid = new Hwid(HexTool.toCompactHexString(hwidNibbles));
         int loginok = c.login(login, pwd, hwid);
 
-
+        // AdventureMS Custom
         if (YamlConfig.config.server.AUTOMATIC_REGISTER && loginok == 5) {
             try (Connection con = DatabaseConnection.getConnection();
-                 PreparedStatement ps = con.prepareStatement("INSERT INTO accounts (name, password, birthday, tempban) VALUES (?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS)) { //Jayd: Added birthday, tempban
+                 PreparedStatement ps = con.prepareStatement("INSERT INTO accounts (name, password, birthday, tempban, cashstorage) VALUES (?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS)) { //Jayd: Added birthday, tempban
                 ps.setString(1, login);
                 ps.setString(2, YamlConfig.config.server.BCRYPT_MIGRATION ? BCrypt.hashpw(pwd, BCrypt.gensalt(12)) : hashpwSHA512(pwd));
                 ps.setDate(3, Date.valueOf(DefaultDates.getBirthday()));
                 ps.setTimestamp(4, Timestamp.valueOf(DefaultDates.getTempban()));
+                ps.setInt(5, 16);
                 ps.executeUpdate();
 
                 try (ResultSet rs = ps.getGeneratedKeys()) {
