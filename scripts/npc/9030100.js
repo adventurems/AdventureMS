@@ -82,6 +82,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                     {
                         // If it was successful, remove it
                         cm.gainItem(selectedItemId, -1);
+                        cm.getPlayer().yellowMessage("Selection: " + selection);
                     }
                 }
             }
