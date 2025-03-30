@@ -179,6 +179,13 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                     // Delete from DB
                     cm.getPlayer().removeCashItem(selectedItemId);
                 }
+
+                else
+                {
+                    cm.sendOk("You don't have any more room in your inventory!");
+                    cm.dispose();
+                    return;
+                }
             }
 
             // Reset variables
