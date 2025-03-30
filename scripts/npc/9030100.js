@@ -83,6 +83,14 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                         // If it was successful, remove it
                         cm.gainItem(selectedItemId, -1);
                     }
+
+                    // They don't have any space to store
+                    else
+                    {
+                        cm.sendOk("You have no more space in your #p#eCash Storage#k#n! Visit #b#eThe Expander#k#n to earn more!");
+                        cm.dispose();
+                        return;
+                    }
                 }
             }
 
