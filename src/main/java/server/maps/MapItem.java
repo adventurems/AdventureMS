@@ -151,7 +151,7 @@ public class MapItem extends AbstractMapObject {
             return false; // No one else can pick it up yet
         }
 
-        // Between 10 and 25 seconds: Party members can pick it up (if in a party)
+        // Between 10 and 25 seconds: If the player is in a party, or is the owner, they can pick it up
         if (timeSinceDrop < 25000) {
             if (chr.getId() == character_ownerid || chr.getPartyId() == party_ownerid) {
                 return true; // Owner or party members can pick it up
@@ -160,9 +160,16 @@ public class MapItem extends AbstractMapObject {
         }
 
         // After 25 seconds: Everyone can pick it up
-        return true;
-    }
+        // If they are not in the party or the killer, they need to wait until 25 seconds
+        if (chr.getPartyId() == -1 || chr.getPartyId() != party_ownerid) {
+            // Not in a party or not in the same party as the owner/killer
+            if (chr.getId() != character_ownerid) {
+                return false; // Other players can't pick up until 25 seconds have passed
+            }
+        }
 
+        return true; // After 25 seconds, everyone can pick it up
+    }
 
     public final Client getOwnerClient() {
         return (ownerClient.isLoggedIn() && !ownerClient.getPlayer().isAwayFromWorld()) ? ownerClient : null;
