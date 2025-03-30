@@ -132,12 +132,11 @@ public class MapItem extends AbstractMapObject {
     }
 
     public final boolean hasExpiredOwnershipTime() {
-        return System.currentTimeMillis() - dropTime >= SECONDS.toMillis(15);
+        return System.currentTimeMillis() - dropTime >= SECONDS.toMillis(25);
     }
 
     public final boolean canBePickedBy(Character chr) {
-        if (character_ownerid <= 0 || isFFADrop())
-        {
+        if (character_ownerid <= 0 || isFFADrop()) {
             return true;
         }
 
@@ -145,30 +144,25 @@ public class MapItem extends AbstractMapObject {
         long timeSinceDrop = currentTime - dropTime;
 
         // The first 10 seconds: Only the owner can pick up
-        if (timeSinceDrop < 10000)
-        {
-            if (chr.getId() == character_ownerid)
-            {
+        if (timeSinceDrop < 10000) {
+            if (chr.getId() == character_ownerid) {
                 return true; // Owner can always pick it up
             }
-
-            return false; // Party members or others can't pick it up yet
+            return false; // No one else can pick it up yet
         }
 
-        // Between 10 and 25 seconds Party members can pick it up
-        if (timeSinceDrop < 25000)
-        {
-            if (chr.getId() == character_ownerid || chr.getPartyId() == party_ownerid)
-            {
+        // Between 10 and 25 seconds: Party members can pick it up (if in a party)
+        if (timeSinceDrop < 25000) {
+            if (chr.getId() == character_ownerid || chr.getPartyId() == party_ownerid) {
                 return true; // Owner or party members can pick it up
             }
-
             return false; // Other players can't pick it up yet
         }
 
-        // After 25 seconds everyone can pick it up
+        // After 25 seconds: Everyone can pick it up
         return true;
     }
+
 
     public final Client getOwnerClient() {
         return (ownerClient.isLoggedIn() && !ownerClient.getPlayer().isAwayFromWorld()) ? ownerClient : null;
