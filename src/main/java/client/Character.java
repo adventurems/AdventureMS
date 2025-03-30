@@ -8187,6 +8187,70 @@ public class Character extends AbstractCharacterObject {
     }
 
     // AdventureMS Custom
+    public int getAvailableCashSlots()
+    {
+        Connection con = null;
+        PreparedStatement getSlotsStmt = null;
+        PreparedStatement sumQuantityStmt = null;
+
+        try
+        {
+            // Store slots variable
+            var slotsAvailable = 0;
+
+            // Get the totalCashSlots from the accounts table
+            String getSlotsQuery = "SELECT cashstorage FROM accounts WHERE id = ?";
+            getSlotsStmt = con.prepareStatement(getSlotsQuery);
+            getSlotsStmt.setInt(1, accountid);
+
+            ResultSet rs = getSlotsStmt.executeQuery();
+            int totalCashSlots = 0;
+            if (rs.next()) {
+                totalCashSlots = rs.getInt("cashstorage");
+            }
+
+            // Sum the quantity of rows with the specific 'id' (accountid)
+            String sumQuantityQuery = "SELECT SUM(quantity) FROM cashstorage WHERE id = ?";
+            sumQuantityStmt = con.prepareStatement(sumQuantityQuery);
+            sumQuantityStmt.setInt(1, accountid);
+
+            ResultSet sumRs = sumQuantityStmt.executeQuery();
+            int totalQuantity = 0;
+            if (sumRs.next()) {
+                totalQuantity = sumRs.getInt(1);
+            }
+
+            // Calc available slots
+            slotsAvailable = totalCashSlots - totalQuantity;
+
+            // Reset slots if below 0
+            if (slotsAvailable < 0) {slotsAvailable = 0;}
+
+            return slotsAvailable;
+        }
+
+        catch (SQLException se)
+        {
+            se.printStackTrace();
+            return 0;
+        }
+        finally
+        {
+            // Clean up resources
+            try
+            {
+                if (getSlotsStmt != null) getSlotsStmt.close();
+                if (sumQuantityStmt != null) sumQuantityStmt.close();
+                if (con != null) con.close();
+            }
+            catch (SQLException se)
+            {
+                se.printStackTrace();
+            }
+        }
+    }
+
+    // AdventureMS Custom
     public boolean storeCashItem(int itemId)
     {
         Connection con = null;

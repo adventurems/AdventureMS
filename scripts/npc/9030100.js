@@ -31,7 +31,12 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
             // They chose cash storage
             case 1:
-            cm.sendSimple("#L0##e#bStore Items#n#k#l\r\n#L1##r#eRemove Items#n#k#l");
+
+            // Calc stringAdd
+            var stringAdd = cm.getPlayer().getAvailableCashSlots();
+            if (stringAdd == 0) {stringAdd = "#r#eFULL#k#n";}
+
+            cm.sendSimple("#L0##e#bStore Items#n#k | Slots Available: " + stringAdd + "#l\r\n#L1##r#eRemove Items#n#k#l");
             break;
         }
     }
@@ -44,13 +49,29 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         {
             switch (selection)
             {
-                // They are removing items
+                // They are storing items
                 case 0:
-                storeItems = true;
-                selection = -1;
+
+                // They don't have space
+                if (cm.getPlayer().getAvailableCashSlots() == 0)
+                {
+                    cm.sendNext("You must #r#eremove#k#n items first, or visit #b#eThe Expander#k#n to earn more slots!");
+                    status = 0;
+                    removeItems = true;
+                    selection = -1;
+                    return;
+                }
+
+                // They have space
+                else
+                {
+                    storeItems = true;
+                    selection = -1;
+                }
+
                 break;
 
-                // They are storing items
+                // They are removing items
                 case 1:
                 removeItems = true;
                 selection = -1;
@@ -87,7 +108,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                     // They don't have any space to store
                     else
                     {
-                        cm.sendOk("You have no more space in your #p#eCash Storage#k#n! Visit #b#eThe Expander#k#n to earn more!");
+                        cm.sendOk("You have no more space in your #d#eCash Storage#k#n!\r\nVisit #b#eThe Expander#k#n to earn more!");
                         cm.dispose();
                         return;
                     }
