@@ -37,7 +37,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             var stringAdd = cm.getPlayer().getAvailableCashSlots();
             if (stringAdd == 0) {stringAdd = "#r#eFULL#k#n";}
 
-            cm.sendSimple("#L0##e#bStore Items#n#k | Slots Available: " + stringAdd + "#l\r\n#L1##r#eRemove Items#n#k#l");
+            cm.sendSimple("#L0##e#bStore Items#n#k | Slots Available: " + stringAdd + "#l\r\n#L1##r#eRetrieve Items#n#k#l");
             break;
         }
     }
@@ -56,7 +56,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 // They don't have space
                 if (cm.getPlayer().getAvailableCashSlots() == 0)
                 {
-                    cm.sendNext("You must #r#eremove#k#n items first, or visit #b#eThe Expander#k#n to earn more slots!");
+                    cm.sendNext("You must #r#eretrieve#k#n items first, or visit #b#eThe Expander#k#n to earn more slots!");
                     status = 1;
                     removeItems = true;
                     selection = -1;
@@ -121,7 +121,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 selectionSlot = 0;
 
                 // Default text at the top of the screen
-                defaultString = "You are currently #b#eSTORING#n#k items! Below are the items available to #e#bSTORE#n#k:\r\n\r\n#L0#Move to item #e#rREMOVAL#n#k#l";
+                defaultString = "#b#eITEM STORAGE#n#k\r\nBelow are the items available to #e#bSTORE#n#k:\r\n\r\n#L0#Move to item #e#rRETRIEVAL#n#k#l\r\n";
 
                 // Get the list of available cash items to store
                 var cashItems = cm.getCashItems();
@@ -205,7 +205,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 selectionSlot = 0;
 
                 // Default text at the top of the screen
-                defaultString = "You are currently #r#eREMOVING#n#k items! Below are the items available to #e#rREMOVE#n#k:\r\n\r\n#L0#Move to item #e#bSTORAGE#n#k#l";
+                defaultString = "#r#eITEM RETRIEVAL#n#k\r\nBelow are the items available to #e#rRETRIEVE#n#k:\r\n\r\n#L0#Move to item #e#bSTORAGE#n#k#l\r\n";
 
                 // Get the list of available cash items to store
                 var storageItems = cm.getPlayer().getCashStorageItems();
