@@ -128,7 +128,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 selectionSlot = 0;
 
                 // Default text at the top of the screen
-                defaultString = "#b#eITEM STORAGE#n#k | Available Slots: " + cashSlots + "\r\nBelow are the items available to #e#bSTORE#n#k:\r\n\r\n#L0#Move to item #e#rRETRIEVAL#n#k#l\r\n";
+                defaultString = "#b#eITEM STORAGE#n#k | Available Slots: " + cashSlots + "\r\n\r\n#L0#Move to item #e#rRETRIEVAL#n#k#l\r\n\r\n";
 
                 // Get the list of available cash items to store
                 var cashItems = cm.getCashItems();
@@ -215,7 +215,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 selectionSlot = 0;
 
                 // Default text at the top of the screen
-                defaultString = "#r#eITEM RETRIEVAL#n#k\r\nBelow are the items available to #e#rRETRIEVE#n#k:\r\n\r\n#L0#Move to item #e#bSTORAGE#n#k#l\r\n";
+                defaultString = "#r#eITEM RETRIEVAL#n#k\r\n\r\n#L0#Move to item #e#bSTORAGE#n#k#l\r\n\r\n";
 
                 // Get the list of available cash items to store
                 var storageItems = cm.getPlayer().getCashStorageItems();
