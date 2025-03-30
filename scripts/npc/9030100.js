@@ -10,6 +10,8 @@ var selectedItemId = 0;
 var storableItems = [];
 var removableItems = [];
 var cashSlots = 0;
+var curMeso = 0;
+var fee = 25000;
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
@@ -38,7 +40,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             var stringAdd = cm.getPlayer().getAvailableCashSlots();
             if (stringAdd == 0) {stringAdd = "#r#eFULL#k#n";}
 
-            cm.sendSimple("#L0##e#bStore Items#n#k | Slots Available: " + stringAdd + "#l\r\n#L1##r#eRetrieve Items#n#k#l");
+            cm.sendSimple("Current Transaction Fee: " + fee + "\r\n\r\n#L0##e#bStore Items#n#k | Slots Available: " + stringAdd + "#l\r\n#L1##r#eRetrieve Items#n#k#l");
             break;
         }
     }
@@ -51,6 +53,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         {
             // Store slots in real time
             cashSlots = cm.getPlayer().getAvailableCashSlots();
+            curMeso = cm.getPlayer().getMeso;
 
             switch (selection)
             {
@@ -101,20 +104,35 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 // Get the selected itemId
                 selectedItemId = storableItems[selection - 1];
 
-                // Store the item
-                if (cm.getPlayer().storeCashItem(selectedItemId))
+                // Check meso transaction
+                if (curMeso >= fee)
                 {
-                    // If it was successful, remove it
-                    cm.gainItem(selectedItemId, -1);
+                    // Store the item
+                    if (cm.getPlayer().storeCashItem(selectedItemId))
+                    {
+                        // If it was successful, remove it
+                        cm.gainItem(selectedItemId, -1);
 
-                    // Reduce visual slots
-                    cashSlots--;
+                        // Reduce mesos
+                        cm.gainMeso(-25000, false);
+
+                        // Reduce visual slots
+                        cashSlots--;
+                    }
+
+                    // They don't have any space to store
+                    else
+                    {
+                        cm.sendOk("You have no more space in your #d#eCash Storage#k#n!\r\nVisit #b#eThe Expander#k#n to earn more!");
+                        cm.dispose();
+                        return;
+                    }
                 }
 
-                // They don't have any space to store
+                // They can't afford the fee
                 else
                 {
-                    cm.sendOk("You have no more space in your #d#eCash Storage#k#n!\r\nVisit #b#eThe Expander#k#n to earn more!");
+                    cm.sendOk("You can't afford the fee...yikes...");
                     cm.dispose();
                     return;
                 }
@@ -128,7 +146,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 selectionSlot = 0;
 
                 // Default text at the top of the screen
-                defaultString = "#b#eITEM STORAGE#n#k | Available Slots: " + cashSlots + "\r\n\r\n#L0#Move to item #e#rRETRIEVAL#n#k#l\r\n\r\n";
+                defaultString = "#b#eITEM STORAGE#n#k | Available Slots: " + cashSlots + " | Mesos: " + curMeso + "\r\n\r\n#L0#Move to item #e#rRETRIEVAL#n#k#l\r\n\r\n";
 
                 // Get the list of available cash items to store
                 var cashItems = cm.getCashItems();
@@ -186,22 +204,38 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 var selectedItem = removableItems[selection - 1]; // Get the object from the list
                 selectedItemId = selectedItem.itemId;  // Access the itemId from the object
 
-                // Make sure they have room
-                if (cm.getPlayer().canHold(selectedItemId))
+                // Check meso transaction
+                if (curMeso >= fee)
                 {
-                    // Gain the Item
-                    cm.gainItem(selectedItemId, 1);
+                    // Make sure they have room
+                    if (cm.getPlayer().canHold(selectedItemId))
+                    {
+                        if (cm.getPlayer().getMeso)
+                        // Gain the Item
+                        cm.gainItem(selectedItemId, 1);
 
-                    // Delete from DB
-                    cm.getPlayer().removeCashItem(selectedItemId);
+                        // Delete from DB
+                        cm.getPlayer().removeCashItem(selectedItemId);
 
-                    // Update visual slots
-                    cashSlots++;
+                        // Reduce mesos
+                        cm.gainMeso(-25000, false);
+
+                        // Update visual slots
+                        cashSlots++;
+                    }
+
+                    else
+                    {
+                        cm.sendOk("You don't have any more room in your inventory!");
+                        cm.dispose();
+                        return;
+                    }
                 }
 
+                // They can't afford the fee
                 else
                 {
-                    cm.sendOk("You don't have any more room in your inventory!");
+                    cm.sendOk("You can't afford the fee...yikes...");
                     cm.dispose();
                     return;
                 }
@@ -215,7 +249,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 selectionSlot = 0;
 
                 // Default text at the top of the screen
-                defaultString = "#r#eITEM RETRIEVAL#n#k\r\n\r\n#L0#Move to item #e#bSTORAGE#n#k#l\r\n\r\n";
+                defaultString = "#r#eITEM RETRIEVAL#n#k | Available Slots: " + cashSlots + " | Mesos: " + curMeso + "\r\n\r\n#L0#Move to item #e#bSTORAGE#n#k#l\r\n\r\n";
 
                 // Get the list of available cash items to store
                 var storageItems = cm.getPlayer().getCashStorageItems();
