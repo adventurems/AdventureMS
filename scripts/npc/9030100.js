@@ -189,7 +189,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             defaultString = "#L0#Swap to #e#bSTORING#n#k items#l\r\n\r\n\r\nBelow are the items available to #e#rREMOVE#n#k:\r\n";
 
             // Get the list of available cash items to store
-            var storageItems = cm.getCashStorageItems();
+            var storageItems = cm.getPlayer().getCashStorageItems();
 
             // Check if it's empty
             if (storageItems.size() === 0)
