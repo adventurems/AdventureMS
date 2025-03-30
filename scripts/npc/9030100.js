@@ -166,11 +166,12 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // They chose to remove an item
             if (selection > 0)
             {
-                // Get the selected itemId
-                selectedItemId = removableItems[selection - 1];
+                // Get the selected itemId and quantity from removableItems
+                var selectedItem = removableItems[selection - 1]; // Get the object from the list
+                selectedItemId = selectedItem.itemId;  // Access the itemId from the object
 
                 // Make sure they have room
-                if (cm.canHold(selectedItemId)
+                if (cm.getPlayer().canHold(selectedItemId))
                 {
                     // Gain the Item
                     cm.gainItem(selectedItemId, 1);
@@ -204,9 +205,25 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 // Iterate through cashStorage
                 for (var i = 0; i < storageItems.length; i++)
                 {
-                        selectionSlot++;
-                        removableItems.push(storageItems[i]);
-                        defaultString += "\r\n" + "#L" + selectionSlot + "##v" + storageItems[i] + "# #t" + storageItems[i] + "##l";
+                    selectionSlot++;
+
+                    // Get values out of map
+                    var itemId = storageItems[i].getKey();  // The item ID is stored as the key
+                    var quantity = storageItems[i].getValue();  // The quantity is stored as the value
+
+                    // Store Key / Map appropriately
+                    removableItems.push({itemId: itemId, quantity: quantity});
+
+                    // Append the item display string for the item
+                    if (quantity > 1)
+                    {
+                        defaultString += "\r\n" + "#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "##l";
+                    }
+
+                    else
+                    {
+                        defaultString += "\r\n" + "#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                    }
                 }
 
                 // Send the finalized string
