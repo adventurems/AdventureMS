@@ -251,14 +251,14 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                     status = 1;
                 }
             }
-        }
 
-        // Send prompt moving them to store items
-        else
-        {
-            cm.sendNext("Moving over to storing items...");
-            status = 1;
-            return;
+            // Send prompt moving them to store items
+            else
+            {
+                cm.sendNext("Moving over to storing items...");
+                status = 1;
+                return;
+            }
         }
     }
 }
