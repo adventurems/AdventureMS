@@ -176,7 +176,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                     cm.gainItem(selectedItemId, 1);
 
                     // Delete from DB
-                    cm.getPlayer().removeCashItem(selectedItemId));
+                    cm.getPlayer().removeCashItem(selectedItemId);
                 }
             }
 
