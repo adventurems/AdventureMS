@@ -114,7 +114,8 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                         cm.gainItem(selectedItemId, -1);
 
                         // Reduce mesos
-                        cm.gainMeso(-25000, false);
+                        cm.gainMeso(-fee, false);
+                        curMeso -= fee;
 
                         // Reduce visual slots
                         cashSlots--;
@@ -218,7 +219,8 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                         cm.getPlayer().removeCashItem(selectedItemId);
 
                         // Reduce mesos
-                        cm.gainMeso(-25000, false);
+                        cm.gainMeso(-fee, false);
+                        curMeso -= fee;
 
                         // Update visual slots
                         cashSlots++;
