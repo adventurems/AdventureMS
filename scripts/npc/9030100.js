@@ -157,6 +157,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // We are actively removing items
         if (removeItems)
         {
+            // Testing
+            cm.getPlayer().yellowMessage("storeItems: " + storeItems + " | removeItems: " + removeItems + " | selection: " + selection);
+
             // They chose to swap actions
             if (selection == 0)
             {
