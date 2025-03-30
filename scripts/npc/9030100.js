@@ -89,6 +89,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 storeItems = false;
                 removeItems = true;
                 selection = -1;
+
+                // Testing
+                cm.getPlayer().yellowMessage("storeItems: " + storeItems + " | removeItems: " + removeItems + " | selection: " + selection);
                 return;
             }
 
