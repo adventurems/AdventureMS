@@ -75,14 +75,14 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 else
                 {
                     // Get the selected itemId
-                    selectedItemId = storableItems[selection];
+                    selectedItemId = storableItems[selection - 1];
 
                     // Store the item
                     if (cm.getPlayer().storeCashItem(selectedItemId))
                     {
                         // If it was successful, remove it
                         cm.gainItem(selectedItemId, -1);
-                        cm.getPlayer().yellowMessage("Selection: " + selection);
+                        cm.getPlayer().yellowMessage("Selection: " + selection - 1);
                     }
                 }
             }
