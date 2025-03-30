@@ -61,7 +61,6 @@ public class Storage {
     private byte slots;
     private final Map<InventoryType, List<Item>> typeItems = new HashMap<>();
     private List<Item> items = new LinkedList<>();
-    private List<Item> cashitems = new LinkedList<>(); // AdventureMS Storage
     private final Lock lock = new ReentrantLock(true);
 
     private Storage(int id, byte slots, int meso) {
@@ -97,11 +96,6 @@ public class Storage {
                 if (rs.next())
                 {
                     ret = new Storage(rs.getInt("storageid"), (byte) rs.getInt("slots"), rs.getInt("meso"));
-
-                    for (Pair<Item, InventoryType> item : ItemFactory.CASH_EXPLORER.loadItems(ret.id, false))
-                    {
-                        ret.cashitems.add(item.getLeft());
-                    }
 
                     for (Pair<Item, InventoryType> item : ItemFactory.STORAGE.loadItems(ret.id, false))
                     {
@@ -220,15 +214,6 @@ public class Storage {
         }
     }
 
-    public List<Item> getCashItems() {
-        lock.lock();
-        try {
-            return Collections.unmodifiableList(cashitems);
-        } finally {
-            lock.unlock();
-        }
-    }
-
     private List<Item> filterItems(InventoryType type) {
         List<Item> storageItems = getItems();
         List<Item> ret = new LinkedList<>();
@@ -288,43 +273,11 @@ public class Storage {
             });
 
             List<Item> storageItems;
+            storageItems = getItems();
 
-            // AdventureMS Custom
-            // Cash Storage
-            if (npcId == 9030101)
+            for (InventoryType type : InventoryType.values())
             {
-                storageItems = getCashItems();
-
-                for (InventoryType type : InventoryType.values())
-                {
-                    typeItems.put(type, new ArrayList<>(storageItems));
-                }
-
-                var storagestatus = "null";
-
-                if (storageItems.isEmpty())
-                {
-                    storagestatus = "empty";
-                }
-
-                else
-                {
-                    storagestatus = "filled";
-                }
-
-                c.getPlayer().yellowMessage("In custom area!" + "storageitems is:" + storagestatus);
-            }
-
-            // Normal Storage
-            else
-            {
-                storageItems = getItems();
-
-                for (InventoryType type : InventoryType.values())
-                {
-                    typeItems.put(type, new ArrayList<>(storageItems));
-                }
-
+                typeItems.put(type, new ArrayList<>(storageItems));
             }
 
             currentNpcid = npcId;
