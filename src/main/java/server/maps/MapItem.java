@@ -143,33 +143,38 @@ public class MapItem extends AbstractMapObject {
         long currentTime = System.currentTimeMillis();
         long timeSinceDrop = currentTime - dropTime;
 
-        // The first 10 seconds: Only the owner can pick up
-        if (timeSinceDrop < 10000) {
-            if (chr.getId() == character_ownerid) {
-                return true; // Owner can always pick it up
-            }
-            return false; // No one else can pick it up yet
-        }
-
-        // Between 10 and 25 seconds: If the player is in a party, or is the owner, they can pick it up
-        if (timeSinceDrop < 25000) {
-            if (chr.getId() == character_ownerid || chr.getPartyId() == party_ownerid) {
-                return true; // Owner or party members can pick it up
-            }
-            return false; // Other players can't pick it up yet
-        }
-
-        // After 25 seconds: Everyone can pick it up
-        // If they are not in the party or the killer, they need to wait until 25 seconds
-        if (chr.getPartyId() == -1 || chr.getPartyId() != party_ownerid) {
-            // Not in a party or not in the same party as the owner/killer
-            if (chr.getId() != character_ownerid) {
-                return false; // Other players can't pick up until 25 seconds have passed
+        // Solo case: Killer alone and hasn't been 25 seconds yet.
+        if (chr.getId() == character_ownerid) {
+            if (chr.getPartyId() == -1 || chr.getPartyId() != party_ownerid) { // Not in a party
+                if (timeSinceDrop < 25000) { // Killer alone gets 25 seconds to loot
+                    return true;
+                }
             }
         }
 
-        return true; // After 25 seconds, everyone can pick it up
+        // Party case:
+        if (chr.getPartyId() == party_ownerid) { // In a party
+            if (chr.getId() == character_ownerid) { // Killer in party
+                if (timeSinceDrop < 10000) { // First 10 seconds for the killer only
+                    return true;
+                } else if (timeSinceDrop < 25000) { // Next 15 seconds for party members (including the killer)
+                    return true;
+                }
+            } else { // Party member (not the killer)
+                if (timeSinceDrop >= 10000 && timeSinceDrop < 25000) { // After 10s and within 25s for party members
+                    return true;
+                }
+            }
+        }
+
+        // After 25 seconds, anyone can loot
+        if (timeSinceDrop >= 25000) {
+            return true;
+        }
+
+        return false;
     }
+
 
     public final Client getOwnerClient() {
         return (ownerClient.isLoggedIn() && !ownerClient.getPlayer().isAwayFromWorld()) ? ownerClient : null;
