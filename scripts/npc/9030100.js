@@ -121,7 +121,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 selectionSlot = 0;
 
                 // Default text at the top of the screen
-                defaultString = "#L0#Swap to #e#rREMOVING#n#k items#l\r\n\r\n\r\nBelow are the items available to #e#bSTORE#n#k:\r\n";
+                defaultString = "You are currently #b#eSTORING#n#k items! Below are the items available to #e#bSTORE#n#k:\r\n\r\n#L0#Move to item #e#rREMOVAL#n#k#l";
 
                 // Get the list of available cash items to store
                 var cashItems = cm.getCashItems();
@@ -155,7 +155,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Send prompt moving them to remove items
             else
             {
-                cm.sendNext("Moving over to removing items...");
+                cm.sendNext("Moving to item retrieval...");
                 status = 1;
                 return;
             }
@@ -205,7 +205,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 selectionSlot = 0;
 
                 // Default text at the top of the screen
-                defaultString = "#L0#Swap to #e#bSTORING#n#k items#l\r\n\r\n\r\nBelow are the items available to #e#rREMOVE#n#k:\r\n";
+                defaultString = "You are currently #r#eREMOVING#n#k items! Below are the items available to #e#rREMOVE#n#k:\r\n\r\n#L0#Move to item #e#bSTORAGE#n#k#l";
 
                 // Get the list of available cash items to store
                 var storageItems = cm.getPlayer().getCashStorageItems();
@@ -255,7 +255,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Send prompt moving them to store items
             else
             {
-                cm.sendNext("Moving over to storing items...");
+                cm.sendNext("Moving to item storage...");
                 status = 1;
                 return;
             }
