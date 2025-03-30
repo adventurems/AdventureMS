@@ -173,7 +173,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 if (cm.canHold(selectedItemId))
                 {
                     // Gain the Item
-                    cm.gainItem(selectedItemId), 1);
+                    cm.gainItem(selectedItemId, 1);
 
                     // Delete from DB
                     cm.getPlayer().removeCashItem(selectedItemId));
