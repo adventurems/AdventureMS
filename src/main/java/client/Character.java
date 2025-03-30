@@ -190,6 +190,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.AbstractMap;
 
 import static java.util.concurrent.TimeUnit.DAYS;
 import static java.util.concurrent.TimeUnit.MINUTES;
@@ -8352,6 +8353,134 @@ public class Character extends AbstractCharacterObject {
         return true;
     }
 
+    // AdventureMS Custom
+    public List<Map.Entry<Integer, Integer>> getCashStorageItems()
+    {
+        // Create List to send back
+        List<Map.Entry<Integer, Integer>> storageItems = new ArrayList<>();
+
+        Connection con = null;
+        PreparedStatement getStmt = null;
+        ResultSet rs = null;
+
+        try
+        {
+            // Open DB Connection
+            con = DatabaseConnection.getConnection();
+
+            // Prepare SQL Query to fetch itemid and quantity where id matches accountid
+            String sql = "SELECT itemid, quantity FROM cashstorage WHERE id = ?";
+            getStmt = con.prepareStatement(sql);
+            getStmt.setInt(1, accountid);
+            rs = getStmt.executeQuery();
+
+            // Process the result set
+            while (rs.next())
+            {
+                // Fetch itemid and quantity from the result set
+                int itemid = rs.getInt("itemid");
+                int quantity = rs.getInt("quantity");
+
+                // Add the pair to the list
+                storageItems.add(new AbstractMap.SimpleEntry<>(itemid, quantity));
+            }
+        }
+
+        catch (SQLException se)
+        {
+            se.printStackTrace();
+        }
+        finally
+        {
+            // Clean up resources
+            try
+            {
+                if (rs != null) rs.close();
+                if (getStmt != null) getStmt.close();
+                if (con != null) con.close();
+            }
+            catch (SQLException se)
+            {
+                se.printStackTrace();
+            }
+        }
+
+        // Return the list of item-quantity pairs
+        return storageItems;
+    }
+
+    // AdventureMS Custom
+    public void removeCashItem(int itemId)
+    {
+        Connection con = null;
+        PreparedStatement countStmt = null;
+        PreparedStatement updateStmt = null;
+        PreparedStatement deleteStmt = null;
+
+        try
+        {
+            // Open DB Connection
+            con = DatabaseConnection.getConnection();
+
+            // Query to find the row based on accountid and itemid
+            String countQuery = "SELECT quantity FROM cashstorage WHERE id = ? AND itemid = ?";
+            countStmt = con.prepareStatement(countQuery);
+            countStmt.setInt(1, accountid);
+            countStmt.setInt(2, itemId);
+
+            // Execute the query
+            ResultSet rs = countStmt.executeQuery();
+
+            // If row is found
+            if (rs.next())
+            {
+                int quantity = rs.getInt("quantity");
+
+                // If quantity is greater than 1, update the row by reducing the quantity by 1
+                if (quantity > 1)
+                {
+                    String updateQuery = "UPDATE cashstorage SET quantity = quantity - 1 WHERE id = ? AND itemid = ?";
+                    updateStmt = con.prepareStatement(updateQuery);
+                    updateStmt.setInt(1, accountid);
+                    updateStmt.setInt(2, itemId);
+                    updateStmt.executeUpdate();
+                }
+
+                // If quantity is 1, delete the row
+                else if (quantity == 1)
+                {
+                    String deleteQuery = "DELETE FROM cashstorage WHERE id = ? AND itemid = ?";
+                    deleteStmt = con.prepareStatement(deleteQuery);
+                    deleteStmt.setInt(1, accountid);
+                    deleteStmt.setInt(2, itemId);
+                    deleteStmt.executeUpdate();
+                }
+            }
+
+            // Close the ResultSet after use
+            rs.close();
+        }
+
+        catch (SQLException se)
+        {
+            se.printStackTrace();
+        }
+        finally
+        {
+            // Clean up resources
+            try
+            {
+                if (countStmt != null) countStmt.close();
+                if (updateStmt != null) updateStmt.close();
+                if (deleteStmt != null) deleteStmt.close();
+                if (con != null) con.close();
+            }
+            catch (SQLException se)
+            {
+                se.printStackTrace();
+            }
+        }
+    }
 
     // AdventureMS Custom
     public void updateBuyback(int accountid, int itemId, int upgradeslots, int level, int str, int dex, int intValue,

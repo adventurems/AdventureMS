@@ -8,6 +8,7 @@ var defaultString;
 var selectionSlot = 0;
 var selectedItemId = 0;
 var storableItems = [];
+var removableItems = [];
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
@@ -82,37 +83,34 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // We are actively storing items
         if (storeItems)
         {
-            // Check if we did something beforehand
-            if (selection > -1)
+            // They chose to swap actions
+            if (selection == 0)
             {
-                if (selection == 0)
+                storeItems = false;
+                removeItems = true;
+                selection = -1;
+                return;
+            }
+
+            // Check if we did something beforehand
+            if (selection > 0)
+            {
+                // Get the selected itemId
+                selectedItemId = storableItems[selection - 1];
+
+                // Store the item
+                if (cm.getPlayer().storeCashItem(selectedItemId))
                 {
-                    storeItems = false;
-                    removeItems = true;
-                    selection = -1;
-                    return;
+                    // If it was successful, remove it
+                    cm.gainItem(selectedItemId, -1);
                 }
 
-                // They chose an item to store
+                // They don't have any space to store
                 else
                 {
-                    // Get the selected itemId
-                    selectedItemId = storableItems[selection - 1];
-
-                    // Store the item
-                    if (cm.getPlayer().storeCashItem(selectedItemId))
-                    {
-                        // If it was successful, remove it
-                        cm.gainItem(selectedItemId, -1);
-                    }
-
-                    // They don't have any space to store
-                    else
-                    {
-                        cm.sendOk("You have no more space in your #d#eCash Storage#k#n!\r\nVisit #b#eThe Expander#k#n to earn more!");
-                        cm.dispose();
-                        return;
-                    }
+                    cm.sendOk("You have no more space in your #d#eCash Storage#k#n!\r\nVisit #b#eThe Expander#k#n to earn more!");
+                    cm.dispose();
+                    return;
                 }
             }
 
@@ -127,60 +125,96 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Get the list of available cash items to store
             var cashItems = cm.getCashItems();
 
-            // Iterate through equip inventory
-            for (var i = 0; i < cashItems.length; i++)
+            // Make sure there are items left
+            if (cashItems.size() === 0)
             {
-                    selectionSlot++;
-                    storableItems.push(cashItems[i]);
-                    defaultString += "\r\n" + "#L" + selectionSlot + "##v" + cashItems[i] + "# #t" + cashItems[i] + "##l";
+                cm.sendOk("You have no more cash items to store!");
+                cm.dispose();
+                return;
             }
 
-            // Send the finalized string
-            cm.sendSimple(defaultString);
+            else
+            {
+                // Iterate through equip inventory
+                for (var i = 0; i < cashItems.length; i++)
+                {
+                        selectionSlot++;
+                        storableItems.push(cashItems[i]);
+                        defaultString += "\r\n" + "#L" + selectionSlot + "##v" + cashItems[i] + "# #t" + cashItems[i] + "##l";
+                }
 
-            // Move us back one status so when we click, we come back here
-            status = 1;
+                // Send the finalized string
+                cm.sendSimple(defaultString);
+
+                // Move us back one status so when we click, we come back here
+                status = 1;
+            }
         }
 
         // We are actively removing items
         if (removeItems)
         {
-            // Check if we did something beforehand
-            if (selection > -1)
+            // They chose to swap actions
+            if (selection == 0)
             {
-                if (selection == 0)
+                storeItems = true;
+                removeItems = false;
+                selection = -1;
+                return;
+            }
+
+            // They chose to remove an item
+            if (selection > 0)
+            {
+                // Get the selected itemId
+                selectedItemId = removableItems[selection - 1];
+
+                // Make sure they have room
+                if (cm.canHold(selectedItemId))
                 {
-                    storeItems = true;
-                    removeItems = false;
-                    return;
-                }
+                    // Gain the Item
+                    cm.gainItem(selectedItemId), 1);
 
-                // They chose an item to store
-                else
-                {
-                    // Get the selected itemId
-                    selectedItemId = storableItems[selection - 1];
-
-                    // Store the item
-                    if (cm.getPlayer().storeCashItem(selectedItemId))
-                    {
-                        // If it was successful, remove it
-                        cm.gainItem(selectedItemId, -1);
-                    }
-
-                    // They don't have any space to store
-                    else
-                    {
-                        cm.sendOk("You have no more space in your #d#eCash Storage#k#n!\r\nVisit #b#eThe Expander#k#n to earn more!");
-                        cm.dispose();
-                        return;
-                    }
+                    // Delete from DB
+                    cm.getPlayer().removeCashItem(selectedItemId));
                 }
             }
+
+            // Reset variables
+            selection = 0;
+            removableItems = [];
+            selectionSlot = 0;
+
             // Default text at the top of the screen
-            // defaultString = "You are currently #r#eREMOVING#k#n items\r\n\r\n#L0#Swap to #e#gSTORING#n#k items\r\n\r\nBelow are the items available to #e#rREMOVE#n#k:";
-            cm.sendOk("You are now removing items!");
-            cm.dispose();
+            defaultString = "#L0#Swap to #e#bSTORING#n#k items#l\r\n\r\n\r\nBelow are the items available to #e#rREMOVE#n#k:\r\n";
+
+            // Get the list of available cash items to store
+            var storageItems = cm.getCashStorageItems();
+
+            // Check if it's empty
+            if (storageItems.size() === 0)
+            {
+                cm.sendOk("There are no items in your #e#dCash Storage#n#k!");
+                cm.dispose();
+                return;
+            }
+
+            else
+            {
+                // Iterate through cashStorage
+                for (var i = 0; i < storageItems.length; i++)
+                {
+                        selectionSlot++;
+                        removableItems.push(storageItems[i]);
+                        defaultString += "\r\n" + "#L" + selectionSlot + "##v" + storageItems[i] + "# #t" + storageItems[i] + "##l";
+                }
+
+                // Send the finalized string
+                cm.sendSimple(defaultString);
+
+                // Move us back one status so when we click, we come back here
+                status = 1;
+            }
         }
     }
 }
