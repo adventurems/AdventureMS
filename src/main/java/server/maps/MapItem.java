@@ -52,6 +52,7 @@ public class MapItem extends AbstractMapObject {
         this.meso = 0;
         this.type = type;
         this.playerDrop = playerDrop;
+        this.dropTime = System.currentTimeMillis(); // Record the drop time
     }
 
     public MapItem(Item item, Point position, MapObject dropper, Character owner, Client ownerClient, byte type, boolean playerDrop, int questid) {
@@ -66,6 +67,7 @@ public class MapItem extends AbstractMapObject {
         this.type = type;
         this.playerDrop = playerDrop;
         this.questid = questid;
+        this.dropTime = System.currentTimeMillis(); // Record the drop time
     }
 
     public MapItem(int meso, Point position, MapObject dropper, Character owner, Client ownerClient, byte type, boolean playerDrop) {
@@ -79,6 +81,7 @@ public class MapItem extends AbstractMapObject {
         this.meso = meso;
         this.type = type;
         this.playerDrop = playerDrop;
+        this.dropTime = System.currentTimeMillis(); // Record the drop time
     }
 
     public final Item getItem() {
@@ -133,27 +136,38 @@ public class MapItem extends AbstractMapObject {
     }
 
     public final boolean canBePickedBy(Character chr) {
-        if (character_ownerid <= 0 || isFFADrop()) {
+        if (character_ownerid <= 0 || isFFADrop())
+        {
             return true;
         }
 
-        if (party_ownerid == -1) {
-            if (chr.getId() == character_ownerid) {
-                return true;
-            } else if (chr.isPartyMember(character_ownerid)) {
-                party_ownerid = chr.getPartyId();
-                return true;
+        long currentTime = System.currentTimeMillis();
+        long timeSinceDrop = currentTime - dropTime;
+
+        // The first 10 seconds: Only the owner can pick up
+        if (timeSinceDrop < 10000)
+        {
+            if (chr.getId() == character_ownerid)
+            {
+                return true; // Owner can always pick it up
             }
-        } else {
-            if (chr.getPartyId() == party_ownerid) {
-                return true;
-            } else if (chr.getId() == character_ownerid) {
-                party_ownerid = chr.getPartyId();
-                return true;
-            }
+
+            return false; // Party members or others can't pick it up yet
         }
 
-        return hasExpiredOwnershipTime();
+        // Between 10 and 25 seconds Party members can pick it up
+        if (timeSinceDrop < 25000)
+        {
+            if (chr.getId() == character_ownerid || chr.getPartyId() == party_ownerid)
+            {
+                return true; // Owner or party members can pick it up
+            }
+
+            return false; // Other players can't pick it up yet
+        }
+
+        // After 25 seconds everyone can pick it up
+        return true;
     }
 
     public final Client getOwnerClient() {
