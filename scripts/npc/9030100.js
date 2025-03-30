@@ -31,7 +31,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
             // They chose cash storage
             case 1:
-            cm.sendSimple("#L0##e#rStore Items#n#k#l\r\n#L1##g#eRemove Items#n#k#l");
+            cm.sendSimple("#L0##e#bStore Items#n#k#l\r\n#L1##r#eRemove Items#n#k#l");
             break;
         }
     }
@@ -90,7 +90,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             selection = 0;
 
             // Default text at the top of the screen
-            defaultString = "You are currently #g#eSTORING#k#n items\r\n\r\n#L0#Swap to #e#rREMOVING#n#k items\r\n\r\nBelow are the items available to #e#gSTORE#n#k:\r\n";
+            defaultString = "You are currently #b#eSTORING#k#n items\r\n\r\n#L0#Swap to #e#rREMOVING#n#k items#l\r\n\r\nBelow are the items available to #e#bSTORE#n#k:\r\n";
 
             // Get the list of available cash items to store
             var cashItems = cm.getCashItems();
