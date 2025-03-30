@@ -90,7 +90,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             selection = 0;
 
             // Default text at the top of the screen
-            defaultString = "You are currently #b#eSTORING#k#n items\r\n\r\n#L0#Swap to #e#rREMOVING#n#k items#l\r\n\r\nBelow are the items available to #e#bSTORE#n#k:\r\n";
+            defaultString = "You are currently #b#eSTORING#k#n items#L0#Swap to #e#rREMOVING#n#k items#l\r\n\r\nBelow are the items available to #e#bSTORE#n#k:\r\n";
 
             // Get the list of available cash items to store
             var cashItems = cm.getCashItems();
