@@ -1361,7 +1361,7 @@ public class MapleMap {
             npc.setCy(pos.y);
             npc.setRx0(pos.x + 50);
             npc.setRx1(pos.x - 50);
-            // npc.setFh(map.getFootholds().findBelow(pos).getId());
+            npc.setFh(map.getFootholds().findBelow(pos).getId());
             map.addMapObject(npc);
             map.broadcastMessage(PacketCreator.spawnNPC(npc));
         }
@@ -1473,7 +1473,7 @@ public class MapleMap {
 
             // Spawn NPC
             MapleMap source = new MapleMap(mapid, world, channel, returnMapId, monsterRate);
-            Point targetPosition = new Point(monster.getPosition());
+            Point targetPosition = new Point(chr.getPosition());
             spawnNpc(2040036, targetPosition, source);
 
             /*
