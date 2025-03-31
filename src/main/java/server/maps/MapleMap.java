@@ -1469,8 +1469,25 @@ public class MapleMap {
             npc.setFh(fh);
 
             // Create and Broadcast
-            monster.getMap().addMapObject(npc);
-            monster.getMap().broadcastMessage(PacketCreator.spawnNPC(npc));
+            MapleMap map = monster.getMap();
+            map.addMapObject(npc);
+            map.broadcastMessage(PacketCreator.spawnNPC(npc));
+
+            // Schedule NPC removal using TimerManager
+            Runnable removeNpcTask = new Runnable() {
+                @Override
+                public void run() {
+                    if (npc != null && map != null)
+                    {
+                        // Remove the NPC from the map
+                        map.removeMapObject(npc);
+                        map.broadcastMessage(PacketCreator.removeNPC(npc.getObjectId()));
+                    }
+                }
+            };
+
+            // Use TimerManager to schedule the removal task after 30 seconds
+            TimerManager.getInstance().schedule(removeNpcTask, 30 * 1000); // 30 seconds in milliseconds
 
             /*
             // Create new portal object
