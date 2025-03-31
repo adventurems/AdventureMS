@@ -1351,23 +1351,6 @@ public class MapleMap {
     }
 
     // AdventureMS Custom
-    private void spawnNpc(int npcId, Point pos, MapleMap map, Monster monster)
-    {
-        NPC npc = LifeFactory.getNPC(npcId);
-
-        if (npc != null)
-        {
-            npc.setPosition(pos);
-            npc.setCy(pos.y);
-            npc.setRx0(pos.x + 50);
-            npc.setRx1(pos.x - 50);
-            npc.setFh(monster.getMap().getFootholds().findBelow(pos).getId());
-            map.addMapObject(npc);
-            map.broadcastMessage(PacketCreator.spawnNPC(npc));
-        }
-    }
-
-    // AdventureMS Custom
     public void killMonster(final Monster monster, final Character chr, final boolean withDrops, int animation, short dropDelay)
     {
         // Edge case checks
@@ -1471,10 +1454,23 @@ public class MapleMap {
                 }
             }
 
-            // Spawn NPC
-            MapleMap source = new MapleMap(mapid, world, channel, returnMapId, monsterRate);
-            Point targetPosition = new Point(monster.getPosition());
-            spawnNpc(2040036, targetPosition, source, monster);
+            // Find coordinates
+            Point checkpos = monster.getMap().getGroundBelow(monster.getPosition());
+            int xpos = checkpos.x;
+            int ypos = checkpos.y;
+            int fh = chr.getMap().getFootholds().findBelow(checkpos).getId();
+
+            // Build NPC
+            NPC npc = LifeFactory.getNPC(2040036);
+            npc.setPosition(checkpos);
+            npc.setCy(ypos);
+            npc.setRx0(xpos + 50);
+            npc.setRx1(xpos - 50);
+            npc.setFh(fh);
+
+            // Create and Broadcast
+            monster.getMap().addMapObject(npc);
+            monster.getMap().broadcastMessage(PacketCreator.spawnNPC(npc));
 
             /*
             // Create new portal object
