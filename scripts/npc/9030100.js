@@ -268,7 +268,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 {
                     // Set variableString
                     var capString = "#eCaps#n\r\n";
-                    var accString = "#eAccessories#n\r\n"
+                    var accString = "\r\n\r\n#eAccessories#n\r\n"
                     var earringsString = "\r\n\r\n#eEarrings#n\r\n";
                     var topString = "\r\n\r\n#eTops#n\r\n";
                     var overallString = "\r\n\r\n#eOveralls#n\r\n";
@@ -281,6 +281,23 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                     var pendantString = "\r\n\r\n#ePendants#n\r\n";
                     var weaponString = "\r\n\r\n#eWeapons#n\r\n";
                     var throwableString = "\r\n\r\n#eThrowables#n\r\n";
+
+                    // Set Counters
+                    var cap = 0;
+                    var acc = 0;
+                    var earring = 0;
+                    var top = 0;
+                    var overall = 0;
+                    var bottom = 0;
+                    var shoes = 0;
+                    var gloves = 0;
+                    var shield = 0;
+                    var cape = 0;
+                    var ring = 0;
+                    var pendant = 0;
+                    var weapon = 0;
+                    var throwable = 0;
+
 
                     // Iterate through cashStorage
                     for (var i = 0; i < storageItems.length; i++)
@@ -305,51 +322,63 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                             {
                                 case "100":
                                     capString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
+                                    cap++;  // Increment the cap counter
                                     break;
 
                                 case "101":
                                 case "102":
                                     accString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
+                                    acc++;  // Increment the acc counter
                                     break;
 
                                 case "103":
                                     earringsString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
+                                    earring++;  // Increment the earring counter
                                     break;
 
                                 case "104":
                                     topString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
+                                    top++;  // Increment the top counter
                                     break;
 
                                 case "105":
                                     overallString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
+                                    overall++;  // Increment the overall counter
                                     break;
 
                                 case "106":
                                     bottomString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
+                                    bottom++;  // Increment the bottom counter
                                     break;
 
                                 case "107":
                                     shoesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
+                                    shoes++;  // Increment the shoes counter
                                     break;
 
                                 case "108":
                                     glovesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
+                                    gloves++;  // Increment the gloves counter
                                     break;
 
                                 case "109":
                                     shieldString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
+                                    shield++;  // Increment the shield counter
                                     break;
 
                                 case "110":
                                     capeString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
+                                    cape++;  // Increment the cape counter
                                     break;
 
                                 case "111":
                                     ringString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
+                                    ring++;  // Increment the ring counter
                                     break;
 
                                 case "112":
                                     pendantString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
+                                    pendant++;  // Increment the pendant counter
                                     break;
 
                                 case "130":
@@ -367,6 +396,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                                 case "148":
                                 case "149":
                                     weaponString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
+                                    weapon++;  // Increment the weapon counter
                                     break;
                             }
                         }
@@ -378,51 +408,63 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                             {
                                 case "100":
                                     capString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                                    cap++;  // Increment the cap counter
                                     break;
 
                                 case "101":
                                 case "102":
                                     accString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                                    acc++;  // Increment the acc counter
                                     break;
 
                                 case "103":
                                     earringsString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                                    earring++;  // Increment the earring counter
                                     break;
 
                                 case "104":
                                     topString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                                    top++;  // Increment the top counter
                                     break;
 
                                 case "105":
                                     overallString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                                    overall++;  // Increment the overall counter
                                     break;
 
                                 case "106":
                                     bottomString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                                    bottom++;  // Increment the bottom counter
                                     break;
 
                                 case "107":
                                     shoesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                                    shoes++;  // Increment the shoes counter
                                     break;
 
                                 case "108":
                                     glovesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                                    gloves++;  // Increment the gloves counter
                                     break;
 
                                 case "109":
                                     shieldString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                                    shield++;  // Increment the shield counter
                                     break;
 
                                 case "110":
                                     capeString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                                    cape++;  // Increment the cape counter
                                     break;
 
                                 case "111":
                                     ringString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                                    ring++;  // Increment the ring counter
                                     break;
 
                                 case "112":
                                     pendantString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                                    pendant++;  // Increment the pendant counter
                                     break;
 
                                 case "130":
@@ -440,13 +482,27 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                                 case "148":
                                 case "149":
                                     weaponString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                                    weapon++;  // Increment the weapon counter
                                     break;
                             }
                         }
                     }
 
-                    // Build full string
-                    var finalString = defaultString += capString + accString + earringsString + topString + overallString + bottomString + shoesString + glovesString + shieldString + capeString + ringString + pendantString + weaponString;
+                    // Build full string with condition checking the counter for each category
+                    var finalString = defaultString;
+                    if (cap > 0) finalString += capString;
+                    if (acc > 0) finalString += accString;
+                    if (earring > 0) finalString += earringsString;
+                    if (top > 0) finalString += topString;
+                    if (overall > 0) finalString += overallString;
+                    if (bottom > 0) finalString += bottomString;
+                    if (shoes > 0) finalString += shoesString;
+                    if (gloves > 0) finalString += glovesString;
+                    if (shield > 0) finalString += shieldString;
+                    if (cape > 0) finalString += capeString;
+                    if (ring > 0) finalString += ringString;
+                    if (pendant > 0) finalString += pendantString;
+                    if (weapon > 0) finalString += weaponString;
 
                     // Send the finalized string
                     cm.sendSimple(finalString);
