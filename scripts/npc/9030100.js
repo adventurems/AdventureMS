@@ -266,6 +266,22 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
                 else
                 {
+                    // Set variableString
+                    var capString = "#eCaps#n\r\n";
+                    var accString = "#eAccessories#n\r\n"
+                    var earringsString = "\r\n\r\n#eEarrings#n\r\n";
+                    var topString = "\r\n\r\n#eTops#n\r\n";
+                    var overallString = "\r\n\r\n#eOveralls#n\r\n";
+                    var bottomString = "\r\n\r\n#eBottoms#n\r\n";
+                    var shoesString = "\r\n\r\n#eShoes#n\r\n";
+                    var glovesString = "\r\n\r\n#eGloves#n\r\n";
+                    var shieldString = "\r\n\r\n#eShields#n\r\n";
+                    var capeString = "\r\n\r\n#eCapes#n\r\n";
+                    var ringString = "\r\n\r\n#eRings#n\r\n";
+                    var pendantString = "\r\n\r\n#ePendants#n\r\n";
+                    var weaponString = "\r\n\r\n#eWeapons#n\r\n";
+                    var throwableString = "\r\n\r\n#eThrowables#n\r\n";
+
                     // Iterate through cashStorage
                     for (var i = 0; i < storageItems.length; i++)
                     {
@@ -278,20 +294,162 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                         // Store Key / Map appropriately
                         removableItems.push({itemId: itemId, quantity: quantity});
 
+                        // Get the prefix from itemId (first 3 characters)
+                        var itemPrefix = itemId.substring(0, 3);
+
                         // Append the item display string for the item
                         if (quantity > 1)
                         {
-                            defaultString += "\r\n" + "#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
+                            // Use a switch statement based on itemPrefix
+                            switch (itemPrefix)
+                            {
+                                case "100":
+                                    capString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    break;
+
+                                case "101":
+                                case "102":
+                                    accString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    break;
+
+                                case "103":
+                                    earringsString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    break;
+
+                                case "104":
+                                    topString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    break;
+
+                                case "105":
+                                    overallString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    break;
+
+                                case "106":
+                                    bottomString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    break;
+
+                                case "107":
+                                    shoesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    break;
+
+                                case "108":
+                                    glovesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    break;
+
+                                case "109":
+                                    shieldString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    break;
+
+                                case "110":
+                                    capeString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    break;
+
+                                case "111":
+                                    ringString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    break;
+
+                                case "112":
+                                    pendantString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    break;
+
+                                case "130":
+                                case "132":
+                                case "133":
+                                case "137":
+                                case "138":
+                                case "140":
+                                case "142":
+                                case "143":
+                                case "144":
+                                case "145":
+                                case "146":
+                                case "147":
+                                case "148":
+                                case "149":
+                                    weaponString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    break;
+                            }
                         }
 
                         else
                         {
-                            defaultString += "\r\n" + "#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                            // Use a switch statement based on itemPrefix
+                            switch (itemPrefix)
+                            {
+                                case "100":
+                                    capString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    break;
+
+                                case "101":
+                                case "102":
+                                    accString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    break;
+
+                                case "103":
+                                    earringsString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    break;
+
+                                case "104":
+                                    topString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    break;
+
+                                case "105":
+                                    overallString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    break;
+
+                                case "106":
+                                    bottomString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    break;
+
+                                case "107":
+                                    shoesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    break;
+
+                                case "108":
+                                    glovesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    break;
+
+                                case "109":
+                                    shieldString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    break;
+
+                                case "110":
+                                    capeString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    break;
+
+                                case "111":
+                                    ringString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    break;
+
+                                case "112":
+                                    pendantString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    break;
+
+                                case "130":
+                                case "132":
+                                case "133":
+                                case "137":
+                                case "138":
+                                case "140":
+                                case "142":
+                                case "143":
+                                case "144":
+                                case "145":
+                                case "146":
+                                case "147":
+                                case "148":
+                                case "149":
+                                    weaponString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    break;
+                            }
                         }
                     }
 
+                    // Build full string
+                    var finalString = defaultString += capString + earringsString + topString + overallString + bottomString + shoesString + glovesString + shieldString + capeString + ringString + pendantString + medalString + etcString + consumeString + scrollString + throwableString + cashString + weaponString;
+
                     // Send the finalized string
-                    cm.sendSimple(defaultString);
+                    cm.sendSimple(finalString);
 
                     // Move us back one status so when we click, we come back here
                     status = 1;
