@@ -505,7 +505,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                     if (weapon > 0) finalString += weaponString;
 
                     // Send the finalized string
-                    cm.sendSimple(finalString);
+                    cm.sendSimple("#w" + finalString);
 
                     // Move us back one status so when we click, we come back here
                     status = 1;
