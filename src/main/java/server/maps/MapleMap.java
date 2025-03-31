@@ -1454,14 +1454,12 @@ public class MapleMap {
 
             // Chance to spawn portal
             Random randy = new Random();
-            final var portalCheck = randy.nextInt(10);
+            final var portalCheck = randy.nextInt(1);
 
-            if (portalCheck == 2)
+            if (portalCheck == 1)
             {
-                for (Character character : characters)
-                {
-                    character.sendPacket(PacketCreator.spawnPortal(100000203, 0, monster.getPosition()));
-                }
+                broadcastPacket(chr, PacketCreator.spawnPortal(100000203, 0, monster.getPosition()));
+                chr.yellowMessage("Portal spawned.");
             }
         }
         catch (Exception e)
