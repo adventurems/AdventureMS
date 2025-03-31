@@ -1481,7 +1481,16 @@ public class MapleMap {
                     {
                         // Remove the NPC from the map
                         map.removeMapObject(npc);
+
+                        // Broadcast the NPC removal to all players
                         map.broadcastMessage(PacketCreator.removeNPC(npc.getObjectId()));
+
+                        // Force a refresh/update for all players currently in the map
+                        for (Character player : map.getCharacters()) {
+                            if (player.getClient() != null) {
+                                player.getClient().sendPacket(PacketCreator.removeNPC(npc.getObjectId()));
+                            }
+                        }
                     }
                 }
             };
