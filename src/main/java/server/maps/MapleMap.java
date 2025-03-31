@@ -1455,7 +1455,7 @@ public class MapleMap {
             }
 
             // Create new portal object
-            MapPortal newPortal = new MapPortal();
+            GenericPortal newPortal = new GenericPortal(6);
 
             // Set properties for the portal
             newPortal.setName("Dungeon Entrance");
