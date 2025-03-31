@@ -1454,26 +1454,16 @@ public class MapleMap {
                 }
             }
 
-
             // Create new portal object
-            GenericPortal newPortal = new GenericPortal(2);
-
-            // Set properties for the portal
-            newPortal.setName("Dungeon Entrance");
-            newPortal.setId(50);
-            newPortal.setPosition(new Point(monster.getPosition()));
-            newPortal.setTarget("out00");
-            newPortal.setTargetMapId(100000203); // Example map ID
-            // newPortal.setScriptName("myPortalScript"); // Optional: set a script name for custom behavior
-            newPortal.setPortalState(true);
-
-            // Add the portal to the current map's portals HashMap
-            addPortal(newPortal);
-            // portals.put(newPortal.getId(), newPortal);
+            MapleMap destination = new MapleMap(100000203, world, channel, returnMapId, monsterRate);
+            MapleMap source = new MapleMap(mapid, world, channel, returnMapId, monsterRate);
+            Point targetPosition = new Point(monster.getPosition());
+            Point toPosition = new Point();
+            DoorObject monsterDungeon = new DoorObject(chr.getId(),destination, source, 0, targetPosition, toPosition);
 
             // Broadcast the portal packet to all players on the map
-            monster.getMap().addMapObject((MapObject) newPortal);
-            broadcastPacket(null, PacketCreator.spawnPortal(newPortal.getTargetMapId(), 0, monster.getPosition()));
+            monster.getMap().addMapObject(monsterDungeon);
+            broadcastPacket(null, PacketCreator.spawnDoor(chr.getId(), targetPosition, true));
             chr.yellowMessage("Portal spawned.");
         }
 
