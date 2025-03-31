@@ -446,7 +446,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                     }
 
                     // Build full string
-                    var finalString = defaultString += capString + earringsString + topString + overallString + bottomString + shoesString + glovesString + shieldString + capeString + ringString + pendantString + medalString + etcString + consumeString + scrollString + throwableString + cashString + weaponString;
+                    var finalString = defaultString += capString + accString + earringsString + topString + overallString + bottomString + shoesString + glovesString + shieldString + capeString + ringString + pendantString + weaponString;
 
                     // Send the finalized string
                     cm.sendSimple(finalString);
