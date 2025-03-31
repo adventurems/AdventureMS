@@ -1470,7 +1470,7 @@ public class MapleMap {
             portals.put(newPortal.getId(), newPortal); // Add the portal by its ID
 
             // Broadcast the portal packet to all players on the map
-            broadcastPacket(chr, PacketCreator.spawnPortal(this.mapid, newPortal.getTargetMapId(), monster.getPosition()));
+            broadcastPacket(chr, PacketCreator.spawnPortal(newPortal.getTargetMapId(), 0, monster.getPosition()));
             chr.yellowMessage("Portal spawned.");
         }
 
