@@ -295,7 +295,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                         removableItems.push({itemId: itemId, quantity: quantity});
 
                         // Get the prefix from itemId (first 3 characters)
-                        var itemPrefix = itemId.substring(0, 3);
+                        var itemPrefix = String(itemId).substring(0, 3);
 
                         // Append the item display string for the item
                         if (quantity > 1)
