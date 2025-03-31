@@ -47,6 +47,8 @@ import net.server.world.Party;
 import net.server.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import provider.Data;
+import provider.DataTool;
 import scripting.event.EventInstanceManager;
 import scripting.map.MapScriptManager;
 import server.ItemInformationProvider;
@@ -1452,17 +1454,26 @@ public class MapleMap {
                 }
             }
 
-            // Chance to spawn portal
-            Random randy = new Random();
-            final var portalCheck = randy.nextInt(2);
-            chr.yellowMessage("Monster dead!");
+            // Instantiate a new GenericPortal object with a specific type
+            GenericPortal newPortal = new GenericPortal(2); // Type 1, for example
 
-            if (portalCheck == 1)
-            {
-                broadcastPacket(chr, PacketCreator.spawnPortal(100000203, 0, monster.getPosition()));
-                chr.yellowMessage("Portal spawned.");
-            }
+            // Set properties for the portal
+            newPortal.setName("Dungeon Entrance");
+            newPortal.setId(50);
+            newPortal.setPosition(new Point(monster.getPosition()));
+            newPortal.setTarget("out00");
+            newPortal.setTargetMapId(100000203); // Example map ID
+            // newPortal.setScriptName("myPortalScript"); // Optional: set a script name for custom behavior
+            newPortal.setPortalState(true);
+
+            // Add the portal to the current map's portals HashMap
+            portals.put(newPortal.getId(), newPortal); // Add the portal by its ID
+
+            // Broadcast the portal packet to all players on the map
+            broadcastPacket(chr, PacketCreator.spawnPortal(this.mapid, newPortal.getTargetMapId(), monster.getPosition()));
+            chr.yellowMessage("Portal spawned.");
         }
+
         catch (Exception e)
         {
             e.printStackTrace();
