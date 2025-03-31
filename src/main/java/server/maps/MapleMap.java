@@ -1473,7 +1473,7 @@ public class MapleMap {
 
             // Spawn NPC
             MapleMap source = new MapleMap(mapid, world, channel, returnMapId, monsterRate);
-            Point targetPosition = new Point(chr.getPosition());
+            Point targetPosition = new Point((int) monster.getPosition().getX(), (int) monster.getPosition().getY() - 5);
             spawnNpc(2040036, targetPosition, source);
 
             /*
