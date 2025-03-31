@@ -1454,6 +1454,7 @@ public class MapleMap {
                 }
             }
 
+
             // Create new portal object
             GenericPortal newPortal = new GenericPortal(2);
 
@@ -1471,6 +1472,7 @@ public class MapleMap {
             // portals.put(newPortal.getId(), newPortal);
 
             // Broadcast the portal packet to all players on the map
+            monster.getMap().addMapObject((MapObject) newPortal);
             broadcastPacket(null, PacketCreator.spawnPortal(newPortal.getTargetMapId(), 0, monster.getPosition()));
             chr.yellowMessage("Portal spawned.");
         }
