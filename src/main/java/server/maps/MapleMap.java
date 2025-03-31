@@ -1351,6 +1351,23 @@ public class MapleMap {
     }
 
     // AdventureMS Custom
+    private void spawnNpc(int npcId, Point pos, MapleMap map)
+    {
+        NPC npc = LifeFactory.getNPC(npcId);
+
+        if (npc != null)
+        {
+            npc.setPosition(pos);
+            npc.setCy(pos.y);
+            npc.setRx0(pos.x + 50);
+            npc.setRx1(pos.x - 50);
+            npc.setFh(map.getFootholds().findBelow(pos).getId());
+            map.addMapObject(npc);
+            map.broadcastMessage(PacketCreator.spawnNPC(npc));
+        }
+    }
+
+    // AdventureMS Custom
     public void killMonster(final Monster monster, final Character chr, final boolean withDrops, int animation, short dropDelay)
     {
         // Edge case checks
@@ -1454,6 +1471,12 @@ public class MapleMap {
                 }
             }
 
+            // Spawn NPC
+            MapleMap source = new MapleMap(mapid, world, channel, returnMapId, monsterRate);
+            Point targetPosition = new Point(monster.getPosition());
+            spawnNpc(2040036, targetPosition, source);
+
+            /*
             // Create new portal object
             MapleMap destination = new MapleMap(100000203, world, channel, returnMapId, monsterRate);
             MapleMap source = new MapleMap(mapid, world, channel, returnMapId, monsterRate);
@@ -1463,7 +1486,7 @@ public class MapleMap {
             // Broadcast the portal packet to all players on the map
             monster.getMap().addMapObject(monsterDungeon);
             broadcastPacket(null, PacketCreator.spawnDoor(chr.getId(), targetPosition, true));
-            chr.yellowMessage("Portal spawned.");
+            chr.yellowMessage("Portal spawned.");*/
         }
 
         catch (Exception e)
