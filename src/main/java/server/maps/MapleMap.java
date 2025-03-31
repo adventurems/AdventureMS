@@ -1454,7 +1454,8 @@ public class MapleMap {
 
             // Chance to spawn portal
             Random randy = new Random();
-            final var portalCheck = randy.nextInt(1);
+            final var portalCheck = randy.nextInt(2);
+            chr.yellowMessage("Monster dead!");
 
             if (portalCheck == 1)
             {
