@@ -1361,7 +1361,7 @@ public class MapleMap {
             npc.setCy(pos.y);
             npc.setRx0(pos.x + 50);
             npc.setRx1(pos.x - 50);
-            npc.setFh(map.getFootholds().findBelow(pos).getId());
+            // npc.setFh(map.getFootholds().findBelow(pos).getId());
             map.addMapObject(npc);
             map.broadcastMessage(PacketCreator.spawnNPC(npc));
         }
