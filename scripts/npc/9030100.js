@@ -304,52 +304,52 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                             switch (itemPrefix)
                             {
                                 case "100":
-                                    capString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    capString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                                     break;
 
                                 case "101":
                                 case "102":
-                                    accString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    accString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                                     break;
 
                                 case "103":
-                                    earringsString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    earringsString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                                     break;
 
                                 case "104":
-                                    topString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    topString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                                     break;
 
                                 case "105":
-                                    overallString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    overallString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                                     break;
 
                                 case "106":
-                                    bottomString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    bottomString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                                     break;
 
                                 case "107":
-                                    shoesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    shoesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                                     break;
 
                                 case "108":
-                                    glovesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    glovesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                                     break;
 
                                 case "109":
-                                    shieldString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    shieldString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                                     break;
 
                                 case "110":
-                                    capeString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    capeString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                                     break;
 
                                 case "111":
-                                    ringString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    ringString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                                     break;
 
                                 case "112":
-                                    pendantString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    pendantString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                                     break;
 
                                 case "130":
@@ -366,7 +366,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                                 case "147":
                                 case "148":
                                 case "149":
-                                    weaponString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l");
+                                    weaponString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                                     break;
                             }
                         }
@@ -377,52 +377,52 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                             switch (itemPrefix)
                             {
                                 case "100":
-                                    capString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    capString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
                                     break;
 
                                 case "101":
                                 case "102":
-                                    accString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    accString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
                                     break;
 
                                 case "103":
-                                    earringsString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    earringsString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
                                     break;
 
                                 case "104":
-                                    topString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    topString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
                                     break;
 
                                 case "105":
-                                    overallString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    overallString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
                                     break;
 
                                 case "106":
-                                    bottomString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    bottomString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
                                     break;
 
                                 case "107":
-                                    shoesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    shoesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
                                     break;
 
                                 case "108":
-                                    glovesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    glovesString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
                                     break;
 
                                 case "109":
-                                    shieldString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    shieldString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
                                     break;
 
                                 case "110":
-                                    capeString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    capeString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
                                     break;
 
                                 case "111":
-                                    ringString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    ringString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
                                     break;
 
                                 case "112":
-                                    pendantString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    pendantString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
                                     break;
 
                                 case "130":
@@ -439,7 +439,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                                 case "147":
                                 case "148":
                                 case "149":
-                                    weaponString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l");
+                                    weaponString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
                                     break;
                             }
                         }
