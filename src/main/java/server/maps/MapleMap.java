@@ -1458,8 +1458,7 @@ public class MapleMap {
             MapleMap destination = new MapleMap(100000203, world, channel, returnMapId, monsterRate);
             MapleMap source = new MapleMap(mapid, world, channel, returnMapId, monsterRate);
             Point targetPosition = new Point(monster.getPosition());
-            Point toPosition = new Point();
-            DoorObject monsterDungeon = new DoorObject(chr.getId(),destination, source, 0, targetPosition, toPosition);
+            DoorObject monsterDungeon = new DoorObject(chr.getId(),destination, source, 0, targetPosition, targetPosition);
 
             // Broadcast the portal packet to all players on the map
             monster.getMap().addMapObject(monsterDungeon);
