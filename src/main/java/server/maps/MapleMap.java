@@ -1455,7 +1455,7 @@ public class MapleMap {
             }
 
             // Instantiate a new GenericPortal object with a specific type
-            GenericPortal newPortal = new GenericPortal(2); // Type 1, for example
+            GenericPortal newPortal = new GenericPortal(1);
 
             // Set properties for the portal
             newPortal.setName("Dungeon Entrance");
