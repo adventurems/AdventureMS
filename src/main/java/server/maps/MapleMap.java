@@ -233,10 +233,6 @@ public class MapleMap {
         broadcastPacket(packet, chr -> chr != source);
     }
 
-    public void broadcastGMPacket(Character source, Packet packet) {
-        broadcastPacket(packet, chr -> chr != source && chr.gmLevel() >= source.gmLevel());
-    }
-
     private void broadcastPacket(Packet packet, Predicate<Character> chrFilter) {
         chrRLock.lock();
         try {
@@ -246,6 +242,10 @@ public class MapleMap {
         } finally {
             chrRLock.unlock();
         }
+    }
+
+    public void broadcastGMPacket(Character source, Packet packet) {
+        broadcastPacket(packet, chr -> chr != source && chr.gmLevel() >= source.gmLevel());
     }
 
     public void toggleDrops() {
@@ -1455,7 +1455,7 @@ public class MapleMap {
             }
 
             // Create new portal object
-            GenericPortal newPortal = new GenericPortal(6);
+            GenericPortal newPortal = new GenericPortal(2);
 
             // Set properties for the portal
             newPortal.setName("Dungeon Entrance");
@@ -1471,7 +1471,7 @@ public class MapleMap {
             // portals.put(newPortal.getId(), newPortal);
 
             // Broadcast the portal packet to all players on the map
-            broadcastPacket(chr, PacketCreator.spawnPortal(newPortal.getTargetMapId(), 0, monster.getPosition()));
+            broadcastPacket(null, PacketCreator.spawnPortal(newPortal.getTargetMapId(), 0, monster.getPosition()));
             chr.yellowMessage("Portal spawned.");
         }
 
