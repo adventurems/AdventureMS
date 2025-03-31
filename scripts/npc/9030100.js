@@ -267,7 +267,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 else
                 {
                     // Set variableString
-                    var capString = "#eCaps#n\r\n";
+                    var capString = "\r\n#eCaps#n";
                     var accString = "\r\n\r\n\r\n#eAccessories#n"
                     var earringsString = "\r\n\r\n#eEarrings#n";
                     var topString = "\r\n\r\n#eTops#n";
