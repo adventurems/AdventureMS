@@ -1348,47 +1348,42 @@ public class MapleMap {
         killMonster(monster, chr, withDrops, 1, dropDelay);
     }
 
-    public void killMonster(final Monster monster, final Character chr, final boolean withDrops, int animation,
-                            short dropDelay) {
-        if (monster == null) {
-            return;
-        }
-
-        if (chr == null) {
-            if (removeKilledMonsterObject(monster)) {
+    // AdventureMS Custom
+    public void killMonster(final Monster monster, final Character chr, final boolean withDrops, int animation, short dropDelay)
+    {
+        // Edge case checks
+        if (monster == null) {return;}
+        if (chr == null)
+        {
+            if (removeKilledMonsterObject(monster))
+            {
                 monster.dispatchMonsterKilled(false);
                 broadcastMessage(PacketCreator.killMonster(monster.getObjectId(), animation), monster.getPosition());
                 monster.aggroSwitchController(null, false);
             }
             return;
         }
+        if (!removeKilledMonsterObject(monster)) {return;}
 
-        if (!removeKilledMonsterObject(monster)) {
-            return;
-        }
+        // Try to kill the monster
+        try
+        {
+            // Autoban alert
+            if (monster.getStats().getLevel() >= chr.getLevel() + 30 && !chr.isGM()) {AutobanFactory.GENERAL.alert(chr, " for killing a " + monster.getName() + " which is over 30 levels higher.");}
 
-        try {
-            if (monster.getStats().getLevel() >= chr.getLevel() + 30 && !chr.isGM()) {
-                AutobanFactory.GENERAL.alert(chr, " for killing a " + monster.getName() + " which is over 30 levels higher.");
-            }
+            // CPQ handling
+            if (monster.getCP() > 0 && chr.getMap().isCPQMap()) {chr.gainCP(monster.getCP());}
 
-                    /*if (chr.getQuest(Quest.getInstance(29400)).getStatus().equals(QuestStatus.Status.STARTED)) {
-                     if (chr.getLevel() >= 120 && monster.getStats().getLevel() >= 120) {
-                     //FIX MEDAL SHET
-                     } else if (monster.getStats().getLevel() >= chr.getLevel()) {
-                     }
-                     }*/
-
-            if (monster.getCP() > 0 && chr.getMap().isCPQMap()) {
-                chr.gainCP(monster.getCP());
-            }
-
+            // Monster Buff to Player on Death
             int buff = monster.getBuffToGive();
-            if (buff > -1) {
+            if (buff > -1)
+            {
                 ItemInformationProvider mii = ItemInformationProvider.getInstance();
-                for (MapObject mmo : this.getPlayers()) {
+                for (MapObject mmo : this.getPlayers())
+                {
                     Character character = (Character) mmo;
-                    if (character.isAlive()) {
+                    if (character.isAlive())
+                    {
                         StatEffect statEffect = mii.getItemEffect(buff);
                         character.sendPacket(PacketCreator.showOwnBuffEffect(buff, 1));
                         broadcastMessage(character, PacketCreator.showBuffEffect(character.getId(), buff, 1), false);
@@ -1397,25 +1392,34 @@ public class MapleMap {
                 }
             }
 
-            if (MobId.isZakumArm(monster.getId())) {
+            // Zakum Arm Checks
+            if (MobId.isZakumArm(monster.getId()))
+            {
                 boolean makeZakReal = true;
                 Collection<MapObject> objects = getMapObjects();
-                for (MapObject object : objects) {
+                for (MapObject object : objects)
+                {
                     Monster mons = getMonsterByOid(object.getObjectId());
-                    if (mons != null) {
-                        if (MobId.isZakumArm(mons.getId())) {
+                    if (mons != null)
+                    {
+                        if (MobId.isZakumArm(mons.getId()))
+                        {
                             makeZakReal = false;
                             break;
                         }
                     }
                 }
-                if (makeZakReal) {
+
+                if (makeZakReal)
+                {
                     MapleMap map = chr.getMap();
 
-                    for (MapObject object : objects) {
+                    for (MapObject object : objects)
+                    {
                         Monster mons = map.getMonsterByOid(object.getObjectId());
                         if (mons != null) {
-                            if (mons.getId() == MobId.ZAKUM_1) {
+                            if (mons.getId() == MobId.ZAKUM_1)
+                            {
                                 makeMonsterReal(mons);
                                 break;
                             }
@@ -1424,29 +1428,51 @@ public class MapleMap {
                 }
             }
 
+            // Assign drop owner
             Character dropOwner = monster.killBy(chr);
-            if (withDrops && !monster.dropsDisabled()) {
-                if (dropOwner == null) {
+            if (withDrops && !monster.dropsDisabled())
+            {
+                if (dropOwner == null)
+                {
                     dropOwner = chr;
                 }
+
                 dropFromMonster(dropOwner, monster, false, dropDelay);
             }
 
-            if (monster.hasBossHPBar()) {
-                for (Character mc : this.getAllPlayers()) {
-                    if (mc.getTargetHpBarHash() == monster.hashCode()) {
+            // Handle Boss HP Bar
+            if (monster.hasBossHPBar())
+            {
+                for (Character mc : this.getAllPlayers())
+                {
+                    if (mc.getTargetHpBarHash() == monster.hashCode())
+                    {
                         mc.resetPlayerAggro();
                     }
                 }
             }
-        } catch (Exception e) {
+
+            // Chance to spawn portal
+            Random randy = new Random();
+            final var portalCheck = randy.nextInt(10);
+
+            if (portalCheck == 2)
+            {
+                for (Character character : characters)
+                {
+                    character.sendPacket(PacketCreator.spawnPortal(100000203, 0, monster.getPosition()));
+                }
+            }
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
-        } finally {     // thanks resinate for pointing out a memory leak possibly from an exception thrown
+        }
+        finally // thanks resinate for pointing out a memory leak possibly from an exception thrown
+        {
             monster.dispatchMonsterKilled(true);
             broadcastMessage(PacketCreator.killMonster(monster.getObjectId(), animation), monster.getPosition());
         }
-
-
     }
 
     public void killFriendlies(Monster mob) {
