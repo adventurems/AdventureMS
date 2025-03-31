@@ -1454,8 +1454,8 @@ public class MapleMap {
                 }
             }
 
-            // Instantiate a new GenericPortal object with a specific type
-            GenericPortal newPortal = new GenericPortal(1);
+            // Create new portal object
+            MapPortal newPortal = new MapPortal();
 
             // Set properties for the portal
             newPortal.setName("Dungeon Entrance");
@@ -1467,7 +1467,8 @@ public class MapleMap {
             newPortal.setPortalState(true);
 
             // Add the portal to the current map's portals HashMap
-            portals.put(newPortal.getId(), newPortal); // Add the portal by its ID
+            addPortal(newPortal);
+            // portals.put(newPortal.getId(), newPortal);
 
             // Broadcast the portal packet to all players on the map
             broadcastPacket(chr, PacketCreator.spawnPortal(newPortal.getTargetMapId(), 0, monster.getPosition()));
