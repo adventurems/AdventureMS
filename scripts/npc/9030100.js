@@ -268,19 +268,19 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 {
                     // Set variableString
                     var capString = "#eCaps#n\r\n";
-                    var accString = "\r\n\r\n#eAccessories#n\r\n"
-                    var earringsString = "\r\n\r\n#eEarrings#n\r\n";
-                    var topString = "\r\n\r\n#eTops#n\r\n";
-                    var overallString = "\r\n\r\n#eOveralls#n\r\n";
-                    var bottomString = "\r\n\r\n#eBottoms#n\r\n";
-                    var shoesString = "\r\n\r\n#eShoes#n\r\n";
-                    var glovesString = "\r\n\r\n#eGloves#n\r\n";
-                    var shieldString = "\r\n\r\n#eShields#n\r\n";
-                    var capeString = "\r\n\r\n#eCapes#n\r\n";
-                    var ringString = "\r\n\r\n#eRings#n\r\n";
-                    var pendantString = "\r\n\r\n#ePendants#n\r\n";
-                    var weaponString = "\r\n\r\n#eWeapons#n\r\n";
-                    var throwableString = "\r\n\r\n#eThrowables#n\r\n";
+                    var accString = "\r\n\r\n\r\n#eAccessories#n"
+                    var earringsString = "\r\n\r\n#eEarrings#n";
+                    var topString = "\r\n\r\n#eTops#n";
+                    var overallString = "\r\n\r\n#eOveralls#n";
+                    var bottomString = "\r\n\r\n#eBottoms#n";
+                    var shoesString = "\r\n\r\n#eShoes#n";
+                    var glovesString = "\r\n\r\n#eGloves#n";
+                    var shieldString = "\r\n\r\n#eShields#n";
+                    var capeString = "\r\n\r\n#eCapes#n";
+                    var ringString = "\r\n\r\n#eRings#n";
+                    var pendantString = "\r\n\r\n#ePendants#n";
+                    var weaponString = "\r\n\r\n#eWeapons#n";
+                    var throwableString = "\r\n\r\n#eThrowables#n";
 
                     // Set Counters
                     var cap = 0;
