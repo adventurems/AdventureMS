@@ -1484,9 +1484,9 @@ public class MapleMap {
                         map.removeMapObject(npc);
 
                         // Broadcast the NPC removal to all players
+                        map.broadcastMessage(PacketCreator.npcUpdateLimitedInfo(npc.getObjectId(), false));
                         map.broadcastMessage(PacketCreator.removeNPCController(npc.getObjectId()));
                         map.broadcastMessage(PacketCreator.removeNPC(npc.getObjectId()));
-                        map.broadcastMessage(PacketCreator.npcUpdateLimitedInfo(npc.getObjectId(), true));
                         chr.yellowMessage("NPC deleted...");
                     }
                 }
