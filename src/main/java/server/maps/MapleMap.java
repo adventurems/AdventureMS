@@ -1473,7 +1473,7 @@ public class MapleMap {
             map.addMapObject(npc);
             map.broadcastMessage(PacketCreator.spawnNPC(npc));
             map.broadcastMessage(PacketCreator.npcUpdateLimitedInfo(npc.getObjectId(), true));
-            map.broadcastMessage(PacketCreator.mapSound("Effect/Field.img/Buyback/magician"));
+            map.broadcastMessage(PacketCreator.mapSound("Sound/Field.img/Buyback/magician"));
 
             // Schedule NPC removal
             Runnable removeNpcTask = new Runnable() {
