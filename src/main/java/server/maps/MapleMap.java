@@ -1461,7 +1461,7 @@ public class MapleMap {
             int fh = chr.getMap().getFootholds().findBelow(checkpos).getId();
 
             // Build NPC
-            NPC npc = LifeFactory.getNPC(2040036);
+            NPC npc = LifeFactory.getNPC(9800017);
             npc.setPosition(checkpos);
             npc.setCy(ypos);
             npc.setRx0(xpos + 50);
