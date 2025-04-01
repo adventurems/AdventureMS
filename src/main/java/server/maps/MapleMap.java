@@ -1473,8 +1473,9 @@ public class MapleMap {
             map.addMapObject(npc);
             map.broadcastMessage(PacketCreator.spawnNPC(npc));
             map.broadcastMessage(PacketCreator.npcUpdateLimitedInfo(npc.getObjectId(), true));
+            map.broadcastMessage(PacketCreator.mapSound("Effect/Field.img/Buyback/magician"));
 
-            // Schedule NPC removal using TimerManager
+            // Schedule NPC removal
             Runnable removeNpcTask = new Runnable() {
                 @Override
                 public void run() {
@@ -1482,11 +1483,7 @@ public class MapleMap {
                     {
                         // Remove the NPC from the map
                         map.removeMapObject(npc);
-
-                        // Broadcast the NPC removal to all players
                         map.broadcastMessage(PacketCreator.npcUpdateLimitedInfo(npc.getObjectId(), false));
-                        // map.broadcastMessage(PacketCreator.removeNPCController(npc.getObjectId()));
-                        // map.broadcastMessage(PacketCreator.removeNPC(npc.getObjectId()));
                     }
                 }
             };
