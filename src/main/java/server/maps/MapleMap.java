@@ -1471,7 +1471,7 @@ public class MapleMap {
             // Create and Broadcast
             MapleMap map = monster.getMap();
             map.addMapObject(npc);
-            map.broadcastMessage(PacketCreator.spawnNPC(npc));
+            // map.broadcastMessage(PacketCreator.spawnNPC(npc));
             map.broadcastMessage(PacketCreator.npcUpdateLimitedInfo(npc.getObjectId(), true));
 
             // Schedule NPC removal using TimerManager
@@ -1484,10 +1484,9 @@ public class MapleMap {
                         map.removeMapObject(npc);
 
                         // Broadcast the NPC removal to all players
-                        map.broadcastMessage(PacketCreator.removeNPCController(npc.getObjectId()));
                         map.broadcastMessage(PacketCreator.npcUpdateLimitedInfo(npc.getObjectId(), false));
-                        map.broadcastMessage(PacketCreator.removeNPC(npc.getObjectId()));
-                        chr.yellowMessage("NPC deleted...");
+                        // map.broadcastMessage(PacketCreator.removeNPCController(npc.getObjectId()));
+                        // map.broadcastMessage(PacketCreator.removeNPC(npc.getObjectId()));
                     }
                 }
             };
