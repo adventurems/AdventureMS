@@ -1464,8 +1464,8 @@ public class MapleMap {
             NPC npc = LifeFactory.getNPC(9800017);
             npc.setPosition(checkpos);
             npc.setCy(ypos);
-            npc.setRx0(xpos + 50);
-            npc.setRx1(xpos - 50);
+            npc.setRx0(xpos + 53);
+            npc.setRx1(xpos - 53);
             npc.setFh(fh);
 
             // Create and Broadcast
@@ -1490,7 +1490,7 @@ public class MapleMap {
             };
 
             // Use TimerManager to schedule the removal task after 30 seconds
-            TimerManager.getInstance().schedule(removeNpcTask, 5 * 1000); // 30 seconds in milliseconds
+            TimerManager.getInstance().schedule(removeNpcTask, 30000);
 
             /*
             // Create new portal object
