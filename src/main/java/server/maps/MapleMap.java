@@ -1471,7 +1471,7 @@ public class MapleMap {
             // Create and Broadcast
             MapleMap map = monster.getMap();
             map.addMapObject(npc);
-            // map.broadcastMessage(PacketCreator.spawnNPC(npc));
+            map.broadcastMessage(PacketCreator.spawnNPC(npc));
             map.broadcastMessage(PacketCreator.npcUpdateLimitedInfo(npc.getObjectId(), true));
 
             // Schedule NPC removal using TimerManager
