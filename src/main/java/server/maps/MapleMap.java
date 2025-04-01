@@ -1483,6 +1483,7 @@ public class MapleMap {
                         map.removeMapObject(npc);
 
                         // Broadcast the NPC removal to all players
+                        map.broadcastMessage(PacketCreator.removeNPCController(npc.getObjectId()));
                         map.broadcastMessage(PacketCreator.removeNPC(npc.getObjectId()));
                         chr.yellowMessage("NPC deleted...");
                     }
