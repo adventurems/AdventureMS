@@ -1484,6 +1484,7 @@ public class MapleMap {
                         // Remove the NPC from the map
                         map.removeMapObject(npc);
                         map.broadcastMessage(PacketCreator.npcUpdateLimitedInfo(npc.getObjectId(), false));
+                        map.broadcastMessage(PacketCreator.playSound("Portal/close"));
                     }
                 }
             };
