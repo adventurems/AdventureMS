@@ -6154,6 +6154,20 @@ public class PacketCreator {
         return p;
     }
 
+    public static Packet npcUpdateLimitedInfo(int npcObjectId, boolean enabled) {
+        OutPacket p = OutPacket.create(SendOpcode.NPC_UPDATE_LIMITED_INFO);
+        p.writeInt(npcObjectId);
+        p.writeBool(enabled);
+        return p;
+    }
+
+    public static Packet npcSpecialAction(int npcObjectId, String action) {
+        OutPacket p = OutPacket.create(SendOpcode.NPC_SPECIAL_ACTION);
+        p.writeInt(npcObjectId);
+        p.writeString(action);
+        return p;
+    }
+
     /**
      * Sends a report response
      * <p>
