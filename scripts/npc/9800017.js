@@ -1,5 +1,3 @@
-// Author: Pepa
-
 // AdventureMS DungeonPortal
 
 // Standard Status Code
