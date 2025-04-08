@@ -209,8 +209,8 @@ public final class TakeDamageHandler extends AbstractPacketHandler {
                 if (damagefrom == -1) {
                     if (chr.getBuffedValue(BuffStat.POWERGUARD) != null) { // PG works on bosses, but only at half of the rate.
                         int bouncedamage = (int) (damage * (chr.getBuffedValue(BuffStat.POWERGUARD).doubleValue()) / 100);
-                        bouncedamage = Math.min(bouncedamage, attacker.getMaxHp() / 10);
-                        damage -= bouncedamage;
+                        bouncedamage = Math.min(bouncedamage, attacker.getMaxHp());
+                        damage -= bouncedamage / 20;
                         map.damageMonster(chr, attacker, bouncedamage);
                         map.broadcastMessage(chr, PacketCreator.damageMonster(oid, bouncedamage), false, true);
                         attacker.aggroMonsterDamage(chr, bouncedamage);
