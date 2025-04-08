@@ -1454,6 +1454,7 @@ public class MapleMap {
                 }
             }
 
+            /*
             // Find coordinates
             Point checkpos = monster.getMap().getGroundBelow(monster.getPosition());
             int xpos = checkpos.x;
@@ -1491,18 +1492,7 @@ public class MapleMap {
 
             // Use TimerManager to schedule the removal task after 30 seconds
             TimerManager.getInstance().schedule(removeNpcTask, 30000);
-
-            /*
-            // Create new portal object
-            MapleMap destination = new MapleMap(100000203, world, channel, returnMapId, monsterRate);
-            MapleMap source = new MapleMap(mapid, world, channel, returnMapId, monsterRate);
-            Point targetPosition = new Point(monster.getPosition());
-            DoorObject monsterDungeon = new DoorObject(chr.getId(),destination, source, 0, targetPosition, targetPosition);
-
-            // Broadcast the portal packet to all players on the map
-            monster.getMap().addMapObject(monsterDungeon);
-            broadcastPacket(null, PacketCreator.spawnDoor(chr.getId(), targetPosition, true));
-            chr.yellowMessage("Portal spawned.");*/
+            */
         }
 
         catch (Exception e)
