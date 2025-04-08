@@ -132,23 +132,39 @@ public final class SpecialMoveHandler extends AbstractPacketHandler {
         if (p.available() == 5) {
             pos = new Point(p.readShort(), p.readShort());
         }
-        if (chr.isAlive()) {
-            if (skill.getId() != Priest.MYSTIC_DOOR) {
-                if (skill.getId() % 10000000 != 1005) {
+        if (chr.isAlive())
+        {
+            if (skill.getId() != Priest.MYSTIC_DOOR)
+            {
+                if (skill.getId() % 10000000 != 1005)
+                {
                     skill.getEffect(skillLevel).applyTo(chr, pos);
-                } else {
+                }
+
+                else
+                {
                     skill.getEffect(skillLevel).applyEchoOfHero(chr);
                 }
-            } else {
-                if (c.tryacquireClient()) {
+            }
+            else
+            {
+                if (c.tryacquireClient())
+                {
                     try {
-                        if (chr.canDoor()) {
+                        if (chr.canDoor())
+                        {
                             chr.cancelMagicDoor();
                             skill.getEffect(skillLevel).applyTo(chr, pos);
-                        } else {
+                        }
+
+                        else
+                        {
                             chr.message("Please wait 5 seconds before casting Mystic Door again.");
                         }
-                    } finally {
+                    }
+
+                    finally
+                    {
                         c.releaseClient();
                     }
                 }
