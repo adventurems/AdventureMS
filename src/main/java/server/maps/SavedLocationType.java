@@ -23,7 +23,7 @@ package server.maps;
 
 public enum SavedLocationType {
     FREE_MARKET,
-    DUNGEON_PORTAL,
+    // DUNGEON_PORTAL,
     WORLDTOUR,
     FLORINA,
     INTRO,

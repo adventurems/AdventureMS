@@ -4,5 +4,5 @@
 function start()
 {
     // Store Current Map
-    pi.getPlayer().saveLocation("DUNGEON_PORTAL");
+    // pi.getPlayer().saveLocation("DUNGEON_PORTAL");
 }
