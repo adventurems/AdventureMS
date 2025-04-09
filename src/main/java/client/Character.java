@@ -5355,7 +5355,7 @@ public class Character extends AbstractCharacterObject {
     public int getPoisonDamage(Skill skill)
     {
         int poisonLevel = getSkillLevel(skill);
-        double poisonMastery = (skill.getMastery(poisonLevel) * .6);
+        double poisonMastery = (skill.getMastery(poisonLevel));
         int spellDamage = skill.getSpellMAD(poisonLevel);
         int playerTMA = getTotalMagic();
         int playerINT = getTotalInt();

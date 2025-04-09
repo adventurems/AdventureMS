@@ -99,25 +99,25 @@ public class Skill {
         effects.add(effect);
     }
 
-    public int getMastery(int skillLevel)
+    public double getMastery(int skillLevel)
     {
-        int mastery = 0;
+        double mastery = 0.0;
         switch (id)
         {
             case 2101005:
             {
                 switch (skillLevel)
                 {
-                    case 30: case 29: case 28: mastery = 10; break;
-                    case 27: case 26: case 25: mastery = 9; break;
-                    case 24: case 23: case 22: mastery = 8; break;
-                    case 21: case 20: case 19: mastery = 7; break;
-                    case 18: case 17: case 16: mastery = 6; break;
-                    case 15: case 14: case 13: mastery = 5; break;
-                    case 12: case 11: case 10: mastery = 4; break;
-                    case 9: case 8: case 7: mastery = 3; break;
-                    case 6: case 5: case 4: mastery = 2; break;
-                    case 3: case 2: case 1: mastery = 1; break;
+                    case 30: case 29: case 28: mastery = 0.6; break;
+                    case 27: case 26: case 25: mastery = 0.54; break;
+                    case 24: case 23: case 22: mastery = 0.48; break;
+                    case 21: case 20: case 19: mastery = 0.42; break;
+                    case 18: case 17: case 16: mastery = 0.36; break;
+                    case 15: case 14: case 13: mastery = 0.3; break;
+                    case 12: case 11: case 10: mastery = 0.24; break;
+                    case 9: case 8: case 7: mastery = 0.18; break;
+                    case 6: case 5: case 4: mastery = 0.12; break;
+                    case 3: case 2: case 1: mastery = 0.06; break;
                 }
             } break;
         }
