@@ -1641,7 +1641,7 @@ public class Monster extends AbstractLoadedLife {
             // AdventureMS Custom Debugging
             chr.yellowMessage("curHp: " + curHp);
 
-            if (curHp < 0)
+            if (curHp <= 0)
             {
                 MobStatusService service = (MobStatusService) map.getChannelServer().getServiceAccess(ChannelServices.MOB_STATUS);
                 service.interruptMobStatus(map.getId(), status);
