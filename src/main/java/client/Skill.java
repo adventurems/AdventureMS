@@ -35,7 +35,6 @@ public class Skill {
     private int animationTime;
     private final int job;
     private boolean action;
-    private final int spellMAD;
 
     public Skill(int id) {
         this.id = id;
