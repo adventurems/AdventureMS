@@ -5346,9 +5346,23 @@ public class Character extends AbstractCharacterObject {
         return meso.get();
     }
 
-    // AdventureMS Specific //
+    // AdventureMS Custom
     public int getZoneProgress() {
         return zoneprogress;
+    }
+
+    // AdventureMS Custom
+    public int getPoisonDamage(Skill skill)
+    {
+        int poisonLevel = getSkillLevel(skill);
+        double poisonMastery = (skill.getMastery(poisonLevel) * .6);
+        int spellDamage = skill.getSpellMAD(poisonLevel);
+        int playerTMA = getTotalMagic();
+        int playerINT = getTotalInt();
+        int poisonMIN =  (int) (((double) (playerTMA * playerTMA) / 1000 + playerTMA * poisonMastery * 0.9) / 30 + (double) playerINT / 200) * spellDamage;
+        int poisonMAX = ((playerTMA / 1000 + playerTMA) / 30 + playerINT / 200) * spellDamage;
+
+        return Randomizer.nextInt(poisonMAX - poisonMIN + 1) + poisonMIN;
     }
 
     public int getMerchantMeso() {

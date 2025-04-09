@@ -21,6 +21,7 @@
 */
 package client;
 
+import provider.DataTool;
 import server.StatEffect;
 import server.life.Element;
 
@@ -34,6 +35,7 @@ public class Skill {
     private int animationTime;
     private final int job;
     private boolean action;
+    private final int spellMAD;
 
     public Skill(int id) {
         this.id = id;
@@ -96,5 +98,75 @@ public class Skill {
 
     public void addLevelEffect(StatEffect effect) {
         effects.add(effect);
+    }
+
+    public int getMastery(int skillLevel)
+    {
+        int mastery = 0;
+        switch (id)
+        {
+            case 2101005:
+            {
+                switch (skillLevel)
+                {
+                    case 30: case 29: case 28: mastery = 10; break;
+                    case 27: case 26: case 25: mastery = 9; break;
+                    case 24: case 23: case 22: mastery = 8; break;
+                    case 21: case 20: case 19: mastery = 7; break;
+                    case 18: case 17: case 16: mastery = 6; break;
+                    case 15: case 14: case 13: mastery = 5; break;
+                    case 12: case 11: case 10: mastery = 4; break;
+                    case 9: case 8: case 7: mastery = 3; break;
+                    case 6: case 5: case 4: mastery = 2; break;
+                    case 3: case 2: case 1: mastery = 1; break;
+                }
+            } break;
+        }
+        return mastery;
+    }
+
+    public int getSpellMAD(int skillLevel)
+    {
+        int spellMAD = 0;
+        switch (id)
+        {
+            case 2101005:
+            {
+                switch (skillLevel)
+                {
+                    case 30: {spellMAD = 70;} break;
+                    case 29: {spellMAD = 68;} break;
+                    case 28: {spellMAD = 66;} break;
+                    case 27: {spellMAD = 64;} break;
+                    case 26: {spellMAD = 62;} break;
+                    case 25: {spellMAD = 60;} break;
+                    case 24: {spellMAD = 58;} break;
+                    case 23: {spellMAD = 56;} break;
+                    case 22: {spellMAD = 54;} break;
+                    case 21: {spellMAD = 52;} break;
+                    case 20: {spellMAD = 50;} break;
+                    case 19: {spellMAD = 48;} break;
+                    case 18: {spellMAD = 46;} break;
+                    case 17: {spellMAD = 44;} break;
+                    case 16: {spellMAD = 42;} break;
+                    case 15: {spellMAD = 40;} break;
+                    case 14: {spellMAD = 38;} break;
+                    case 13: {spellMAD = 36;} break;
+                    case 12: {spellMAD = 34;} break;
+                    case 11: {spellMAD = 32;} break;
+                    case 10: {spellMAD = 30;} break;
+                    case 9: {spellMAD = 28;} break;
+                    case 8: {spellMAD = 26;} break;
+                    case 7: {spellMAD = 24;} break;
+                    case 6: {spellMAD = 22;} break;
+                    case 5: {spellMAD = 20;} break;
+                    case 4: {spellMAD = 18;} break;
+                    case 3: {spellMAD = 16;} break;
+                    case 2: {spellMAD = 14;} break;
+                    case 1: {spellMAD = 12;} break;
+                } break;
+            }
+        }
+        return spellMAD;
     }
 }

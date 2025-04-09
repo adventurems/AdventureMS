@@ -456,9 +456,6 @@ public class Monster extends AbstractLoadedLife {
     private void applyDamage(Character from, int damage, boolean stayAlive, boolean fake) {
         Integer trueDamage = applyAndGetHpDamage(damage, stayAlive);
 
-        // AdventureMS Custom Debugging
-        from.yellowMessage("trueDamage = " + trueDamage);
-
         if (trueDamage == null)
         {
             return;
@@ -1225,15 +1222,22 @@ public class Monster extends AbstractLoadedLife {
         int overtimeDelay = -1;
 
         int animationTime;
-        if (poison) {
-            int poisonLevel = from.getSkillLevel(status.getSkill());
-            int poisonDamage = Math.min(Short.MAX_VALUE, (int) (getMaxHp() / (70.0 - 60) + 0.999)); // AdventureMS Custom Poison DMG
+
+        // AdventureMS Custom
+        if (poison)
+        {
+            // Get poisonDamage
+            int poisonDamage = from.getPoisonDamage(status.getSkill());
             status.setValue(MonsterStatus.POISON, poisonDamage);
             animationTime = broadcastStatusEffect(status);
 
+            // Create Runnable
             overtimeAction = new DamageTask(poisonDamage, from, status, 0, this);
             overtimeDelay = 1000;
-        } else if (venom) {
+        }
+
+        else if (venom)
+        {
             if (from.getJob() == Job.NIGHTLORD || from.getJob() == Job.SHADOWER || from.getJob().isA(Job.NIGHTWALKER3)) {
                 int poisonLevel, matk, jobid = from.getJob().getId();
                 int skillid = (jobid == 412 ? NightLord.VENOMOUS_STAR : (jobid == 422 ? Shadower.VENOMOUS_STAB : NightWalker.VENOM));
@@ -1638,32 +1642,23 @@ public class Monster extends AbstractLoadedLife {
         {
             int curHp = hp.get();
 
-            // AdventureMS Custom Debugging
-            chr.yellowMessage("curHp: " + curHp);
-
             if (curHp <= 0)
             {
                 MobStatusService service = (MobStatusService) map.getChannelServer().getServiceAccess(ChannelServices.MOB_STATUS);
                 service.interruptMobStatus(map.getId(), status);
-
-                // AdventureMS Custom Debugging
-                chr.yellowMessage("Monster dying...");
                 map.killMonster(monster, chr, true, (short) 1);
                 return;
             }
 
             int damage = dealDamage;
 
-            /*
-            if (damage >= curHp)
+            // Handling other DoTs
+            if (damage >= curHp && (type == 1 || type == 2))
             {
                 damage = curHp - 1;
-                if (type == 1 || type == 2)
-                {
-                    MobStatusService service = (MobStatusService) map.getChannelServer().getServiceAccess(ChannelServices.MOB_STATUS);
-                    service.interruptMobStatus(map.getId(), status);
-                }
-            }*/
+                MobStatusService service = (MobStatusService) map.getChannelServer().getServiceAccess(ChannelServices.MOB_STATUS);
+                service.interruptMobStatus(map.getId(), status);
+            }
 
             if (damage > 0)
             {
