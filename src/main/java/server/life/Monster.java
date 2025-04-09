@@ -457,6 +457,9 @@ public class Monster extends AbstractLoadedLife {
         Integer trueDamage = applyAndGetHpDamage(damage, stayAlive);
 
         // AdventureMS Custom Debugging
+        from.yellowMessage("getHp = " + getHp());
+
+        // AdventureMS Custom Debugging
         from.yellowMessage("trueDamage = " + trueDamage);
 
         if (trueDamage == null)
@@ -480,9 +483,6 @@ public class Monster extends AbstractLoadedLife {
         }
 
         broadcastMobHpBar(from);
-
-        // AdventureMS Custom Debugging
-        from.yellowMessage("getHp = " + getHp());
     }
 
     public void applyFakeDamage(Character from, int damage, boolean stayAlive) {
