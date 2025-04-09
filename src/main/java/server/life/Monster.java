@@ -1657,7 +1657,7 @@ public class Monster extends AbstractLoadedLife {
 
                 try
                 {
-                    applyDamage(chr, damage, true, false);
+                    applyDamage(chr, damage, false, false);
                 }
 
                 finally
