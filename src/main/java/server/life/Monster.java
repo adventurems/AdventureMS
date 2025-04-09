@@ -1645,6 +1645,9 @@ public class Monster extends AbstractLoadedLife {
             {
                 MobStatusService service = (MobStatusService) map.getChannelServer().getServiceAccess(ChannelServices.MOB_STATUS);
                 service.interruptMobStatus(map.getId(), status);
+
+                // AdventureMS Custom Debugging
+                chr.yellowMessage("Monster dying...");
                 map.killMonster(monster.getObjectId());
                 return;
             }
