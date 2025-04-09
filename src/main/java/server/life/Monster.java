@@ -1648,7 +1648,7 @@ public class Monster extends AbstractLoadedLife {
 
                 // AdventureMS Custom Debugging
                 chr.yellowMessage("Monster dying...");
-                map.killMonster(monster.getObjectId());
+                map.killMonster(monster, chr, true, (short) 1);
                 return;
             }
 
