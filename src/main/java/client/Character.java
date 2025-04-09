@@ -5363,12 +5363,13 @@ public class Character extends AbstractCharacterObject {
         int poisonMAX = (((playerTMA * playerTMA) / 1000 + playerTMA) / 30 + playerINT / 200) * spellDamage;
 
         // AdventureMS Custom Debugging
-        yellowMessage("poisonMIN: " + poisonMIN + " | poisonMAX: " + poisonMAX);
+        yellowMessage("MAD: " + spellDamage + " | Mast: " + poisonMastery + " | poisonMIN: " + poisonMIN + " | poisonMAX: " + poisonMAX);
 
         final int poisonDamage = Randomizer.nextInt(poisonMAX - poisonMIN + 1) + poisonMIN;
 
         // AdventureMS Custom Debugging
-        yellowMessage("poisonMIN: " + poisonMIN + " | poisonMAX: " + poisonMAX + " | poisonDamage: " + poisonDamage);
+        yellowMessage("poisonDamage: " + poisonDamage);
+
         return poisonDamage;
     }
 
