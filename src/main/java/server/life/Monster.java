@@ -1646,7 +1646,6 @@ public class Monster extends AbstractLoadedLife {
 
             int damage = dealDamage;
 
-            /*
             if (damage >= curHp)
             {
                 damage = curHp - 1;
@@ -1655,7 +1654,7 @@ public class Monster extends AbstractLoadedLife {
                     MobStatusService service = (MobStatusService) map.getChannelServer().getServiceAccess(ChannelServices.MOB_STATUS);
                     service.interruptMobStatus(map.getId(), status);
                 }
-            }*/
+            }
 
             if (damage > 0)
             {
@@ -1671,7 +1670,7 @@ public class Monster extends AbstractLoadedLife {
                     unlockMonster();
                 }
 
-                if (type == 1)
+                if (type == 1 || type == 0)
                 {
                     map.broadcastMessage(PacketCreator.damageMonster(getObjectId(), damage), getPosition());
                 }
