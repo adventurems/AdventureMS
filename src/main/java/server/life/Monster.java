@@ -455,6 +455,10 @@ public class Monster extends AbstractLoadedLife {
      */
     private void applyDamage(Character from, int damage, boolean stayAlive, boolean fake) {
         Integer trueDamage = applyAndGetHpDamage(damage, stayAlive);
+
+        // AdventureMS Custom Debugging
+        from.yellowMessage("trueDamage = " + trueDamage);
+
         if (trueDamage == null) {
             return;
         }
@@ -474,6 +478,9 @@ public class Monster extends AbstractLoadedLife {
         }
 
         broadcastMobHpBar(from);
+
+        // AdventureMS Custom Debugging
+        from.yellowMessage("getHp = " + getHp());
 
         // AdventureMS Custom
         if (getHp() <= 0)
@@ -1646,6 +1653,7 @@ public class Monster extends AbstractLoadedLife {
 
             int damage = dealDamage;
 
+            /*
             if (damage >= curHp)
             {
                 damage = curHp - 1;
@@ -1654,7 +1662,7 @@ public class Monster extends AbstractLoadedLife {
                     MobStatusService service = (MobStatusService) map.getChannelServer().getServiceAccess(ChannelServices.MOB_STATUS);
                     service.interruptMobStatus(map.getId(), status);
                 }
-            }
+            }*/
 
             if (damage > 0)
             {
