@@ -457,9 +457,6 @@ public class Monster extends AbstractLoadedLife {
         Integer trueDamage = applyAndGetHpDamage(damage, stayAlive);
 
         // AdventureMS Custom Debugging
-        from.yellowMessage("getHp = " + getHp());
-
-        // AdventureMS Custom Debugging
         from.yellowMessage("trueDamage = " + trueDamage);
 
         if (trueDamage == null)
@@ -1640,6 +1637,9 @@ public class Monster extends AbstractLoadedLife {
         public void run()
         {
             int curHp = hp.get();
+
+            // AdventureMS Custom Debugging
+            chr.yellowMessage("curHp: " + curHp);
 
             if (curHp < 0)
             {
