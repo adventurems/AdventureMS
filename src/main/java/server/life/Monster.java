@@ -1164,9 +1164,10 @@ public class Monster extends AbstractLoadedLife {
                 return false;
             }
         }
+        /*
         if (poison && hp.get() <= 1) {
             return false;
-        }
+        }*/
 
         final Map<MonsterStatus, Integer> statis = status.getStati();
         if (stats.isBoss()) {
