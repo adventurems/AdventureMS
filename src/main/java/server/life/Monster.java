@@ -1640,7 +1640,7 @@ public class Monster extends AbstractLoadedLife {
 
             int damage = dealDamage;
 
-
+            /*
             if (damage >= curHp)
             {
                 damage = curHp - 1;
@@ -1649,7 +1649,7 @@ public class Monster extends AbstractLoadedLife {
                     MobStatusService service = (MobStatusService) map.getChannelServer().getServiceAccess(ChannelServices.MOB_STATUS);
                     service.interruptMobStatus(map.getId(), status);
                 }
-            }
+            }*/
 
             if (damage > 0)
             {
