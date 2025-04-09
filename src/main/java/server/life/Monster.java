@@ -474,6 +474,12 @@ public class Monster extends AbstractLoadedLife {
         }
 
         broadcastMobHpBar(from);
+
+        // AdventureMS Custom
+        if (getHp() <= 0)
+        {
+            map.killMonster(this.getObjectId());
+        }
     }
 
     public void applyFakeDamage(Character from, int damage, boolean stayAlive) {
@@ -1226,7 +1232,7 @@ public class Monster extends AbstractLoadedLife {
             status.setValue(MonsterStatus.POISON, poisonDamage);
             animationTime = broadcastStatusEffect(status);
 
-            overtimeAction = new DamageTask(poisonDamage, from, status, 0, this); // AdventureMS Custom
+            overtimeAction = new DamageTask(poisonDamage, from, status, 0);
             overtimeDelay = 1000;
         } else if (venom) {
             if (from.getJob() == Job.NIGHTLORD || from.getJob() == Job.SHADOWER || from.getJob().isA(Job.NIGHTWALKER3)) {
@@ -1253,7 +1259,7 @@ public class Monster extends AbstractLoadedLife {
                 status.setValue(MonsterStatus.POISON, poisonDamage);
                 animationTime = broadcastStatusEffect(status);
 
-                overtimeAction = new DamageTask(poisonDamage, from, status, 0, this); // AdventureMS Custom
+                overtimeAction = new DamageTask(poisonDamage, from, status, 0);
                 overtimeDelay = 1000;
             } else {
                 return false;
@@ -1275,7 +1281,7 @@ public class Monster extends AbstractLoadedLife {
             status.setValue(MonsterStatus.NINJA_AMBUSH, damage);
             animationTime = broadcastStatusEffect(status);
 
-            overtimeAction = new DamageTask(damage, from, status, 2, this); // AdventureMS Custom
+            overtimeAction = new DamageTask(damage, from, status, 2);
             overtimeDelay = 1000;
         } else {
             animationTime = broadcastStatusEffect(status);
@@ -1616,15 +1622,13 @@ public class Monster extends AbstractLoadedLife {
         private final MonsterStatusEffect status;
         private final int type;
         private final MapleMap map;
-        private final Monster monster; // Add a reference to Monster here
 
-        private DamageTask(int dealDamage, Character chr, MonsterStatusEffect status, int type, Monster monster) {
+        private DamageTask(int dealDamage, Character chr, MonsterStatusEffect status, int type) {
             this.dealDamage = dealDamage;
             this.chr = chr;
             this.status = status;
             this.type = type;
             this.map = chr.getMap();
-            this.monster = monster;
         }
 
         // AdventureMS Custom - Poison DMG Schedule
@@ -1637,7 +1641,6 @@ public class Monster extends AbstractLoadedLife {
             {
                 MobStatusService service = (MobStatusService) map.getChannelServer().getServiceAccess(ChannelServices.MOB_STATUS);
                 service.interruptMobStatus(map.getId(), status);
-                map.killMonster(monster.getObjectId()); // AdventureMS Custom
                 return;
             }
 
