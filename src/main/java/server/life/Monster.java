@@ -1679,7 +1679,7 @@ public class Monster extends AbstractLoadedLife {
                     unlockMonster();
                 }
 
-                if (type == 1 || type == 0)
+                if (type == 1)
                 {
                     map.broadcastMessage(PacketCreator.damageMonster(getObjectId(), damage), getPosition());
                 }
