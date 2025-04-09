@@ -1221,7 +1221,7 @@ public class Monster extends AbstractLoadedLife {
         int animationTime;
         if (poison) {
             int poisonLevel = from.getSkillLevel(status.getSkill());
-            int poisonDamage = Math.min(Short.MAX_VALUE, (int) (getMaxHp() / (70.0 - poisonLevel) + 0.999));
+            int poisonDamage = Math.min(Short.MAX_VALUE, (int) (getMaxHp() / (70.0 - 60) + 0.999)); // AdventureMS Custom Poison DMG
             status.setValue(MonsterStatus.POISON, poisonDamage);
             animationTime = broadcastStatusEffect(status);
 
@@ -1624,35 +1624,56 @@ public class Monster extends AbstractLoadedLife {
             this.map = chr.getMap();
         }
 
+        // AdventureMS Custom - Poison DMG Schedule
         @Override
-        public void run() {
-            int curHp = hp.get();
-            if (curHp <= 1) {
+        public void run()
+        {
+            // int curHp = hp.get();
+
+            /*
+            if (curHp <= 1)
+            {
                 MobStatusService service = (MobStatusService) map.getChannelServer().getServiceAccess(ChannelServices.MOB_STATUS);
                 service.interruptMobStatus(map.getId(), status);
                 return;
-            }
+            }*/
 
             int damage = dealDamage;
-            if (damage >= curHp) {
+
+            /*
+            if (damage >= curHp)
+            {
                 damage = curHp - 1;
-                if (type == 1 || type == 2) {
+                if (type == 1 || type == 2)
+                {
                     MobStatusService service = (MobStatusService) map.getChannelServer().getServiceAccess(ChannelServices.MOB_STATUS);
                     service.interruptMobStatus(map.getId(), status);
                 }
-            }
-            if (damage > 0) {
+            }*/
+
+            if (damage > 0)
+            {
                 lockMonster();
-                try {
+
+                try
+                {
                     applyDamage(chr, damage, true, false);
-                } finally {
+                }
+
+                finally
+                {
                     unlockMonster();
                 }
 
-                if (type == 1) {
+                if (type == 1)
+                {
                     map.broadcastMessage(PacketCreator.damageMonster(getObjectId(), damage), getPosition());
-                } else if (type == 2) {
-                    if (damage < dealDamage) {    // ninja ambush (type 2) is already displaying DOT to the caster
+                }
+
+                else if (type == 2)
+                {
+                    if (damage < dealDamage)
+                    {    // ninja ambush (type 2) is already displaying DOT to the caster
                         map.broadcastMessage(PacketCreator.damageMonster(getObjectId(), damage), getPosition());
                     }
                 }
