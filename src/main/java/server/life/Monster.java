@@ -1164,10 +1164,10 @@ public class Monster extends AbstractLoadedLife {
                 return false;
             }
         }
-        /*
+
         if (poison && hp.get() <= 1) {
             return false;
-        }*/
+        }
 
         final Map<MonsterStatus, Integer> statis = status.getStati();
         if (stats.isBoss()) {
@@ -1629,15 +1629,14 @@ public class Monster extends AbstractLoadedLife {
         @Override
         public void run()
         {
-            // int curHp = hp.get();
+            int curHp = hp.get();
 
-            /*
-            if (curHp <= 1)
+            if (curHp < 0)
             {
                 MobStatusService service = (MobStatusService) map.getChannelServer().getServiceAccess(ChannelServices.MOB_STATUS);
                 service.interruptMobStatus(map.getId(), status);
                 return;
-            }*/
+            }
 
             int damage = dealDamage;
 
