@@ -133,7 +133,7 @@ public class Skill {
             {
                 switch (skillLevel)
                 {
-                    case 30: {spellMAD = 70;} break;
+                    case 30: {spellMAD = 40;} break;
                     case 29: {spellMAD = 68;} break;
                     case 28: {spellMAD = 66;} break;
                     case 27: {spellMAD = 64;} break;
