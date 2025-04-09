@@ -459,7 +459,9 @@ public class Monster extends AbstractLoadedLife {
         // AdventureMS Custom Debugging
         from.yellowMessage("trueDamage = " + trueDamage);
 
-        if (trueDamage == null) {
+        if (trueDamage == null)
+        {
+            map.killMonster(this.getObjectId());
             return;
         }
 
@@ -481,12 +483,6 @@ public class Monster extends AbstractLoadedLife {
 
         // AdventureMS Custom Debugging
         from.yellowMessage("getHp = " + getHp());
-
-        // AdventureMS Custom
-        if (getHp() <= 0)
-        {
-            map.killMonster(this.getObjectId());
-        }
     }
 
     public void applyFakeDamage(Character from, int damage, boolean stayAlive) {
