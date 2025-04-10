@@ -202,6 +202,7 @@ public class SkillFactory {
                 case Page.POWER_GUARD:
                 case Page.SWORD_BOOSTER:
                 case Page.THREATEN:
+                case Page.IRON_WILL:
                 case WhiteKnight.BW_FIRE_CHARGE:
                 case WhiteKnight.BW_ICE_CHARGE:
                 case WhiteKnight.BW_LIT_CHARGE:
@@ -215,7 +216,7 @@ public class SkillFactory {
                 case Paladin.STANCE:
                 case Paladin.SWORD_HOLY_CHARGE:
                 case Spearman.HYPER_BODY:
-                case Spearman.IRON_WILL:
+                case Spearman.HP_UP:
                 case Spearman.POLEARM_BOOSTER:
                 case Spearman.SPEAR_BOOSTER:
                 case DragonKnight.DRAGON_BLOOD:
@@ -258,6 +259,7 @@ public class SkillFactory {
                 case Archer.FOCUS:
                 case Hunter.BOW_BOOSTER:
                 case Hunter.SOUL_ARROW:
+                case Hunter.ILLUSION:
                 case Ranger.PUPPET:
                 case Bowmaster.CONCENTRATE:
                 case Bowmaster.HEROS_WILL:
@@ -265,6 +267,7 @@ public class SkillFactory {
                 case Bowmaster.SHARP_EYES:
                 case Crossbowman.CROSSBOW_BOOSTER:
                 case Crossbowman.SOUL_ARROW:
+                case Crossbowman.ILLUSION:
                 case Sniper.PUPPET:
                 case Marksman.BLIND:
                 case Marksman.HEROS_WILL:
