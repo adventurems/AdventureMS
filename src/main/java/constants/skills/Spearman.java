@@ -34,5 +34,5 @@ public class Spearman {
     public static final int IRON_WILL = 1301006;
     public static final int HYPER_BODY = 1301007;
     public static final int HP_UP = 1301009;
-    public static final int DRAGON_FURY = 1301008;
+    public static final int WHELP_STAB = 1301008;
 }
