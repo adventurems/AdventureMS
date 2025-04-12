@@ -109,15 +109,15 @@ public class Skill {
                 switch (skillLevel)
                 {
                     case 30: case 29: case 28: mastery = 0.6; break;
-                    case 27: case 26: case 25: mastery = 0.54; break;
-                    case 24: case 23: case 22: mastery = 0.48; break;
-                    case 21: case 20: case 19: mastery = 0.42; break;
-                    case 18: case 17: case 16: mastery = 0.36; break;
-                    case 15: case 14: case 13: mastery = 0.3; break;
-                    case 12: case 11: case 10: mastery = 0.24; break;
-                    case 9: case 8: case 7: mastery = 0.18; break;
-                    case 6: case 5: case 4: mastery = 0.12; break;
-                    case 3: case 2: case 1: mastery = 0.06; break;
+                    case 27: case 26: case 25: mastery = 0.55; break;
+                    case 24: case 23: case 22: mastery = 0.5; break;
+                    case 21: case 20: case 19: mastery = 0.45; break;
+                    case 18: case 17: case 16: mastery = 0.4; break;
+                    case 15: case 14: case 13: mastery = 0.35; break;
+                    case 12: case 11: case 10: mastery = 0.3; break;
+                    case 9: case 8: case 7: mastery = 0.25; break;
+                    case 6: case 5: case 4: mastery = 0.2; break;
+                    case 3: case 2: case 1: mastery = 0.15; break;
                 }
             } break;
         }
@@ -133,36 +133,126 @@ public class Skill {
             {
                 switch (skillLevel)
                 {
-                    case 30: {spellMAD = 40;} break;
-                    case 29: {spellMAD = 68;} break;
-                    case 28: {spellMAD = 66;} break;
-                    case 27: {spellMAD = 64;} break;
-                    case 26: {spellMAD = 62;} break;
-                    case 25: {spellMAD = 60;} break;
-                    case 24: {spellMAD = 58;} break;
-                    case 23: {spellMAD = 56;} break;
-                    case 22: {spellMAD = 54;} break;
-                    case 21: {spellMAD = 52;} break;
-                    case 20: {spellMAD = 50;} break;
-                    case 19: {spellMAD = 48;} break;
-                    case 18: {spellMAD = 46;} break;
-                    case 17: {spellMAD = 44;} break;
-                    case 16: {spellMAD = 42;} break;
-                    case 15: {spellMAD = 40;} break;
-                    case 14: {spellMAD = 38;} break;
-                    case 13: {spellMAD = 36;} break;
-                    case 12: {spellMAD = 34;} break;
-                    case 11: {spellMAD = 32;} break;
-                    case 10: {spellMAD = 30;} break;
-                    case 9: {spellMAD = 28;} break;
-                    case 8: {spellMAD = 26;} break;
-                    case 7: {spellMAD = 24;} break;
-                    case 6: {spellMAD = 22;} break;
-                    case 5: {spellMAD = 20;} break;
-                    case 4: {spellMAD = 18;} break;
-                    case 3: {spellMAD = 16;} break;
-                    case 2: {spellMAD = 14;} break;
-                    case 1: {spellMAD = 12;} break;
+                    case 30: {
+                        spellMAD = 40;
+                    }
+                    break;
+                    case 29: {
+                        spellMAD = 39;
+                    }
+                    break;
+                    case 28: {
+                        spellMAD = 38;
+                    }
+                    break;
+                    case 27: {
+                        spellMAD = 37;
+                    }
+                    break;
+                    case 26: {
+                        spellMAD = 36;
+                    }
+                    break;
+                    case 25: {
+                        spellMAD = 35;
+                    }
+                    break;
+                    case 24: {
+                        spellMAD = 34;
+                    }
+                    break;
+                    case 23: {
+                        spellMAD = 33;
+                    }
+                    break;
+                    case 22: {
+                        spellMAD = 32;
+                    }
+                    break;
+                    case 21: {
+                        spellMAD = 31;
+                    }
+                    break;
+                    case 20: {
+                        spellMAD = 30;
+                    }
+                    break;
+                    case 19: {
+                        spellMAD = 29;
+                    }
+                    break;
+                    case 18: {
+                        spellMAD = 28;
+                    }
+                    break;
+                    case 17: {
+                        spellMAD = 27;
+                    }
+                    break;
+                    case 16: {
+                        spellMAD = 26;
+                    }
+                    break;
+                    case 15: {
+                        spellMAD = 25;
+                    }
+                    break;
+                    case 14: {
+                        spellMAD = 24;
+                    }
+                    break;
+                    case 13: {
+                        spellMAD = 23;
+                    }
+                    break;
+                    case 12: {
+                        spellMAD = 22;
+                    }
+                    break;
+                    case 11: {
+                        spellMAD = 21;
+                    }
+                    break;
+                    case 10: {
+                        spellMAD = 20;
+                    }
+                    break;
+                    case 9: {
+                        spellMAD = 19;
+                    }
+                    break;
+                    case 8: {
+                        spellMAD = 18;
+                    }
+                    break;
+                    case 7: {
+                        spellMAD = 17;
+                    }
+                    break;
+                    case 6: {
+                        spellMAD = 16;
+                    }
+                    break;
+                    case 5: {
+                        spellMAD = 15;
+                    }
+                    break;
+                    case 4: {
+                        spellMAD = 14;
+                    }
+                    break;
+                    case 3: {
+                        spellMAD = 13;
+                    }
+                    break;
+                    case 2: {
+                        spellMAD = 12;
+                    }
+                    break;
+                    case 1: {
+                        spellMAD = 11;
+                    }
+                    break;
                 } break;
             }
         }
