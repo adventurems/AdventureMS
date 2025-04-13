@@ -1309,7 +1309,7 @@ public class StatEffect {
         if (sourceid == FPWizard.MEDITATION || sourceid == ILWizard.MEDITATION)
         {
             int matkchange = 0;
-            matkchange = (int) Math.round(applyfrom.getTotalMagic() * (getX() / 100.0));
+            matkchange = (int) Math.round(applyto.getTotalMagic() * (getX() / 100.0));
             statups.set(0, new Pair<>(BuffStat.MATK, matkchange));
         }
 
