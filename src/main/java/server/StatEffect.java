@@ -582,7 +582,7 @@ public class StatEffect {
                     break;
                 case FPWizard.MEDITATION:
                 case ILWizard.MEDITATION:
-                    statups.add(new Pair<>(BuffStat.MATK, x));
+                    statups.add(new Pair<>(BuffStat.MATK, 300));
                     break;
                 case Priest.HOLY_SYMBOL:
                 case SuperGM.HOLY_SYMBOL:
