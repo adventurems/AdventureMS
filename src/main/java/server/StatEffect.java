@@ -582,7 +582,7 @@ public class StatEffect {
                     break;
                 case FPWizard.MEDITATION:
                 case ILWizard.MEDITATION:
-                    statups.add(new Pair<>(BuffStat.ECHO_OF_HERO, x));
+                    statups.add(new Pair<>(BuffStat.MATK, x));
                     break;
                 case Priest.HOLY_SYMBOL:
                 case SuperGM.HOLY_SYMBOL:
@@ -945,6 +945,7 @@ public class StatEffect {
 
         int hpchange = calcHPChange(applyfrom, primary, affectedPlayers);
         int mpchange = calcMPChange(applyfrom, primary);
+        int matkchange = calcMATKChange(applyfrom, primary, affectedPlayers);
         if (primary) {
             if (itemConNo != 0) {
                 if (!applyto.getAbstractPlayerInteraction().hasItem(itemCon, itemConNo)) {
@@ -1440,6 +1441,12 @@ public class StatEffect {
         }
 
         return hpchange;
+    }
+
+    private int calcMATKChange(Character applyfrom, boolean primary, int affectedPlayers) {
+        int matkchange = 0;
+        matkchange = (int) Math.round(applyfrom.getTotalMagic() * (getX() / 100.0));
+        return matkchange;
     }
 
     private int makeHealHP(double rate, double stat, double lowerfactor, double upperfactor) {
