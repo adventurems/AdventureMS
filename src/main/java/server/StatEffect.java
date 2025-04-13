@@ -23,6 +23,7 @@ package server;
 
 import client.BuffStat;
 import client.Character;
+import client.Client;
 import client.Disease;
 import client.Job;
 import client.Mount;
@@ -578,6 +579,10 @@ public class StatEffect {
                     break;
                 case Cleric.INVINCIBLE:
                     statups.add(new Pair<>(BuffStat.INVINCIBLE, x));
+                    break;
+                case FPWizard.MEDITATION:
+                case ILWizard.MEDITATION:
+                    statups.add(new Pair<>(BuffStat.ECHO_OF_HERO, x));
                     break;
                 case Priest.HOLY_SYMBOL:
                 case SuperGM.HOLY_SYMBOL:
