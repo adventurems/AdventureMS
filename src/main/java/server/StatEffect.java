@@ -580,6 +580,7 @@ public class StatEffect {
                 case Cleric.INVINCIBLE:
                     statups.add(new Pair<>(BuffStat.INVINCIBLE, x));
                     break;
+                // AdventureMS Custom
                 case FPWizard.MEDITATION:
                 case ILWizard.MEDITATION:
                     statups.add(new Pair<>(BuffStat.MATK, x));
