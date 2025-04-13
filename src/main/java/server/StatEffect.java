@@ -582,7 +582,7 @@ public class StatEffect {
                     break;
                 case FPWizard.MEDITATION:
                 case ILWizard.MEDITATION:
-                    statups.add(new Pair<>(BuffStat.MATK, 300));
+                    statups.add(new Pair<>(BuffStat.MATK, x));
                     break;
                 case Priest.HOLY_SYMBOL:
                 case SuperGM.HOLY_SYMBOL:
@@ -945,7 +945,15 @@ public class StatEffect {
 
         int hpchange = calcHPChange(applyfrom, primary, affectedPlayers);
         int mpchange = calcMPChange(applyfrom, primary);
-        int matkchange = calcMATKChange(applyfrom, primary, affectedPlayers);
+
+        // AdventureMS Custom
+        if (sourceid == FPWizard.MEDITATION || sourceid == ILWizard.MEDITATION)
+        {
+            int matkchange = 0;
+            matkchange = (int) Math.round(applyfrom.getTotalMagic() * (getX() / 100.0));
+            setX(matkchange);
+        }
+
         if (primary) {
             if (itemConNo != 0) {
                 if (!applyto.getAbstractPlayerInteraction().hasItem(itemCon, itemConNo)) {
@@ -1153,6 +1161,14 @@ public class StatEffect {
     private int applyBuff(Character applyfrom, boolean useMaxRange) {
         int affectedc = 1;
 
+        // AdventureMS Custom
+        if (sourceid == FPWizard.MEDITATION || sourceid == ILWizard.MEDITATION)
+        {
+            int matkchange = 0;
+            matkchange = (int) Math.round(applyfrom.getTotalMagic() * (getX() / 100.0));
+            setX(matkchange);
+        }
+
         if (isPartyBuff() && (applyfrom.getParty() != null || isGmBuff())) {
             Rectangle bounds = (!useMaxRange) ? calculateBoundingBox(applyfrom.getPosition(), applyfrom.isFacingLeft()) : new Rectangle(Integer.MIN_VALUE / 2, Integer.MIN_VALUE / 2, Integer.MAX_VALUE, Integer.MAX_VALUE);
             List<MapObject> affecteds = applyfrom.getMap().getMapObjectsInRect(bounds, Arrays.asList(MapObjectType.PLAYER));
@@ -1288,6 +1304,15 @@ public class StatEffect {
         int localDuration = getBuffLocalDuration();
         int localsourceid = sourceid;
         int seconds = localDuration / 1000;
+
+        // AdventureMS Custom
+        if (sourceid == FPWizard.MEDITATION || sourceid == ILWizard.MEDITATION)
+        {
+            int matkchange = 0;
+            matkchange = (int) Math.round(applyfrom.getTotalMagic() * (getX() / 100.0));
+            setX(matkchange);
+        }
+
         Mount givemount = null;
         if (isMonsterRiding()) {
             int ridingMountId = 0;
@@ -1441,12 +1466,6 @@ public class StatEffect {
         }
 
         return hpchange;
-    }
-
-    private int calcMATKChange(Character applyfrom, boolean primary, int affectedPlayers) {
-        int matkchange = 0;
-        matkchange = (int) Math.round(applyfrom.getTotalMagic() * (getX() / 100.0));
-        return matkchange;
     }
 
     private int makeHealHP(double rate, double stat, double lowerfactor, double upperfactor) {
@@ -1908,6 +1927,10 @@ public class StatEffect {
 
     public int getX() {
         return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
     }
 
     public int getY() {
