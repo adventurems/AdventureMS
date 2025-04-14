@@ -29,6 +29,7 @@ import constants.skills.Beginner;
 import constants.skills.Bishop;
 import constants.skills.BlazeWizard;
 import constants.skills.Bowmaster;
+import constants.skills.Brawler;
 import constants.skills.Buccaneer;
 import constants.skills.ChiefBandit;
 import constants.skills.Cleric;
@@ -340,6 +341,8 @@ public class SkillFactory {
                 case ThunderBreaker.KNUCKLER_BOOSTER:
                 case ThunderBreaker.LIGHTNING:
                 case ThunderBreaker.SPARK:
+                case Gunslinger.SPARK: // AdventureMS Custom
+                case Brawler.SPARK: // AdventureMS Custom
                 case ThunderBreaker.LIGHTNING_CHARGE:
                 case ThunderBreaker.SPEED_INFUSION:
                 case ThunderBreaker.TRANSFORMATION:

@@ -684,6 +684,8 @@ public class StatEffect {
                     statups.add(new Pair<>(BuffStat.HOMING_BEACON, x));
                     break;
                 case ThunderBreaker.SPARK:
+                case Gunslinger.SPARK:
+                case Brawler.SPARK:
                     statups.add(new Pair<>(BuffStat.SPARK, x));
                     break;
                 // MULTIPLE
