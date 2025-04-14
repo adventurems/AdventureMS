@@ -84,7 +84,8 @@ public final class RangedAttackHandler extends AbstractDealDamageHandler {
             c.sendPacket(PacketCreator.getEnergy("energy", chr.getDojoEnergy()));
         }
 
-        if (attack.skill == Buccaneer.ENERGY_ORB || attack.skill == Brawler.SPARK || attack.skill == Gunslinger.SPARK || attack.skill == ThunderBreaker.SPARK || attack.skill == Shadower.TAUNT || attack.skill == NightLord.TAUNT) {
+        // Adventure MS Custom || attack.skill == ThunderBreaker.SPARK
+        if (attack.skill == Buccaneer.ENERGY_ORB || attack.skill == Shadower.TAUNT || attack.skill == NightLord.TAUNT) {
             chr.getMap().broadcastMessage(chr, PacketCreator.rangedAttack(chr, attack.skill, attack.skilllevel,
                     attack.stance, attack.numAttackedAndDamage, 0, attack.targets, attack.speed,
                     attack.direction, attack.display), false);
