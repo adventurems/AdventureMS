@@ -565,6 +565,7 @@ public class StatEffect {
                 case Paladin.STANCE:
                 case DarkKnight.STANCE:
                 case Aran.FREEZE_STANDING:
+                case Spearman.STEADFAST:
                     statups.add(new Pair<>(BuffStat.STANCE, iprop));
                     break;
                 case DawnWarrior.FINAL_ATTACK:
