@@ -25,14 +25,14 @@ function start()
         // They have completed the zone boss
         else if (cm.getQuestStatus(2217) == 2)
         {
-            cm.sendOk("Well, you killed the king... So thanks for that.\r\n\r\nYou still aren't popular though...");
+            cm.sendOk("Well, you killed the king... So thanks for that.\r\n\r\n#eYou still aren't popular though...#n");
             cm.dispose();
         }
 
         // They've not completed the zone boss
         else
         {
-            cm.sendOk("Earthquakes, smog, my money is in the sewer... Ugh...\r\n\r\nWho are you...? My agent says I should only hang around other popular people...\r\n\r\nMy stylists backed him up and said to send other popular people their way...\r\n\r\nCome back when you are more popular...");
+            cm.sendOk("Earthquakes, smog, my money is in the sewer... Ugh...\r\n\r\nWho are you...? My agent says I should only hang around other popular people...\r\n\r\nMy stylists backed him up and said to send other popular people their way...\r\n\r\n#eCome back when you are more popular...#n");
             cm.dispose();
         }
     }
