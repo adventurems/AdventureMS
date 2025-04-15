@@ -278,6 +278,8 @@ public class SkillFactory {
                 case Assassin.CLAW_BOOSTER:
                 case Assassin.HASTE:
                 case Hermit.MESO_UP:
+                case Gunslinger.PIRATE_BOOTY: // AdventureMS Custom
+                case Brawler.PIRATE_BOOTY: // AdventureMS Custom
                 case Hermit.SHADOW_PARTNER:
                 case NightLord.HEROS_WILL:
                 case NightLord.MAPLE_WARRIOR:
@@ -341,8 +343,6 @@ public class SkillFactory {
                 case ThunderBreaker.KNUCKLER_BOOSTER:
                 case ThunderBreaker.LIGHTNING:
                 case ThunderBreaker.SPARK:
-                case Gunslinger.SPARK: // AdventureMS Custom
-                case Brawler.SPARK: // AdventureMS Custom
                 case ThunderBreaker.LIGHTNING_CHARGE:
                 case ThunderBreaker.SPEED_INFUSION:
                 case ThunderBreaker.TRANSFORMATION:
