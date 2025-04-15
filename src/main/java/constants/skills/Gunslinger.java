@@ -32,5 +32,5 @@ public class Gunslinger {
     public static final int BLANK_SHOT = 5201004;
     public static final int WINGS = 5201005;
     public static final int RECOIL_SHOT = 5201006;
-    public static final int SPARK = 5201009; // AdventureMS Custom
+    public static final int PIRATE_BOOTY = 5201009; // AdventureMS Custom
 }

@@ -651,6 +651,8 @@ public class StatEffect {
                     statups.add(new Pair<>(BuffStat.DARKSIGHT, x));
                     break;
                 case Hermit.MESO_UP:
+                case Gunslinger.PIRATE_BOOTY:
+                case Brawler.PIRATE_BOOTY:
                     statups.add(new Pair<>(BuffStat.MESOUP, x));
                     break;
                 case Hermit.SHADOW_PARTNER:
@@ -684,8 +686,6 @@ public class StatEffect {
                     statups.add(new Pair<>(BuffStat.HOMING_BEACON, x));
                     break;
                 case ThunderBreaker.SPARK:
-                case Gunslinger.SPARK:
-                case Brawler.SPARK:
                     statups.add(new Pair<>(BuffStat.SPARK, x));
                     break;
                 // MULTIPLE
