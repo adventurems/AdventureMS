@@ -44,6 +44,7 @@ public abstract class AbstractScriptManager {
         sef = new ScriptEngineManager().getEngineByName("graal.js").getFactory();
     }
 
+    // AdventureMS Custom
     protected ScriptEngine getInvocableScriptEngine(String path) {
         Path scriptFile = Path.of("scripts", path);
         if (!Files.exists(scriptFile)) {
@@ -57,8 +58,21 @@ public abstract class AbstractScriptManager {
 
         enableScriptHostAccess(graalScriptEngine);
 
-        try (BufferedReader br = Files.newBufferedReader(scriptFile, StandardCharsets.UTF_8)) {
-            engine.eval(br);
+        try {
+            // First load and evaluate init.js
+            Path initJsFile = Path.of("scripts", "init.js");
+            if (Files.exists(initJsFile)) {
+                try (BufferedReader initBr = Files.newBufferedReader(initJsFile, StandardCharsets.UTF_8)) {
+                    engine.eval(initBr);
+                }
+            }
+
+            // Then load and evaluate the requested script (if it's not init.js itself)
+            if (!path.equals("init.js")) {
+                try (BufferedReader br = Files.newBufferedReader(scriptFile, StandardCharsets.UTF_8)) {
+                    engine.eval(br);
+                }
+            }
         } catch (final ScriptException | IOException t) {
             log.warn("Exception during script eval for file: {}", path, t);
             return null;
