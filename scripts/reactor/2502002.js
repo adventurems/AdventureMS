@@ -1,4 +1,5 @@
 // AdventureMS Dyle Spawner
+const PacketCreator = Java.type('tools.PacketCreator');
 
 function act()
 {
