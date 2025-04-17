@@ -1246,20 +1246,92 @@ public class ItemInformationProvider {
         if (defaultValue == 0) {
             return 0;
         }
-        int maxRange = (statType == 1) ? (defaultValue < 5 ? 1 : defaultValue < 10 ? 3 : defaultValue < 30 ? 5 : defaultValue < 50 ? 7 : Math.max(7, (int) Math.ceil(defaultValue * 0.1))) :
-                (statType == 2) ? (defaultValue < 50 ? 5 : (int) Math.ceil(defaultValue * 0.1)) :
-                        (defaultValue < 100 ? 20 : defaultValue < 400 ? 40 : (int) Math.ceil(defaultValue * 0.1));
+
+        int maxRange;
+
+        // Str, Dex, Int, Luk, Acc, Avoid, Jump, Speed
+        if (statType == 1) {
+            if (defaultValue < 5) {
+                maxRange = 1;
+            } else if (defaultValue < 10) {
+                maxRange = 2;
+            } else if (defaultValue < 30) {
+                maxRange = 5;
+            } else if (defaultValue < 50) {
+                maxRange = 7;
+            } else {
+                maxRange = Math.max(7, (int) Math.ceil(defaultValue * 0.1));
+            }
+        }
+        // Matk, Watk
+        else if (statType == 2) {
+            if (defaultValue < 50) {
+                maxRange = 5;
+            } else {
+                maxRange = (int) Math.ceil(defaultValue * 0.1);
+            }
+        }
+        // Wdef, Mdef, Hp, Mp
+        else {
+            if (defaultValue < 50) {
+                maxRange = 10;
+            } else if (defaultValue < 100) {
+                maxRange = 20;
+            } else if (defaultValue < 200) {
+                maxRange = 30;
+            } else if (defaultValue < 400) {
+                maxRange = 40;
+            } else {
+                maxRange = (int) Math.ceil(defaultValue * 0.1);
+            }
+        }
+
         return (short) ((defaultValue - maxRange) + Math.floor(Randomizer.nextDouble() * (maxRange * 2 + 1)));
     }
 
     // AdventureMS Custom
     private static short getRandChaosStat(short defaultValue, int statType) {
-        if (defaultValue == 0) {
-            return 0;
+        if (defaultValue == 0) {return 0;}
+        int maxRange;
+
+        // Str, Dex, Int, Luk, Acc, Avoid, Jump, Speed
+        if (statType == 1)
+        {
+            if (defaultValue < 5) {
+                maxRange = 2;
+            } else if (defaultValue < 10) {
+                maxRange = 4;
+            } else if (defaultValue < 30) {
+                maxRange = 10;
+            } else if (defaultValue < 50) {
+                maxRange = 14;
+            } else {
+                maxRange = Math.max(14, (int) Math.ceil(defaultValue * 0.1));
+            }
         }
-        int maxRange = (statType == 1) ? (defaultValue < 5 ? 2 : defaultValue < 10 ? 6 : defaultValue < 30 ? 10 : defaultValue < 50 ? 14 : Math.max(14, (int) Math.ceil(defaultValue * 0.2))) :
-                (statType == 2) ? (defaultValue < 50 ? 10 : (int) Math.ceil(defaultValue * 0.2)) :
-                        (defaultValue < 100 ? 40 : defaultValue < 400 ? 80 : (int) Math.ceil(defaultValue * 0.2));
+        // Matk, Watk
+        else if (statType == 2) {
+            if (defaultValue < 50) {
+                maxRange = 10;
+            } else {
+                maxRange = (int) Math.ceil(defaultValue * 0.2);
+            }
+        }
+        // Wdef, Mdef, Hp, Mp
+        else {
+            if (defaultValue < 50) {
+                maxRange = 20;
+            } else if (defaultValue < 100) {
+                maxRange = 40;
+            } else if (defaultValue < 200) {
+                maxRange = 60;
+            } else if (defaultValue < 400) {
+                maxRange = 80;
+            } else {
+                maxRange = (int) Math.ceil(defaultValue * 0.2);
+            }
+        }
+
         return (short) ((defaultValue - maxRange) + Math.floor(Randomizer.nextDouble() * (maxRange * 2 + 1)));
     }
     
