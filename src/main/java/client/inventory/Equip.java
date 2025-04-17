@@ -135,66 +135,49 @@ public class Equip extends Item {
         return upgradeSlots;
     }
 
-    public short getStr() {
-        return str;
-    }
-
+    public short getStr() {return str;}
     public short getDex() {
         return dex;
     }
-
     public short getInt() {
         return _int;
     }
-
     public short getLuk() {
         return luk;
     }
-
     public short getHp() {
         return hp;
     }
-
     public short getMp() {
         return mp;
     }
-
     public short getWatk() {
         return watk;
     }
-
     public short getMatk() {
         return matk;
     }
-
     public short getWdef() {
         return wdef;
     }
-
     public short getMdef() {
         return mdef;
     }
-
     public short getAcc() {
         return acc;
     }
-
     public short getAvoid() {
         return avoid;
     }
-
     public short getHands() {
         return hands;
     }
-
     public short getSpeed() {
         return speed;
     }
-
     public short getJump() {
         return jump;
     }
-
     public short getVicious() {
         return vicious;
     }
@@ -203,79 +186,60 @@ public class Equip extends Item {
     public void setFlag(short flag) {
         this.flag = flag;
     }
-
     public void setStr(short str) {
         this.str = str;
     }
-
     public void setDex(short dex) {
         this.dex = dex;
     }
-
     public void setInt(short _int) {
         this._int = _int;
     }
-
     public void setLuk(short luk) {
         this.luk = luk;
     }
-
     public void setHp(short hp) {
         this.hp = hp;
     }
-
     public void setMp(short mp) {
         this.mp = mp;
     }
-
     public void setWatk(short watk) {
         this.watk = watk;
     }
-
     public void setMatk(short matk) {
         this.matk = matk;
     }
-
     public void setWdef(short wdef) {
         this.wdef = wdef;
     }
-
     public void setMdef(short mdef) {
         this.mdef = mdef;
     }
-
     public void setAcc(short acc) {
         this.acc = acc;
     }
-
     public void setAvoid(short avoid) {
         this.avoid = avoid;
     }
-
     public void setHands(short hands) {
         this.hands = hands;
     }
-
     public void setSpeed(short speed) {
         this.speed = speed;
     }
-
     public void setJump(short jump) {
         this.jump = jump;
     }
-
     public void setVicious(short vicious) {
         this.vicious = vicious;
     }
-
     public void setUpgradeSlots(byte upgradeSlots) {
         this.upgradeSlots = upgradeSlots;
     }
-
     public byte getLevel() {
         return level;
     }
-
     public void setLevel(byte level) {
         this.level = level;
     }

@@ -689,13 +689,70 @@ public class MapleMap {
                         spawnMesoDrop(mesos, calcDropPos(pos, mob.getPosition()), mob, chr, false, droptype,
                                 delay);
                     }
-                } else {
-                    if (ItemConstants.getInventoryType(de.itemId) == InventoryType.EQUIP) {
-                        idrop = ii.randomizeStats((Equip) ii.getEquipById(de.itemId));
-                    } else {
+                } 
+                
+                else 
+                {
+                    // Set bool here so that it can be checked later
+                    boolean isChaos = false;
+
+                    // It's an equip item, randomize the stats
+                    if (ItemConstants.getInventoryType(de.itemId) == InventoryType.EQUIP)
+                    {
+                        // Roll to see if it's a chaos item
+                        isChaos = Randomizer.nextInt(15) == 0;
+                        if (isChaos) {idrop = ii.randomizeChaosStats((Equip) ii.getEquipById(de.itemId));}
+
+                        // It's a normal item
+                        else {idrop = ii.randomizeStats((Equip) ii.getEquipById(de.itemId));}
+                    }
+                    
+                    else 
+                    {
                         idrop = new Item(de.itemId, (short) 0, (short) (de.Maximum != 1 ? Randomizer.nextInt(de.Maximum - de.Minimum) + de.Minimum : 1));
                     }
+
+                    // Normally spawn an item
                     spawnDrop(idrop, calcDropPos(pos, mob.getPosition()), mob, chr, droptype, de.questid, delay);
+
+                    // Chaos items spawn an effect (npc)
+                    if (isChaos)
+                    {
+                        // Find coordinates
+                        Point checkpos = calcDropPos(pos, mob.getPosition());
+                        int xpos = checkpos.x;
+                        int ypos = checkpos.y;
+                        int fh = chr.getMap().getFootholds().findBelow(checkpos).getId();
+
+                        // Build NPC
+                        NPC npc = LifeFactory.getNPC(9800018);
+                        npc.setPosition(checkpos);
+                        npc.setCy(ypos);
+                        npc.setRx0(xpos + 1);
+                        npc.setRx1(xpos - 1);
+                        npc.setFh(fh);
+
+                        // Create and Broadcast
+                        MapleMap map = chr.getMap();
+                        map.addMapObject(npc);
+                        map.broadcastMessage(PacketCreator.spawnNPC(npc));
+                        map.broadcastMessage(PacketCreator.playSound("Buyback/magician"));
+
+                        // Schedule NPC removal
+                        Runnable removeNpcTask = new Runnable() {
+                            @Override
+                            public void run() {
+                                if (npc != null && map != null)
+                                {
+                                    // Remove the NPC from the map
+                                    map.removeMapObject(npc);
+                                }
+                            }
+                        };
+
+                        // Delete NPC after 64 seconds if it hasn't been picked up yet
+                        TimerManager.getInstance().schedule(removeNpcTask, 64000);
+                    }
                 }
                 index++;
             }
@@ -982,6 +1039,7 @@ public class MapleMap {
         return count;
     }
 
+    // AdventureMS Custom
     public void pickItemDrop(Packet pickupPacket, MapItem mdrop) { // mdrop must be already locked and not-pickedup checked at this point
         broadcastMessage(pickupPacket, mdrop.getPosition());
 
@@ -989,6 +1047,26 @@ public class MapleMap {
         this.removeMapObject(mdrop);
         mdrop.setPickedUp(true);
         unregisterItemDrop(mdrop);
+
+        // Check if there's an item NPC at the same position, if so, delete it
+        List<MapObject> mapObjects = getMapObjectsInRange(mdrop.getPosition(), 1, Collections.singletonList(MapObjectType.NPC));
+        for (MapObject obj : mapObjects) {
+            NPC npc = (NPC) obj;
+            if (npc.getId() == 9800018) {
+                // Cancel any pending NPC removal task
+                OverallService service = (OverallService) this.getChannelServer().getServiceAccess(ChannelServices.OVERALL);
+                if (service != null) {
+                    service.forceRunOverallAction(mapid, () -> {
+                    });
+                }
+
+                // Remove and broadcast NPC removal
+                removeMapObject(npc);
+                broadcastMessage(PacketCreator.removeNPCController(npc.getObjectId()));
+                broadcastMessage(PacketCreator.removeNPC(npc.getObjectId()));
+                break;
+            }
+        }
     }
 
     public List<MapItem> updatePlayerItemDropsToParty(int partyid, int charid, List<Character> partyMembers, Character partyLeaver) {

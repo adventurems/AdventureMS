@@ -1241,29 +1241,65 @@ public class ItemInformationProvider {
         return nEquip.copy();
     }
 
-    private static short getRandStat(short defaultValue, int maxRange) {
+    // AdventureMS Custom
+    private static short getRandStat(short defaultValue, int statType) {
         if (defaultValue == 0) {
             return 0;
         }
-        int lMaxRange = (int) Math.min(Math.ceil(defaultValue * 0.1), maxRange);
-        return (short) ((defaultValue - lMaxRange) + Math.floor(Randomizer.nextDouble() * (lMaxRange * 2 + 1)));
+        int maxRange = (statType == 1) ? (defaultValue < 5 ? 1 : defaultValue < 10 ? 3 : defaultValue < 30 ? 5 : defaultValue < 50 ? 7 : Math.max(7, (int) Math.ceil(defaultValue * 0.1))) :
+                (statType == 2) ? (defaultValue < 50 ? 5 : (int) Math.ceil(defaultValue * 0.1)) :
+                        (defaultValue < 100 ? 20 : defaultValue < 400 ? 40 : (int) Math.ceil(defaultValue * 0.1));
+        return (short) ((defaultValue - maxRange) + Math.floor(Randomizer.nextDouble() * (maxRange * 2 + 1)));
     }
 
-    public Equip randomizeStats(Equip equip) {
-        equip.setStr(getRandStat(equip.getStr(), 5));
-        equip.setDex(getRandStat(equip.getDex(), 5));
-        equip.setInt(getRandStat(equip.getInt(), 5));
-        equip.setLuk(getRandStat(equip.getLuk(), 5));
-        equip.setMatk(getRandStat(equip.getMatk(), 5));
-        equip.setWatk(getRandStat(equip.getWatk(), 5));
-        equip.setAcc(getRandStat(equip.getAcc(), 5));
-        equip.setAvoid(getRandStat(equip.getAvoid(), 5));
-        equip.setJump(getRandStat(equip.getJump(), 5));
-        equip.setSpeed(getRandStat(equip.getSpeed(), 5));
-        equip.setWdef(getRandStat(equip.getWdef(), 10));
-        equip.setMdef(getRandStat(equip.getMdef(), 10));
-        equip.setHp(getRandStat(equip.getHp(), 10));
-        equip.setMp(getRandStat(equip.getMp(), 10));
+    // AdventureMS Custom
+    private static short getRandChaosStat(short defaultValue, int statType) {
+        if (defaultValue == 0) {
+            return 0;
+        }
+        int maxRange = (statType == 1) ? (defaultValue < 5 ? 2 : defaultValue < 10 ? 6 : defaultValue < 30 ? 10 : defaultValue < 50 ? 14 : Math.max(14, (int) Math.ceil(defaultValue * 0.2))) :
+                (statType == 2) ? (defaultValue < 50 ? 10 : (int) Math.ceil(defaultValue * 0.2)) :
+                        (defaultValue < 100 ? 40 : defaultValue < 400 ? 80 : (int) Math.ceil(defaultValue * 0.2));
+        return (short) ((defaultValue - maxRange) + Math.floor(Randomizer.nextDouble() * (maxRange * 2 + 1)));
+    }
+    
+    // AdventureMS Custom
+    public Equip randomizeStats(Equip equip) 
+    {
+        equip.setStr(getRandStat(equip.getStr(), 1));
+        equip.setDex(getRandStat(equip.getDex(), 1));
+        equip.setInt(getRandStat(equip.getInt(), 1));
+        equip.setLuk(getRandStat(equip.getLuk(), 1));
+        equip.setAcc(getRandStat(equip.getAcc(), 1));
+        equip.setAvoid(getRandStat(equip.getAvoid(), 1));
+        equip.setJump(getRandStat(equip.getJump(), 1));
+        equip.setSpeed(getRandStat(equip.getSpeed(), 1));
+        equip.setMatk(getRandStat(equip.getMatk(), 2));
+        equip.setWatk(getRandStat(equip.getWatk(), 2));
+        equip.setWdef(getRandStat(equip.getWdef(), 3));
+        equip.setMdef(getRandStat(equip.getMdef(), 3));
+        equip.setHp(getRandStat(equip.getHp(), 3));
+        equip.setMp(getRandStat(equip.getMp(), 3));
+        return equip;
+    }
+
+    // AdventureMS Custom
+    public Equip randomizeChaosStats(Equip equip) 
+    {
+        equip.setStr(getRandChaosStat(equip.getStr(), 1));
+        equip.setDex(getRandChaosStat(equip.getDex(), 1));
+        equip.setInt(getRandChaosStat(equip.getInt(), 1));
+        equip.setLuk(getRandChaosStat(equip.getLuk(), 1));
+        equip.setAcc(getRandChaosStat(equip.getAcc(), 1));
+        equip.setAvoid(getRandChaosStat(equip.getAvoid(), 1));
+        equip.setJump(getRandChaosStat(equip.getJump(), 1));
+        equip.setSpeed(getRandChaosStat(equip.getSpeed(), 1));
+        equip.setMatk(getRandChaosStat(equip.getMatk(), 2));
+        equip.setWatk(getRandChaosStat(equip.getWatk(), 2));
+        equip.setWdef(getRandChaosStat(equip.getWdef(), 3));
+        equip.setMdef(getRandChaosStat(equip.getMdef(), 3));
+        equip.setHp(getRandChaosStat(equip.getHp(), 3));
+        equip.setMp(getRandChaosStat(equip.getMp(), 3));
         return equip;
     }
 
