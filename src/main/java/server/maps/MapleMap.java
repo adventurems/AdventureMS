@@ -746,6 +746,8 @@ public class MapleMap {
                                 {
                                     // Remove the NPC from the map
                                     map.removeMapObject(npc);
+                                    map.broadcastMessage(PacketCreator.removeNPCController(npc.getObjectId()));
+                                    map.broadcastMessage(PacketCreator.removeNPC(npc.getObjectId()));
                                 }
                             }
                         };
