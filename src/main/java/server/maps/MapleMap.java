@@ -700,7 +700,7 @@ public class MapleMap {
                     if (ItemConstants.getInventoryType(de.itemId) == InventoryType.EQUIP)
                     {
                         // Roll to see if it's a chaos item
-                        isChaos = Randomizer.nextInt(1) == 0;
+                        isChaos = Randomizer.nextInt(15) == 0;
                         if (isChaos) {idrop = ii.randomizeChaosStats((Equip) ii.getEquipById(de.itemId));}
 
                         // It's a normal item
@@ -752,8 +752,8 @@ public class MapleMap {
                             }
                         };
 
-                        // Delete NPC after 64 seconds if it hasn't been picked up yet
-                        TimerManager.getInstance().schedule(removeNpcTask, 64000);
+                        // Delete NPC after 40 seconds if it hasn't been picked up yet
+                        TimerManager.getInstance().schedule(removeNpcTask, 40000);
                     }
                 }
                 index++;
