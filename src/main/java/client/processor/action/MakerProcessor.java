@@ -150,34 +150,34 @@ public class MakerProcessor {
                 short createStatus = getCreateStatus(c, recipe);
 
                 switch (createStatus) {
-                    case -1:// non-available for Maker itemid has been tried to forge
+                    case -1: // An ID was passed that is not in the DB
                         log.warn("Chr {} tried to craft itemid {} using the Maker skill.", c.getPlayer().getName(), toCreate);
-                        c.sendPacket(PacketCreator.serverNotice(1, "The requested item could not be crafted on this operation."));
+                        c.sendPacket(PacketCreator.serverNotice(1, "This is not a valid item to craft using the Maker skill. Please try again or contact a GM if you believe this is an error."));
                         c.sendPacket(PacketCreator.makerEnableActions());
                         break;
 
-                    case 1: // no items
-                        c.sendPacket(PacketCreator.serverNotice(1, "You don't have all required items in your inventory to make " + ii.getName(toCreate) + "."));
+                    case 1: // Missing items
+                        c.sendPacket(PacketCreator.serverNotice(1, "You are missing required items to create " + ii.getName(toCreate) + "."));
                         c.sendPacket(PacketCreator.makerEnableActions());
                         break;
 
-                    case 2: // no meso
+                    case 2: // Not enough mesos
                         c.sendPacket(PacketCreator.serverNotice(1, "You don't have enough mesos (" + GameConstants.numberWithCommas(recipe.getCost()) + ") to complete this operation."));
                         c.sendPacket(PacketCreator.makerEnableActions());
                         break;
 
-                    case 3: // no req level
-                        c.sendPacket(PacketCreator.serverNotice(1, "You don't have enough level to complete this operation."));
+                    case 3: // Character Level too low
+                        c.sendPacket(PacketCreator.serverNotice(1, "Your character level is too low to complete this operation."));
                         c.sendPacket(PacketCreator.makerEnableActions());
                         break;
 
-                    case 4: // no req skill level
-                        c.sendPacket(PacketCreator.serverNotice(1, "You don't have enough Maker level to complete this operation."));
+                    case 4: // Maker skill level too low
+                        c.sendPacket(PacketCreator.serverNotice(1, "Your maker skill level is too low to complete this operation."));
                         c.sendPacket(PacketCreator.makerEnableActions());
                         break;
 
-                    case 5: // inventory full
-                        c.sendPacket(PacketCreator.serverNotice(1, "Your inventory is full."));
+                    case 5: // The player doesn't have room to receive the item
+                        c.sendPacket(PacketCreator.serverNotice(1, "You do not have room in your inventory to complete this operation."));
                         c.sendPacket(PacketCreator.makerEnableActions());
                         break;
 
