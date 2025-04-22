@@ -32,7 +32,6 @@ public class MakerItemEntry {
     public int reqItem = -1;
     public int reqMeso = -1;
     public int reqEquip = -1;
-    public int catalyst = -1;
     public int quantity = -1;
     public int tuc = -1;
 
@@ -50,7 +49,6 @@ public class MakerItemEntry {
         this.reqItem = reqItem;
         this.reqMeso = reqMeso;
         this.reqEquip = reqEquip;
-        this.catalyst = catalyst;
         this.quantity = quantity;
         this.tuc = tuc;
 

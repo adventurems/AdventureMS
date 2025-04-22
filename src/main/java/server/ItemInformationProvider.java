@@ -135,7 +135,6 @@ public class ItemInformationProvider {
     protected Map<Integer, Integer> mobCrystalMakerCache = new HashMap<>();
     protected Map<Integer, Pair<String, Integer>> statUpgradeMakerCache = new HashMap<>();
     protected Map<Integer, MakerItemFactory.MakerItemCreateEntry> makerItemCache = new HashMap<>();
-    protected Map<Integer, Integer> makerCatalystCache = new HashMap<>();
     protected Map<Integer, Map<String, Integer>> skillUpgradeCache = new HashMap<>();
     protected Map<Integer, Data> skillUpgradeInfoCache = new HashMap<>();
     protected Map<Integer, Pair<Integer, Set<Integer>>> cashPetFoodCache = new HashMap<>();
