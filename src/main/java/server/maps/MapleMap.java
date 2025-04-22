@@ -736,6 +736,7 @@ public class MapleMap {
                         MapleMap map = chr.getMap();
                         map.addMapObject(npc);
                         map.broadcastMessage(PacketCreator.spawnNPC(npc));
+                        map.broadcastMessage(PacketCreator.npcSpecialAction(npc.getObjectId(), "enter"));
                         map.broadcastMessage(PacketCreator.playSound("Buyback/magician"));
 
                         // Schedule NPC removal
