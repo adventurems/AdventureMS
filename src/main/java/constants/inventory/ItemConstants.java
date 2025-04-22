@@ -234,4 +234,15 @@ public final class ItemConstants {
     public static boolean isHair(int itemId) {
         return itemId >= 30000 && itemId < 35000;
     }
+
+    /**
+     * Checks if the item is a valid catalyst for the Maker skill.
+     *
+     * @param itemId The item ID to check
+     * @return true if the item is a valid catalyst, false otherwise
+     */
+    // AdventureMS Custom
+    public static boolean isCatalyst(int itemId) {
+        return itemId / 1000 == 4130;
+    }
 }

@@ -2288,7 +2288,7 @@ public class ItemInformationProvider {
 
         return fee;
     }
-
+    /* AdventureMS Custom - Remove Catalyst Collection / Lookup
     public int getMakerStimulant(int itemId) {  // thanks to Arnah
         Integer itemid = makerCatalystCache.get(itemId);
         if (itemid != null) {
@@ -2307,7 +2307,7 @@ public class ItemInformationProvider {
 
         makerCatalystCache.put(itemId, itemid);
         return itemid;
-    }
+    }*/
 
     public Set<String> getWhoDrops(Integer itemId) {
         Set<String> list = new HashSet<>();

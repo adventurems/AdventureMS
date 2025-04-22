@@ -42,7 +42,6 @@ public class MakerItemFactory {
             return makerEntry;
         }
 
-        // THEY DECIDED FOR SOME BIZARRE PATTERN ON THE FEE THING, ALMOST RANDOMIZED.
         if (stimulantid != -1) {
             makerEntry.addCost(getMakerStimulantFee(toCreate));
         }
