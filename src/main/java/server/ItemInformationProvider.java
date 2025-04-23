@@ -135,6 +135,7 @@ public class ItemInformationProvider {
     protected Map<Integer, Integer> mobCrystalMakerCache = new HashMap<>();
     protected Map<Integer, Pair<String, Integer>> statUpgradeMakerCache = new HashMap<>();
     protected Map<Integer, MakerItemFactory.MakerItemCreateEntry> makerItemCache = new HashMap<>();
+    protected Map<Integer, Integer> makerCatalystCache = new HashMap<>();
     protected Map<Integer, Map<String, Integer>> skillUpgradeCache = new HashMap<>();
     protected Map<Integer, Data> skillUpgradeInfoCache = new HashMap<>();
     protected Map<Integer, Pair<Integer, Set<Integer>>> cashPetFoodCache = new HashMap<>();
@@ -2287,7 +2288,7 @@ public class ItemInformationProvider {
 
         return fee;
     }
-    /* AdventureMS Custom - Remove Catalyst Collection / Lookup
+
     public int getMakerStimulant(int itemId) {  // thanks to Arnah
         Integer itemid = makerCatalystCache.get(itemId);
         if (itemid != null) {
@@ -2306,7 +2307,7 @@ public class ItemInformationProvider {
 
         makerCatalystCache.put(itemId, itemid);
         return itemid;
-    }*/
+    }
 
     public Set<String> getWhoDrops(Integer itemId) {
         Set<String> list = new HashSet<>();

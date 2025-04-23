@@ -95,8 +95,8 @@ public class MakerProcessor {
                     }
                 } else {
                     if (ItemConstants.isEquipment(toCreate)) {   // only equips uses stimulant and reagents
-                        if (p.readByte() != 0) {  // stimulant AdventureMS Custom
-                            stimulantid = p.readInt();
+                        if (p.readByte() != 0) {  // stimulant
+                            stimulantid = ii.getMakerStimulant(toCreate);
                             if (!c.getAbstractPlayerInteraction().haveItem(stimulantid) || !isValidCatalyst(stimulantid)) {
                                 stimulantid = -1;
                             }

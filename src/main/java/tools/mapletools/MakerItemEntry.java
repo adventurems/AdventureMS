@@ -32,6 +32,7 @@ public class MakerItemEntry {
     public int reqItem = -1;
     public int reqMeso = -1;
     public int reqEquip = -1;
+    public int catalyst = -1;
     public int quantity = -1;
     public int tuc = -1;
 
@@ -41,7 +42,7 @@ public class MakerItemEntry {
     public List<int[]> recipeList = null;
     public List<int[]> randomList = null;
 
-    MakerItemEntry(int id, int itemid, int reqLevel, int reqMakerLevel, int reqItem, int reqMeso, int reqEquip, int quantity, int tuc, int recipeCount, int recipeItem, List<int[]> recipeList, List<int[]> randomList) {
+    MakerItemEntry(int id, int itemid, int reqLevel, int reqMakerLevel, int reqItem, int reqMeso, int reqEquip, int catalyst, int quantity, int tuc, int recipeCount, int recipeItem, List<int[]> recipeList, List<int[]> randomList) {
         this.id = id;
         this.itemid = itemid;
         this.reqLevel = reqLevel;
@@ -49,6 +50,7 @@ public class MakerItemEntry {
         this.reqItem = reqItem;
         this.reqMeso = reqMeso;
         this.reqEquip = reqEquip;
+        this.catalyst = catalyst;
         this.quantity = quantity;
         this.tuc = tuc;
 

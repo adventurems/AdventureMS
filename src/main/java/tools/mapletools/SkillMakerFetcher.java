@@ -41,6 +41,7 @@ public class SkillMakerFetcher {
     private static int reqItem = -1;
     private static int reqMeso = -1;
     private static int reqEquip = -1;
+    private static int catalyst = -1;
     private static int quantity = -1;
     private static int tuc = -1;
 
@@ -59,6 +60,7 @@ public class SkillMakerFetcher {
         reqItem = 0;
         reqMeso = 0;
         reqEquip = 0;
+        catalyst = 0;
         quantity = 0;
         tuc = 0;
 
@@ -154,7 +156,7 @@ public class SkillMakerFetcher {
 
             if (status == 2) {   //close item maker data
                 generateUpdatedItemFee();   // for equipments, this will try to update reqMeso to be conformant with the client.
-                makerList.add(new MakerItemEntry(id, itemid, reqLevel, reqMakerLevel, reqItem, reqMeso, reqEquip, quantity, tuc, recipeCount, recipeItem, recipeList, randomList));
+                makerList.add(new MakerItemEntry(id, itemid, reqLevel, reqMakerLevel, reqItem, reqMeso, reqEquip, catalyst, quantity, tuc, recipeCount, recipeItem, recipeList, randomList));
                 resetMakerDataFields();
             } else if (status == 4) {    //close recipe/random item
                 if (state == 0) {
@@ -202,6 +204,7 @@ public class SkillMakerFetcher {
                     case "reqLevel" -> reqLevel = Integer.parseInt(getValue(token));
                     case "reqSkillLevel" -> reqMakerLevel = Integer.parseInt(getValue(token));
                     case "tuc" -> tuc = Integer.parseInt(getValue(token));
+                    case "catalyst" -> catalyst = Integer.parseInt(getValue(token));
                     case "reqEquip" -> reqEquip = Integer.parseInt(getValue(token));
                     default -> {
                         System.out.println("Unhandled case: '" + d + "'");
@@ -266,12 +269,12 @@ public class SkillMakerFetcher {
         printWriter.println(" # Generated data is conformant with the ItemMake.img.xml file used to compile this.");
         printWriter.println();
 
-        StringBuilder sb_create = new StringBuilder("INSERT IGNORE INTO `makercreatedata` (`id`, `itemid`, `req_level`, `req_maker_level`, `req_meso`, `req_item`, `req_equip`, `quantity`, `tuc`) VALUES\r\n");
+        StringBuilder sb_create = new StringBuilder("INSERT IGNORE INTO `makercreatedata` (`id`, `itemid`, `req_level`, `req_maker_level`, `req_meso`, `req_item`, `req_equip`, `catalyst`, `quantity`, `tuc`) VALUES\r\n");
         StringBuilder sb_recipe = new StringBuilder("INSERT IGNORE INTO `makerrecipedata` (`itemid`, `req_item`, `count`) VALUES\r\n");
         StringBuilder sb_reward = new StringBuilder("INSERT IGNORE INTO `makerrewarddata` (`itemid`, `rewardid`, `quantity`, `prob`) VALUES\r\n");
 
         for (MakerItemEntry it : makerList) {
-            sb_create.append("  (" + it.id + ", " + it.itemid + ", " + it.reqLevel + ", " + it.reqMakerLevel + ", " + it.reqMeso + ", " + it.reqItem + ", " + it.reqEquip + ", " + it.quantity + ", " + it.tuc + "),\r\n");
+            sb_create.append("  (" + it.id + ", " + it.itemid + ", " + it.reqLevel + ", " + it.reqMakerLevel + ", " + it.reqMeso + ", " + it.reqItem + ", " + it.reqEquip + ", " + it.catalyst + ", " + it.quantity + ", " + it.tuc + "),\r\n");
 
             if (it.recipeList != null) {
                 for (int[] rit : it.recipeList) {
