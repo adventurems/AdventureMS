@@ -1,833 +1,833 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <imgdir name="01102045.img">
-  <imgdir name="info">
-    <canvas name="icon" width="34" height="33">
-      <vector name="origin" x="1" y="33"/>
-    </canvas>
-    <canvas name="iconRaw" width="34" height="32">
-      <vector name="origin" x="1" y="33"/>
-    </canvas>
-    <string name="islot" value="Sr"/>
-    <string name="vslot" value="Sr"/>
-    <int name="reqJob" value="0"/>
-    <int name="reqLevel" value="0"/>
-    <int name="reqSTR" value="0"/>
-    <int name="reqDEX" value="0"/>
-    <int name="reqINT" value="0"/>
-    <int name="reqLUK" value="0"/>
-    <int name="cash" value="1"/>
-  </imgdir>
-  <imgdir name="walk1">
-    <imgdir name="0">
-      <canvas name="cape" width="63" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="14" y="14"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="60" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="12" y="12"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="63" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="14" y="14"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="3">
-      <canvas name="cape" width="63" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="15" y="15"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="walk2">
-    <imgdir name="0">
-      <uol name="cape" value="../../walk1/0/cape"/>
-    </imgdir>
-    <imgdir name="1">
-      <uol name="cape" value="../../walk1/1/cape"/>
-    </imgdir>
-    <imgdir name="2">
-      <uol name="cape" value="../../walk1/2/cape"/>
-    </imgdir>
-    <imgdir name="3">
-      <uol name="cape" value="../../walk1/3/cape"/>
-    </imgdir>
-  </imgdir>
-  <imgdir name="stand1">
-    <imgdir name="0">
-      <canvas name="cape" width="62" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="11" y="12"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="62" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="13" y="13"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="62" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="15" y="12"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="stand2">
-    <imgdir name="0">
-      <uol name="cape" value="../../stand1/0/cape"/>
-    </imgdir>
-    <imgdir name="1">
-      <uol name="cape" value="../../stand1/1/cape"/>
-    </imgdir>
-    <imgdir name="2">
-      <uol name="cape" value="../../stand1/2/cape"/>
-    </imgdir>
-  </imgdir>
-  <imgdir name="alert">
-    <imgdir name="0">
-      <canvas name="cape" width="62" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="16" y="13"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="62" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="16" y="13"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="62" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="16" y="13"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="swingO1">
-    <imgdir name="0">
-      <canvas name="cape" width="49" height="32">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="15" y="14"/>
-        </imgdir>
-        <string name="z" value="capeOverHead"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="33" height="21">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="4" y="5"/>
-        </imgdir>
-        <string name="z" value="capeOverHead"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="51" height="39">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="12" y="22"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="swingO2">
-    <imgdir name="0">
-      <canvas name="cape" width="60" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="14" y="13"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="17" height="19">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="-8" y="6"/>
-        </imgdir>
-        <string name="z" value="capeOverHead"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="61" height="31">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="17" y="17"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="swingO3">
-    <imgdir name="0">
-      <canvas name="cape" width="63" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="19" y="14"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="33" height="21">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="4" y="7"/>
-        </imgdir>
-        <string name="z" value="capeOverHead"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="49" height="32">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="10" y="14"/>
-        </imgdir>
-        <string name="z" value="capeOverHead"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="swingOF">
-    <imgdir name="0">
-      <canvas name="cape" width="56" height="35">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="19" y="18"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="60" height="34">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="17" y="17"/>
-        </imgdir>
-        <string name="z" value="backCape"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="33" height="21">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="4" y="6"/>
-        </imgdir>
-        <string name="z" value="capeOverHead"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="3">
-      <canvas name="cape" width="59" height="34">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="23" y="19"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="swingT1">
-    <imgdir name="0">
-      <canvas name="cape" width="62" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="15" y="14"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="57" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="14" y="16"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="29" height="22">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="-1" y="7"/>
-        </imgdir>
-        <string name="z" value="capeOverHead"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="swingT2">
-    <imgdir name="0">
-      <canvas name="cape" width="33" height="21">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="0" y="5"/>
-        </imgdir>
-        <string name="z" value="capeOverHead"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="57" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="14" y="15"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="58" height="36">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="22" y="21"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="swingT3">
-    <imgdir name="0">
-      <canvas name="cape" width="56" height="33">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="18" y="17"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="59" height="35">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="20" y="17"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="23" height="17">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="-3" y="4"/>
-        </imgdir>
-        <string name="z" value="capeOverHead"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="swingTF">
-    <imgdir name="0">
-      <canvas name="cape" width="64" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="20" y="12"/>
-        </imgdir>
-        <string name="z" value="backCape"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="60" height="31">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="21" y="17"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="59" height="34">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="19" y="23"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="3">
-      <canvas name="cape" width="29" height="22">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="1" y="8"/>
-        </imgdir>
-        <string name="z" value="capeOverHead"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="swingP1">
-    <imgdir name="0">
-      <canvas name="cape" width="62" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="15" y="14"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="57" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="13" y="16"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="29" height="22">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="-1" y="7"/>
-        </imgdir>
-        <string name="z" value="capeOverHead"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="swingP2">
-    <imgdir name="0">
-      <canvas name="cape" width="15" height="21">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="-12" y="6"/>
-        </imgdir>
-        <string name="z" value="capeOverHead"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="57" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="14" y="15"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="58" height="36">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="20" y="21"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="swingPF">
-    <imgdir name="0">
-      <canvas name="cape" width="60" height="31">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="13" y="16"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="60" height="31">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="14" y="16"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="62" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="20" y="14"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="3">
-      <canvas name="cape" width="29" height="22">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="2" y="7"/>
-        </imgdir>
-        <string name="z" value="capeOverHead"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="stabO1">
-    <imgdir name="0">
-      <canvas name="cape" width="63" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="18" y="15"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="23" height="17">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="-3" y="5"/>
-        </imgdir>
-        <string name="z" value="capeOverHead"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="stabO2">
-    <imgdir name="0">
-      <canvas name="cape" width="63" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="15" y="14"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="23" height="17">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="-6" y="6"/>
-        </imgdir>
-        <string name="z" value="capeOverHead"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="stabOF">
-    <imgdir name="0">
-      <canvas name="cape" width="59" height="34">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="25" y="22"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="59" height="34">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="24" y="18"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="57" height="40">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="20" y="25"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="stabT1">
-    <imgdir name="0">
-      <canvas name="cape" width="60" height="31">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="21" y="16"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="57" height="38">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="18" y="19"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="61" height="31">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="19" y="16"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="stabT2">
-    <imgdir name="0">
-      <canvas name="cape" width="60" height="31">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="18" y="18"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="57" height="38">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="23" y="20"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="56" height="40">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="22" y="21"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="stabTF">
-    <imgdir name="0">
-      <uol name="cape" value="../../swingPF/0/cape"/>
-    </imgdir>
-    <imgdir name="1">
-      <uol name="cape" value="../../swingPF/1/cape"/>
-    </imgdir>
-    <imgdir name="2">
-      <canvas name="cape" width="60" height="31">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="22" y="17"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="3">
-      <uol name="cape" value="../../stabT1/2/cape"/>
-    </imgdir>
-  </imgdir>
-  <imgdir name="shoot1">
-    <imgdir name="0">
-      <canvas name="cape" width="60" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="14" y="15"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="60" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="15" y="14"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <uol name="cape" value="../1/cape"/>
-    </imgdir>
-  </imgdir>
-  <imgdir name="shoot2">
-    <imgdir name="0">
-      <canvas name="cape" width="60" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="13" y="15"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="60" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="14" y="15"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <uol name="cape" value="../0/cape"/>
-    </imgdir>
-    <imgdir name="3">
-      <uol name="cape" value="../0/cape"/>
-    </imgdir>
-    <imgdir name="4">
-      <canvas name="cape" width="60" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="13" y="15"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="shootF">
-    <imgdir name="0">
-      <canvas name="cape" width="60" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="18" y="16"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="60" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="18" y="17"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="2">
-      <uol name="cape" value="../1/cape"/>
-    </imgdir>
-  </imgdir>
-  <imgdir name="proneStab">
-    <imgdir name="0">
-      <canvas name="cape" width="36" height="13">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="16" y="7"/>
-        </imgdir>
-        <string name="z" value="cape"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="36" height="13">
-        <vector name="origin" x="12" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="15" y="8"/>
-        </imgdir>
-        <string name="z" value="cape"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="prone">
-    <imgdir name="0">
-      <uol name="cape" value="../../proneStab/0/cape"/>
-    </imgdir>
-  </imgdir>
-  <imgdir name="heal">
-    <imgdir name="0">
-      <uol name="cape" value="../../alert/1/cape"/>
-    </imgdir>
-    <imgdir name="1">
-      <uol name="cape" value="../../swingO2/1/cape"/>
-    </imgdir>
-    <imgdir name="2">
-      <uol name="cape" value="../../swingO2/0/cape"/>
-    </imgdir>
-  </imgdir>
-  <imgdir name="fly">
-    <imgdir name="0">
-      <canvas name="cape" width="60" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="16" y="16"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="60" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="16" y="16"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="jump">
-    <imgdir name="0">
-      <canvas name="cape" width="60" height="30">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="14" y="15"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="sit">
-    <imgdir name="0">
-      <canvas name="cape" width="62" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="16" y="15"/>
-        </imgdir>
-        <string name="z" value="capeBelowBody"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="ladder">
-    <imgdir name="0">
-      <canvas name="cape" width="64" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="22" y="11"/>
-        </imgdir>
-        <string name="z" value="backCape"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="64" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="21" y="11"/>
-        </imgdir>
-        <string name="z" value="backCape"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
-  <imgdir name="rope">
-    <imgdir name="0">
-      <canvas name="cape" width="64" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="22" y="10"/>
-        </imgdir>
-        <string name="z" value="backCape"/>
-      </canvas>
-    </imgdir>
-    <imgdir name="1">
-      <canvas name="cape" width="64" height="29">
-        <vector name="origin" x="11" y="9"/>
-        <imgdir name="map">
-          <vector name="navel" x="21" y="11"/>
-        </imgdir>
-        <string name="z" value="backCape"/>
-      </canvas>
-    </imgdir>
-  </imgdir>
+    <imgdir name="info">
+        <canvas name="icon" width="34" height="33" pixFormat="2" magLevel="0" bytedata="eJztlmGRhDAMhWthLWABC1jAAhawgAUsYGEtnAUsrIUegSaXhraUm235kzfz5nb2luRrkpYaU0Q24dqyn7Ehr8Nr90M81m4MdhnIgqc+C3pjwfpUZvE5nmHZ80kOPjNPcPD8P70hV2AJMkytIS9dcY5TLWDtkNvUPVdSDKfflmKAvJb1okL9KTfLs+fOrMV3GablsDlyAgffGxU47NYBa94fYoC/0AdkqNSTnQHy832JLIU5ZNxjj+J5va52nmdiKdQTbxaM68XQOJZNsi4FzszoLHgsri6Bc+t7HGIWcK0hFsoPtXPsydi5DK4GV7MALMSA9btmyeH03pHE4maB19+byy3vChycJcEBscT/aT14j+P2WNgs4DO0TyH3iWGKvmPw/MU4/H4rzc8mZDHxORAM70sOXFfs/iRrwW3Sc+A+W+d0X/b7dOL+Fri3/DlvDi7nMMTBaxC4u/jx781BSh7LP96Td+bgFkcGw0s4NAfyN7dYAhwQo2FunbuA8Rn5PT7TZDCdZpPF7DcPziPzFPAY8eDitDksyMP2hsw5XzjGdofDGK/fZFmH1JrRPTP2JqcvkiU0E9xd5PtG+O6sqlQqlUqlUqlUKpVKpVKpCukX">
+            <vector name="origin" x="1" y="33"/>
+        </canvas>
+        <canvas name="iconRaw" width="34" height="32" pixFormat="2" magLevel="0" bytedata="eJztluFxwyAMhbVCV8gKXaErdAWv0BW8glfwClmhK3iFrEAtjFSBMWAX8I/q3emau6ToQ3qAAJrIJKK3zOvrwbEMbzZu4jFmZTDzwBHw9GehWFmoPp1ZfI57WGy+kEN65g4Omf/7Ezg6sEQZxnfgmD+ac+xqgXvH3ND3Xkkx7H7bigHzGtGLDvXn3CKPzV1Yi7oM47wFbDmRQ56NDhxm7YCB54sZ8C/2gRg69cQyYH55LomlMUe47nZG6b5eFjNNE7M06onnBXC9GB6OZVVYlwZ35qEXPBZXl8i9VY8j8ALtNcbC+bF2jj25dimDq0HOC8jCDFS/PEsJp/dGMovzgqy/58s174IckiXBgWsF3/N+aI6T4bEIL9D/8DnF3DuG8fCNofuX1pHzbRjybiIWOPZBwPDMctC+juansBYyIO0D99m4SPfFztOJ+S0yt/xGmQ+yPoxxyBpEZhd//XM+SMljufBOnvHBKY4Lb3WpD4pZ/ji71LjDd96ssOZlFuLpOFNmeaBOnVUqlUqlUqlUKpVKpVKp/r1+AA==">
+            <vector name="origin" x="1" y="33"/>
+        </canvas>
+        <string name="islot" value="Sr"/>
+        <string name="vslot" value="Sr"/>
+        <int name="reqJob" value="0"/>
+        <int name="reqLevel" value="0"/>
+        <int name="reqSTR" value="0"/>
+        <int name="reqDEX" value="0"/>
+        <int name="reqINT" value="0"/>
+        <int name="reqLUK" value="0"/>
+        <int name="cash" value="1"/>
+    </imgdir>
+    <imgdir name="walk1">
+        <imgdir name="0">
+            <canvas name="cape" width="63" height="30" pixFormat="2" magLevel="0" bytedata="eJztl4FxwjAMRb1CV2CFrpAVWCErdAVWYAVWyApdISuwglqZEyiubdlOKDj3350PEhuhJyXBOLdr6NUJvBBy7f69142uX4cW/zU1exfo+1jtT9RWr3eD5vGjxt9778Dd+7K7+NNpyDndvffiLv6G+8P7Mvbuf/cu7P3Du2/3hXdB75c979Pf5xnzNnr/t+f9+PvcJM9K9789TxzL+mc61K7Xz+YS/6h75FoP/SWGyrN4v2Cspd8syE1Xe13GebV7Kqaau8br0OoV1pJSc/KdOe+nuGfic8xE7im3xTh93vae/Ho8PM7zOR4cv8Q7vLdlhO66Z7He1rpL3Mtge/F7Gak1HEe8Jf8SZ8lBhtQv2/eIe3jNlLrzyHnVuqd6XlJ7iZXZ1y/i6Vhh7a3fjxb3eZ79mKaJzuez6R7rc+aeczpeyl1i8prYfRnWQuclc6E7+4RerX03nC1S/+Vi3tHP6zroGqTct7zm9XdVOFvufk49r4tiOXUtSK7PcufXyj5H803NVbovYupn65buejQ66zxNjxWxN3eXeCvyqnVY9XnLq9T9n723ompvUzB6xPY6XW57fdnz8zGPfp2Zm0vMaxgWewt/PI5yvndvodSLeHvlXPf9Din12pu3sFcvAAAAAAAAAAAAAAAAAAAAAAAAih8=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="14" y="14"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="60" height="29" pixFormat="2" magLevel="0" bytedata="eJztl4FxgzAMRb1CV8gKXSErZAVW6ApZIStkBVboCqyQFdSKnBLZSMYGUurcf3c+LgILPQQOhPB20E5z94LCsrqXztsbun0damsnqp/zX6DvU5Xz6Nqy79B9lDo/XBv1HR3ZV5zpfPQ8nq7XrlXn0Veci3zZtU3fh2tBj+PetuccuRb0eNrbNpzHuizXTI+nvXV+y/G7Gt6J6l7ka9zHqbPkCU/vUnd3zajIMfHUI+ec9TVypWv2zXb3aySi0N8mz5AT966JX9srfDP5OWfwe57u84Z5vJyjpp4i36SHtb6S93qM6+UYj/NnoNOhPM75SlzTGmSkvvpe9HzTa1Xqy4M9ODdvLS8rzvPEVWou8dTnlRzi6PwnRXl0/en559bBrXy93pbcU5Ir8x4d5eJjrGcs9dd1yb7Ut+97GoZh3F4ul0cujqXxnK/Vz8yaEXQ+y9dwtYjctbfnu7a/M55z5L6R9DpbQtRzqXVrX309Kzxf4Rt56/ViK1/eVvbTrG3F/tncW/jqsaIeqWmLY7Lz2WGNr1yzDWr5K7JeXlw/D6EdV03pu2Tu/bIVKJyv9+8B+S7g3zKseJueGgrH3/e4rrtvdf/s+DtA/PoWwqR/XvwdcP/znTgAAAAAAAAAAAAAAAAAAAAA4AX8AA==">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="12" y="12"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="63" height="30" pixFormat="2" magLevel="0" bytedata="eJztl4FxwjAMRb1CV2CFrpAVWCErdAVWYAVWyApdISuwglqZEyiubdlOKDj3350PEhuhJyXBOLdr6NUJvBBy7f69142uX4cW/zU1exfo+1jtT9RWr3eD5vGjxt9778Dd+7K7+NNpyDndvffiLv6G+8P7Mvbuf/cu7P3Du2/3hXdB75c979Pf5xnzNnr/t+f9+PvcJM9K9789TxzL+mc61K7Xz+YS/6h75FoP/SWGyrN4v2Cspd8syE1Xe13GebV7Kqaau8br0OoV1pJSc/KdOe+nuGfic8xE7im3xTh93vae/Ho8PM7zOR4cv8Q7vLdlhO66Z7He1rpL3Mtge/F7Gak1HEe8Jf8SZ8lBhtQv2/eIe3jNlLrzyHnVuqd6XlJ7iZXZ1y/i6Vhh7a3fjxb3eZ79mKaJzuez6R7rc+aeczpeyl1i8prYfRnWQuclc6E7+4RerX03nC1S/+Vi3tHP6zroGqTct7zm9XdVOFvufk49r4tiOXUtSK7PcufXyj5H803NVbovYupn65buejQ66zxNjxWxN3eXeCvyqnVY9XnLq9T9n723ompvUzB6xPY6XW57fdnz8zGPfp2Zm0vMaxgWewt/PI5yvndvodSLeHvlXPf9Din12pu3sFcvAAAAAAAAAAAAAAAAAAAAAAAAih8=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="14" y="14"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="3">
+            <canvas name="cape" width="63" height="30" pixFormat="2" magLevel="0" bytedata="eJztl4FxwjAMRb1CV2CFrpAVWCErdAVWYAVWyApdISuwglqZEyiubdlOKDj3350PEhuhJyXBOLdr6NUJvBBy7f69142uX4cW/zU1exfo+1jtT9RWr3eD5vGjxt9778Dd+7K7+NNpyDndvffiLv6G+8P7Mvbuf/cu7P3Du2/3hXdB75c979Pf5xnzNnr/t+f9+PvcJM9K9789TxzL+mc61K7Xz+YS/6h75FoP/SWGyrN4v2Cspd8syE1Xe13GebV7Kqaau8br0OoV1pJSc/KdOe+nuGfic8xE7im3xTh93vae/Ho8PM7zOR4cv8Q7vLdlhO66Z7He1rpL3Mtge/F7Gak1HEe8Jf8SZ8lBhtQv2/eIe3jNlLrzyHnVuqd6XlJ7iZXZ1y/i6Vhh7a3fjxb3eZ79mKaJzuez6R7rc+aeczpeyl1i8prYfRnWQuclc6E7+4RerX03nC1S/+Vi3tHP6zroGqTct7zm9XdVOFvufk49r4tiOXUtSK7PcufXyj5H803NVbovYupn65buejQ66zxNjxWxN3eXeCvyqnVY9XnLq9T9n723ompvUzB6xPY6XW57fdnz8zGPfp2Zm0vMaxgWewt/PI5yvndvodSLeHvlXPf9Din12pu3sFcvAAAAAAAAAAAAAAAAAAAAAAAAih8=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="15" y="15"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="walk2">
+        <imgdir name="0">
+            <uol name="cape" value="../../walk1/0/cape"/>
+        </imgdir>
+        <imgdir name="1">
+            <uol name="cape" value="../../walk1/1/cape"/>
+        </imgdir>
+        <imgdir name="2">
+            <uol name="cape" value="../../walk1/2/cape"/>
+        </imgdir>
+        <imgdir name="3">
+            <uol name="cape" value="../../walk1/3/cape"/>
+        </imgdir>
+    </imgdir>
+    <imgdir name="stand1">
+        <imgdir name="0">
+            <canvas name="cape" width="62" height="29" pixFormat="2" magLevel="0" bytedata="eJztl42NgzAMRrPCrdAVbgVW6AqscCt0ha7ACqxwK7ACK7hnKtMkxPmh4dpU35MiVFyMXxwFMOZjoRdd+2rI7Kt/73XvAs0/p1IHovJr3g36PRe5L86f4D31X7nuq3Pj3osre4s7XTrN5+E89K27L97inuXNzm17r84ZPXd73a6745zR822v23Jf6gs5R3q+7bXyW/7/UkMXp/5d3oH17btLHvPwz52D5HOkINfG1x4x96h3IJe/x8/hOdBrJCIzzup+moj7c6PXeIR3JD/nNPoa8GO0Jyb3Kqkry9vraam35B06t14+x+Pybeh82npqcTnPeXOc/Vpk+N72GtW8/TnL9ebBHpybj76XnNPifL04S+05vvb9JYe4Ks8yJ4/t4d8/tV/W9tZ6nbPWJFfkPd3JJTVpazK0jiTme4/jSNM0Lcfr9brx5pgfj3mH+hvZW4ydL+QdcA7hzIHtr3nX6nfCN0Xsm8zel3Nw1oDUepS3Pb8Fvkd4O/72flLbm4+F/Q3W+EQ8mbumtz2eqEtqq/Gf6PXsUMNb5rBCTf/Fuib3ejfobBN8HtrrIWO0BpnLcP/ekO8O/s1DnOLxliHT/b0X9v39uO1hKt4yxK+Dxqh9TMVb5sjnJwAAAAAAAAAAAAAAAAAAAAAABLkB">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="11" y="12"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="62" height="29" pixFormat="2" magLevel="0" bytedata="eJztl42NgzAMRrPCrdAVbgVW6AqscCt0ha7ACqxwK7ACK7hnKtMkxPmh4dpU35MiVFyMXxwFMOZjoRdd+2rI7Kt/73XvAs0/p1IHovJr3g36PRe5L86f4D31X7nuq3Pj3osre4s7XTrN5+E89K27L97inuXNzm17r84ZPXd73a6745zR822v23Jf6gs5R3q+7bXyW/7/UkMXp/5d3oH17btLHvPwz52D5HOkINfG1x4x96h3IJe/x8/hOdBrJCIzzup+moj7c6PXeIR3JD/nNPoa8GO0Jyb3Kqkry9vraam35B06t14+x+Pybeh82npqcTnPeXOc/Vpk+N72GtW8/TnL9ebBHpybj76XnNPifL04S+05vvb9JYe4Ks8yJ4/t4d8/tV/W9tZ6nbPWJFfkPd3JJTVpazK0jiTme4/jSNM0Lcfr9brx5pgfj3mH+hvZW4ydL+QdcA7hzIHtr3nX6nfCN0Xsm8zel3Nw1oDUepS3Pb8Fvkd4O/72flLbm4+F/Q3W+EQ8mbumtz2eqEtqq/Gf6PXsUMNb5rBCTf/Fuib3ejfobBN8HtrrIWO0BpnLcP/ekO8O/s1DnOLxliHT/b0X9v39uO1hKt4yxK+Dxqh9TMVb5sjnJwAAAAAAAAAAAAAAAAAAAAAABLkB">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="13" y="13"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="62" height="29" pixFormat="2" magLevel="0" bytedata="eJztl42NgzAMRrPCrdAVbgVW6AqscCt0ha7ACqxwK7ACK7hnKtMkxPmh4dpU35MiVFyMXxwFMOZjoRdd+2rI7Kt/73XvAs0/p1IHovJr3g36PRe5L86f4D31X7nuq3Pj3osre4s7XTrN5+E89K27L97inuXNzm17r84ZPXd73a6745zR822v23Jf6gs5R3q+7bXyW/7/UkMXp/5d3oH17btLHvPwz52D5HOkINfG1x4x96h3IJe/x8/hOdBrJCIzzup+moj7c6PXeIR3JD/nNPoa8GO0Jyb3Kqkry9vraam35B06t14+x+Pybeh82npqcTnPeXOc/Vpk+N72GtW8/TnL9ebBHpybj76XnNPifL04S+05vvb9JYe4Ks8yJ4/t4d8/tV/W9tZ6nbPWJFfkPd3JJTVpazK0jiTme4/jSNM0Lcfr9brx5pgfj3mH+hvZW4ydL+QdcA7hzIHtr3nX6nfCN0Xsm8zel3Nw1oDUepS3Pb8Fvkd4O/72flLbm4+F/Q3W+EQ8mbumtz2eqEtqq/Gf6PXsUMNb5rBCTf/Fuib3ejfobBN8HtrrIWO0BpnLcP/ekO8O/s1DnOLxliHT/b0X9v39uO1hKt4yxK+Dxqh9TMVb5sjnJwAAAAAAAAAAAAAAAAAAAAAABLkB">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="15" y="12"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="stand2">
+        <imgdir name="0">
+            <uol name="cape" value="../../stand1/0/cape"/>
+        </imgdir>
+        <imgdir name="1">
+            <uol name="cape" value="../../stand1/1/cape"/>
+        </imgdir>
+        <imgdir name="2">
+            <uol name="cape" value="../../stand1/2/cape"/>
+        </imgdir>
+    </imgdir>
+    <imgdir name="alert">
+        <imgdir name="0">
+            <canvas name="cape" width="62" height="29" pixFormat="2" magLevel="0" bytedata="eJztl42NgzAMRrPCrdAVbgVW6AqscCt0ha7ACqxwK7ACK7hnKtMkxPmh4dpU35MiVFyMXxwFMOZjoRdd+2rI7Kt/73XvAs0/p1IHovJr3g36PRe5L86f4D31X7nuq3Pj3osre4s7XTrN5+E89K27L97inuXNzm17r84ZPXd73a6745zR822v23Jf6gs5R3q+7bXyW/7/UkMXp/5d3oH17btLHvPwz52D5HOkINfG1x4x96h3IJe/x8/hOdBrJCIzzup+moj7c6PXeIR3JD/nNPoa8GO0Jyb3Kqkry9vraam35B06t14+x+Pybeh82npqcTnPeXOc/Vpk+N72GtW8/TnL9ebBHpybj76XnNPifL04S+05vvb9JYe4Ks8yJ4/t4d8/tV/W9tZ6nbPWJFfkPd3JJTVpazK0jiTme4/jSNM0Lcfr9brx5pgfj3mH+hvZW4ydL+QdcA7hzIHtr3nX6nfCN0Xsm8zel3Nw1oDUepS3Pb8Fvkd4O/72flLbm4+F/Q3W+EQ8mbumtz2eqEtqq/Gf6PXsUMNb5rBCTf/Fuib3ejfobBN8HtrrIWO0BpnLcP/ekO8O/s1DnOLxliHT/b0X9v39uO1hKt4yxK+Dxqh9TMVb5sjnJwAAAAAAAAAAAAAAAAAAAAAABLkB">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="16" y="13"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="62" height="29" pixFormat="2" magLevel="0" bytedata="eJztl42NgzAMRrPCrdAVbgVW6AqscCt0ha7ACqxwK7ACK7hnKtMkxPmh4dpU35MiVFyMXxwFMOZjoRdd+2rI7Kt/73XvAs0/p1IHovJr3g36PRe5L86f4D31X7nuq3Pj3osre4s7XTrN5+E89K27L97inuXNzm17r84ZPXd73a6745zR822v23Jf6gs5R3q+7bXyW/7/UkMXp/5d3oH17btLHvPwz52D5HOkINfG1x4x96h3IJe/x8/hOdBrJCIzzup+moj7c6PXeIR3JD/nNPoa8GO0Jyb3Kqkry9vraam35B06t14+x+Pybeh82npqcTnPeXOc/Vpk+N72GtW8/TnL9ebBHpybj76XnNPifL04S+05vvb9JYe4Ks8yJ4/t4d8/tV/W9tZ6nbPWJFfkPd3JJTVpazK0jiTme4/jSNM0Lcfr9brx5pgfj3mH+hvZW4ydL+QdcA7hzIHtr3nX6nfCN0Xsm8zel3Nw1oDUepS3Pb8Fvkd4O/72flLbm4+F/Q3W+EQ8mbumtz2eqEtqq/Gf6PXsUMNb5rBCTf/Fuib3ejfobBN8HtrrIWO0BpnLcP/ekO8O/s1DnOLxliHT/b0X9v39uO1hKt4yxK+Dxqh9TMVb5sjnJwAAAAAAAAAAAAAAAAAAAAAABLkB">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="16" y="13"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="62" height="29" pixFormat="2" magLevel="0" bytedata="eJztl42NgzAMRrPCrdAVbgVW6AqscCt0ha7ACqxwK7ACK7hnKtMkxPmh4dpU35MiVFyMXxwFMOZjoRdd+2rI7Kt/73XvAs0/p1IHovJr3g36PRe5L86f4D31X7nuq3Pj3osre4s7XTrN5+E89K27L97inuXNzm17r84ZPXd73a6745zR822v23Jf6gs5R3q+7bXyW/7/UkMXp/5d3oH17btLHvPwz52D5HOkINfG1x4x96h3IJe/x8/hOdBrJCIzzup+moj7c6PXeIR3JD/nNPoa8GO0Jyb3Kqkry9vraam35B06t14+x+Pybeh82npqcTnPeXOc/Vpk+N72GtW8/TnL9ebBHpybj76XnNPifL04S+05vvb9JYe4Ks8yJ4/t4d8/tV/W9tZ6nbPWJFfkPd3JJTVpazK0jiTme4/jSNM0Lcfr9brx5pgfj3mH+hvZW4ydL+QdcA7hzIHtr3nX6nfCN0Xsm8zel3Nw1oDUepS3Pb8Fvkd4O/72flLbm4+F/Q3W+EQ8mbumtz2eqEtqq/Gf6PXsUMNb5rBCTf/Fuib3ejfobBN8HtrrIWO0BpnLcP/ekO8O/s1DnOLxliHT/b0X9v39uO1hKt4yxK+Dxqh9TMVb5sjnJwAAAAAAAAAAAAAAAAAAAAAABLkB">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="16" y="13"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="swingO1">
+        <imgdir name="0">
+            <canvas name="cape" width="49" height="32" pixFormat="2" magLevel="0" bytedata="eJztl4ttwzAMRLVCV+gsXqErZIWu0Fm8QlfICl4hK7CRI9EUTX1cU4VV8AACQYBQ90jKZpy7pIDFqIL7xyvc2CzIMTBLwsBYRhEst7eROVb/Mf4Dw4AcO/+DMcDj832NGoe7JgP6z3FcvBcAT88xJI4Dz6deXKXzEv+cIfqdpy0KDL16A0+X4L4fNL/oHUjtuXfiL8ew/l6JYeeVes555/4F78kZHRl4zdGHP7PEQGen4D1bK5pLhSPkjLWqcfD6H/CgzZDMK9xnkcNrWRbkOOEfz0X/841z5HLx/yjokdfbc9R6IczPUaUMhIOxJPdSeu/QZx96DYp1lzh8jhP+N4boX+CQIvf+pAzed0svTvYgz9DAktsBqM/SvRDit5LnqIGlpRfSvcDwz9+v+RUaDOxO14LuMrwHnIHODXoP9wTfJec4mhmkXVLy7Zy8HyQ1pxznGYoctf3R5Wd6V/fEq/9Mv9e6E4WaN3gW87qwe4hzk3hX7IMw6wc8yxycwU0kH4TQ2TWl3UUh9zYzq/eJ11zL/5qLPjOV/+cF76AxM9WzOjFg/g45s+dElj86s5e09gCTyWQymUwmk8lkMplMJpPJZDKZTKbh9AM=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="15" y="14"/>
+                </imgdir>
+                <string name="z" value="capeOverHead"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="33" height="21" pixFormat="2" magLevel="0" bytedata="eJztlmFxwzAMhU1hFIolFEahFEZhFEYhFEYhFEIhFNTIV8nPiu24TbL90bvTNXe19D7JjtsQNiKIs/RKTaLp52x/rT197nJEf/q6XcYw3z9aHOovEd7fj2L9Za35KgOv5+jgwDUUfpdSTmRocGz8LUuoz4TWbPSN9TnvfkvnkJ7+7zIUZpL3DT5cm73l09ZZoJbh2GUgkwv52jdNo/aPs7AMlVl0MZQ4xiH1LQw6g1XzPGccR+ewy8BrwNfOgv15PQd/ZziqDIthx7Ac7N3aE/QTjhaD3TeM3VkUGOA90fdAOEoM1hvPPs4SQ/xqHJV3u3gmCmd2k4cswoOzwPlLhO+xeneVGDp+VzBXWfBeiL5wb8Xn/C6ztfSZOToZijzqLX7cP4dwxOehVf/o77b6szKOEMB/vJIh40izH9KetP1TjTMY1HvTd2/to/9fnp7U2/eV+m9/l8vlcrlcLpfrz/QA">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="4" y="5"/>
+                </imgdir>
+                <string name="z" value="capeOverHead"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="51" height="39" pixFormat="2" magLevel="0" bytedata="eJztl4txwyAQRGkhLbiFtJAW3IJbSAtuwS24BbWQFtSCW8CBBLQcH8kC20KzO3MTWTHiHrdnkFKblRbRu/Tt+2BD7YPJ8+yESY+nDxuCqUd5FmRSffJELJ3yJDn2xtIZj+/1PbGUmDrgiTj2xOJy/zkqHx2w2Px0gsXkf/2awvGobbJ4Dg08yKHgzGk+b5RlKUcwJnP/nQoYkMX1hsrnuyWWLIepycJ1fyVLdk1THCtYXiWthlvS6/Isf0v0SWLcsjnbS/+uPLL4wD1C8lTWxK7HinHzLP9xPIQMcs9DntqaNGCR4+3n8+cUczytOFysfYb1EXjJ5WMYzLVjmeMp7CXLWa6ntSx/PZHwklJhfxiey+US9YxkqeIAFuB55HmBjySPuT8Mgx7HMfBciqdJTVzEfpvdp5yP0EuYpxJec3/dd5FlJUeapcwUhVtfzNGsv/MS5ogMeI3/a8ZSqJGGs1HBF1GuqX7Ha6xjBUeaBftH3C+9FxkeWaMcj6yjHWd+A8/X+rqI3i9Fjse9H0mWuR6yHOHZoEb52qxgydUGemEKkz/8nptUKnmKtcHcNezLyDDHE3BMPhIM1Rwxi+gPzD3OId4PHYt8n/XngnRPtDwLRrVJnI2WzJX3UeClpyryVuV5wj83PO838dGieeV7dqN5W/bDQ/M+gUWp13grO28jj21Fso8piqIoiqIoiqIoiqIoiqIoiqIoiqIoinqD7g==">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="12" y="22"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="swingO2">
+        <imgdir name="0">
+            <canvas name="cape" width="60" height="30" pixFormat="2" magLevel="0" bytedata="eJztlwuRg0AMhtfCWaiFs4CFWsDCWaiFWsACFs4CFmph7wITWEL2CX0s838zmQILId+G0q0xp8O+u4AXY025c41zZR8/lxLnPfP0TuzvNdvZ2rI5+gTs0H7lOI+ulfqOjuTLzvbWhDxm15p92Tniu7h2bY3Os2tijxfX+nxXrgk9Xve2HuexNs010uNtbz/beayHa8v03fbWs8/nP6P2Ek83Qs6qr/IcS2fO4dSYUmfw9+D/7tb0j/A5Ac/dvr6czthDd8/1kfNmteN8n5DrU3wD+SmnUrfPaY7b97T2o8/rZTpG+xSUM8VVflc5pK/bG62Hub6ct2vCPrRNoY3TtezKNad48n05eM5yfeWzkepLwV6pvrTv+vp6G5tjDjoWWEev8rm55HzH3vs5vsMwjNH3fdTX18/A+2PO5/PlnHSO9n2T/m5dPOb6kgf73O/3ov5KT6WfIXz/kTRX9Xqft+Z7xPOsPTsJnjHfccx5z0bzuPVxLUf7FvZ0U6dvLMN34y1jr++Onsr6ovWX5D3SN/F9dBSluVc+ub78+/tCz6NYeYV8ZVTmKQmuJc2tm9bVvL6m/ZpdyUH6UDTN8r+AttuWj9XqyqT4WFrqGNPV7sqk+JzFlTmbDwAAAAAAAAAAAAAAAAAAAACgEv4A">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="14" y="13"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="17" height="19" pixFormat="2" magLevel="0" bytedata="eJztlFENwzAMRE1hFEahFEZhFEqhFEahFEqhFEphFEbhJqd1lzhO3KnSfpaTLFlx7sWJ3BIlApUFpx72YH54+6p19i9396xaHYqh90qOoStyAuPZX9Y6AJpfH1aUTzeTASxj8HNguCa96N6YYfSyM9jPwbmcJ0xhnWHIPRUD3zIqvWQMzRHvmfv8gHHoTZLg2dny0pvwWTFnnzGZs2j+zPts8y6MsMaeeG5zBmlGzDEZeWjpb49sH0r+lTH2xjcL7XP/RYU1z9fU1NT013oD">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="-8" y="6"/>
+                </imgdir>
+                <string name="z" value="capeOverHead"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="61" height="31" pixFormat="2" magLevel="0" bytedata="eJzt2IuRgjAQBuC0cC3YwrVAC7ZAC9eCLdACLdDCtUALthBNmJU1j02IEQX+fyajPA7zsYHAKbX56EA7QvTY/uj/s7JNHceur3+nkH3PsWZqZFdw7zFP5gO4PW+BeUvnJehd6N7SWBC9mWat7/sJ278pSS+ZBbf1bsBs+6czvIlaT96+/Xbzoy61zSu7c37L7kOGmJs/h5nvgnn2UqvrFu8f91/XarjG9rHref9dt+vqm6lx9xJzBbdkkt6J7DL1m5prDlnpb7k76OXjOu4usYuuy+/UL/N5Ps37mGXqc8xNy66VH9+sT9aY+x23Y8+a42Mmvp3vw9fxMeq6E9anfoj3LtcYGev8GorU0faFG1w3rZO2S+YF78n8vKTNiRab96mvS8zjOOphGHTXdWKtC96NxeeQd5pDJuq72RY6JyFzoGY5Zm+dZF4y58fMxloytrnZuXZrxBvfroXP9bF7Cq/FK9dzzF3RO5tZrY03MJ68+1ToWguZXRct59a6stdzU31z5oHYOXi11p8wF/4/xfOXmOkY/HtFp9fnQI2Lj5Vjdlxzu/RreB99NeZKvxV9ZlG8jsZnnsfpuXz2rpnq90jP9OzSqmm0atvpc736+v2sfby0S5vbilL9J7zvCjel5oI9ZY8mBEEQBEEQBEEQBEEQBEEQBEEQBEGQw+cG">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="17" y="17"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="swingO3">
+        <imgdir name="0">
+            <canvas name="cape" width="63" height="29" pixFormat="2" magLevel="0" bytedata="eJztlw1xwzAMRk1hFEphFEqhFEJhFEqhFEohFEYhFEZBm9JTp9iWLSft5ee+d+frXRUrfpadOCEcGlqp7xagMM9hbr8tQT9fp1YPovY+W4S+L03+o/dR3Ifuw+v/9D6A++jL7uJP17Pl9O99747gP7qLv8udvffv/vR21H5a8337T7wdtU+99+c/jjHnXah9WvNy/bc2B0Vnl3vkmZ2PdA6881B9vzTk0tdXnSvrvuxuNMnn8iKi0P+Yz9hKPPG1xrLI3ekd349zBnstxDGaE2sZj17j3Frd41ze+3BuPebr5+Ncyb+XU+pqxfk/bjJ2r7seh/SXHMVnneGj567mLe1+tt04Vou3uGsvubdueg4y59skR6m/1eJ7v9M9V2edVzedL3Ouf+bTNSvliNdUXHPJ0fc9DcMw/t5ut8SdY7l4zt16Z2XGnDwnJaflHu3XHJN5yM1FvF64llLXpbV31LlE6Vuu5p2dh9g1biW3FndrT7WMt+Su3lUtJHviHe7GXpwzzrlxV37LnRu7cSu5S1y7K+8lY3vFNZ4cL6v9C7zXoHiG8dQ+LF+LazPZp7E7+8bXhP07C49vFflmud5Tx3z8CFA4/52hu+7xm/tuKcf3DvERKgSzprX43nn3OxYAAAAAAAAAAAAAAAAAAAAAAFbnFw==">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="19" y="14"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="33" height="21" pixFormat="2" magLevel="0" bytedata="eJztln1xwzAMxU1hFIolFEahFEZhFEYhFEYhFEIhFNTKq+RnxR9Jk67/6N3p6rvaej/JjpMQViKIs7QnJ9H0c7a/5p4+uxzRn74uL2OYrx8tDvWXCM/tR20dLfecexl4PkeHg1bxu1QZGhwrf8tSqe2PgQh9Y35ed70kLnr4P8tQ6Amuz3w4N3vLr82zQC7D0WUgsxbWa900jVo/9sIyVHqxiaHEMQ6pbmHQHtw1z3PGcbQPXQaeA762F+zP8zn4P8NRZVgMO4blYO/WnqCfcLQY7L5hdHtRYIDnRJ8D4SgxWG88+9hLDPGrcVSe7eKZKJzZjN2yCA/2AvsvEb7H6t1VYtjwXiny4L0QfeHeiuP8LrO5dMwcGxmKPOotflw/h3DE8dDKf/S9rf6sjCME8B9fyZBxpN4PaU/a/inHGQzqndW9J/fR75eHF1n/d+jd/i6Xy+VyuVwu17/pBg==">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="4" y="7"/>
+                </imgdir>
+                <string name="z" value="capeOverHead"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="49" height="32" pixFormat="2" magLevel="0" bytedata="eJztl4ttwzAMRLVCV+gsXqErZIWu0Fm8QlfICl4hK7CRI9EUTX1cU4VV8AACQYBQ90jKZpy7pIDFqIL7xyvc2CzIMTBLwsBYRhEst7eROVb/Mf4Dw4AcO/+DMcDj832NGoe7JgP6z3FcvBcAT88xJI4Dz6deXKXzEv+cIfqdpy0KDL16A0+X4L4fNL/oHUjtuXfiL8ew/l6JYeeVes555/4F78kZHRl4zdGHP7PEQGen4D1bK5pLhSPkjLWqcfD6H/CgzZDMK9xnkcNrWRbkOOEfz0X/841z5HLx/yjokdfbc9R6IczPUaUMhIOxJPdSeu/QZx96DYp1lzh8jhP+N4boX+CQIvf+pAzed0svTvYgz9DAktsBqM/SvRDit5LnqIGlpRfSvcDwz9+v+RUaDOxO14LuMrwHnIHODXoP9wTfJec4mhmkXVLy7Zy8HyQ1pxznGYoctf3R5Wd6V/fEq/9Mv9e6E4WaN3gW87qwe4hzk3hX7IMw6wc8yxycwU0kH4TQ2TWl3UUh9zYzq/eJ11zL/5qLPjOV/+cF76AxM9WzOjFg/g45s+dElj86s5e09gCTyWQymUwmk8lkMplMJpPJZDKZTKbh9AM=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="10" y="14"/>
+                </imgdir>
+                <string name="z" value="capeOverHead"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="swingOF">
+        <imgdir name="0">
+            <canvas name="cape" width="56" height="35" pixFormat="2" magLevel="0" bytedata="eJzt14FRwzAMBVCtwAqswAqswApdgRWYpSuwAiuwQldwSRoZWZacpLZ7xPx/pzsuIXFe5cYu0SESnBop4fL+nBSN5wxfb2kN6Azfp6dYhvPoSXzSOYjR9A1k/Bc+focOZkxslnFE3yBG1zaKz3PxGqjXRDqOr2g7v95KOg/kC+HHwmXZaNmfsZH7SL7vL+zp5vEt21TKFq+Zjgmfed/Q/7tZ+vzm4xfh0j7HFq8vnXuILYRAn5dbqd90+h0pbcac9MfIz8d7rVy7z2KMM/uE6eOFsneg9O20ybHj33IebLx+/f5Oj2j5HTe5tFH7Ns7J1WeZbedTK+OtR6JP0/Ozhy3WMctYuZ799m7yLcZKH0mXZeRnlj7dQzZWrmWpLe/hnvua3yttKJ2z9iIVNtsnjMpZLN5HeAai9XPaWGnLfU4vrTVW7/ekTzu0gQpzVM7TLr6dRu1r0UNxrDa2r1CP8BE19qn1oWTyfJ7Rm4d8Tnla75/M9cHbs+u6p4euL90PtEyxZ+o9ne1DauZoLN6Ttu9f5iu4zGu92jQP1T6H6NzDlxgN2933zCrtk/ifsFQX2zyO/o3VcCyjT9m9e9riGB1s8d4U+9RtDm56jn6+7nNwx7P07CGCIAiCIAiCIAiCIAiCIAiCIAiCIAiCjJUr">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="19" y="18"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="60" height="34" pixFormat="2" magLevel="0" bytedata="eJztmI1xwjAMRrVCV2CFrsAKXSErdAVmyQpZgRVYoSukcUCOIss/oc5RnO/d6aAYEj1LUaBEWUYVrTL7jd+nOahxV/aEa1Msrn3Xuu/a9Si+7Nq2b1jbI/gKT//YnnMwoxqfWWFtDX96T2crZ7u2ced38rby9V4/0yOH6f5+3uP1K8h1dnCOt+5jXnfhnjfg7X1oyXPl+ni92LnA+5V7Yvoq19V7S/qb30Oh2zh1z0jDzyucV/0qzm+5klxzn3OR89U9YkQ0t8z6Jk92lb7aOff5VH9r3/4sfjtf+/m1y2d8Tyv2gPeUsdHXHyvW33rWaVflq+v97P9PguPJfc/4Fp9D1zlaW4eqrVvj4BzlviTyibrFopJv4MzBx1z18sTtdhuHYTB9I/2edcvNkcq+gXPhdVvk69bkjCy5P8RmSUVf7yyDPdzzXC+n6q/7p8QvVtuKvitnzrU73YNdk76J2sbmYqp+qdlcydc7+xnk7itTsLcL6ZrrAWs2aEe5vzqkt+6/Sr5EJFzvk3m5p176wNn9zc66B6xr13IkskN67+S6OE9+2pVrvcoz0QO6L6WnckvuvfbexVd+VxK+fH5e93vi1l1E6rLB0cyHj/fEZ4uO78YQnc8jdV3gavoae2LU8k85iWPtwd2Z+vhvhsc1HvOlOp4in91cS86x1J9dhe8Oue3tWsLS9xz/I689efR8fwRX5kiuAAAAAAAAAAAAAAAAAAAAAAAAANjALw==">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="17" y="17"/>
+                </imgdir>
+                <string name="z" value="backCape"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="33" height="21" pixFormat="2" magLevel="0" bytedata="eJztln1xwzAMxU1hFIolFEahFEZhFEYhFEYhFEIhFNTKq+RnxR9Jk67/6N3p6rvaej/JjpMQViKIs7QnJ9H0c7a/5p4+uxzRn74uL2OYrx8tDvWXCM/tR20dLfecexl4PkeHg1bxu1QZGhwrf8tSqe2PgQh9Y35ed70kLnr4P8tQ6Amuz3w4N3vLr82zQC7D0WUgsxbWa900jVo/9sIyVHqxiaHEMQ6pbmHQHtw1z3PGcbQPXQaeA762F+zP8zn4P8NRZVgMO4blYO/WnqCfcLQY7L5hdHtRYIDnRJ8D4SgxWG88+9hLDPGrcVSe7eKZKJzZjN2yCA/2AvsvEb7H6t1VYtjwXiny4L0QfeHeiuP8LrO5dMwcGxmKPOotflw/h3DE8dDKf/S9rf6sjCME8B9fyZBxpN4PaU/a/inHGQzqndW9J/fR75eHF1n/d+jd/i6Xy+VyuVwu17/pBg==">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="4" y="6"/>
+                </imgdir>
+                <string name="z" value="capeOverHead"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="3">
+            <canvas name="cape" width="59" height="34" pixFormat="2" magLevel="0" bytedata="eJzt14F1wiAQBmBW6Aqu0BW6giu4QldwBVfIClmhK3QFV6AFPXLAQUICaYr//969Wk3Az8MElfq30axeIfr78vYqZmulUn2b9dd5qsDcY5yRm1WfXm8dk7lTr75/nl7Fa61UoVf1Y/Wcobez3iadnVmzPe3IKjpXWo/8OSSdK67HR+659eiMb/hQthZY7TjC838d+57006kFJxnp2BmrG0cdy+oZuZUs3MjPM8dkrcNlT2/ut0nUyxmnOH6upzta9e+sWo33R03z2ce0Rjc4FR+P/++cT2tFb6p3Wipac/zas8HJ53KPPWvsXWuWemfr+v5wmb+mzqfJyn+LhtfbFU7v/UROZhXMJXNEfTMmYwu9c9YKztia6C+/zkuGVEkeyTuOo77dbqKX31c2OGUrr+B56bcEFd3jaF0usRqfcUq95d4KznmrcB0s9dJrvHdL13Ll/Xt0v1nilPbZKavUuxJrJWfWumRvXdrbUm9Fp+9NfC+5g1v4HlvqLXlTljlrA+dkTdy32bxRcdfW6xQ/1t6Pr0Nzr+DMnhdWqdWda3xm72GqXV9F64a5onss97rX/L4Fn9nwrLbeCtZoXK9o3yivUW3ehmrbVzdXA6sd163ReN3Hx+6XtfvfgnF16zV6lOy1RhEEQRAEQRAEQRAEQRAEQRAEQRAEQRAEWZgf">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="23" y="19"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="swingT1">
+        <imgdir name="0">
+            <canvas name="cape" width="62" height="30" pixFormat="2" magLevel="0" bytedata="eJztl4FxgzAMRb1CV8gKXYEVsgIrdIWswApZgRW6AitkBaeCUyIcy5aBNJj7706XBBOhJ0HqOndY/KcL+BDeLXevuWf+9nNa4r6mX3vA/56L3b1f1qs94Yf2q8R9dK7ce3Qlb3b3lybl83A+gje7Z7yfzte2ZveHs3HmT+d6vWfOhpnPZ12f+1hjzDkz89dZ1+E+1sU1Fnq/zlr5zOe/q/6lvjJS7lHvyP0dunMOUad5P5A41/9V4F1/y+V7ndOW3lpOsXaL90CvV/cKe+i1Nb5eyvkt3on8lFOpXXN7xOV72k/S6/n0PE7HKCi3xTl8ljlCbzmr2ExLvTnvtcl70XsKbZ1ysDPXbvHl63Nw75LzjniH94rVmyLlVeKtzdrSc86V2KfP8slcYd9zfydKvYdhGKPve991XdY7Nt/EM+ZkPs2bc9I5sWcx7IOsi9dCb/IJvZbMO+ObQ/ufLOYc/b7sgfTXvLe6z+V1Cnxz3uOa+F025XLiHuBa3+FNr4XzjdaqrRV6z3LK39GtvGUs9JU1Zh1W5N7Um3OtqKm0/lXfz3lZvP/ZeSvM+xZD1Eja6XKd9u28f6fPFPX6TpBLzKtp2Gt637Z8rH7nCYuXp22TcweY8xyL19GcmaN6AQAAAAAAAAAAAAAAAAAAAADA7rgD">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="15" y="14"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="57" height="29" pixFormat="2" magLevel="0" bytedata="eJztlguRgzAQhmPhLNTCWaiFWsDCWcBCLWABC2cBC1jYsnSWS8KSB4+WXP9vZgdKSNiPbUKM+RfQm/q+EjLrcl3b7x0Q/Vxy813T553Q723Iub6m5jz6lebYVV+pnpNfQY7UD7myY4Lnn19TleQ5OopnkiP7SZzfcfJLqKVbwzI8Hb+EWrp+/vm5PMdcNL9ALec1XPgt95/RbbWjsgZluIbuyXlXMzfJI9vRm4Ox6MOuNIxKpu219lCb/w5mXloeCXMyXMOEsRVXygyn35ocjnaUMWU8Pueovw3dLq5PqE3+Zxwpz7bv9yM4HyPvSAs7bx6Pj75HrK25Pq8vOS7NOe4nYfdXvh+Toz+GhFw72tH3DHn5/3m+NvUN7AEkZ23e2M8XX/99iEvbttR13Xi83++OJ1/X2vxa+HNB8ZqtVdJ/yVHGW+jvrCW+71G1VNxiBPer1tqRgrOG7OVoe2a6JTtmjjdz3ctxhZuTz4b26Nh7eG7IQfLY455g/y2OOzz/VXyCI6N+fyyP2L7u7JCpm+e+W/bf/Jsj1lYWZK7DGl5Vz6PUSc61tjIh/lwZo9Yo1FYaKfsmAAAAAAAAAAAAAAAAAAAA8OE8AA==">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="14" y="16"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="29" height="22" pixFormat="2" magLevel="0" bytedata="eJzt1G0RgzAMBuBamIVZmAUszAIWZgELWMACFrBQC7OQXTLSpjQFxtftR967HPsx+jT9wLndAaWuCHRVrIv8xCz4h1lYwzPWSW6ydr6+hZK25m9wv+/072DhuPU9luYr+7vWBdd04R1pee8zX7obenOhNwB6H153Gguf6E373NiT7o6FFgwdUPA5zqF5CAfnKNZlj4t7wz1xr+w6Xn9p4e+q0tyleST3gc8g2+zS/3D9sUcu8qBkau7sXZC2G9eTQ3bsTx0b2jrbe2lNq3gP+KyV+0tMWqNJzZmFO772zBZNzZ3xfglA3xRN6R7kRXdoF90d35V/MaM7Y4tv25GBxFb8k9xgZ76ok9zMd+vunsVisVgsFovFQvkA">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="-1" y="7"/>
+                </imgdir>
+                <string name="z" value="capeOverHead"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="swingT2">
+        <imgdir name="0">
+            <canvas name="cape" width="33" height="21" pixFormat="2" magLevel="0" bytedata="eJztluERgjAMhbuCKzgLK7iCK7iCK7gCK7gCK7BCV6i+QEsIaW059PyRd5erWJr3NW0B5zYKLI5SS84QhsfR/in3cPnIQf7hdv4aw3g9lTiSfwy3fz3U/P6ds5UB9yMqOPg9wT29NoYYChwbf8ni8jUJ79Hcl/Jj3PW87MMw++9lUGqynjfzhi9n8CKPZ7kEx0eGIMay8VP/0Cff2K9xFGpRxaBxwIMzaLXAb39QHWoYxnGk/9BCvC7w7ztHgWvBkWXwgp1HYphFvpn1iL7RL16XGOS68dizHvCcz0k6B5KLM0hvvvd5LVsYcuda2xPKnl2xS5bIQxzsbPCg50f+OacyVLxXNjxok+e9n/rQ4tlVZnCijzgqGdY5ohdaRDvHKp94Z9UxzGcjcUiGrmufV/t3zJYhcjjUoG9lWJJONazj5v6Y9zL3b32P6Bzku3/eh3H8dt4mk8lkMplMJtNf6AU=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="0" y="5"/>
+                </imgdir>
+                <string name="z" value="capeOverHead"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="57" height="29" pixFormat="2" magLevel="0" bytedata="eJztlg+VgzAMh2vhLMzCWZiFWcDCWZiFWZgFLJwFLMxCRtgL15YQQsf+9Pb73suDUVrykbU0hH8BvajvM6FQlmtpv1dA9LNbm29Jn1dCv4c+5+Pem/PgV5tj13x5PUe/ihzp0ufKjg7PP79zU5Pn4CieLkf2k3h/x9HPUcu0hnV4Jn6OWqZ++fl7eQ65aH5GLac1nPkt97+jW7GjsgatcLXuWfOuJm6Sx2rHbA4uxcV2pX5UCu1Fa7fa8ncw8dLycMxJu4aOseOcCiPxKsnh0Y4ypozH5xzH70CHXepjtcn/jMPz7Pj+PMz5uPCOtIjz5vH4mHsstZ33t+tzjnNzjvtJxP2V78fomI8hIdce7Zh7Wl75f56vjX2NPYDkrM2b+Pnim78PcWnblrquG46n0ynx5OtaW16LfC4oXpO1SvrPOcp4nvUu931ULRW3Jcz9arR2eEjWkK0cY8+Vbm7HleNNXLdyLHBL8rmjfXHsLTzvyEHy2OIes/89jhs8/1l8giOjfn8iD2tfVwMUjufbvlv23/ybY6mtLijs+zW8aW5HqZOca211Qvy5CkGtkdVWG559EwAAAAAAAAAAAAAAAAAAAPhwrg==">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="14" y="15"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="58" height="36" pixFormat="2" magLevel="0" bytedata="eJztmIFxwyAMRVmhK2SFrtAVskJW6ApZISt4Ba/QFbpCVqCVE1EQCOMAie3+d6fLnQnYz5Ix2JhNYDOxN+zXMQ6zT2f7fXoLQnHeA5GrdDb/wJV9zT5cs547crXXz8MUO/Z0jjlX8qRfs13XyNN35blo4zmddRw+bsG+1G625zrraLx1w0Y91VwKx6hP4viaWero+mXa1sbkZe/BngWOrv/C468gcLTLcpkd98F+PUg6smeNo13Pczu5aLms8HRjPdC3Ne5dX/lcJseexhtOz3aV+8ZgTcNutmG9vsDT/p7ZmvF6CxOuZ7g+rz1yeff0XFv4amNF33vkus13rczldL7As61rlDOO8/vNhX4pjoe8a9NcCs+E7+L5TQb5kJd01Twb7T/imlV8+RlJXXsuUi4p13Ec7eVyUV2be/ohjmv7PX9PxHVY6klu5DiX0wrHeU9lPVLqyi7c7udsaf028fTeKSWO8ntFLqfklcpZqWflHDvrmdu7574Xa/XL7UtdGziGrspzKOcC/z7ncipdS+cjv72h45+nsvfxzqe+1+WcoT2nJa6uBuh9ex66uSYcs/1kPOLp+pMbrSso2ucz6Vlxjuj9KV1de5gvcc+Ge/RxbeAZjRsFrwXTdWnpUkyffAbX1M2V6zJ2T/3/GdSsaQvHtb3qck30rksAAAAAAAAAAAAAAAAAAAAAAAAAgKfyAw==">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="22" y="21"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="swingT3">
+        <imgdir name="0">
+            <canvas name="cape" width="56" height="33" pixFormat="2" magLevel="0" bytedata="eJzt14FtgzAQBdBboSt0ha7QFbpCVugKnSUrdIWu0BWyglNIbM7fdwaCkYj7v2RVggbfyxlMRJ4iwRk9JVw+X7Mh/TnDz0c+OnSG39NLGobz2ZP5tLMTo+nryPgvfPEZ2pkxs1nGHn2dGF3bA74j7pmuK+6BuCeKXX8Ix+tt1XZ+vw3tdHyHtA01xWHZ5L7WojH2UXJHuoYcwzfWYdmGAbb0meFYzdbY594Dc+cuqh70Obb0ecs9XuN8amkM8n25DZjrbzY8lwY+I7XNWJP+3NP56TsafHfjRt9kKPt0O6dMX29SPAO1b6VNGydftJU9fNSZahcpx1CrPheN6Fu4Jqt1FD5lBOec2ezL8DcO67jM9HBmP1vnc3qJ97hljvuQ5RDoZ6xZ/y/2MBo32GzfQiO+P2gfGtGHdu3Dd5ENNt9XGXO+uR7WeovGjbbJB/uDZ8J7Q/uwhzWHVNaoXqfNfcqIJu2wfldiD7UPHTW7Xt8bbaXR2FPhPsi+e3y/XbJGl/jUXM19uPacucxn51KfXqPOHtk65rvQirmKGlf77Pe5pj69pzaYp+zLvf6iZ/77XMu0tKVrjrWX9YfsXDp23tM31tPYJ5KZAq7B6biEvW1GPS2vmRm859UzpwcDwzAMwzAMwzAMwzAMwzAMwzAMwzDMLrkC">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="18" y="17"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="59" height="35" pixFormat="2" magLevel="0" bytedata="eJzt2IF1wiAQBuBboSu4QldwBVfICl3BFVzBFbJCV8gKrkAl9hCOC2LASuj/v8ezzb0kfF4UWqJNxSyMnmOm4cMN6t8ceDs3R1Zh7inm8rX7L97ZyqNzb2Dt2GvM1WaEVfNSx9aV3pbfD2et0NuWez97lqzW9n2geWR45/MXau9O5PS97Dzvb8P3Uuxx5yq1FqJa7THupTXS73Ppeyn0BOdTe1b12eW++Ub/HPbK4/L9ona87vP4wKmeK6x343lozVridNcgabVOz/pm73xv69Gs4rOZfb2gp8veEnPyGRN1Z/SHtq6smFPsVLwFZnO9g6Hxon7vi5r7PpVrpHQ+2dNla6LHl9Ccc6+l/5uo4/ipr48VehpbtbXaOy73YTlz53HYhTXunayxV+59CnuaZ1X2Y/69/cE9sfPleUtPqpayFjpXW+UeW3prWKW30Hm3imf1md5KL8+T52aPjeNopmmaX0+nU2C2x7UaWyv0M/YurzXB2pT6+0la1/ZXWis579bHe4jAntPbBq2B94nrRuv+K6yVnYF3xbWjdaTWc/xCazDvkvNrWQvm8ZdxZq83a9agLSVrb5WobzGGjufbPp/3+/Z3Ox7VthlD+72hYbi9cu/4Z6227Rj7dU+k9ixV22pSlp6cCIIgCIIgCIIgCIIgCIIgCIIgCIIgCII0mB8=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="20" y="17"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="23" height="17" pixFormat="2" magLevel="0" bytedata="eJztk30RwyAMxbEwC9OChVmYhVmYhVnAwixgAQuzkF4YYUn4aKH7k3f3ruXa/F4KqTHDAuaz4hww709ch/uFZ8zkfFlPJzj+ZjIf7exUBhiAWAPeATyumYv3ms8yDvORhyzihxCa/Sv+Xk7mRD6K9U9X4ip+7TvE3tK72C/vn7g9g3/JNdYn0/fyPjk/1uBZo9MM8f6QzXk11/j5rJEp50nswSjfpPkk5QxrNX+XTdxiDpBH/Mgd7139I+W5Ry705rvJr/Rc1HaeSb7KaOzJjH7zwzLUWZ6VzGD+Ez9nNLy0tLS0tHRYGw==">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="-3" y="4"/>
+                </imgdir>
+                <string name="z" value="capeOverHead"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="swingTF">
+        <imgdir name="0">
+            <canvas name="cape" width="64" height="29" pixFormat="2" magLevel="0" bytedata="eJztmIlxgzAQRdVCWnALacEtpAVacAuuhRZowS3QAi3IFmblldjVgeMEMf/NaHywgN6XhJUYo2L1Q81R62I3nLNnanysvZwO53/7Kcpgdj+i/9h95TLw7kf1z2TwdO+7o2Xg3RP+r7F3/ksGQl2L2OnhkskgdD/OHJjdqSn+67E/RgaBe+zPMhDnvpJBCzmEToJ/NAfUub/6HOawtyxW3rG/sgZU11QOG+dE0R5kyzXFfv+Wf6aZsjlhH3eyZpiSe5CCGp5RUf8+7Z/Iwkp9VrIqPpdcSvtU5B/tfbY2fp/VPW79/N31W3RVa9xn6neJd/zcl559/Vn3d/X0G1Gbtb2E/nQfyc29t8u9tBp3PvmX9IW7unP5+eQU+Ru+BibWH54/ZfHf/rk5J40vdxDcvX/kLq7Nkjkh+Y/jaB3udRgG2X+B12j+8dyWnGOHhL+h54rwfUw2i0+Pf8Y72XfFPXYrJXg+TX/gv9G7xm/Lvu45x5c+SuuQXJ2X5i/VcP83vN9xq7o+z4D66lp3ChutRfKnDHgNf35n1u6ekMfK7elob3ftxfGfj9HxpYb8KQuzb3fC+9F7erp7v2WP62voeJTR6jptEYy99yv1f/0d0Jo3J+lv4vkh+7eONeezNV33fHVN2mPxmlOz/3fSsO4n3pg+5VVS0zI1+0sAAAAAAAAAAAAAAAAAAAAAAAAV3AE=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="20" y="12"/>
+                </imgdir>
+                <string name="z" value="backCape"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="60" height="31" pixFormat="2" magLevel="0" bytedata="eJztloFxgzAMRb1CV8gKXSErZAVW6ApZIStkBVboCqyQFdQYaiorkmXI0YvDf3c+7gDbepINDsGF/FfeBgr78SX6OuzFd3Tdie/s2rBvbcx/rteudV8v7ty1cd/vk+ucu/76Nuo8+hacH2vbri8N3cfYXF/u2a5z5ms4q46G8yt70+0eZ/I1aqy7Gs633PuV3MfYUivUuOyrND5uWOa9RY5Iujo1XuwrneOYwa853Wei0N/U/bQiD6pntS87Y8i+Nb7K2CRjM3JSysNiTysmHpf0SM/T+5a/Ne71OLU0/vlzuh+vp0Oe60IeVE8t3wt95xonVz6/5275RrfYLF/tmeI7x6Hl+llf61+luXu15b6aK38WG6t7Np/Ms7efKn1DGr9mTcmaW77x3b7vaRiGoq98lsawfKVTep/3kf8krY4Vvpm3dC2t5eh9uVyytZzu8XdrXPm8/DsRm+zrnaMrfbMcWbWV+9bau9G7xje5Kp5ZTLy/4xsK901nvp40X+lqfatKvnztGp6q84I1u9pZ25tr965R06p4NvSd5/D+QaXaJl/5PTTOMG48G7rOcyz1lc/kWg7rzprhiX5r53lotWtZ9Hsmjv9gOgvHls7F56uZA6O1BoXjkULXTdfcY/LX89EqFI+oIZgeWj5ax/nHF/PxjuzJFQAAAAAAAAAAAAAAAAAAAAAANucH">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="21" y="17"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="59" height="34" pixFormat="2" magLevel="0" bytedata="eJzt14F1gyAQBmBW6ApZoSt0hayQFbpCVsgKruAKXaErZAVaSA4POFAUrCX//9695iUqfh5VVOrfRrN6hejvy9urmK2VSvVt1l/nqQJzj3FGblZ9er15TOZOvfr+eXoVr7VShV7Vj9Vzht7Oept0dmbN9rQjq+hcaT3ydUg6V9yPj9xz69EZ3/ChbC2w2uMI3/917Dnpp1MLTjLStjNWdxx1LKtn5FaycCPfz2yTtQ6XPb25d5OolwVOd4xcT3e06t9RtRrvj5rGs59pji505sdJ9fRprehNXXctFc05fu/Z4ORjuc+eNfauNUu9s3V9f7jMX1Pn02Tl76Lh/XaF0zufyMmsgrlkjKhvxmRsoXfOWsEZWxP95fd5yZAqySN5x3HUt9tN9PLnyganbOUVfC+9S1DRM47m5RKr8Rmn1FvureCctwr3wVIv/cZ7t3QuV16/R8+bJU5pnZ2ySr0rsVZyZq1L1talvS31VnT63sT/JXdwC19jS70lb8oyZ23gnKyJ5zYbNyru2nqf4tva5/F1aO4VnNn9wiq1un2Nz6w9TLXrq2jdMFb0jOVe95vft+CaDc9q661gjY7rFa0b5TmqzWmotn11YzWw2uO6ORrP+3jb/bJ2/VtwXN16jh4le81RBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEW5gc=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="19" y="23"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="3">
+            <canvas name="cape" width="29" height="22" pixFormat="2" magLevel="0" bytedata="eJzt1G0RgzAMBuBamIVZmAUszAIWZgELWMACFrBQC7OQXTLSpjQFxtftR967HPsx+jT9wLndAaWuCHRVrIv8xCz4h1lYwzPWSW6ydr6+hZK25m9wv+/072DhuPU9luYr+7vWBdd04R1pee8zX7obenOhNwB6H153Gguf6E373NiT7o6FFgwdUPA5zqF5CAfnKNZlj4t7wz1xr+w6Xn9p4e+q0tyleST3gc8g2+zS/3D9sUcu8qBkau7sXZC2G9eTQ3bsTx0b2jrbe2lNq3gP+KyV+0tMWqNJzZmFO772zBZNzZ3xfglA3xRN6R7kRXdoF90d35V/MaM7Y4tv25GBxFb8k9xgZ76ok9zMd+vunsVisVgsFovFQvkA">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="1" y="8"/>
+                </imgdir>
+                <string name="z" value="capeOverHead"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="swingP1">
+        <imgdir name="0">
+            <canvas name="cape" width="62" height="30" pixFormat="2" magLevel="0" bytedata="eJztl4FxgzAMRb1CV8gKXYEVsgIrdIWswApZgRW6AitkBaeCUyIcy5aBNJj7706XBBOhJ0HqOndY/KcL+BDeLXevuWf+9nNa4r6mX3vA/56L3b1f1qs94Yf2q8R9dK7ce3Qlb3b3lybl83A+gje7Z7yfzte2ZveHs3HmT+d6vWfOhpnPZ12f+1hjzDkz89dZ1+E+1sU1Fnq/zlr5zOe/q/6lvjJS7lHvyP0dunMOUad5P5A41/9V4F1/y+V7ndOW3lpOsXaL90CvV/cKe+i1Nb5eyvkt3on8lFOpXXN7xOV72k/S6/n0PE7HKCi3xTl8ljlCbzmr2ExLvTnvtcl70XsKbZ1ysDPXbvHl63Nw75LzjniH94rVmyLlVeKtzdrSc86V2KfP8slcYd9zfydKvYdhGKPve991XdY7Nt/EM+ZkPs2bc9I5sWcx7IOsi9dCb/IJvZbMO+ObQ/ufLOYc/b7sgfTXvLe6z+V1Cnxz3uOa+F025XLiHuBa3+FNr4XzjdaqrRV6z3LK39GtvGUs9JU1Zh1W5N7Um3OtqKm0/lXfz3lZvP/ZeSvM+xZD1Eja6XKd9u28f6fPFPX6TpBLzKtp2Gt637Z8rH7nCYuXp22TcweY8xyL19GcmaN6AQAAAAAAAAAAAAAAAAAAAADA7rgD">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="15" y="14"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="57" height="29" pixFormat="2" magLevel="0" bytedata="eJztlg+VgzAMh2vhLMzCWZiFWcDCWZiFWZgFLJwFLMxCRtgL15YQQsf+9Pb73suDUVrykbU0hH8BvajvM6FQlmtpv1dA9LNbm29Jn1dCv4c+5+Pem/PgV5tj13x5PUe/ihzp0ufKjg7PP79zU5Pn4CieLkf2k3h/x9HPUcu0hnV4Jn6OWqZ++fl7eQ65aH5GLac1nPkt97+jW7GjsgatcLXuWfOuJm6Sx2rHbA4uxcV2pX5UCu1Fa7fa8ncw8dLycMxJu4aOseOcCiPxKsnh0Y4ypozH5xzH70CHXepjtcn/jMPz7Pj+PMz5uPCOtIjz5vH4mHsstZ33t+tzjnNzjvtJxP2V78fomI8hIdce7Zh7Wl75f56vjX2NPYDkrM2b+Pnim78PcWnblrquG46n0ynx5OtaW16LfC4oXpO1SvrPOcp4nvUu931ULRW3Jcz9arR2eEjWkK0cY8+Vbm7HleNNXLdyLHBL8rmjfXHsLTzvyEHy2OIes/89jhs8/1l8giOjfn8iD2tfVwMUjufbvlv23/ybY6mtLijs+zW8aW5HqZOca211Qvy5CkGtkdVWG559EwAAAAAAAAAAAAAAAAAAAPhwrg==">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="13" y="16"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="29" height="22" pixFormat="2" magLevel="0" bytedata="eJzt1G0RgzAMBuBamIVZmAUszAIWZgELWMACFrBQC7OQXTLSpjQFxtftR967HPsx+jT9wLndAaWuCHRVrIv8xCz4h1lYwzPWSW6ydr6+hZK25m9wv+/072DhuPU9luYr+7vWBdd04R1pee8zX7obenOhNwB6H153Gguf6E373NiT7o6FFgwdUPA5zqF5CAfnKNZlj4t7wz1xr+w6Xn9p4e+q0tyleST3gc8g2+zS/3D9sUcu8qBkau7sXZC2G9eTQ3bsTx0b2jrbe2lNq3gP+KyV+0tMWqNJzZmFO772zBZNzZ3xfglA3xRN6R7kRXdoF90d35V/MaM7Y4tv25GBxFb8k9xgZ76ok9zMd+vunsVisVgsFovFQvkA">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="-1" y="7"/>
+                </imgdir>
+                <string name="z" value="capeOverHead"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="swingP2">
+        <imgdir name="0">
+            <canvas name="cape" width="15" height="21" pixFormat="2" magLevel="0" bytedata="eJxjYMAK/mMXJgj+k6n3///dHeToBes7E4rXXlxy6HpxqkMTh+u7myYIkfv//z/D7nfYzMGqF6Tvf7kSuvr/5cYMcHNWuUD5ULn/Z2bC9YEwiA2SB6kDuQXEhmFS9IL4IDbMDHL0IovRQy/MreS4maZ6oekCWS96HMMwIb0o6QqWtpDSGZJeBnT9YD5ILXK6xKd3ZhoiH/z/T4peuH5c/sSCceWv/yCjIBiZT7BMwJnXCOgbBaNgFIyCYQkA">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="-12" y="6"/>
+                </imgdir>
+                <string name="z" value="capeOverHead"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="57" height="29" pixFormat="2" magLevel="0" bytedata="eJztlg+VgzAMh2vhLMzCWZiFWcDCWZiFWZgFLJwFLMxCRtgL15YQQsf+9Pb73suDUVrykbU0hH8BvajvM6FQlmtpv1dA9LNbm29Jn1dCv4c+5+Pem/PgV5tj13x5PUe/ihzp0ufKjg7PP79zU5Pn4CieLkf2k3h/x9HPUcu0hnV4Jn6OWqZ++fl7eQ65aH5GLac1nPkt97+jW7GjsgatcLXuWfOuJm6Sx2rHbA4uxcV2pX5UCu1Fa7fa8ncw8dLycMxJu4aOseOcCiPxKsnh0Y4ypozH5xzH70CHXepjtcn/jMPz7Pj+PMz5uPCOtIjz5vH4mHsstZ33t+tzjnNzjvtJxP2V78fomI8hIdce7Zh7Wl75f56vjX2NPYDkrM2b+Pnim78PcWnblrquG46n0ynx5OtaW16LfC4oXpO1SvrPOcp4nvUu931ULRW3Jcz9arR2eEjWkK0cY8+Vbm7HleNNXLdyLHBL8rmjfXHsLTzvyEHy2OIes/89jhs8/1l8giOjfn8iD2tfVwMUjufbvlv23/ybY6mtLijs+zW8aW5HqZOca211Qvy5CkGtkdVWG559EwAAAAAAAAAAAAAAAAAAAPhwrg==">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="14" y="15"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="58" height="36" pixFormat="2" magLevel="0" bytedata="eJztmIFxwyAMRVmhK3SFrtAVskJW6ApZISt4Ba/QFbpCVqCVE1EQCGMDqe3+d6fLnQk4LxIYbMwusJk4GvbzFIc5prP9Or8EoTgfgchVOpt/4Mq+5hiuWc8Dudrbx+sUB/Z0jjlX8qRPs1/XyNN35bVo5zmddRze78G+1G725zrraLx9w0491VwKx6hP4vqWWero+mXatsbkZR/BngWOrv/C639B4GiX5TI77sp+PUg6smeNo93OvJ1ctFxWeLqxVvRtjXvWV87L5NjTeMP52a7y3BjsadjNput1dS6f7Gl/7mzNeLuHCfczXJ+3Hrl8eHquLXy1saL3PXLf5rtWrj3T/QLPtq5Rzjgub3cX+qQ4veZdm+ZSeCZ8F88JGeRDXtJV82x0/ohrVvHlOZL67blIuaRcx3G01+tVdW3u6Ye4rp33/DMR12GpJ7mR41xOKxznPZX9SKkru3C7n7Ol9dvE03umlDjK9xW5nJJXKmelnpVr7Kxn7uyee1+s1S+3L3Vt4Bi6KvNQrgX+/5zLqXQtXY/89oaOv57K2ce7n/pcl2uGNk9LXF0N0PP2MnRzTThm+8lY4+n6kxvtKyja5zPpWXGP6PkpXV17mC/xnw2P6OPawDMaNwreC6br0tJPMX3yGfymbq5cl7F76vvPoGZPWziu7VWXW6J3XQIAAAAAAAAAAAAAAAAAAAAAAAAAPJVv">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="20" y="21"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="swingPF">
+        <imgdir name="0">
+            <canvas name="cape" width="60" height="31" pixFormat="2" magLevel="0" bytedata="eJztl4GRgjAQRdPCtXAtXAu2YAu0cC3Ygi3YAi1cC7RgCzkXZmUTN8kmeHrR/2Z2EMGwjw8BnXs5/LMbeDDevZezP39/tjr3eJ78z77Judfrwk/DR62z9+3XxDOZHcmXnf1hV/KYXXv2ZWeD79W1Q9+rqzHj1fU09OYcuBozXl378Z3701wLGYfZ/n/nuSfur9lXej7OuWbswFNWzjnyvc02sV7Zm61/770bz9k5NOfZ7Ktcx7EzjyF7MDnp+8XjeG0bHzPnusk3NabYdtbda/Kb1w9fy7sfLfefqyN9R31aXON7lSv2lb2afDPnk8Ys5aRV7EvL084FPVs8aQz6HRets2PSN8qw1lceN5cffaaKt/M6+6ayLR2Ti8dR3qOTvvG9YPWlYq+c7zRNc43jWPRN5ZmbHzhr5X9DMK7sn+8l2UPuOVfja8k39lTyzJH6jxScQxpTu99if9mX7IV9KTfO73g8Nvlq59LgWfRVXNXfp7w13635NmZ6029qm5hnTePIuZA/38t3Q6Zxn8ltFb433nFt8TXOR/eg+Txu9ZXP32j++GtajxH4WHwL1QuBV9L3cFreM/l9k9ap+nKVlDPcXd7hh2FZ9perZMlMy29xW/e77OBc17ky1vxewZV5pfysvJMrAAAAAAAAAAAAAAAAAAAAAAA8jV8=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="13" y="16"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="60" height="31" pixFormat="2" magLevel="0" bytedata="eJztl4GRgjAQRdPCtXAtXAu2YAu0cC3Ygi3YAi1cC7RgCzkXZmUTN8kmeHrR/2Z2EMGwjw8BnXs5/LMbeDDevZezP39/tjr3eJ78z77Judfrwk/DR62z9+3XxDOZHcmXnf1hV/KYXXv2ZWeD79W1Q9+rqzHj1fU09OYcuBozXl378Z3701wLGYfZ/n/nuSfur9lXej7OuWbswFNWzjnyvc02sV7Zm61/770bz9k5NOfZ7Ktcx7EzjyF7MDnp+8XjeG0bHzPnusk3NabYdtbda/Kb1w9fy7sfLfefqyN9R31aXON7lSv2lb2afDPnk8Ys5aRV7EvL084FPVs8aQz6HRets2PSN8qw1lceN5cffaaKt/M6+6ayLR2Ti8dR3qOTvvG9YPWlYq+c7zRNc43jWPRN5ZmbHzhr5X9DMK7sn+8l2UPuOVfja8k39lTyzJH6jxScQxpTu99if9mX7IV9KTfO73g8Nvlq59LgWfRVXNXfp7w13635NmZ6029qm5hnTePIuZA/38t3Q6Zxn8ltFb433nFt8TXOR/eg+Txu9ZXP32j++GtajxH4WHwL1QuBV9L3cFreM/l9k9ap+nKVlDPcXd7hh2FZ9perZMlMy29xW/e77OBc17ky1vxewZV5pfysvJMrAAAAAAAAAAAAAAAAAAAAAAA8jV8=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="14" y="16"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="62" height="29" pixFormat="2" magLevel="0" bytedata="eJztl42NgzAMRrPCrdAVbgVW6AqscCt0ha7ACqxwK7ACK7hnKtMkxPmh4dpU35MiVFyMXxwFMOZjoRdd+2rI7Kt/73XvAs0/p1IHovJr3g36PRe5L86f4D31X7nuq3Pj3osre4s7XTrN5+E89K27L97inuXNzm17r84ZPXd73a6745zR822v23Jf6gs5R3q+7bXyW/7/UkMXp/5d3oH17btLHvPwz52D5HOkINfG1x4x96h3IJe/x8/hOdBrJCIzzup+moj7c6PXeIR3JD/nNPoa8GO0Jyb3Kqkry9vraam35B06t14+x+Pybeh82npqcTnPeXOc/Vpk+N72GtW8/TnL9ebBHpybj76XnNPifL04S+05vvb9JYe4Ks8yJ4/t4d8/tV/W9tZ6nbPWJFfkPd3JJTVpazK0jiTme4/jSNM0Lcfr9brx5pgfj3mH+hvZW4ydL+QdcA7hzIHtr3nX6nfCN0Xsm8zel3Nw1oDUepS3Pb8Fvkd4O/72flLbm4+F/Q3W+EQ8mbumtz2eqEtqq/Gf6PXsUMNb5rBCTf/Fuib3ejfobBN8HtrrIWO0BpnLcP/ekO8O/s1DnOLxliHT/b0X9v39uO1hKt4yxK+Dxqh9TMVb5sjnJwAAAAAAAAAAAAAAAAAAAAAABLkB">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="20" y="14"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="3">
+            <canvas name="cape" width="29" height="22" pixFormat="2" magLevel="0" bytedata="eJzt1G0RgzAMBuBYmIVZmAUszAIWZgELWMACFrCAhVnIlo60KU2hx9ftR967HPsx+jT9AGB3UKkrgl0V6iI/MjP+YRbV8Ax1khut3VjffElb8ze4v3f6t7do3PoeSvOV/S11EZrOvyOtcRwTX7obegPfG6J7H193NxY9yZv3ubEn3Z2KLBw6dKHnNIfmIRyao1iXPS7tDffEvbILvP7Sot9Vpblr84juA59Bttl1/6P1px65nIc5U3MX74K0YVpPjrNDf+rY2NbJ3ktrXtl7wGct319kujWa1ZKpeuVnNmtq7szT9qjkrCL2TdaU7oK3Jd+z1666O74r/2IGd8EW37Yjg5Gt+Ce53k58USe5iQ/ld8FisVgsFovFYoEP">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="2" y="7"/>
+                </imgdir>
+                <string name="z" value="capeOverHead"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="stabO1">
+        <imgdir name="0">
+            <canvas name="cape" width="63" height="30" pixFormat="2" magLevel="0" bytedata="eJztl4FxwjAMRb1CV2CFrpAVWCErdAVWYAVWyApdISuwglqZEyiubdlOKDj3352PS+wIPSkJxrldQ69O4IWQa/fvvW50/Tq0+K+p2btA38dqf6K2er0bNI8fNf7eewfu3pfdxZ9OQ87p7r0Xd/E33B/el7F3/7t3Ye8f3n27L7wLer/seZ/+Ps+Yt9H7vz3vx9/nJnlWuv/teeJY1j/ToXa9fjeX+EfdI/d66C8xVJ7F+wVjLf1mQW662usyzqvdUzHV3DVeh1avsJaUmpPvzHk/xT0Tn2Mmck+5Lcbp87b35M/j4XGez/Hg+CXe4bMtI3TXPYv1ttZd4l4G20ufS63hOOIt+Zc4Sw4ypH7Zvkfcw3um1J1HzqvWPdXzktpLrMy+fhFPxwprb/1+tLjP8+zHNE10Pp9N91ifM8+c0/FS7hKT18Sey7AWOi+ZC93ZJ/Rq7bvhbJH6Lxfzjl6v66BrkHLf8p7X31XhbLn7OfW+Lorl1L0guT7LnT8r+xzNNzVX6b6Iqd+tW7rr0eis8zQ9VsTe3F3ircir1mHV9eywhfs/e2+FubfR9SkYPWJ7nS63vb7s+fmYR7/OzM0l5jUMi72FPx5HOd+7t1DqRby9cq77foeUeu3NW9irFwAAAAAAAAAAAAAAAAAAAAAAAMUP">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="18" y="15"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="23" height="17" pixFormat="2" magLevel="0" bytedata="eJztk10RwjAQhGMBC1jAQixgAQtYqAUs1AIWYiEWsLDlDi7cpUmbTHnMzuwDbfNt7gfnuoTMR5VzMPuPD+bAPV9w02w48XZiS0aW084G+AzCDNzPCNemjGY+8Ygr/BjjKqPC38uB4ZNUDdOlXIOrzwKaKd8yn6RqEHbNCA/7m85+LffRPdA94mc0azLN3faD2ZpXsvB1DWnWxLT7ZHrQw081vnmilOH96v+wx87vneomnvCZ23932YHq3JmLrf2u8rN+FM9uvLP8QsbG3Xv0258sg/gH2eUM5T/xU0bFQ0NDQ0NDzVoA">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="-3" y="5"/>
+                </imgdir>
+                <string name="z" value="capeOverHead"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="stabO2">
+        <imgdir name="0">
+            <canvas name="cape" width="63" height="30" pixFormat="2" magLevel="0" bytedata="eJztl4FxwjAMRb1CV2CFrpAVWCErdAVWYAVWyApdISuwglqZEyiubdlOKDj3352PS+wIPSkJxrldQ69O4IWQa/fvvW50/Tq0+K+p2btA38dqf6K2er0bNI8fNf7eewfu3pfdxZ9OQ87p7r0Xd/E33B/el7F3/7t3Ye8f3n27L7wLer/seZ/+Ps+Yt9H7vz3vx9/nJnlWuv/teeJY1j/ToXa9fjeX+EfdI/d66C8xVJ7F+wVjLf1mQW662usyzqvdUzHV3DVeh1avsJaUmpPvzHk/xT0Tn2Mmck+5Lcbp87b35M/j4XGez/Hg+CXe4bMtI3TXPYv1ttZd4l4G20ufS63hOOIt+Zc4Sw4ypH7Zvkfcw3um1J1HzqvWPdXzktpLrMy+fhFPxwprb/1+tLjP8+zHNE10Pp9N91ifM8+c0/FS7hKT18Sey7AWOi+ZC93ZJ/Rq7bvhbJH6Lxfzjl6v66BrkHLf8p7X31XhbLn7OfW+Lorl1L0guT7LnT8r+xzNNzVX6b6Iqd+tW7rr0eis8zQ9VsTe3F3ircir1mHV9eywhfs/e2+FubfR9SkYPWJ7nS63vb7s+fmYR7/OzM0l5jUMi72FPx5HOd+7t1DqRby9cq77foeUeu3NW9irFwAAAAAAAAAAAAAAAAAAAAAAAMUP">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="15" y="14"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="23" height="17" pixFormat="2" magLevel="0" bytedata="eJztk10RwjAQhGMBC1jAQixgAQtYqAUs1AIWYiEWsLDlDi7cpUmbTHnMzuwDbfNt7gfnuoTMR5VzMPuPD+bAPV9w02w48XZiS0aW084G+AzCDNzPCNemjGY+8Ygr/BjjKqPC38uB4ZNUDdOlXIOrzwKaKd8yn6RqEHbNCA/7m85+LffRPdA94mc0azLN3faD2ZpXsvB1DWnWxLT7ZHrQw081vnmilOH96v+wx87vneomnvCZ23932YHq3JmLrf2u8rN+FM9uvLP8QsbG3Xv0258sg/gH2eUM5T/xU0bFQ0NDQ0NDzVoA">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="-6" y="6"/>
+                </imgdir>
+                <string name="z" value="capeOverHead"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="stabOF">
+        <imgdir name="0">
+            <canvas name="cape" width="59" height="34" pixFormat="2" magLevel="0" bytedata="eJzt14F1gyAQBmBW6ApZoSt0hayQFbpCVsgKruAKXaErZAVaSA4POFAUrCX//9695iUqfh5VVOrfRrN6hejvy9urmK2VSvVt1l/nqQJzj3FGblZ9er15TOZOvfr+eXoVr7VShV7Vj9Vzht7Oept0dmbN9rQjq+hcaT3ydUg6V9yPj9xz69EZ3/ChbC2w2uMI3/917Dnpp1MLTjLStjNWdxx1LKtn5FaycCPfz2yTtQ6XPb25d5OolwVOd4xcT3e06t9RtRrvj5rGs59pji505sdJ9fRprehNXXctFc05fu/Z4ORjuc+eNfauNUu9s3V9f7jMX1Pn02Tl76Lh/XaF0zufyMmsgrlkjKhvxmRsoXfOWsEZWxP95fd5yZAqySN5x3HUt9tN9PLnyganbOUVfC+9S1DRM47m5RKr8Rmn1FvureCctwr3wVIv/cZ7t3QuV16/R8+bJU5pnZ2ySr0rsVZyZq1L1talvS31VnT63sT/JXdwC19jS70lb8oyZ23gnKyJ5zYbNyru2nqf4tva5/F1aO4VnNn9wiq1un2Nz6w9TLXrq2jdMFb0jOVe95vft+CaDc9q661gjY7rFa0b5TmqzWmotn11YzWw2uO6ORrP+3jb/bJ2/VtwXN16jh4le81RBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEW5gc=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="25" y="22"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="59" height="34" pixFormat="2" magLevel="0" bytedata="eJzt14F1gyAQBmBW6ApZoSt0hayQFbpCVsgKruAKXaErZAVaSA4POFAUrCX//9695iUqfh5VVOrfRrN6hejvy9urmK2VSvVt1l/nqQJzj3FGblZ9er15TOZOvfr+eXoVr7VShV7Vj9Vzht7Oept0dmbN9rQjq+hcaT3ydUg6V9yPj9xz69EZ3/ChbC2w2uMI3/917Dnpp1MLTjLStjNWdxx1LKtn5FaycCPfz2yTtQ6XPb25d5OolwVOd4xcT3e06t9RtRrvj5rGs59pji505sdJ9fRprehNXXctFc05fu/Z4ORjuc+eNfauNUu9s3V9f7jMX1Pn02Tl76Lh/XaF0zufyMmsgrlkjKhvxmRsoXfOWsEZWxP95fd5yZAqySN5x3HUt9tN9PLnyganbOUVfC+9S1DRM47m5RKr8Rmn1FvureCctwr3wVIv/cZ7t3QuV16/R8+bJU5pnZ2ySr0rsVZyZq1L1talvS31VnT63sT/JXdwC19jS70lb8oyZ23gnKyJ5zYbNyru2nqf4tva5/F1aO4VnNn9wiq1un2Nz6w9TLXrq2jdMFb0jOVe95vft+CaDc9q661gjY7rFa0b5TmqzWmotn11YzWw2uO6ORrP+3jb/bJ2/VtwXN16jh4le81RBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEW5gc=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="24" y="18"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="57" height="40" pixFormat="2" magLevel="0" bytedata="eJztmYF1wiAQhlmhK7hCV+gKruAKXcEVXMEVskJX6AqugIJCjuMI+LxE4f3fe/ea1hj4ege5qDFdYIUYEfu3n8OM62v/D18+BN9RsJffXfSkvmasnHrPEDyvZgzPxBGeXZM5ck/Tt6PoN1guR3es+o3qKN0vO/Us+lEnHqYfR+9jC37nn7nPcccdOno3yxwFv3h+8DQd+lm2/gS/+L6F1z4J0c9FIX/Z+yuvv5vMj+bwiRx9gqM017i/SH6NOayNuRXWTBdrjmc6X+9B987g2LAG28fdBnurxuwzGpcjei9v2EOfH3dLx1scv++x382/U0/uqDA/XxMK10muafL/XXRxITnyfGrlkK7vF68Vr+nrMV1zMajPNE32dDoVPTVzaM8HXUcSIVfup/MwDx/nR3NpBE+F+cw5fDi+6JnNla876sPPk+pWzdH5hUg9W3qJpCcOTnyutCadC/fhjuEaL/rJjsSTuSbBn2ucXwg6x+DHcynljdftKo78uNAzlp5JJUeXO2kf5Wszc0z7A13HQu1Kz2/cs5RLySHUKz0n1qfbj9fM40L+ap8TSZ5hrpV6vHu5+03sgZTzyPbVWn1KUavZcJx4sn51Dqvll3qyXLZ+ZlKKJc/oUl5z2n1lvg7lXvHp4I4xQg+0XY+ceur2wvKai39TW3NNc6GOK353sOaaaxpfOYfV8Va89uK4Gzq+k9iDmXEdA5q9BgAAAAAAAAAAAAAAAAAAAAAAAAAAAGBArg==">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="20" y="25"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="stabT1">
+        <imgdir name="0">
+            <canvas name="cape" width="60" height="31" pixFormat="2" magLevel="0" bytedata="eJzt2AuVwjAQBdBYWAtYWAtYwEItrAUsYKEWamEt1AIWspuwaSfTmSSE0C3lvXNyoPSX20l/GPPSsULbe+z3aW7mPdx27D58Y+49593M9vp1mMzBbfZr9t7Qdl7nyMrNpsz7SsdE9RaaX2kMeJv9axVev15i/pYSWbm3wDytJ8zbUnz/bMaa8Ubrmu16F04r+HhTvX33H+aSfYk1lazOlvHO1tDampPXi9+9WzNctWX8767P0niVrP3x1sL99x5vA3PKk3q/8dO8ViXOsG4wM+/Sqptr3EnT+fPWJ/d5OszLuGleI27WnHT7dBuql06zcyXRd9Gpeeh8ugz9TRqXqXpq/SDLmIWXXw+U38MxVurn90H7z83cVuKlY7PAWedNtNx5lPOGMea+j+Noh2Gwl8sla2b9z0W/7z7RK3mC182Tjgf3svFbGvWZKlfje+8HweucufrmvJVW9RhINdbeJ1PPMLXjmc7XzI2ssZdYhXfmqNFzip9f3MtNYbq0xg2topnfo7V1NP+jNV7T62pb+T9IdD+q9YZt0O8NnVF/6Vh+cD9FXmaa27l/tnXqJ3mOeHhbqTZZnc09X4fn7Nm6Vlrvb+mJTdYcj9Z03e1znbou+9h6e3mTdaeUMf3a1meFenLX/L1kbx4EQRAEQRAEQRAEQRAEQRAEQRAEQZBN5Ac=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="21" y="16"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="57" height="38" pixFormat="2" magLevel="0" bytedata="eJzt2IFxwjAMBVCt0BVYoSuwAiuwQldgBVZghazQFbICK6goIEdxZEMaB4j5/853XEqDH1JEgGg14cSqLdzuvwaL6rTy+WdTu7Uz2uVYa8gnOEfG2Errd360sRIn88XBGaM6qQKj56xg9gx87Nh+dxTWCp0jHzu+07ZfKzO6PjY+dZG5lxUzrcPY1SrXo5S+R1+DsTOox+tPU7vkOZ612X9kMCPPkU+vPXpvgyS1x8FstLWcUL93CF8mCVNztnvtHsv+488AdRbwLfG+pM7Z7fPwTbzb9I9l2fkfOwv0aGljXKdwXCy6f3WqMeUs4ZNresb/j87X9aI/10PdrJHId5b0FTfS2KAOMsa2bblpGj4ej9meLWUs5BzsNVUreSw++3f7HDFZ68x9XX2nfeyccs7wP7o3cvrR1ooSPZuaQTOMfQ3FaJyRNbvsNRMbZWk/erW0xtScneHrjepznKnvZ3Z5RjWILdevsdM+x7yPc+IbHWvqO1vOmauTHvOeQ+NeKWe0nol1vdevscEet87gOpxKzfm08c53tin9+siMDUvuG8r5emM0V6f8puAt+9l2z0haM7HJfcN2e/Mt4Mz0ZWwjZ7Zal13xNWfvB4zhatvvb8e4pK83Rk7rc2zueeKVnCHaj8OeLDln0kbTs9Y343WHBu1HqVfoyafF7dEFfve52bj09fbw68e/mSz029ZS/fjw61vjC/exdMJ9CNVr1Ly6pxAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQZCK8wc=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="18" y="19"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="61" height="31" pixFormat="2" magLevel="0" bytedata="eJzt2IuRgjAQBuC0cC3YwrVAC7ZAC9eCLdACLdDCtUALthBNmJU1j02IEQX+fyajPA7zsYHAKbX56EA7QvTY/uj/s7JNHceur3+nkH3PsWZqZFdw7zFP5gO4PW+BeUvnJehd6N7SWBC9mWat7/sJ278pSS+ZBbf1bsBs+6czvIlaT96+/Xbzoy61zSu7c37L7kOGmJs/h5nvgnn2UqvrFu8f91/XarjG9rHref9dt+vqm6lx9xJzBbdkkt6J7DL1m5prDlnpb7k76OXjOu4usYuuy+/UL/N5Ps37mGXqc8xNy66VH9+sT9aY+x23Y8+a42Mmvp3vw9fxMeq6E9anfoj3LtcYGev8GorU0faFG1w3rZO2S+YF78n8vKTNiRab96mvS8zjOOphGHTXdWKtC96NxeeQd5pDJuq72RY6JyFzoGY5Zm+dZF4y58fMxloytrnZuXZrxBvfroXP9bF7Cq/FK9dzzF3RO5tZrY03MJ68+1ToWguZXRct59a6stdzU31z5oHYOXi11p8wF/4/xfOXmOkY/HtFp9fnQI2Lj5Vjdlxzu/RreB99NeZKvxV9ZlG8jsZnnsfpuXz2rpnq90jP9OzSqmm0atvpc736+v2sfby0S5vbilL9J7zvCjel5oI9ZY8mBEEQBEEQBEEQBEEQBEEQBEEQBEGQw+cG">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="19" y="16"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="stabT2">
+        <imgdir name="0">
+            <canvas name="cape" width="60" height="31" pixFormat="2" magLevel="0" bytedata="eJzt2AuVwjAQBdBYWAtYWAtYwEItrAUsYKEWamEt1AIWspuwaSfTmSSE0C3lvXNyoPSX20l/GPPSsULbe+z3aW7mPdx27D58Y+49593M9vp1mMzBbfZr9t7Qdl7nyMrNpsz7SsdE9RaaX2kMeJv9axVev15i/pYSWbm3wDytJ8zbUnz/bMaa8Ubrmu16F04r+HhTvX33H+aSfYk1lazOlvHO1tDampPXi9+9WzNctWX8767P0niVrP3x1sL99x5vA3PKk3q/8dO8ViXOsG4wM+/Sqptr3EnT+fPWJ/d5OszLuGleI27WnHT7dBuql06zcyXRd9Gpeeh8ugz9TRqXqXpq/SDLmIWXXw+U38MxVurn90H7z83cVuKlY7PAWedNtNx5lPOGMea+j+Noh2Gwl8sla2b9z0W/7z7RK3mC182Tjgf3svFbGvWZKlfje+8HweucufrmvJVW9RhINdbeJ1PPMLXjmc7XzI2ssZdYhXfmqNFzip9f3MtNYbq0xg2topnfo7V1NP+jNV7T62pb+T9IdD+q9YZt0O8NnVF/6Vh+cD9FXmaa27l/tnXqJ3mOeHhbqTZZnc09X4fn7Nm6Vlrvb+mJTdYcj9Z03e1znbou+9h6e3mTdaeUMf3a1meFenLX/L1kbx4EQRAEQRAEQRAEQRAEQRAEQRAEQZBN5Ac=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="18" y="18"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="57" height="38" pixFormat="2" magLevel="0" bytedata="eJzt2IFxwjAMBVCt0BVYoSuwAiuwQldgBVZghazQFbICK6goIEdxZEMaB4j5/853XEqDH1JEgGg14cSqLdzuvwaL6rTy+WdTu7Uz2uVYa8gnOEfG2Errd360sRIn88XBGaM6qQKj56xg9gx87Nh+dxTWCp0jHzu+07ZfKzO6PjY+dZG5lxUzrcPY1SrXo5S+R1+DsTOox+tPU7vkOZ612X9kMCPPkU+vPXpvgyS1x8FstLWcUL93CF8mCVNztnvtHsv+488AdRbwLfG+pM7Z7fPwTbzb9I9l2fkfOwv0aGljXKdwXCy6f3WqMeUs4ZNresb/j87X9aI/10PdrJHId5b0FTfS2KAOMsa2bblpGj4ej9meLWUs5BzsNVUreSw++3f7HDFZ68x9XX2nfeyccs7wP7o3cvrR1ooSPZuaQTOMfQ3FaJyRNbvsNRMbZWk/erW0xtScneHrjepznKnvZ3Z5RjWILdevsdM+x7yPc+IbHWvqO1vOmauTHvOeQ+NeKWe0nol1vdevscEet87gOpxKzfm08c53tin9+siMDUvuG8r5emM0V6f8puAt+9l2z0haM7HJfcN2e/Mt4Mz0ZWwjZ7Zal13xNWfvB4zhatvvb8e4pK83Rk7rc2zueeKVnCHaj8OeLDln0kbTs9Y343WHBu1HqVfoyafF7dEFfve52bj09fbw68e/mSz029ZS/fjw61vjC/exdMJ9CNVr1Ly6pxAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQZCK8wc=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="23" y="20"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="56" height="40" pixFormat="2" magLevel="0" bytedata="eJztmAt1wzAMRU1hFEphFEahFEphFEohFEohFEYhFErBnd3JkRXZ+TlN4717js7apbFzI/mTGHMorIgasd3lw/6cq/YMjpV6ej8K4VkL9v59GniaehwHfhU5ejeK2v0qc7RWuNXoJx0rGYfepWY/q/jxNdDFQf0iNyvcbl99HHC9V91ckJth+25yNMfwi8acljcz9Ej9/90YrUmTdngHv1z/a9ymtL811rR3tbYM259Ivxlue2J/s8P9Qrj88HWN3GhdW+n2qnsSfM6n51++dknHmTWZ7NPdpxXnJ9sVbfrv188+co6F3Hy/G/g9a5DVIa1Lzst9Jj/NkfxKuVGsbKt3c2MsUYdGODZNEx3neXxTP98ur0HuSMfatrVd12XrdOX19G63i3Rc0m44l/LD69BkciiPF9pH9m4Uw1xOWUfD3o9yJq/f5UnWIX1OzTUr3XS/vOcg+L2mPTx31GqQzpP3gM6h78X9NNcJz5QpR+36tRxpdVzATffjoXhOdZT5SK0H2j3wa8r1Vi5/OcfEs9eSHI7NNf738d6tBKN+8n3VmKM2DrW5MgrnxNZMd1mFHJM51FyUuVudb3LjMPy+r0HhVcwt9lPe3Yw4qe2RJ/nJdwhh36aPsU32walnyYlOapuDoBqM6vAljLkV6SN+5itag5P6l34b9L/F+JrVP3/3ttE17OUW9X/Q98BzWDqvHAr7x97XAQAAAAAAAAAAAAAAAAAAAAAAAAAAwH/jAQ==">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="22" y="21"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="stabTF">
+        <imgdir name="0">
+            <uol name="cape" value="../../swingPF/0/cape"/>
+        </imgdir>
+        <imgdir name="1">
+            <uol name="cape" value="../../swingPF/1/cape"/>
+        </imgdir>
+        <imgdir name="2">
+            <canvas name="cape" width="60" height="31" pixFormat="2" magLevel="0" bytedata="eJztl4txwjAMQL1CV2CFrsAKrJAVugIrsAIrZIWukBWygorNyciKFMtJr8Wgd6cz5KtnySGE8FLAfyfwx0B4L2f4Pr2Vc/Ld6NzjHGXfRudeewKm4aPVGeDr0LVvg3Ny7dQX5lve6Eudg8F37s855UydKzXOrnAdeqtxdm2o8cK3A+eUHxBXrcah9ChdMZ6zrzGfR85kDRp7eulKakycf9u7+TcSfbjrLl/+mVxno7e4fsI4w+3Oq89PjJg79dE8DT297GXl+7zNW/MCIYp9MUf67JF8+fNJCtGXu9Iga5mHwVvzgtMhwPnznksccf/1eA/MU3OWehbPpec3+xp6R6lT8uJOOEq+cYxR86We1JHmgdcg20P2Zb9DwOZR85TmmtczetE5RifuzH01Z7yP5Mjnmh2Tt/Ma8zmU+knzxXvUnOi+aZpgHMe8X/NVPNW1JLguakxd6dzRe7c6x/FyuRROccRttZ6mvWvwtPsuXYvj0FtbU5qv5IT11dYxr7GS+6rvyvG5jw3/GxfelvpKNaTOmq+yBq2+6r5KbcVzaK/tWcPS/p2uFlK+jdfO7z/89xB9rTXWeroxn1a2Xr/wlnylnq35bsxlS+57zi3ekyw9vRI9UXN5xPn6eM+OY4z+fJGlT/xO3vFSHI8QhuE+9uuKWHxu2+I8rP5H7AmLz6u4Iq/m4ziO4ziO4ziO4ziO4ziO4ziO4ziO8xT8AA==">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="22" y="17"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="3">
+            <uol name="cape" value="../../stabT1/2/cape"/>
+        </imgdir>
+    </imgdir>
+    <imgdir name="shoot1">
+        <imgdir name="0">
+            <canvas name="cape" width="60" height="30" pixFormat="2" magLevel="0" bytedata="eJztlwuRg0AMhtfCWaiFs4CFWsDCWaiFWsACFs4CFmph7wITWEL2CX0s838zmQILId+G0q0xp8O+u4AXY025c41zZR8/lxLnPfP0TuzvNdvZ2rI5+gTs0H7lOI+ulfqOjuTLzvbWhDxm15p92Tniu7h2bY3Os2tijxfX+nxXrgk9Xve2HuexNs010uNtbz/beayHa8v03fbWs8/nP6P2Ek83Qs6qr/IcS2fO4dSYUmfw9+D/7tb0j/A5Ac/dvr6czthDd8/1kfNmteN8n5DrU3wD+SmnUrfPaY7b97T2o8/rZTpG+xSUM8VVflc5pK/bG62Hub6ct2vCPrRNoY3TtezKNad48n05eM5yfeWzkepLwV6pvrTv+vp6G5tjDjoWWEev8rm55HzH3vs5vsMwjNH3fdTX18/A+2PO5/PlnHSO9n2T/m5dPOb6kgf73O/3ov5KT6WfIXz/kTRX9Xqft+Z7xPOsPTsJnjHfccx5z0bzuPVxLUf7FvZ0U6dvLMN34y1jr++Onsr6ovWX5D3SN/F9dBSluVc+ub78+/tCz6NYeYV8ZVTmKQmuJc2tm9bVvL6m/ZpdyUH6UDTN8r+AttuWj9XqyqT4WFrqGNPV7sqk+JzFlTmbDwAAAAAAAAAAAAAAAAAAAACgEv4A">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="14" y="15"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="60" height="30" pixFormat="2" magLevel="0" bytedata="eJztlwuRg0AMhtfCWaiFs4CFWsDCWaiFWsACFs4CFmph7wITWEL2CX0s838zmQILId+G0q0xp8O+u4AXY025c41zZR8/lxLnPfP0TuzvNdvZ2rI5+gTs0H7lOI+ulfqOjuTLzvbWhDxm15p92Tniu7h2bY3Os2tijxfX+nxXrgk9Xve2HuexNs010uNtbz/beayHa8v03fbWs8/nP6P2Ek83Qs6qr/IcS2fO4dSYUmfw9+D/7tb0j/A5Ac/dvr6czthDd8/1kfNmteN8n5DrU3wD+SmnUrfPaY7b97T2o8/rZTpG+xSUM8VVflc5pK/bG62Hub6ct2vCPrRNoY3TtezKNad48n05eM5yfeWzkepLwV6pvrTv+vp6G5tjDjoWWEev8rm55HzH3vs5vsMwjNH3fdTX18/A+2PO5/PlnHSO9n2T/m5dPOb6kgf73O/3ov5KT6WfIXz/kTRX9Xqft+Z7xPOsPTsJnjHfccx5z0bzuPVxLUf7FvZ0U6dvLMN34y1jr++Onsr6ovWX5D3SN/F9dBSluVc+ub78+/tCz6NYeYV8ZVTmKQmuJc2tm9bVvL6m/ZpdyUH6UDTN8r+AttuWj9XqyqT4WFrqGNPV7sqk+JzFlTmbDwAAAAAAAAAAAAAAAAAAAACgEv4A">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="15" y="14"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <uol name="cape" value="../1/cape"/>
+        </imgdir>
+    </imgdir>
+    <imgdir name="shoot2">
+        <imgdir name="0">
+            <canvas name="cape" width="60" height="30" pixFormat="2" magLevel="0" bytedata="eJztlwuRg0AMhtfCWaiFs4CFWsDCWaiFWsACFs4CFmph7wITWEL2CX0s838zmQILId+G0q0xp8O+u4AXY025c41zZR8/lxLnPfP0TuzvNdvZ2rI5+gTs0H7lOI+ulfqOjuTLzvbWhDxm15p92Tniu7h2bY3Os2tijxfX+nxXrgk9Xve2HuexNs010uNtbz/beayHa8v03fbWs8/nP6P2Ek83Qs6qr/IcS2fO4dSYUmfw9+D/7tb0j/A5Ac/dvr6czthDd8/1kfNmteN8n5DrU3wD+SmnUrfPaY7b97T2o8/rZTpG+xSUM8VVflc5pK/bG62Hub6ct2vCPrRNoY3TtezKNad48n05eM5yfeWzkepLwV6pvrTv+vp6G5tjDjoWWEev8rm55HzH3vs5vsMwjNH3fdTX18/A+2PO5/PlnHSO9n2T/m5dPOb6kgf73O/3ov5KT6WfIXz/kTRX9Xqft+Z7xPOsPTsJnjHfccx5z0bzuPVxLUf7FvZ0U6dvLMN34y1jr++Onsr6ovWX5D3SN/F9dBSluVc+ub78+/tCz6NYeYV8ZVTmKQmuJc2tm9bVvL6m/ZpdyUH6UDTN8r+AttuWj9XqyqT4WFrqGNPV7sqk+JzFlTmbDwAAAAAAAAAAAAAAAAAAAACgEv4A">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="13" y="15"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="60" height="30" pixFormat="2" magLevel="0" bytedata="eJztlwuRg0AMhtfCWaiFs4CFWsDCWaiFWsACFs4CFmph7wITWEL2CX0s838zmQILId+G0q0xp8O+u4AXY025c41zZR8/lxLnPfP0TuzvNdvZ2rI5+gTs0H7lOI+ulfqOjuTLzvbWhDxm15p92Tniu7h2bY3Os2tijxfX+nxXrgk9Xve2HuexNs010uNtbz/beayHa8v03fbWs8/nP6P2Ek83Qs6qr/IcS2fO4dSYUmfw9+D/7tb0j/A5Ac/dvr6czthDd8/1kfNmteN8n5DrU3wD+SmnUrfPaY7b97T2o8/rZTpG+xSUM8VVflc5pK/bG62Hub6ct2vCPrRNoY3TtezKNad48n05eM5yfeWzkepLwV6pvrTv+vp6G5tjDjoWWEev8rm55HzH3vs5vsMwjNH3fdTX18/A+2PO5/PlnHSO9n2T/m5dPOb6kgf73O/3ov5KT6WfIXz/kTRX9Xqft+Z7xPOsPTsJnjHfccx5z0bzuPVxLUf7FvZ0U6dvLMN34y1jr++Onsr6ovWX5D3SN/F9dBSluVc+ub78+/tCz6NYeYV8ZVTmKQmuJc2tm9bVvL6m/ZpdyUH6UDTN8r+AttuWj9XqyqT4WFrqGNPV7sqk+JzFlTmbDwAAAAAAAAAAAAAAAAAAAACgEv4A">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="14" y="15"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <uol name="cape" value="../0/cape"/>
+        </imgdir>
+        <imgdir name="3">
+            <uol name="cape" value="../0/cape"/>
+        </imgdir>
+        <imgdir name="4">
+            <canvas name="cape" width="60" height="30" pixFormat="2" magLevel="0" bytedata="eJztlwuRg0AMhtfCWaiFs4CFWsDCWaiFWsACFs4CFmph7wITWEL2CX0s838zmQILId+G0q0xp8O+u4AXY025c41zZR8/lxLnPfP0TuzvNdvZ2rI5+gTs0H7lOI+ulfqOjuTLzvbWhDxm15p92Tniu7h2bY3Os2tijxfX+nxXrgk9Xve2HuexNs010uNtbz/beayHa8v03fbWs8/nP6P2Ek83Qs6qr/IcS2fO4dSYUmfw9+D/7tb0j/A5Ac/dvr6czthDd8/1kfNmteN8n5DrU3wD+SmnUrfPaY7b97T2o8/rZTpG+xSUM8VVflc5pK/bG62Hub6ct2vCPrRNoY3TtezKNad48n05eM5yfeWzkepLwV6pvrTv+vp6G5tjDjoWWEev8rm55HzH3vs5vsMwjNH3fdTX18/A+2PO5/PlnHSO9n2T/m5dPOb6kgf73O/3ov5KT6WfIXz/kTRX9Xqft+Z7xPOsPTsJnjHfccx5z0bzuPVxLUf7FvZ0U6dvLMN34y1jr++Onsr6ovWX5D3SN/F9dBSluVc+ub78+/tCz6NYeYV8ZVTmKQmuJc2tm9bVvL6m/ZpdyUH6UDTN8r+AttuWj9XqyqT4WFrqGNPV7sqk+JzFlTmbDwAAAAAAAAAAAAAAAAAAAACgEv4A">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="13" y="15"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="shootF">
+        <imgdir name="0">
+            <canvas name="cape" width="60" height="30" pixFormat="2" magLevel="0" bytedata="eJztlwuRg0AMhtfCWaiFs4CFWsDCWaiFWsACFs4CFmph7wITWEL2CX0s838zmQILId+G0q0xp8O+u4AXY025c41zZR8/lxLnPfP0TuzvNdvZ2rI5+gTs0H7lOI+ulfqOjuTLzvbWhDxm15p92Tniu7h2bY3Os2tijxfX+nxXrgk9Xve2HuexNs010uNtbz/beayHa8v03fbWs8/nP6P2Ek83Qs6qr/IcS2fO4dSYUmfw9+D/7tb0j/A5Ac/dvr6czthDd8/1kfNmteN8n5DrU3wD+SmnUrfPaY7b97T2o8/rZTpG+xSUM8VVflc5pK/bG62Hub6ct2vCPrRNoY3TtezKNad48n05eM5yfeWzkepLwV6pvrTv+vp6G5tjDjoWWEev8rm55HzH3vs5vsMwjNH3fdTX18/A+2PO5/PlnHSO9n2T/m5dPOb6kgf73O/3ov5KT6WfIXz/kTRX9Xqft+Z7xPOsPTsJnjHfccx5z0bzuPVxLUf7FvZ0U6dvLMN34y1jr++Onsr6ovWX5D3SN/F9dBSluVc+ub78+/tCz6NYeYV8ZVTmKQmuJc2tm9bVvL6m/ZpdyUH6UDTN8r+AttuWj9XqyqT4WFrqGNPV7sqk+JzFlTmbDwAAAAAAAAAAAAAAAAAAAACgEv4A">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="18" y="16"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="60" height="30" pixFormat="2" magLevel="0" bytedata="eJztlwuRg0AMhtfCWaiFs4CFWsDCWaiFWsACFs4CFmph7wITWEL2CX0s838zmQILId+G0q0xp8O+u4AXY025c41zZR8/lxLnPfP0TuzvNdvZ2rI5+gTs0H7lOI+ulfqOjuTLzvbWhDxm15p92Tniu7h2bY3Os2tijxfX+nxXrgk9Xve2HuexNs010uNtbz/beayHa8v03fbWs8/nP6P2Ek83Qs6qr/IcS2fO4dSYUmfw9+D/7tb0j/A5Ac/dvr6czthDd8/1kfNmteN8n5DrU3wD+SmnUrfPaY7b97T2o8/rZTpG+xSUM8VVflc5pK/bG62Hub6ct2vCPrRNoY3TtezKNad48n05eM5yfeWzkepLwV6pvrTv+vp6G5tjDjoWWEev8rm55HzH3vs5vsMwjNH3fdTX18/A+2PO5/PlnHSO9n2T/m5dPOb6kgf73O/3ov5KT6WfIXz/kTRX9Xqft+Z7xPOsPTsJnjHfccx5z0bzuPVxLUf7FvZ0U6dvLMN34y1jr++Onsr6ovWX5D3SN/F9dBSluVc+ub78+/tCz6NYeYV8ZVTmKQmuJc2tm9bVvL6m/ZpdyUH6UDTN8r+AttuWj9XqyqT4WFrqGNPV7sqk+JzFlTmbDwAAAAAAAAAAAAAAAAAAAACgEv4A">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="18" y="17"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="2">
+            <uol name="cape" value="../1/cape"/>
+        </imgdir>
+    </imgdir>
+    <imgdir name="proneStab">
+        <imgdir name="0">
+            <canvas name="cape" width="36" height="13" pixFormat="2" magLevel="0" bytedata="eJztk+ERgjAMhbuCK7CCK7gCK7iCK3QWVnAFV3AFVohX2mDySA+wKn/y7t4PctD3JSkh/FRUfJRIeyhW9T/kFhNl38fsBRt9ymTnFY+3jh59UJ45anxzfRPTIk+678Jkfk75XEPHc7aaUxze3sCC+cjCZ1m5yXJOkjmxIC/0bs3F3I/iEX0yH5+PDJiNe5W9Vu7D+g7LPbDYmIlZML/GIv28nojiZc9d12yCh2c47Ue8t8bQyKPZxLxg7nYPYv9UzByNLGbWnm8IOL7A0irkOIplz7/kcrlcLperQS8=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="16" y="7"/>
+                </imgdir>
+                <string name="z" value="cape"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="36" height="13" pixFormat="2" magLevel="0" bytedata="eJztk9ERgjAQRNOCLdCCLdgCLdiCLaQWWrAFW7AFWjgnJId3y2UAo/JzO7MfZCD7shdC+Kmo+CiR9lCs1v+QW0yUfR+zF2z0KZOdVzzeOnr0QXnmqPHN65uYFnnSfRcm83PK5zV0PGernuLw9gYWzEcW3svKTZY9SebEgrxG39iLOR/FI87JfLw/MmA2zlWetXIf1mdY7oHFxkzMgvk1Funn9UQUL3vuumYTPNzhNB/x3hpDI49mE31B7/YZxPypmDkaWcysPd8QcHyBpVXIcRTLnn/J5XK5XC5Xg14=">
+                <vector name="origin" x="12" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="15" y="8"/>
+                </imgdir>
+                <string name="z" value="cape"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="prone">
+        <imgdir name="0">
+            <uol name="cape" value="../../proneStab/0/cape"/>
+        </imgdir>
+    </imgdir>
+    <imgdir name="heal">
+        <imgdir name="0">
+            <uol name="cape" value="../../alert/1/cape"/>
+        </imgdir>
+        <imgdir name="1">
+            <uol name="cape" value="../../swingO2/1/cape"/>
+        </imgdir>
+        <imgdir name="2">
+            <uol name="cape" value="../../swingO2/0/cape"/>
+        </imgdir>
+    </imgdir>
+    <imgdir name="fly">
+        <imgdir name="0">
+            <canvas name="cape" width="60" height="30" pixFormat="2" magLevel="0" bytedata="eJztlwuRg0AMhtfCWaiFs4CFWsDCWaiFWsACFs4CFmph7wITWEL2CX0s838zmQILId+G0q0xp8O+u4AXY025c41zZR8/lxLnPfP0TuzvNdvZ2rI5+gTs0H7lOI+ulfqOjuTLzvbWhDxm15p92Tniu7h2bY3Os2tijxfX+nxXrgk9Xve2HuexNs010uNtbz/beayHa8v03fbWs8/nP6P2Ek83Qs6qr/IcS2fO4dSYUmfw9+D/7tb0j/A5Ac/dvr6czthDd8/1kfNmteN8n5DrU3wD+SmnUrfPaY7b97T2o8/rZTpG+xSUM8VVflc5pK/bG62Hub6ct2vCPrRNoY3TtezKNad48n05eM5yfeWzkepLwV6pvrTv+vp6G5tjDjoWWEev8rm55HzH3vs5vsMwjNH3fdTX18/A+2PO5/PlnHSO9n2T/m5dPOb6kgf73O/3ov5KT6WfIXz/kTRX9Xqft+Z7xPOsPTsJnjHfccx5z0bzuPVxLUf7FvZ0U6dvLMN34y1jr++Onsr6ovWX5D3SN/F9dBSluVc+ub78+/tCz6NYeYV8ZVTmKQmuJc2tm9bVvL6m/ZpdyUH6UDTN8r+AttuWj9XqyqT4WFrqGNPV7sqk+JzFlTmbDwAAAAAAAAAAAAAAAAAAAACgEv4A">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="16" y="16"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="60" height="30" pixFormat="2" magLevel="0" bytedata="eJztlwuRg0AMhtfCWaiFs4CFWsDCWaiFWsACFs4CFmph7wITWEL2CX0s838zmQILId+G0q0xp8O+u4AXY025c41zZR8/lxLnPfP0TuzvNdvZ2rI5+gTs0H7lOI+ulfqOjuTLzvbWhDxm15p92Tniu7h2bY3Os2tijxfX+nxXrgk9Xve2HuexNs010uNtbz/beayHa8v03fbWs8/nP6P2Ek83Qs6qr/IcS2fO4dSYUmfw9+D/7tb0j/A5Ac/dvr6czthDd8/1kfNmteN8n5DrU3wD+SmnUrfPaY7b97T2o8/rZTpG+xSUM8VVflc5pK/bG62Hub6ct2vCPrRNoY3TtezKNad48n05eM5yfeWzkepLwV6pvrTv+vp6G5tjDjoWWEev8rm55HzH3vs5vsMwjNH3fdTX18/A+2PO5/PlnHSO9n2T/m5dPOb6kgf73O/3ov5KT6WfIXz/kTRX9Xqft+Z7xPOsPTsJnjHfccx5z0bzuPVxLUf7FvZ0U6dvLMN34y1jr++Onsr6ovWX5D3SN/F9dBSluVc+ub78+/tCz6NYeYV8ZVTmKQmuJc2tm9bVvL6m/ZpdyUH6UDTN8r+AttuWj9XqyqT4WFrqGNPV7sqk+JzFlTmbDwAAAAAAAAAAAAAAAAAAAACgEv4A">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="16" y="16"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="jump">
+        <imgdir name="0">
+            <canvas name="cape" width="60" height="30" pixFormat="2" magLevel="0" bytedata="eJztlwuRg0AMhtfCWaiFs4CFWsDCWaiFWsACFs4CFmph7wITWEL2CX0s838zmQILId+G0q0xp8O+u4AXY025c41zZR8/lxLnPfP0TuzvNdvZ2rI5+gTs0H7lOI+ulfqOjuTLzvbWhDxm15p92Tniu7h2bY3Os2tijxfX+nxXrgk9Xve2HuexNs010uNtbz/beayHa8v03fbWs8/nP6P2Ek83Qs6qr/IcS2fO4dSYUmfw9+D/7tb0j/A5Ac/dvr6czthDd8/1kfNmteN8n5DrU3wD+SmnUrfPaY7b97T2o8/rZTpG+xSUM8VVflc5pK/bG62Hub6ct2vCPrRNoY3TtezKNad48n05eM5yfeWzkepLwV6pvrTv+vp6G5tjDjoWWEev8rm55HzH3vs5vsMwjNH3fdTX18/A+2PO5/PlnHSO9n2T/m5dPOb6kgf73O/3ov5KT6WfIXz/kTRX9Xqft+Z7xPOsPTsJnjHfccx5z0bzuPVxLUf7FvZ0U6dvLMN34y1jr++Onsr6ovWX5D3SN/F9dBSluVc+ub78+/tCz6NYeYV8ZVTmKQmuJc2tm9bVvL6m/ZpdyUH6UDTN8r+AttuWj9XqyqT4WFrqGNPV7sqk+JzFlTmbDwAAAAAAAAAAAAAAAAAAAACgEv4A">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="14" y="15"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="sit">
+        <imgdir name="0">
+            <canvas name="cape" width="62" height="29" pixFormat="2" magLevel="0" bytedata="eJztl42NgzAMRrPCrdAVbgVW6AqscCt0ha7ACqxwK7ACK7hnKtMkxPmh4dpU35MiVFyMXxwFMOZjoRdd+2rI7Kt/73XvAs0/p1IHovJr3g36PRe5L86f4D31X7nuq3Pj3osre4s7XTrN5+E89K27L97inuXNzm17r84ZPXd73a6745zR822v23Jf6gs5R3q+7bXyW/7/UkMXp/5d3oH17btLHvPwz52D5HOkINfG1x4x96h3IJe/x8/hOdBrJCIzzup+moj7c6PXeIR3JD/nNPoa8GO0Jyb3Kqkry9vraam35B06t14+x+Pybeh82npqcTnPeXOc/Vpk+N72GtW8/TnL9ebBHpybj76XnNPifL04S+05vvb9JYe4Ks8yJ4/t4d8/tV/W9tZ6nbPWJFfkPd3JJTVpazK0jiTme4/jSNM0Lcfr9brx5pgfj3mH+hvZW4ydL+QdcA7hzIHtr3nX6nfCN0Xsm8zel3Nw1oDUepS3Pb8Fvkd4O/72flLbm4+F/Q3W+EQ8mbumtz2eqEtqq/Gf6PXsUMNb5rBCTf/Fuib3ejfobBN8HtrrIWO0BpnLcP/ekO8O/s1DnOLxliHT/b0X9v39uO1hKt4yxK+Dxqh9TMVb5sjnJwAAAAAAAAAAAAAAAAAAAAAABLkB">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="16" y="15"/>
+                </imgdir>
+                <string name="z" value="capeBelowBody"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="ladder">
+        <imgdir name="0">
+            <canvas name="cape" width="64" height="29" pixFormat="2" magLevel="0" bytedata="eJztmIlxgzAQRdVCWnALacEtpAVacAuuhRZowS3QAi3IFmblldjVgeMEMf/NaHywgN6XhJUYo2L1Q81R62I3nLNnanysvZwO53/7Kcpgdj+i/9h95TLw7kf1z2TwdO+7o2Xg3RP+r7F3/ksGQl2L2OnhkskgdD/OHJjdqSn+67E/RgaBe+zPMhDnvpJBCzmEToJ/NAfUub/6HOawtyxW3rG/sgZU11QOG+dE0R5kyzXFfv+Wf6aZsjlhH3eyZpiSe5CCGp5RUf8+7Z/Iwkp9VrIqPpdcSvtU5B/tfbY2fp/VPW79/N31W3RVa9xn6neJd/zcl559/Vn3d/X0G1Gbtb2E/nQfyc29t8u9tBp3PvmX9IW7unP5+eQU+Ru+BibWH54/ZfHf/rk5J40vdxDcvX/kLq7Nkjkh+Y/jaB3udRgG2X+B12j+8dyWnGOHhL+h54rwfUw2i0+Pf8Y72XfFPXYrJXg+TX/gv9G7xm/Lvu45x5c+SuuQXJ2X5i/VcP83vN9xq7o+z4D66lp3ChutRfKnDHgNf35n1u6ekMfK7elob3ftxfGfj9HxpYb8KQuzb3fC+9F7erp7v2WP62voeJTR6jptEYy99yv1f/0d0Jo3J+lv4vkh+7eONeezNV33fHVN2mPxmlOz/3fSsO4n3pg+5VVS0zI1+0sAAAAAAAAAAAAAAAAAAAAAAAAV3AE=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="22" y="11"/>
+                </imgdir>
+                <string name="z" value="backCape"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="64" height="29" pixFormat="2" magLevel="0" bytedata="eJztmIlxgzAQRdVCWnALacEtpAVacAuuhRZowS3QAi3IFmblldjVgeMEMf/NaHywgN6XhJUYo2L1Q81R62I3nLNnanysvZwO53/7Kcpgdj+i/9h95TLw7kf1z2TwdO+7o2Xg3RP+r7F3/ksGQl2L2OnhkskgdD/OHJjdqSn+67E/RgaBe+zPMhDnvpJBCzmEToJ/NAfUub/6HOawtyxW3rG/sgZU11QOG+dE0R5kyzXFfv+Wf6aZsjlhH3eyZpiSe5CCGp5RUf8+7Z/Iwkp9VrIqPpdcSvtU5B/tfbY2fp/VPW79/N31W3RVa9xn6neJd/zcl559/Vn3d/X0G1Gbtb2E/nQfyc29t8u9tBp3PvmX9IW7unP5+eQU+Ru+BibWH54/ZfHf/rk5J40vdxDcvX/kLq7Nkjkh+Y/jaB3udRgG2X+B12j+8dyWnGOHhL+h54rwfUw2i0+Pf8Y72XfFPXYrJXg+TX/gv9G7xm/Lvu45x5c+SuuQXJ2X5i/VcP83vN9xq7o+z4D66lp3ChutRfKnDHgNf35n1u6ekMfK7elob3ftxfGfj9HxpYb8KQuzb3fC+9F7erp7v2WP62voeJTR6jptEYy99yv1f/0d0Jo3J+lv4vkh+7eONeezNV33fHVN2mPxmlOz/3fSsO4n3pg+5VVS0zI1+0sAAAAAAAAAAAAAAAAAAAAAAAAV3AE=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="21" y="11"/>
+                </imgdir>
+                <string name="z" value="backCape"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
+    <imgdir name="rope">
+        <imgdir name="0">
+            <canvas name="cape" width="64" height="29" pixFormat="2" magLevel="0" bytedata="eJztmIlxgzAQRdVCWnALacEtpAVacAuuhRZowS3QAi3IFmblldjVgeMEMf/NaHywgN6XhJUYo2L1Q81R62I3nLNnanysvZwO53/7Kcpgdj+i/9h95TLw7kf1z2TwdO+7o2Xg3RP+r7F3/ksGQl2L2OnhkskgdD/OHJjdqSn+67E/RgaBe+zPMhDnvpJBCzmEToJ/NAfUub/6HOawtyxW3rG/sgZU11QOG+dE0R5kyzXFfv+Wf6aZsjlhH3eyZpiSe5CCGp5RUf8+7Z/Iwkp9VrIqPpdcSvtU5B/tfbY2fp/VPW79/N31W3RVa9xn6neJd/zcl559/Vn3d/X0G1Gbtb2E/nQfyc29t8u9tBp3PvmX9IW7unP5+eQU+Ru+BibWH54/ZfHf/rk5J40vdxDcvX/kLq7Nkjkh+Y/jaB3udRgG2X+B12j+8dyWnGOHhL+h54rwfUw2i0+Pf8Y72XfFPXYrJXg+TX/gv9G7xm/Lvu45x5c+SuuQXJ2X5i/VcP83vN9xq7o+z4D66lp3ChutRfKnDHgNf35n1u6ekMfK7elob3ftxfGfj9HxpYb8KQuzb3fC+9F7erp7v2WP62voeJTR6jptEYy99yv1f/0d0Jo3J+lv4vkh+7eONeezNV33fHVN2mPxmlOz/3fSsO4n3pg+5VVS0zI1+0sAAAAAAAAAAAAAAAAAAAAAAAAV3AE=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="22" y="10"/>
+                </imgdir>
+                <string name="z" value="backCape"/>
+            </canvas>
+        </imgdir>
+        <imgdir name="1">
+            <canvas name="cape" width="64" height="29" pixFormat="2" magLevel="0" bytedata="eJztmIlxgzAQRdVCWnALacEtpAVacAuuhRZowS3QAi3IFmblldjVgeMEMf/NaHywgN6XhJUYo2L1Q81R62I3nLNnanysvZwO53/7Kcpgdj+i/9h95TLw7kf1z2TwdO+7o2Xg3RP+r7F3/ksGQl2L2OnhkskgdD/OHJjdqSn+67E/RgaBe+zPMhDnvpJBCzmEToJ/NAfUub/6HOawtyxW3rG/sgZU11QOG+dE0R5kyzXFfv+Wf6aZsjlhH3eyZpiSe5CCGp5RUf8+7Z/Iwkp9VrIqPpdcSvtU5B/tfbY2fp/VPW79/N31W3RVa9xn6neJd/zcl559/Vn3d/X0G1Gbtb2E/nQfyc29t8u9tBp3PvmX9IW7unP5+eQU+Ru+BibWH54/ZfHf/rk5J40vdxDcvX/kLq7Nkjkh+Y/jaB3udRgG2X+B12j+8dyWnGOHhL+h54rwfUw2i0+Pf8Y72XfFPXYrJXg+TX/gv9G7xm/Lvu45x5c+SuuQXJ2X5i/VcP83vN9xq7o+z4D66lp3ChutRfKnDHgNf35n1u6ekMfK7elob3ftxfGfj9HxpYb8KQuzb3fC+9F7erp7v2WP62voeJTR6jptEYy99yv1f/0d0Jo3J+lv4vkh+7eONeezNV33fHVN2mPxmlOz/3fSsO4n3pg+5VVS0zI1+0sAAAAAAAAAAAAAAAAAAAAAAAAV3AE=">
+                <vector name="origin" x="11" y="9"/>
+                <imgdir name="map">
+                    <vector name="navel" x="21" y="11"/>
+                </imgdir>
+                <string name="z" value="backCape"/>
+            </canvas>
+        </imgdir>
+    </imgdir>
 </imgdir>
