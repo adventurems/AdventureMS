@@ -191,7 +191,6 @@ public class MobSkill {
         applyEffect(null, monster, false, Collections.emptyList());
     }
 
-    // TODO: avoid output argument banishPlayersOutput
     public void applyEffect(Character player, Monster monster, boolean skill, List<Character> banishPlayersOutput) {
         // See if the MobSkill is successful before doing anything
         if (!makeChanceResult()) {

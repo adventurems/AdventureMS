@@ -9003,6 +9003,27 @@ public class Character extends AbstractCharacterObject {
         return weapon_item != null;
     }
 
+    // AdventureMS Custom
+    public boolean areGogglesEquipped()
+    {
+        // Instantiate
+        boolean gogglesEquipped = false;
+
+        // Create Item Instance
+        Item item = getInventory(InventoryType.EQUIPPED).getItem((short) -3);
+
+        // Get ID of Item
+        int itemId = item.getItemId();
+
+        // Check if ID is 1022500 (Dimensional Lens) or 1022082 (Spectrum Goggles)
+        if (itemId == 1022500 || itemId == 1022082)
+        {
+            gogglesEquipped = true;
+        }
+
+        return gogglesEquipped;
+    }
+
     public void saveLocationOnWarp() {  // suggestion to remember the map before warp command thanks to Lei
         Portal closest = map.findClosestPortal(getPosition());
         int curMapid = getMapId();

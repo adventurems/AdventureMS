@@ -1,35 +1,40 @@
-/*
-	This file is part of the OdinMS Maple Story Server
-    Copyright (C) 2008 Patrick Huy <patrick.huy@frz.cc>
-		       Matthias Butz <matze@odinms.de>
-		       Jan Christian Meyer <vimes@odinms.de>
+// AdventureMS Hill Lost Treasure
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation version 3 as published by
-    the Free Software Foundation. You may not use, modify or distribute
-    this program under any other version of the GNU Affero General Public
-    License.
+function start()
+{
+    // Check that we have started Hill's quest
+    if (cm.getQuestStatus(1016) == 1)
+    {
+        // Check that we can hold the Moon Rock
+        if (cm.canHold(4011007, 1))
+        {
+            // Gain Items
+            cm.gainItem(4011007, 1); // Moon Rock
+            cm.gainItem(4007023, -1) // Take the Map
+            cm.gainMeso(1000000); // Mesos
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
+            // Complete Quest
+            cm.completeQuest(1016);
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+            // Send Message
+            cm.sendOk("You found the chest! You eagerly break it open to find:\r\n#v5200002# 1,000,000 Mesos\r\n#v4011007# #t4011007#!");
 
-/* Shumi JQ Chest #1
-*/
+            // Kill convo
+            cm.dispose();
+        }
 
-function start() {
-    prizes = [4020000, 4020001, 4020002, 4020003, 4020004];
-    if (cm.isQuestStarted(2055)) {
-        cm.gainItem(4031039, 1);
-    } else {
-        cm.gainItem(4020000 + ((Math.random() * 5) | 0), 1);
+        // Their ETC inventory is full
+        else
+        {
+            cm.sendOk("You don't have room in your #rETC#k inventory to receive the item!");
+            cm.dispose();
+        }
     }
-    cm.warp(103000100, 0);
-    cm.dispose();
+
+    // They've already looted the chest
+    else
+    {
+        cm.sendOk("You've already looted the chest!");
+        cm.dispose();
+    }
 }

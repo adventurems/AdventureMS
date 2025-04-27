@@ -2932,8 +2932,6 @@ public class MapleMap {
         try {
             for (Character chr : characters) {
                 Packet packet = PacketCreator.dropItemFromMapObject(chr, mdrop, dropperPos, dropPos, mod, delay);
-
-                // TODO: remove along with USE_MAXRANGE config
                 if (rangeSq < Double.POSITIVE_INFINITY) {
                     if (rangedFrom.distanceSq(chr.getPosition()) <= rangeSq) {
                         chr.sendPacket(packet);
@@ -3458,7 +3456,6 @@ public class MapleMap {
         return false;
     }
 
-    // TODO: no reason to implement runnable - this is not intended to be submitted to another thread
     private class MobLootEntry implements Runnable {
 
         private final byte droptype;

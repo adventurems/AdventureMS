@@ -3299,7 +3299,7 @@ public class PacketCreator {
         p.writeByte(0xFF);
         p.writeString(shop.getDescription());
         List<PlayerShopItem> items = shop.getItems();
-        p.writeByte(0x10);  //TODO SLOTS, which is 16 for most stores...slotMax
+        p.writeByte(0x10);
         p.writeByte(items.size());
         for (PlayerShopItem item : items) {
             p.writeShort(item.getBundles());
@@ -5195,7 +5195,7 @@ public class PacketCreator {
             p.writeInt(chr.getMerchantMeso());//:D?
         }
         p.writeString(hm.getDescription());
-        p.writeByte(0x10); //TODO SLOTS, which is 16 for most stores...slotMax
+        p.writeByte(0x10);
         p.writeInt(hm.isOwner(chr) ? chr.getMerchantMeso() : chr.getMeso());
         p.writeByte(hm.getItems().size());
         if (hm.getItems().isEmpty()) {

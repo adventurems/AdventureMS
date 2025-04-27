@@ -78,7 +78,6 @@ public final class RingActionHandler extends AbstractPacketHandler {
         final Character target = c.getChannelServer().getPlayerStorage().getCharacterByName(name);
         final Character source = c.getPlayer();
 
-        // TODO: get the correct packet bytes for these popups
         if (source.isMarried()) {
             source.dropMessage(1, "You're already married!");
             source.sendPacket(WeddingPackets.OnMarriageResult((byte) 0));

@@ -111,7 +111,7 @@ public final class CashOperationHandler extends AbstractPacketHandler {
                         c.sendPacket(PacketCreator.showBoughtCashPackage(cashPackage, c.getAccID()));
                     }
                     c.sendPacket(PacketCreator.showCash(chr));
-                } else if (action == 0x04) {//TODO check for gender
+                } else if (action == 0x04) {
                     int birthday = p.readInt();
                     CashItem cItem = CashItemFactory.getItem(p.readInt());
                     Map<String, String> recipient = Character.getCharacterFromDatabase(p.readString());

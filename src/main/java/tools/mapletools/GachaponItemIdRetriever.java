@@ -312,7 +312,6 @@ public class GachaponItemIdRetriever {
             try {
                 Files.createDirectories(file.getParent());
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

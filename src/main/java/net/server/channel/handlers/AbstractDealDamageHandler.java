@@ -149,7 +149,6 @@ public abstract class AbstractDealDamageHandler extends AbstractPacketHandler {
         }
     }
 
-    // TODO: add position
     public record AttackTarget(short delay, List<Integer> damageLines) {}
 
     protected void applyAttack(AttackInfo attack, final Character player, int attackCount) {

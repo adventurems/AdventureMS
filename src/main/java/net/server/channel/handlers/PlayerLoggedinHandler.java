@@ -111,7 +111,7 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
 
     @Override
     public final void handlePacket(InPacket p, Client c) {
-        final int cid = p.readInt(); // TODO: investigate if this is the "client id" supplied in PacketCreator#getServerIP()
+        final int cid = p.readInt();
         final Server server = Server.getInstance();
 
         if (!c.tryacquireClient()) {

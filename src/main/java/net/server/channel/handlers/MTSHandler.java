@@ -56,7 +56,6 @@ public final class MTSHandler extends AbstractPacketHandler {
 
     @Override
     public void handlePacket(InPacket p, Client c) {
-        // TODO add karma-to-untradeable flag on sold items here
 
         if (!c.getPlayer().getCashShop().isOpened()) {
             return;

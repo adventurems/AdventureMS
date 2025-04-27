@@ -34,7 +34,7 @@ public class IdCommand extends Command {
                 Map.entry("etc", "handbook/Etc.txt"),
                 Map.entry("npc", "handbook/NPC.txt"),
                 Map.entry("use", "handbook/Use.txt"),
-                Map.entry("weapon", "handbook/Equip/Weapon.txt") // TODO add more into this
+                Map.entry("weapon", "handbook/Equip/Weapon.txt")
         );
     }
 

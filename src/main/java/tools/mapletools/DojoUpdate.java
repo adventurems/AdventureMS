@@ -161,7 +161,6 @@ public class DojoUpdate {
             try {
                 Files.createDirectory(folder);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 System.out.println("Unable to create folder " + folder.toAbsolutePath() + ".");
                 e.printStackTrace();
             }
@@ -187,7 +186,6 @@ public class DojoUpdate {
             }
         } catch (IOException e1) {
             System.out.println("Unable to read folder " + folder.toAbsolutePath() + ".");
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
     }

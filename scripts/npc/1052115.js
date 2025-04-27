@@ -42,7 +42,6 @@ function action(mode, type, selection) {
                     cm.sendOk("The Dusty Platform is currently full at the moment.");
                 }
             }
-            //todo
         } else if (selection == 2) {
             if (cm.haveItem(4001321)) {
                 if (cm.bonus_PyramidSubway(-1)) {

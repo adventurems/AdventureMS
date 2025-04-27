@@ -66,7 +66,7 @@ public final class AdminCommandHandler extends AbstractPacketHandler {
             case 0x01: { // /d (inv)
                 byte type = p.readByte();
                 Inventory in = c.getPlayer().getInventory(InventoryType.getByType(type));
-                for (short i = 1; i <= in.getSlotLimit(); i++) { //TODO What is the point of this loop?
+                for (short i = 1; i <= in.getSlotLimit(); i++) {
                     if (in.getItem(i) != null) {
                         InventoryManipulator.removeFromSlot(c, InventoryType.getByType(type), i, in.getItem(i).getQuantity(), false);
                     }
