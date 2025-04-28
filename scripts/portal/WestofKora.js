@@ -9,7 +9,7 @@ function enter(pi)
         pi.playPortalSound(); // Sound
 
         // Send to working portal map
-        pi.warp(999999999, "west00"); // TODO Update Map / Portal ID
+        pi.warp(106010138, "west00");
         return true;
     }
 
@@ -19,7 +19,7 @@ function enter(pi)
         pi.playPortalSound(); // Sound
 
         // Send to broken portal map
-        pi.warp(999999999, "west00"); // TODO Update Map / Portal ID
+        pi.warp(106010139, "out00");
         return true;
     }
 }
