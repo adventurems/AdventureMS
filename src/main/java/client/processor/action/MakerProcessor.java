@@ -448,8 +448,16 @@ public class MakerProcessor {
             }
         }
 
-        if (stimulantid != -1) {
-            eqp = ii.randomizeUpgradeStats(eqp);
+        // AdventureMS Custom - Check for a passed Stimulator
+        if (stimulantid != -1)
+        {
+            eqp = ii.randomizeStatsWithStimulant(eqp);
+        }
+
+        else
+        {
+            // AdventureMS Custom - Always randomize maker equipment
+            eqp = ii.randomizeStats(eqp);
         }
 
         InventoryManipulator.addFromDrop(c, item, false, -1);

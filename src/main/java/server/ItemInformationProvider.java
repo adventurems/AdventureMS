@@ -1242,6 +1242,58 @@ public class ItemInformationProvider {
     }
 
     // AdventureMS Custom
+    private static short getRandStatWithStimulant(short defaultValue, int statType) {
+        if (defaultValue == 0) {
+            return 0;
+        }
+
+        int maxRange;
+
+        // Str, Dex, Int, Luk, Acc, Avoid, Jump, Speed
+        if (statType == 1) {
+            if (defaultValue < 5) {
+                maxRange = 1;
+            } else if (defaultValue < 10) {
+                maxRange = 2;
+            } else if (defaultValue < 30) {
+                maxRange = 5;
+            } else if (defaultValue < 50) {
+                maxRange = 7;
+            } else {
+                maxRange = Math.max(7, (int) Math.ceil(defaultValue * 0.1));
+            }
+        }
+        // Matk, Watk
+        else if (statType == 2) {
+            if (defaultValue < 50) {
+                maxRange = 5;
+            } else {
+                maxRange = (int) Math.ceil(defaultValue * 0.1);
+            }
+        }
+        // Wdef, Mdef, Hp, Mp
+        else {
+            if (defaultValue < 50) {
+                maxRange = 10;
+            } else if (defaultValue < 100) {
+                maxRange = 20;
+            } else if (defaultValue < 200) {
+                maxRange = 30;
+            } else if (defaultValue < 400) {
+                maxRange = 40;
+            } else {
+                maxRange = (int) Math.ceil(defaultValue * 0.1);
+            }
+        }
+
+        // Increase maxRange by 20% with a minimum of 1
+        maxRange = Math.max(1, (int) Math.ceil(maxRange * 1.2));
+
+        // Ensure the value cannot be below the base stat
+        return (short) (defaultValue + Math.floor(Randomizer.nextDouble() * (maxRange + 1)));
+    }
+
+    // AdventureMS Custom
     private static short getRandStat(short defaultValue, int statType) {
         if (defaultValue == 0) {
             return 0;
@@ -1334,6 +1386,26 @@ public class ItemInformationProvider {
 
         return (short) ((defaultValue - maxRange) + Math.floor(Randomizer.nextDouble() * (maxRange * 2 + 1)));
     }
+
+    // AdventureMS Custom
+    public Equip randomizeStatsWithStimulant(Equip equip)
+    {
+        equip.setStr(getRandStatWithStimulant(equip.getStr(), 1));
+        equip.setDex(getRandStatWithStimulant(equip.getDex(), 1));
+        equip.setInt(getRandStatWithStimulant(equip.getInt(), 1));
+        equip.setLuk(getRandStatWithStimulant(equip.getLuk(), 1));
+        equip.setAcc(getRandStatWithStimulant(equip.getAcc(), 1));
+        equip.setAvoid(getRandStatWithStimulant(equip.getAvoid(), 1));
+        equip.setJump(getRandStatWithStimulant(equip.getJump(), 1));
+        equip.setSpeed(getRandStatWithStimulant(equip.getSpeed(), 1));
+        equip.setMatk(getRandStatWithStimulant(equip.getMatk(), 2));
+        equip.setWatk(getRandStatWithStimulant(equip.getWatk(), 2));
+        equip.setWdef(getRandStatWithStimulant(equip.getWdef(), 3));
+        equip.setMdef(getRandStatWithStimulant(equip.getMdef(), 3));
+        equip.setHp(getRandStatWithStimulant(equip.getHp(), 3));
+        equip.setMp(getRandStatWithStimulant(equip.getMp(), 3));
+        return equip;
+    }
     
     // AdventureMS Custom
     public Equip randomizeStats(Equip equip) 
@@ -1383,6 +1455,7 @@ public class ItemInformationProvider {
         return (short) (defaultValue + Math.floor(Randomizer.nextDouble() * (lMaxRange + 1)));
     }
 
+    /*/ AdventureMS Custom - Not needed
     public Equip randomizeUpgradeStats(Equip equip) {
         equip.setStr(getRandUpgradedStat(equip.getStr(), 2));
         equip.setDex(getRandUpgradedStat(equip.getDex(), 2));
@@ -1398,7 +1471,7 @@ public class ItemInformationProvider {
         equip.setHp(getRandUpgradedStat(equip.getHp(), 5));
         equip.setMp(getRandUpgradedStat(equip.getMp(), 5));
         return equip;
-    }
+    }*/
 
     public StatEffect getItemEffect(int itemId) {
         StatEffect ret = itemEffects.get(Integer.valueOf(itemId));
