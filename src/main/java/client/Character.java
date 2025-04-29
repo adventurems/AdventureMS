@@ -101,6 +101,7 @@ import scripting.AbstractPlayerInteraction;
 import scripting.event.EventInstanceManager;
 import scripting.item.ItemScriptManager;
 import server.CashShop;
+import server.CollectorItemsProvider;
 import server.ExpLogger;
 import server.ExpLogger.ExpLogRecord;
 import server.ItemInformationProvider;
@@ -173,6 +174,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -8770,114 +8772,64 @@ public class Character extends AbstractCharacterObject {
     // AdventureMS Custom
     public boolean addCollectorStatus()
     {
-        boolean isAdded = false;  // Default to false, meaning the account exists.
+        boolean isAdded = false;  // Default to false
 
         try {
             // Open DB Connection
             Connection con = DatabaseConnection.getConnection();
 
-            // First, check if the account already exists in the collector table
-            String checkQuery = "SELECT COUNT(*) FROM collector WHERE id = ?";
-            try (PreparedStatement checkStmt = con.prepareStatement(checkQuery))
-            {
-                checkStmt.setInt(1, accountid);
-                ResultSet rs = checkStmt.executeQuery();
-                if (rs.next() && rs.getInt(1) == 0)
+            try {
+                // Check the current collector status in the accounts table
+                String checkQuery = "SELECT collector FROM accounts WHERE id = ?";
+                try (PreparedStatement checkStmt = con.prepareStatement(checkQuery))
                 {
-                    // Account does not exist, proceed with insertion
-                    String insertQuery = "INSERT INTO collector (id) VALUES (?)";
-                    try (PreparedStatement insertStmt = con.prepareStatement(insertQuery))
+                    checkStmt.setInt(1, accountid);
+                    ResultSet rs = checkStmt.executeQuery();
+
+                    if (rs.next())
                     {
-                        insertStmt.setInt(1, accountid);
-                        insertStmt.executeUpdate();
-                        isAdded = true;  // Account was added
+                        int collectorStatus = rs.getInt("collector");
+
+                        // If status is 0 (non-collector), update to 1 (collector)
+                        if (collectorStatus == 0)
+                        {
+                            String updateQuery = "UPDATE accounts SET collector = 1 WHERE id = ?";
+                            try (PreparedStatement updateStmt = con.prepareStatement(updateQuery))
+                            {
+                                updateStmt.setInt(1, accountid);
+                                updateStmt.executeUpdate();
+                                isAdded = true;  // Status was updated to collector
+                            }
+                        }
+                        // If status is already 1, isAdded remains false
                     }
                 }
-            } catch (SQLException e)
-            {
-                e.printStackTrace();
-            } finally
-            {
+            } finally {
                 con.close();  // Ensure the connection is closed after use
             }
-        } catch (SQLException se)
-        {
-            se.printStackTrace();
-        }
-
-        return isAdded;  // Return true if account was added, false if it already exists
-    }
-
-    // AdventureMS Custom
-    public int[] getCollectorStatus()
-    {
-        int[] collectorData = null;
-
-        try {
-            // Open DB Connection
-            Connection con = DatabaseConnection.getConnection();
-
-            // Prepare and execute the query
-            try (PreparedStatement ps = con.prepareStatement("SELECT * FROM collector WHERE id = ?")) {
-                ps.setInt(1, accountid);  // Use the accountid to query the collector table
-                ResultSet rs = ps.executeQuery();  // Execute the query and retrieve the result set
-
-                // Process the result set
-                if (rs.next()) {
-                    // Get the number of columns in the result set
-                    int numberOfColumns = rs.getMetaData().getColumnCount();
-                    collectorData = new int[numberOfColumns];  // Create an integer array to store the values
-
-                    for (int i = 1; i <= numberOfColumns; i++) {
-                        collectorData[i - 1] = rs.getInt(i);  // Populate the array with the integer values
-                    }
-                }
-            }
-
-            catch (SQLException e)
-            {
-                e.printStackTrace();
-            }
-
-            // Close DB Connection
-            con.close();
-
         } catch (SQLException se) {
             se.printStackTrace();
         }
 
-        // Return the array containing the collected data
-        return collectorData;
+        return isAdded;  // Return true if status was changed to collector, false if already a collector
     }
 
     // AdventureMS Custom
-    public String[] getCollectorMissing() {
-        List<String> collectorMissing = new ArrayList<>();  // List to store column names where value is 0
+    public int[] getCollectorItems() {
+        List<Integer> itemIds = new ArrayList<>();
 
         try {
             // Open DB Connection
             Connection con = DatabaseConnection.getConnection();
 
-            // Prepare and execute the query
-            try (PreparedStatement ps = con.prepareStatement("SELECT * FROM collector WHERE id = ?")) {
+            // Prepare and execute the query to get all itemids for this account
+            try (PreparedStatement ps = con.prepareStatement("SELECT itemid FROM collector WHERE id = ?")) {
                 ps.setInt(1, accountid);  // Use the accountid to query the collector table
                 ResultSet rs = ps.executeQuery();  // Execute the query and retrieve the result set
 
-                // Process the result set
-                if (rs.next()) {
-                    // Get the number of columns in the result set
-                    int numberOfColumns = rs.getMetaData().getColumnCount();
-
-                    // Iterate over each column
-                    for (int i = 1; i <= numberOfColumns; i++) {
-                        int value = rs.getInt(i);  // Get the value of the column
-                        String columnName = rs.getMetaData().getColumnName(i);  // Get the column name
-
-                        // If value is 0, add the column name to the list
-                        if (value == 0) {
-                            collectorMissing.add(columnName);
-                        }
-                    }
+                // Process the result set - add each itemid to our list
+                while (rs.next()) {
+                    itemIds.add(rs.getInt("itemid"));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -8890,82 +8842,69 @@ public class Character extends AbstractCharacterObject {
             se.printStackTrace();
         }
 
-        // Return the list as an array
-        return collectorMissing.toArray(new String[0]);
-    }
-
-    // AdventureMS Custom
-    public Map<String, Integer> getCollectorAll() {
-        Map<String, Integer> collectorMap = new HashMap<>();  // Map to store column names and their integer values
-
-        try {
-            // Open DB Connection
-            Connection con = DatabaseConnection.getConnection();
-
-            // Prepare and execute the query
-            try (PreparedStatement ps = con.prepareStatement("SELECT * FROM collector WHERE id = ?")) {
-                ps.setInt(1, accountid);  // Use the accountid to query the collector table
-                ResultSet rs = ps.executeQuery();  // Execute the query and retrieve the result set
-
-                // Process the result set
-                if (rs.next()) {
-                    // Get the number of columns in the result set
-                    int numberOfColumns = rs.getMetaData().getColumnCount();
-
-                    // Iterate over each column
-                    for (int i = 1; i <= numberOfColumns; i++) {
-                        String columnName = rs.getMetaData().getColumnName(i);  // Get the column name
-
-                        // Get the integer value of the column
-                        collectorMap.put(columnName, rs.getInt(i));
-                    }
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-            // Close DB Connection
-            con.close();
-
-        } catch (SQLException se) {
-            se.printStackTrace();
+        // Convert the List<Integer> to int[]
+        int[] result = new int[itemIds.size()];
+        for (int i = 0; i < itemIds.size(); i++) {
+            result[i] = itemIds.get(i);
         }
 
-        // Return the map of column names and their corresponding integer values
-        return collectorMap;
+        // Return the array containing the collected itemids
+        return result;
     }
 
-    // AdventureMS Custom
-    public void updateCollector(String itemId)
+    public int[] getCollectorMissing() {
+        // Get all items the player has already collected
+        int[] collectedItems = getCollectorItems();
+
+        // Convert collected items to a Set for efficient lookup
+        Set<Integer> collectedSet = new HashSet<>();
+        for (int itemId : collectedItems) {
+            collectedSet.add(itemId);
+        }
+
+        // Get all available items from the CollectorItemsProvider
+        List<Integer> allItems = CollectorItemsProvider.getInstance().getAllCollectableItems();
+
+        // Create a list to store missing items
+        List<Integer> missingItems = new ArrayList<>();
+
+        // Find items that haven't been collected yet
+        for (int itemId : allItems) {
+            if (!collectedSet.contains(itemId)) {
+                missingItems.add(itemId);
+            }
+        }
+
+        // Convert the List<Integer> to int[]
+        int[] result = new int[missingItems.size()];
+        for (int i = 0; i < missingItems.size(); i++) {
+            result[i] = missingItems.get(i);
+        }
+
+        return result;
+    }
+
+    public void updateCollector(int itemId)
     {
         try
         {
             // Open DB Connection
             Connection con = DatabaseConnection.getConnection();
 
-            // Prepare the SQL query to update a single item in the collector table
-            StringBuilder sql = new StringBuilder("UPDATE collector SET ");
-
-            // Wrap the itemId (column name) in backticks to ensure MySQL treats it as a column identifier
-            String columnName = "`" + itemId + "`"; // Adding backticks around the itemId
-
-            // Add the column update for this specific itemId
-            sql.append(columnName).append(" = 1");
-
-            // Add the WHERE clause for the specific accountId
-            sql.append(" WHERE id = ?");
+            // Prepare the SQL query to insert a new row into the collector table
+            String sql = "INSERT INTO collector (id, itemid) VALUES (?, ?)";
 
             // Prepare and execute the SQL statement
-            try (PreparedStatement ps = con.prepareStatement(sql.toString()))
+            try (PreparedStatement ps = con.prepareStatement(sql))
             {
-                ps.setInt(1, accountid);
+                ps.setInt(1, accountid);  // Set the account ID
+                ps.setInt(2, itemId);     // Set the item ID
                 ps.executeUpdate();
             }
 
             // Close DB Connection
             con.close();
         }
-
         catch (SQLException se)
         {
             se.printStackTrace();

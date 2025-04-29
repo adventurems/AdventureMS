@@ -120,7 +120,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         if (selection == 1)
         {
             // Initialize allItems
-            var allItems = cm.getPlayer().getCollectorAll();
+            var allItems = cm.getPlayer().getCollectorItems();
 
             // Set variableString
             var capString = "#eCaps#n\r\n";
