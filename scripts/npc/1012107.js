@@ -40,30 +40,19 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // They chose to start the test
         if (selection == 0)
         {
-            if (cm.getParty() != null)
+            if (cm.getParty() == null)
             {
-                var eli = em.getEligibleParty(cm.getParty());
-                if (eli.size() < 2)
+                if (!em.startInstance(cm.getPlayer()))
                 {
-                    if (!em.startInstance(cm.getParty(), cm.getPlayer().getMap(), 1))
-                    {
-                        cm.sendOk("Someone else is already attempting the test on this channel, just a moment!");
-                        cm.dispose();
-                    }
-                }
-
-                // They are in a party
-                else
-                {
-                    cm.sendOk("You must be in a party alone to attempt the test!");
+                    cm.sendOk("Someone else is already attempting the test on this channel, just a moment!");
                     cm.dispose();
                 }
             }
 
-            // They are not in a party
+            // They are in a party
             else
             {
-                cm.sendOk("You must be in a party alone to attempt the test!");
+                cm.sendOk("You must take on the test alone!");
                 cm.dispose();
             }
         }
