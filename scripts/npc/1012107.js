@@ -57,7 +57,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 // If a valid disease exists for SEAL
                 if (sealDisease != null) {
                     // Get the corresponding MobSkill for SEAL at level 1 using the new method
-                    var sealMobSkill = pi.getMobSkillByType(sealDisease.getMobSkillType(), 1);
+                    var sealMobSkill = cm.getMobSkillByType(sealDisease.getMobSkillType(), 1);
 
                     // Apply the SEAL debuff to the player using Disease (not MobSkillType)
                     cm.getPlayer().giveDebuff(sealDisease, sealMobSkill); // Pass Disease (not MobSkillType) to giveDebuff
