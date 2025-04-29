@@ -1,4 +1,5 @@
-// TheFarmEvent.js
+// AdventureMS TheFarmEvent
+
 var isPq = false;
 var minPlayers = 1, maxPlayers = 1;
 var minLevel = 1, maxLevel = 255;
@@ -17,20 +18,31 @@ function setup(level, lobbyid) {
     map.resetPQ(level);
     map.clearDrops();
 
-    // Spawn monsters
-    eim.spawnMonster(9420005, 1936, -811);
-    eim.spawnMonster(9420005, 2115, -811);
-    eim.spawnMonster(9420005, 2395, -811);
-    eim.spawnMonster(9420005, 2571, -811);
-    eim.spawnMonster(9420005, 2903, -811);
-    eim.spawnMonster(9420005, 1869, -535);
-    eim.spawnMonster(9420005, 2066, -535);
-    eim.spawnMonster(9420005, 2448, -535);
-    eim.spawnMonster(9420005, 2646, -535);
-    eim.spawnMonster(9420005, 2837, -535);
+    // Import required Java classes
+    const Point = Java.type('java.awt.Point');
+
+    // Spawn monsters - using the correct method
+    var positions = [
+        new Point(1936, -811),
+        new Point(2115, -811),
+        new Point(2395, -811),
+        new Point(2571, -811),
+        new Point(2903, -811),
+        new Point(1869, -535),
+        new Point(2066, -535),
+        new Point(2448, -535),
+        new Point(2646, -535),
+        new Point(2837, -535)
+    ];
+
+    for (var i = 0; i < positions.length; i++) {
+        var mob = em.getMonster(9420005); // Chicken monster ID
+        eim.registerMonster(mob);
+        map.spawnMonsterOnGroundBelow(mob, positions[i]);
+    }
 
     // Start timer
-    eim.startEventTimer(300000); // 5 minutes
+    eim.startEventTimer(30000); // 30 Seconds
 
     return eim;
 }
@@ -83,15 +95,18 @@ function end(eim) {
 }
 
 // Include other required event functions
-function playerDisconnected(eim, player) { eim.unregisterPlayer(player); }
-function playerRevive(eim, player) { return false; }
+function playerDisconnected(eim, player) {
+    eim.unregisterPlayer(player);
+    end(eim); // End the event if player disconnects
+}
+
+function playerRevive(eim, player) {
+    return false;
+}
+
 function changedMap(eim, player, mapid) {
     if (mapid != entryMap) {
         eim.unregisterPlayer(player);
+        end(eim); // End the event if player leaves the map
     }
 }
-function playerDead(eim, player) {}
-function monsterValue(eim, mobId) { return 1; }
-function allMonstersDead(eim) {}
-function cancelSchedule() {}
-function dispose() {}
