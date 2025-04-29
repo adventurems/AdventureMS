@@ -1,70 +1,62 @@
-/*
-	This file is part of the OdinMS Maple Story Server
-    Copyright (C) 2008 Patrick Huy <patrick.huy@frz.cc>
-		       Matthias Butz <matze@odinms.de>
-		       Jan Christian Meyer <vimes@odinms.de>
+// AdventureMS Robin the Huntress
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation version 3 as published by
-    the Free Software Foundation. You may not use, modify or distribute
-    this program under any other version of the GNU Affero General Public
-    License.
+// Standard Status Code
+function start() {status = -1; action(1,0,0);}
+function action(mode, type, selection) { if (mode == 1) {status++;} else {status--;} if (status == -1) {cm.dispose();}
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
+    // Initial Click
+    else if (status == 0)
+    {
+        // Check if the quest is completed
+        if (cm.getQuestStatus(1014) < 2)
+        {
+            // Check if they have the items
+            if (cm.haveItem(1041061) && cm.haveItem(1061057))
+            {
+                cm.sendYesNo("Oh! Hey cutie! Are those for me?\r\n\r\n#eWould you like to side with Robin and give her the gear?#n");
+            }
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-var status = 0;
-
-function start() {
-    if (cm.getMapId() != 680000401) {
-        cm.sendSimple("Hello, where would you like to go?\r\n#b" + ((cm.getMapId() != 680000400) ? "#L0#Untamed Hearts Hunting Ground#l\r\n" : "") + ((cm.getMapId() == 680000400) ? "#L1#I have 7 keys. Bring me to smash boxes#l\r\n" : "") + "#L2#Please warp me out.#l#k");
-    } else {
-        cm.sendSimple("Hello, do you want to go back now? Returning here again will cost you #rother 7 keys#k.\r\n#b#L2#Please warp me back to the training grounds.#l#k");
-    }
-}
-
-function action(mode, type, selection) {
-    if (mode < 1) {
-        cm.sendOk("Goodbye then.");
-        cm.dispose();
-        return;
-    }
-    if (mode == 1) {
-        status++;
-    } else {
-        status--;
-    }
-    if (status == 1) {
-        if (selection < 1) {
-            if (!cm.haveItem(4000313, 1)) {
-                cm.sendOk("It seems like you lost your #b#t4000313##k. I'm sorry, but I can't let you proceed to the hunting grounds without that.");
+            // They don't have the items
+            else
+            {
+                cm.sendOk("Hey Cutie! Any luck with that gear? I'm really excited for you to see me in it ;)! Remember, don't give it to #bCorine#k, she seems cute and cuddly, but she is EVIL!");
                 cm.dispose();
-                return;
-            }
-
-            cm.warp(680000400, 0);
-        } else if (selection < 2) {
-            if (cm.haveItem(4031217, 7)) {
-                cm.gainItem(4031217, -7);
-                cm.warp(680000401, 0);
-            } else {
-                cm.sendOk("It seems like you don't have 7 Keys. Kill the cakes and candles in the Untamed Heart Hunting Ground to get keys.");
-            }
-        } else if (selection > 1) {
-            if (cm.getMapId() != 680000401) {
-                cm.warp(680000500, 0);
-                cm.sendOk("Goodbye. I hope you enjoyed the wedding!");
-            } else {
-                cm.warp(680000400, 0);
             }
         }
 
+        // The original quest is completed, see who they chose
+        else if (cm.getQuestStatus(1017) == 2) // Robin was chosen
+        {
+            cm.sendOk("How do I look? Are you happy with your choice, hun?");
+            cm.dispose();
+        }
+
+        // They chose Corine to give gear to
+        else if (cm.getQuestStatus(1018) == 2)
+        {
+            cm.sendOk("I can't believe it. Do NOT talk to me again.");
+            cm.dispose();
+        }
+    }
+
+    // After pressing yes/next
+    else if (status == 1)
+    {
+        // They do have the items and chose to turn them in
+        cm.sendOk("Amazing, I'm going to look great in these for you!\r\n\r\nHave this as a token of my appreciation!\r\n#v1142203# #t1142203#");
+
+        // Give/take items
+        cm.gainItem(1041061, -1); // Remove top
+        cm.gainItem(1061057, -1); // Remove bottom
+        cm.gainItem(1142203, 1); // Robin Medal
+        cm.gainExp(75000); // Give exp
+        cm.gainFame(1); // Give fame
+
+        // Complete the quest
+        cm.completeQuest(1014); // Dual quest
+        cm.completeQuest(1017); // Robin Specific Quest
+
+        // Kill convo
         cm.dispose();
     }
 }

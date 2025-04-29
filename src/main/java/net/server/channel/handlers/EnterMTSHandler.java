@@ -58,6 +58,8 @@ public final class EnterMTSHandler extends AbstractPacketHandler {
                         1010202, // Bob's Domain
                         1010203, // Bob's Domain
                         1010204, // Bob's Domain
+                        100000003, // Off the beaten path
+                        100000005, // Someone Else's House
                         103000910, // King Slime
                         103000911, // King Slime
                         103000912, // King Slime
@@ -72,7 +74,19 @@ public final class EnterMTSHandler extends AbstractPacketHandler {
                         198000104, // The Vault
                         198000105, // The Vault
                         100000203, // Kora City
-                        300000012  // Jail
+                        300000012, // Jail
+                        106010140, // Far Side of Florina
+                        106010141, // Treasure Hunt #1
+                        106010142, // Treasure Hunt #1
+                        106010143, // Treasure Hunt #1
+                        106010144, // Treasure Hunt #1
+                        106010145, // Treasure Hunt #1
+                        106010146, // Treasure Hunt #1
+                        106010147, // Treasure Hunt #1
+                        106010148, // Treasure Hunt #1
+                        106010149, // Shipwreck
+                        106010150, // Treasure Hunt #1
+                        106010114 // Guardians Chamber
                 };
 
         // Current Map

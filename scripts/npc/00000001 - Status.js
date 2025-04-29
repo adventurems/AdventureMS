@@ -1,5 +1,3 @@
-// Author: Pepa
-
 // AdventureMS
 
 // Standard Status Code

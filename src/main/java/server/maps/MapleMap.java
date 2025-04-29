@@ -700,7 +700,7 @@ public class MapleMap {
                     if (ItemConstants.getInventoryType(de.itemId) == InventoryType.EQUIP)
                     {
                         // Roll to see if it's a chaos item
-                        isChaos = Randomizer.nextInt(15) == 0;
+                        isChaos = Randomizer.nextInt(20) == 0;
                         if (isChaos) {idrop = ii.randomizeChaosStats((Equip) ii.getEquipById(de.itemId));}
 
                         // It's a normal item

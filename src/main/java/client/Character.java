@@ -8997,6 +8997,69 @@ public class Character extends AbstractCharacterObject {
     }
 
     // AdventureMS Custom
+    public List<Map<String, Object>> checkItemsWithZeroStats()
+    {
+        // The item IDs we're looking for
+        int[] itemIds = {1072004, 1112921, 1082002};
+        List<Map<String, Object>> results = new ArrayList<>();
+
+        // Create a map to track if we've found at least one of each ID
+        Map<Integer, Boolean> foundItems = new HashMap<>();
+        for (int id : itemIds) {
+            foundItems.put(id, false);
+        }
+
+        // Get the EQUIP inventory (type 1)
+        Inventory inventory = getInventory(InventoryType.EQUIP);
+
+        // Get all items in the inventory
+        Collection<Item> items = inventory.list();
+
+        // Iterate through all items
+        for (Item item : items) {
+            // Check if the item is one of the ones we're looking for
+            int itemId = item.getItemId();
+            if (foundItems.containsKey(itemId)) {
+                // Check if the item is not equipped (slot > 0)
+                if (item.getPosition() > 0) {
+                    // Cast to Equip to access stat methods
+                    Equip equip = (Equip) item;
+
+                    // Check if all stats are 0
+                    if (equip.getStr() == 0 && equip.getDex() == 0 &&
+                            equip.getInt() == 0 && equip.getLuk() == 0) {
+
+                        Map<String, Object> itemData = new HashMap<>();
+                        itemData.put("id", itemId);
+                        itemData.put("slot", item.getPosition());
+                        itemData.put("str", equip.getStr());
+                        itemData.put("dex", equip.getDex());
+                        itemData.put("int", equip.getInt());
+                        itemData.put("luk", equip.getLuk());
+
+                        results.add(itemData);
+
+                        // Mark that we've found this ID
+                        foundItems.put(itemId, true);
+                    }
+                }
+            }
+        }
+
+        // Check if we found at least one of each required item ID
+        boolean foundAllRequiredItems = true;
+        for (boolean found : foundItems.values()) {
+            if (!found) {
+                foundAllRequiredItems = false;
+                break;
+            }
+        }
+
+        // Only return the results if we found at least one of each required item ID
+        return foundAllRequiredItems ? results : new ArrayList<>();
+    }
+
+    // AdventureMS Custom
     public boolean isWeaponEquipped()
     {
         Item weapon_item = getInventory(InventoryType.EQUIPPED).getItem((short) -11);
