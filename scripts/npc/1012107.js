@@ -22,7 +22,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
             // Send first message
             cm.sendSimple("Hey #h #!\r\n\r\n My grandma and I think you are ready to get your first pet skill! I can teach your pet to be super fast my like hedgehog, Sonic." +
-                "All you gotta do is bonk those chickens as fast as you can and get the #rgolden egg#k before time runs out. You think you can do that?\r\n\r\n" +
+                "\r\n\r\nAll you gotta do is bonk those chickens as fast as you can and get the #rgolden egg#k before time runs out. You think you can do that?\r\n\r\n" +
                 "#L0#I'm ready to give it a go!#l\r\n#L1#Hmmm, not quite yet, I'll be back!#l");
         }
 
@@ -40,19 +40,30 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // They chose to start the test
         if (selection == 0)
         {
-            if (cm.getParty() == null)
+            if (cm.getParty() != null)
             {
-                if (!em.startInstance(cm.getParty(), cm.getPlayer().getMap(), 1))
+                var eli = em.getEligibleParty(cm.getParty());
+                if (eli.size() < 2)
                 {
-                    cm.sendOk("Someone else is already attempting the test on this channel, just a moment!");
+                    if (!em.startInstance(cm.getParty(), cm.getPlayer().getMap(), 1))
+                    {
+                        cm.sendOk("Someone else is already attempting the test on this channel, just a moment!");
+                        cm.dispose();
+                    }
+                }
+
+                // They are in a party
+                else
+                {
+                    cm.sendOk("You must be in a party alone to attempt the test!");
                     cm.dispose();
                 }
             }
 
-            // They are in a party
+            // They are not in a party
             else
             {
-                cm.sendOk("You must take on the test alone!");
+                cm.sendOk("You must be in a party alone to attempt the test!");
                 cm.dispose();
             }
         }
