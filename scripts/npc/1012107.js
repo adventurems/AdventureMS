@@ -1,6 +1,4 @@
 // AdventureMS Utah's First Test
-
-var status = 0;
 var em = null;
 
 // Standard Status Code
