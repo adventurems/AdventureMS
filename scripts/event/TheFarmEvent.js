@@ -42,7 +42,7 @@ function setup(level, lobbyid) {
     }
 
     // Start timer
-    eim.startEventTimer(30000); // 30 Seconds
+    eim.startEventTimer(18000); // 30 Seconds
 
     return eim;
 }
