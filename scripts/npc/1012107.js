@@ -52,7 +52,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // They are in a party
             else
             {
-                cm.sendOk("You must take on the test alone!");
+                cm.sendOk("You must take on the test alone, please leave your party.!");
                 cm.dispose();
             }
         }

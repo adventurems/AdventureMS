@@ -81,6 +81,8 @@ function scheduledTimeout(eim) {
     end(eim);
 }
 
+function playerUnregistered(eim, player) {}
+
 function playerExit(eim, player) {
     eim.unregisterPlayer(player);
     player.changeMap(exitMap, 0);
@@ -109,4 +111,9 @@ function changedMap(eim, player, mapid) {
         eim.unregisterPlayer(player);
         end(eim); // End the event if player leaves the map
     }
+}
+
+function afterSetup(eim) {
+    // This function is called after the instance is set up
+    // It can be empty, but must exist
 }
