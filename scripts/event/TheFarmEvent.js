@@ -52,29 +52,6 @@ function playerEntry(eim, player)
     var map = eim.getMapInstance(entryMap);
     player.changeMap(map, map.getPortal(0));
     player.dropMessage(5, "Defeat all chickens and collect the Golden Egg before time expires!");
-
-    // Cancel Buffs
-    player.cancelAllBuffs(false);
-
-    // Get Disease enum
-    var Disease = Java.type('client.Disease');
-
-    // Clear any existing debuffs on the player
-    player.dispelDebuffs();
-
-    // Get the disease for SEAL using the Disease enum
-    var sealDisease = Disease.getBySkill(Disease.SEAL.getMobSkillType());
-
-    // If a valid disease exists for SEAL
-    if (sealDisease != null) {
-        // Get the corresponding MobSkill for SEAL at level 1
-        // Note: In the event context, we need to use a different approach to get MobSkill
-        var MobSkillFactory = Java.type('server.life.MobSkillFactory');
-        var sealMobSkill = MobSkillFactory.getMobSkill(sealDisease.getMobSkillType(), 1);
-
-        // Apply the SEAL debuff to the player
-        player.giveDebuff(sealDisease, sealMobSkill);
-    }
 }
 
 function monsterKilled(mob, eim) {

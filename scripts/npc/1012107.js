@@ -29,7 +29,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // No active quests right now
         else
         {
-            cm.sendOk("Doesn't seem like there is anything I can teach your right now! Get back out there and start training!");
+            cm.sendOk("Doesn't seem like there is anything I can teach you right now! Get back out there and start training!");
             cm.dispose();
         }
     }
@@ -42,6 +42,29 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         {
             if (cm.getParty() == null)
             {
+                // Cancel Buffs
+                player.cancelAllBuffs(false);
+
+                // Get Disease enum
+                var Disease = Java.type('client.Disease');
+
+                // Clear any existing debuffs on the player
+                player.dispelDebuffs();
+
+                // Get the disease for SEAL using the Disease enum
+                var sealDisease = Disease.getBySkill(Disease.SEAL.getMobSkillType());
+
+                // If a valid disease exists for SEAL
+                if (sealDisease != null) {
+                    // Get the corresponding MobSkill for SEAL at level 1
+                    // Note: In the event context, we need to use a different approach to get MobSkill
+                    var MobSkillFactory = Java.type('server.life.MobSkillFactory');
+                    var sealMobSkill = MobSkillFactory.getMobSkill(sealDisease.getMobSkillType(), 1);
+
+                    // Apply the SEAL debuff to the player
+                    player.giveDebuff(sealDisease, sealMobSkill);
+                }
+
                 if (!em.startInstance(cm.getPlayer()))
                 {
                     cm.sendOk("Someone else is already attempting the test on this channel, just a moment!");
