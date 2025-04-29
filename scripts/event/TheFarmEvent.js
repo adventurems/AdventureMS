@@ -124,3 +124,8 @@ function monsterValue(eim, mobId) {
 }
 
 function dispose(eim) {}
+
+function cancelSchedule() {
+    // This function is called when the server is shutting down
+    // It should cancel any scheduled tasks
+}
