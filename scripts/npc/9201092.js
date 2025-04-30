@@ -218,7 +218,76 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // They want to upgrade their ring
         if (selection == 2)
         {
-            cm.sendOk("Ring upgrades aren't available yet.");
+            // Import the CollectorItemsProvider
+            const CollectorItemsProvider = Java.type('server.CollectorItemsProvider');
+
+            // Get all missing items
+            var missingItems = cm.getPlayer().getCollectorMissing();
+
+            // Convert missing items to a Map for efficient lookup
+            var missingMap = {};
+            for (var i = 0; i < missingItems.length; i++) {
+                missingMap[missingItems[i]] = true;
+            }
+
+            // Get all categories and their items from CollectorItemsProvider
+            var categoryItems = CollectorItemsProvider.getInstance().getAllCategorizedItems();
+
+            // Track completed categories
+            var totalCategories = 0;
+            var completedCategories = 0;
+            var completedCategoryNames = [];
+
+            // Iterate through each category
+            var categories = categoryItems.keySet().toArray();
+            for (var i = 0; i < categories.length; i++) {
+                var category = categories[i];
+                var items = categoryItems.get(category);
+
+                totalCategories++;
+
+                // Check if all items in this category are collected
+                var categoryComplete = true;
+                for (var j = 0; j < items.size(); j++) {
+                    var itemId = items.get(j);
+                    if (missingMap[itemId]) {
+                        categoryComplete = false;
+                        break;
+                    }
+                }
+
+                // If category is complete, increment counter and add to list
+                if (categoryComplete) {
+                    completedCategories++;
+                    completedCategoryNames.push(category);
+                }
+            }
+
+            // Build the message
+            var message = "#e#bRing Upgrade Status#k#n\r\n\r\n";
+            message += "You have completed " + completedCategories + " out of " + totalCategories + " collection categories.\r\n\r\n";
+
+            // Add requirements for ring upgrades
+            if (completedCategories < 1) {
+                message += "You need to complete at least 1 category to upgrade your ring to Tier 1.\r\n";
+            } else if (completedCategories < 3) {
+                message += "You need to complete at least 3 categories to upgrade your ring to Tier 2.\r\n";
+            } else if (completedCategories < 5) {
+                message += "You need to complete at least 5 categories to upgrade your ring to Tier 3.\r\n";
+            } else {
+                message += "You have completed enough categories to upgrade your ring to the maximum tier!\r\n";
+            }
+
+            // Add list of completed categories if any
+            if (completedCategories > 0) {
+                message += "\r\n#eCompleted Categories:#n\r\n";
+                for (var i = 0; i < completedCategoryNames.length; i++) {
+                    message += "- " + completedCategoryNames[i] + "\r\n";
+                }
+            }
+
+            // Send the message
+            cm.sendOk(message);
             cm.dispose();
         }
     }
