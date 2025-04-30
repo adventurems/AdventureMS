@@ -95,7 +95,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             var missingItems = cm.getPlayer().getCollectorMissing();
 
             // Store the default string
-            var defaultString = "1. #r#eItems are taken from your inventory in order from top left to bottom right (it will not take equipped items).#n#k\r\n\r\n2. #e#rThe first copy of an item it finds, in that order, is the one that will be taken.#k#n\r\n\r\n3. #r#eThere are no refunds.#n#k\r\n\r\n#eBelow are the items available for collection. Which one would you like to turn in?#n\r\n";
+            var defaultString = "1. #r#eItems are taken from your inventory in order from top left to bottom right (it will not take equipped items).#n#k\r\n2. #e#rThe first copy of an item it finds, in that order, is the one that will be taken.#k#n\r\n3. #r#eThere are no refunds.#n#k\r\n\r\n#eWhat would you like to turn in?#n\r\n";
 
             // Iterate through each missing item
             for (var i = 0; i < missingItems.length; i++)
@@ -292,7 +292,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 // Checks to see if ring is in inventory
                 for (var i = 0; i < ringIds.length; i++)
                 {
-                    if (haveItemWithId(ringIds[i], false))
+                    if (cm.haveItemWithId(ringIds[i], false))
                     {
                         curRing = ringIds[i];
                         break;
