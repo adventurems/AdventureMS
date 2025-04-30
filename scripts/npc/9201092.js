@@ -250,9 +250,15 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
              // Update the DB (this line may need to be adjusted based on your specific DB interaction)
              cm.getPlayer().updateCollector(selectedItemId);
 
-             // Send the final text
-             cm.sendOk(defaultString);
-             cm.dispose();
+             // Send the final text with a Next button instead of OK
+             cm.sendNext(defaultString);
+
+             // Reset variables for the next trade
+             collectableItems = [];
+             selectionSlot = -1;
+
+             // Set status back to 0 so when the user clicks, they return to the main menu
+             status = 0;
          }
     }
 }

@@ -56,9 +56,6 @@ public class CollectorItemsProvider {
 
                 categoryItems.put(category, itemIds);
             }
-
-            log.info("Loaded {} collectable items across {} categories",
-                    allItems.size(), categoryItems.size());
         } catch (Exception e) {
             log.error("Error loading collector items", e);
         }
