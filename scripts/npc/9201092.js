@@ -256,16 +256,10 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
              missingItems = [];
              turnIn = false;
              selectionSlot = -1;
-             status = -1;
+             status = 0;
 
              // Send the final text with a Next button instead of OK
              cm.sendNext(defaultString);
          }
     }
-
-     else if (status == 3)
-     {
-        cm.sendOk("Status 3 somehow!");
-        cm.dispose();
-     }
 }
