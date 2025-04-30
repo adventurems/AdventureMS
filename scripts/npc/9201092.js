@@ -5,7 +5,6 @@ var turnIn = false; // Used for the first option which is to turn in items
 var newCollector = false; // Used to track collector status
 var collectableItems = []; // Creates an array of itemids that we have and can be turned in
 var selectionSlot = -1;
-var selection = 0;
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
@@ -251,17 +250,16 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
              // Update the DB (this line may need to be adjusted based on your specific DB interaction)
              cm.getPlayer().updateCollector(selectedItemId);
 
-             // Send the final text with a Next button instead of OK
-             cm.sendNext(defaultString);
-
              // Reset variables for the next trade
              collectableItems = [];
              selectionSlot = -1;
 
              // Set status back to 0 so when the user clicks, they return to the main menu
              status = 0;
-             turnIn = true;
              selection = 0;
+
+             // Send the final text with a Next button instead of OK
+             cm.sendNext(defaultString);
          }
     }
 }
