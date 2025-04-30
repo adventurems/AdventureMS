@@ -65,14 +65,14 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Send selection message
             cm.sendSimple("What would you like to do?\r\n\r\n #L0# Trade in items #l \r\n #L1# See my collection(s) #l \r\n #L2# Upgrade my ring #l");
         }
+
+        // If we get here, set it to false
+        turnIn = false;
     }
 
     // They've chosen a selection
     else if (status == 1)
     {
-        cm.getPlayer().yellowMessage("Made it back.");
-        cm.getPlayer().yellowMessage("Selection: " + selection);
-
         // Check if this is a brand new account interacting with the collector
         if (newCollector)
         {
