@@ -5,6 +5,7 @@ var turnIn = false; // Used for the first option which is to turn in items
 var newCollector = false; // Used to track collector status
 var collectableItems = []; // Creates an array of itemids that we have and can be turned in
 var selectionSlot = -1;
+var missingItems = [];
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
