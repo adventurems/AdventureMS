@@ -275,40 +275,87 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 cm.dispose();
             }
 
-            // One completed category
-            else if (completedCategories === 1)
+            // They've completed at least one category
+            else
             {
                 // Build the message
                 var message = "#e#bRing Upgrade Status#k#n\r\n\r\n";
                 message += "You have completed " + completedCategories + " out of " + totalCategories + " collection categories.\r\n\r\n";
 
-            }
-            // Build the message
-            var message = "#e#bRing Upgrade Status#k#n\r\n\r\n";
-            message += "You have completed " + completedCategories + " out of " + totalCategories + " collection categories.\r\n\r\n";
+                // Store which ring they have
+                var curRing = 0;
 
-            // Add requirements for ring upgrades
-            if (completedCategories < 1) {
-                message += "You need to complete at least 1 category to upgrade your ring to Tier 1.\r\n";
-            } else if (completedCategories < 3) {
-                message += "You need to complete at least 3 categories to upgrade your ring to Tier 2.\r\n";
-            } else if (completedCategories < 5) {
-                message += "You need to complete at least 5 categories to upgrade your ring to Tier 3.\r\n";
-            } else {
-                message += "You have completed enough categories to upgrade your ring to the maximum tier!\r\n";
-            }
+                // Array of ring IDs to check
+                var ringIds = [1112930, 1112932, 1112933, 1112934, 1112935, 1112936,
+                    1112937, 1112938, 1112939, 1112940, 1112941];
 
-            // Add list of completed categories if any
-            if (completedCategories > 0) {
-                message += "\r\n#eCompleted Categories:#n\r\n";
-                for (var i = 0; i < completedCategoryNames.length; i++) {
-                    message += "- " + completedCategoryNames[i] + "\r\n";
+                // Checks to see if ring is in inventory
+                for (var i = 0; i < ringIds.length; i++)
+                {
+                    if (haveItemWithId(ringIds[i], false))
+                    {
+                        curRing = ringIds[i];
+                        break;
+                    }
+                }
+
+                // They don't currently have a ring in their inventory
+                if (curRing === 0)
+                {
+                    cm.sendOk("You don't have a ring in your inventory! #eYour current collecting ring must be un-equipped and in your inventory!#n");
+                    cm.dispose();
+                }
+
+                // They have a ring in their inventory
+                else
+                {
+                    var maxTier = completedCategories;
+                    var targetRing = 1112932 + maxTier - 1;
+
+                    // They have never upgraded before
+                    if (curRing === 1112930)
+                    {
+                        // Manipulate inventory
+                        cm.gainItem(curRing, -1); // Take the original ring
+                        cm.gainItem(targetRing, 1); // Give the new ring
+
+                        // Update the message
+                        message += "#e#rYou have successfully upgraded your ring!#n#k\r\n\r\nGained: #v" + targetRing + "# #t" + targetRing + "#\r\nRemoved: #v" + curRing + "# #t" + curRing + "#";
+                        cm.sendOk(message);
+                        cm.dispose();
+                    }
+
+                    // They have upgraded before
+                    else
+                    {
+                        var canUpgrade = false;
+
+                        // Check if the player can upgrade
+                        if (curRing < targetRing) {canUpgrade = true;}
+
+                        // Make the upgrade
+                        if (canUpgrade)
+                        {
+                            // Manipulate inventory
+                            cm.gainItem(curRing, -1); // Take the original ring
+                            cm.gainItem(targetRing, 1); // Give the new ring
+
+                            // Update the message
+                            message += "#e#rYou have successfully upgraded your ring!#n#k\r\n\r\nGained: #v" + targetRing + "# #t" + targetRing + "#\r\nRemoved: #v" + curRing + "# #t" + curRing + "#";
+                            cm.sendOk(message);
+                            cm.dispose();
+                        }
+
+                        // They cannot make an upgrade
+                        else
+                        {
+                            cm.sendOk("You already have the highest possible ring based on your completion status!\r\n\r\nYou can upgrade your ring once you complete more categories!");
+                            cm.dispose();
+                        }
+
+                    }
                 }
             }
-
-            // Send the message
-            cm.sendOk(message);
-            cm.dispose();
         }
     }
 
