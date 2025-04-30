@@ -263,6 +263,26 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 }
             }
 
+            // Nothing Completed Yet
+            if (completedCategories === 0)
+            {
+                // Build the message
+                var message = "#e#bRing Upgrade Status#k#n\r\n\r\n";
+                message += "You have completed " + completedCategories + " out of " + totalCategories + " collection categories.\r\n\r\nUpgrades are available per completed category. Get out there and start collecting!";
+
+                // Send the message
+                cm.sendOk(message);
+                cm.dispose();
+            }
+
+            // One completed category
+            else if (completedCategories === 1)
+            {
+                // Build the message
+                var message = "#e#bRing Upgrade Status#k#n\r\n\r\n";
+                message += "You have completed " + completedCategories + " out of " + totalCategories + " collection categories.\r\n\r\n";
+
+            }
             // Build the message
             var message = "#e#bRing Upgrade Status#k#n\r\n\r\n";
             message += "You have completed " + completedCategories + " out of " + totalCategories + " collection categories.\r\n\r\n";
