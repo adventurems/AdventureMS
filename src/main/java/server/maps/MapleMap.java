@@ -470,21 +470,34 @@ public class MapleMap {
         double chance = 1.0 / (GOBLIN_BASE_CHANCE + ((Math.min(monsterLvl, GOBLIN_MAX_LEVEL) - GOBLIN_MIN_LEVEL) * ((GOBLIN_MAX_CHANCE - GOBLIN_BASE_CHANCE) / (GOBLIN_MAX_LEVEL - GOBLIN_MIN_LEVEL)))); // Calculate base probability  
         if (Math.random() > chance) {return;} // Exit if RNG check fails
 
-        // Determine which goblin to spawn
+        // Determine the tier of the Goblin
+        int goblinTier = 1;
+        if (monsterLvl < 23) {goblinTier = 1;}
+        else if (monsterLvl < 32) {goblinTier = 2;}
+        else {goblinTier = 3;}
+
+        // Base Goblin ID's
+        int baseLootMouseID = 9402050;
+        int baseGemstoneMonstrosityID = 2600420;
+        int baseLivingMesoID = 9010150;
+
+        // Additional Variables
         boolean allGoblins = false;
         int randGoblin = Randomizer.nextInt(100);
         int goblinID = 0;
+
+        // Determine which goblin to spawn
         if (randGoblin < 4) {allGoblins = true;} // 4% chance to spawn all goblins
-        else if (randGoblin < 36) {goblinID = 9402046;} // 32% chance to spawn a loot mouse
-        else if (randGoblin < 68) {goblinID = 2600419;} // 32% chance to spawn a gemstone monstrosity
-        else {goblinID = 9010148;} // 32% chance to spawn a living meso
+        else if (randGoblin < 36) {goblinID = baseLootMouseID + goblinTier - 1;} // 32% chance to spawn a loot mouse
+        else if (randGoblin < 68) {goblinID = baseGemstoneMonstrosityID + goblinTier - 1;} // 32% chance to spawn a gemstone monstrosity
+        else {goblinID = baseLivingMesoID + goblinTier - 1;} // 32% chance to spawn a living meso
 
         // Spawn the selected goblin(s)
         if (allGoblins) {
             // Spawn all three goblin types
-            spawnSingleGoblin(monster, 9402046); // Loot mouse
-            spawnSingleGoblin(monster, 2600419); // Gemstone monstrosity
-            spawnSingleGoblin(monster, 9010148); // Living meso
+            spawnSingleGoblin(monster, baseLootMouseID + goblinTier - 1); // Loot mouse
+            spawnSingleGoblin(monster, baseGemstoneMonstrosityID + goblinTier - 1); // Gemstone monstrosity
+            spawnSingleGoblin(monster, baseLivingMesoID + goblinTier - 1); // Living meso
         } else {
             // Spawn just the selected goblin
             spawnSingleGoblin(monster, goblinID);
@@ -507,6 +520,10 @@ public class MapleMap {
 
         // Apply the override stats to the goblin
         goblin.setOverrideStats(overrideStats);
+
+        // Announce the monster spawn to the map
+        monster.getMap().broadcastMessage(PacketCreator.serverNotice(6, "A rare monster has appeared!"));
+        monster.getMap().broadcastMessage(PacketCreator.playSound("AdventureMS/goblin"));
 
         // Spawn the goblin on the map
         spawnMonster(goblin);
@@ -805,14 +822,16 @@ public class MapleMap {
                 
                 else 
                 {
-                    // Set bool here so that it can be checked later
-                    boolean isChaos = false;
+                    // Roll to see if it's a chaos item
+                    boolean isChaos = Randomizer.nextInt(20) == 0;
+
+                    // If it's from a Loot Mouse, guarantee chaos items
+                    if (mob.getId() > 9402049 && mob.getId() < 9402060) {isChaos = true;}
 
                     // It's an equip item, randomize the stats
                     if (ItemConstants.getInventoryType(de.itemId) == InventoryType.EQUIP)
                     {
-                        // Roll to see if it's a chaos item
-                        isChaos = Randomizer.nextInt(20) == 0;
+                        // It's a chaos item
                         if (isChaos) {idrop = ii.randomizeChaosStats((Equip) ii.getEquipById(de.itemId));}
 
                         // It's a normal item
@@ -1542,7 +1561,6 @@ public class MapleMap {
         killMonster(monster, chr, withDrops, 1, dropDelay);
     }
 
-    // AdventureMS Custom - Dungeon Portal / Loot Mouse
     public void killMonster(final Monster monster, final Character chr, final boolean withDrops, int animation, short dropDelay)
     {
         // Edge case checks
@@ -1646,11 +1664,12 @@ public class MapleMap {
                 }
             }
 
-            // Chance to spawn Dungeon Portal
-            spawnDungeonPortal(chr, monster);
-
-            // Chance to spawn Loot Mouse
-            spawnGoblin(monster);
+            // AdventureMS Custom - Dungeon Portal / Goblin
+            if (!monster.isBoss())
+            {
+                spawnDungeonPortal(chr, monster); // Chance to spawn Dungeon Portal
+                spawnGoblin(monster); // Chance to spawn Goblin
+            }
         }
 
         catch (Exception e)
