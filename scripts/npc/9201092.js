@@ -265,4 +265,10 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
              cm.sendNext(defaultString);
          }
     }
+
+     else if (status == 3)
+     {
+        cm.sendOk("Status 3 somehow!");
+        cm.dispose();
+     }
 }
