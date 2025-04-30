@@ -622,6 +622,11 @@ public class StatEffect {
                 case WindArcher.SOUL_ARROW:
                     statups.add(new Pair<>(BuffStat.SOULARROW, x));
                     break;
+                // AdventureMS Custom - Illusion
+                case Hunter.ILLUSION:
+                case Crossbowman.ILLUSION:
+                    statups.add(new Pair<>(BuffStat.AVOID, x));
+                    break;
                 case Ranger.PUPPET:
                 case Sniper.PUPPET:
                 case WindArcher.PUPPET:
@@ -950,12 +955,18 @@ public class StatEffect {
         int hpchange = calcHPChange(applyfrom, primary, affectedPlayers);
         int mpchange = calcMPChange(applyfrom, primary);
 
-        // AdventureMS Custom
+        // AdventureMS Custom - Meditation
         if (sourceid == FPWizard.MEDITATION || sourceid == ILWizard.MEDITATION)
         {
             int matkchange = 0;
             matkchange = (int) Math.round(applyfrom.getTotalMagic() * (getX() / 100.0));
             statups.set(0, new Pair<>(BuffStat.MATK, matkchange));
+        }
+
+        // AdventureMS Custom - Illusion
+        if (sourceid == Hunter.ILLUSION || sourceid == Crossbowman.ILLUSION)
+        {
+            statups.set(0, new Pair<>(BuffStat.AVOID, getX() * 2));
         }
 
         if (primary) {
@@ -1165,12 +1176,18 @@ public class StatEffect {
     private int applyBuff(Character applyfrom, boolean useMaxRange) {
         int affectedc = 1;
 
-        // AdventureMS Custom
+        // AdventureMS Custom - Meditation
         if (sourceid == FPWizard.MEDITATION || sourceid == ILWizard.MEDITATION)
         {
             int matkchange = 0;
             matkchange = (int) Math.round(applyfrom.getTotalMagic() * (getX() / 100.0));
             statups.set(0, new Pair<>(BuffStat.MATK, matkchange));
+        }
+
+        // AdventureMS Custom - Illusion
+        if (sourceid == Hunter.ILLUSION || sourceid == Crossbowman.ILLUSION)
+        {
+            statups.set(0, new Pair<>(BuffStat.AVOID, getX()));
         }
 
         if (isPartyBuff() && (applyfrom.getParty() != null || isGmBuff())) {
