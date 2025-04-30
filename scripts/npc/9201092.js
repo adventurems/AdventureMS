@@ -260,6 +260,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
              // Set status back to 0 so when the user clicks, they return to the main menu
              status = 0;
+             turnIn = false;
              selection = 0;
          }
     }
