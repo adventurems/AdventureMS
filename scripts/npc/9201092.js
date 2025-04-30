@@ -71,6 +71,8 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
     // They've chosen a selection
     else if (status == 1)
     {
+        cm.getPlayer().yellowMessage("Made it back.");
+
         // Check if this is a brand new account interacting with the collector
         if (newCollector)
         {
