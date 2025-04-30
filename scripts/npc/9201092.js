@@ -256,10 +256,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
              missingItems = [];
              turnIn = false;
              selectionSlot = -1;
-
-             // Set status back to 0 so when the user clicks, they return to the main menu
-             status = 0;
-             selection = 0;
+             status = -1;
 
              // Send the final text with a Next button instead of OK
              cm.sendNext(defaultString);
