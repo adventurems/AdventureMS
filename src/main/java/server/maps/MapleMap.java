@@ -67,6 +67,7 @@ import server.life.MonsterGlobalDropEntry;
 import server.life.MonsterInformationProvider;
 import server.life.MonsterListener;
 import server.life.NPC;
+import server.life.OverrideMonsterStats;
 import server.life.PlayerNPC;
 import server.life.SpawnPoint;
 import server.partyquest.CarnivalFactory;
@@ -398,6 +399,117 @@ public class MapleMap {
         } finally {
             objectWLock.unlock();
         }
+    }
+
+    // AdventureMS Custom - Spawn Dungeon Portal
+    public void spawnDungeonPortal(final Character chr, final Monster monster)
+    {
+        // Determine if the door will spawn
+        final int PORTAL_MIN_LEVEL = 30;
+        final int PORTAL_MAX_LEVEL = 150;
+        final double PORTAL_BASE_CHANCE = 1250.0;
+        final double PORTAL_MAX_CHANCE = 2500.0;
+        final int monsterLvl = monster.getLevel(); // Store the monster level for dungeon chance
+
+        if (monsterLvl < PORTAL_MIN_LEVEL) {return;} // Exit early if monster level is too low
+        double chance = 1.0 / (PORTAL_BASE_CHANCE + ((Math.min(monsterLvl, PORTAL_MAX_LEVEL) - PORTAL_MIN_LEVEL) * ((PORTAL_MAX_CHANCE - PORTAL_BASE_CHANCE) / (PORTAL_MAX_LEVEL - PORTAL_MIN_LEVEL)))); // Calculate base probability
+        if (Math.random() > chance) {return;} // Exit if RNG check fails
+
+        // Find coordinates
+        Point checkpos = monster.getMap().getGroundBelow(monster.getPosition());
+        int xpos = checkpos.x;
+        int ypos = checkpos.y;
+        int fh = chr.getMap().getFootholds().findBelow(checkpos).getId();
+
+        // Build NPC
+        NPC npc = Randomizer.nextInt(10) == 0 ? LifeFactory.getNPC(9800030) : LifeFactory.getNPC(9800017); // 10% chance to spawn rare dungeon
+        npc.setPosition(checkpos);
+        npc.setCy(ypos);
+        npc.setRx0(xpos + 53);
+        npc.setRx1(xpos - 53);
+        npc.setFh(fh);
+
+        // Create and Broadcast
+        MapleMap map = monster.getMap();
+        map.addMapObject(npc);
+        map.broadcastMessage(PacketCreator.spawnNPC(npc));
+        map.broadcastMessage(PacketCreator.npcUpdateLimitedInfo(npc.getObjectId(), true));
+
+        // Determine which sound to play
+        if (npc.getId() == 9800017) { map.broadcastMessage(PacketCreator.playSound("Portal/dungeonPortal"));} else {map.broadcastMessage(PacketCreator.playSound("Portal/dungeonPortalRare"));}
+
+        // Schedule NPC removal
+        Runnable removeNpcTask = new Runnable() {
+            @Override
+            public void run() {
+                if (npc != null && map != null)
+                {
+                    // Remove the NPC from the map
+                    map.removeMapObject(npc);
+                    map.broadcastMessage(PacketCreator.npcUpdateLimitedInfo(npc.getObjectId(), false));
+                    map.broadcastMessage(PacketCreator.playSound("Portal/close"));
+                }
+            }
+        };
+
+        // Use TimerManager to schedule the removal task after 45 seconds
+        TimerManager.getInstance().schedule(removeNpcTask, 45000);
+    }
+
+    // AdventureMS Custom - Spawn Goblin
+    public void spawnGoblin(Monster monster)
+    {
+        // Determine if a goblin will spawn
+        final int GOBLIN_MIN_LEVEL = 10;
+        final int GOBLIN_MAX_LEVEL = 150;
+        final double GOBLIN_BASE_CHANCE = 1000.0;
+        final double GOBLIN_MAX_CHANCE = 2000.0;
+        final int monsterLvl = monster.getLevel(); // Store the monster level for dungeon chance
+
+        if (monsterLvl < GOBLIN_MIN_LEVEL) {return;} // Exit early if monster level is too low
+        double chance = 1.0 / (GOBLIN_BASE_CHANCE + ((Math.min(monsterLvl, GOBLIN_MAX_LEVEL) - GOBLIN_MIN_LEVEL) * ((GOBLIN_MAX_CHANCE - GOBLIN_BASE_CHANCE) / (GOBLIN_MAX_LEVEL - GOBLIN_MIN_LEVEL)))); // Calculate base probability  
+        if (Math.random() > chance) {return;} // Exit if RNG check fails
+
+        // Determine which goblin to spawn
+        boolean allGoblins = false;
+        int randGoblin = Randomizer.nextInt(100);
+        int goblinID = 0;
+        if (randGoblin < 4) {allGoblins = true;} // 4% chance to spawn all goblins
+        else if (randGoblin < 36) {goblinID = 9402046;} // 32% chance to spawn a loot mouse
+        else if (randGoblin < 68) {goblinID = 2600419;} // 32% chance to spawn a gemstone monstrosity
+        else {goblinID = 9010148;} // 32% chance to spawn a living meso
+
+        // Spawn the selected goblin(s)
+        if (allGoblins) {
+            // Spawn all three goblin types
+            spawnSingleGoblin(monster, 9402046); // Loot mouse
+            spawnSingleGoblin(monster, 2600419); // Gemstone monstrosity
+            spawnSingleGoblin(monster, 9010148); // Living meso
+        } else {
+            // Spawn just the selected goblin
+            spawnSingleGoblin(monster, goblinID);
+        }
+    }
+
+    // Helper method to spawn a single goblin with modified stats
+    private void spawnSingleGoblin(Monster monster, int goblinID) {
+        // Create the goblin monster
+        Monster goblin = LifeFactory.getMonster(goblinID);
+        if (goblin == null) return; // Safety check
+
+        // Set the goblin's position to match the original monster's position
+        goblin.setPosition(monster.getPosition());
+
+        // Create override stats with 10x HP and 8x EXP
+        OverrideMonsterStats overrideStats = new OverrideMonsterStats();
+        overrideStats.setOHp(monster.getHp() * 10);  // 10 times higher HP
+        overrideStats.setOExp(monster.getExp() * 8); // 8 times higher EXP
+
+        // Apply the override stats to the goblin
+        goblin.setOverrideStats(overrideStats);
+
+        // Spawn the goblin on the map
+        spawnMonster(goblin);
     }
 
     public void addSelfDestructive(Monster mob) {
@@ -1430,7 +1542,7 @@ public class MapleMap {
         killMonster(monster, chr, withDrops, 1, dropDelay);
     }
 
-    // AdventureMS Custom
+    // AdventureMS Custom - Dungeon Portal / Loot Mouse
     public void killMonster(final Monster monster, final Character chr, final boolean withDrops, int animation, short dropDelay)
     {
         // Edge case checks
@@ -1534,45 +1646,11 @@ public class MapleMap {
                 }
             }
 
-            /*
-            // Find coordinates
-            Point checkpos = monster.getMap().getGroundBelow(monster.getPosition());
-            int xpos = checkpos.x;
-            int ypos = checkpos.y;
-            int fh = chr.getMap().getFootholds().findBelow(checkpos).getId();
+            // Chance to spawn Dungeon Portal
+            spawnDungeonPortal(chr, monster);
 
-            // Build NPC
-            NPC npc = LifeFactory.getNPC(9800017);
-            npc.setPosition(checkpos);
-            npc.setCy(ypos);
-            npc.setRx0(xpos + 53);
-            npc.setRx1(xpos - 53);
-            npc.setFh(fh);
-
-            // Create and Broadcast
-            MapleMap map = monster.getMap();
-            map.addMapObject(npc);
-            map.broadcastMessage(PacketCreator.spawnNPC(npc));
-            map.broadcastMessage(PacketCreator.npcUpdateLimitedInfo(npc.getObjectId(), true));
-            map.broadcastMessage(PacketCreator.playSound("Buyback/magician"));
-
-            // Schedule NPC removal
-            Runnable removeNpcTask = new Runnable() {
-                @Override
-                public void run() {
-                    if (npc != null && map != null)
-                    {
-                        // Remove the NPC from the map
-                        map.removeMapObject(npc);
-                        map.broadcastMessage(PacketCreator.npcUpdateLimitedInfo(npc.getObjectId(), false));
-                        map.broadcastMessage(PacketCreator.playSound("Portal/close"));
-                    }
-                }
-            };
-
-            // Use TimerManager to schedule the removal task after 30 seconds
-            TimerManager.getInstance().schedule(removeNpcTask, 30000);
-            */
+            // Chance to spawn Loot Mouse
+            spawnGoblin(monster);
         }
 
         catch (Exception e)
