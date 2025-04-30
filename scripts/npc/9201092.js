@@ -252,6 +252,8 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
              // Reset variables for the next trade
              collectableItems = [];
+             missingItems = [];
+             turnIn = false;
              selectionSlot = -1;
 
              // Set status back to 0 so when the user clicks, they return to the main menu
