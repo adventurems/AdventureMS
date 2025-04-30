@@ -16,36 +16,47 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // Check the status of the quest, have they chatted with the collector before?
         if(cm.getQuestStatus(1006) < 2)
         {
-            // Update quest status
-            cm.completeQuest(1006);
-
-            // Add to Collector DB if they don't exist
-            newCollector = cm.getPlayer().addCollectorStatus();
-
-            // Check if they are a new collector or not
-            if (newCollector)
+            // Check if they can hold a ring
+            if (cm.canHold(1112930))
             {
-                // Send introduction message
-                cm.sendNext("Well, well, well... What do we have here? An eager adventurer looking to get a little stronger. I can #eprobably#n help with that.\r\n\r\nHere's the game. I collect things, but not just some things. I collect #eEVERYTHING#n (almost)!\r\n\r\nI need em. Well not me, my clients do. That's where you come in.");
-            }
+                // Update quest status
+                cm.completeQuest(1006);
 
-            // They are not new, but this is the first time they've chatted with the collector on this character
-            else
-            {
-                // Check if they have a ring somehow, and grant them one if they don't
-                if (!cm.haveItem(1112930))
+                // Add to Collector DB if they don't exist
+                newCollector = cm.getPlayer().addCollectorStatus();
+
+                // Check if they are a new collector or not
+                if (newCollector)
                 {
-                    cm.gainItem(1112930, 1);
-                    cm.sendOk("Hmmmm, you seem familiar...\r\n\r\nAh, yes, I see now. We've interacted before on one of your other alias'. That's gotta be it.\r\n\r\nI suppose you want a ring on this character as well then? I can do that for ya...");
-                    cm.dispose();
+                    // Send introduction message
+                    cm.sendNext("Well, well, well... What do we have here? An eager adventurer looking to get a little stronger. I can #eprobably#n help with that.\r\n\r\nHere's the game. I collect things, but not just some things. I collect #eEVERYTHING#n (almost)!\r\n\r\nI need em. Well not me, my clients do. That's where you come in.");
                 }
 
-                // First time chatting, and they have a ring already? Cheating probably
+                // They are not new, but this is the first time they've chatted with the collector on this character
                 else
                 {
-                    cm.sendOk("Hold on, you seem familiar...\r\n\r\nYes, we've interacted on another character of yours. Yet this is the first time we've chatted on this character, and you somehow have a ring already.\r\n\r\nHow might I ask?");
-                    cm.dispose();
+                    // Check if they have a ring somehow, and grant them one if they don't
+                    if (!cm.haveItem(1112930))
+                    {
+                        cm.gainItem(1112930, 1);
+                        cm.sendOk("Hmmmm, you seem familiar...\r\n\r\nAh, yes, I see now. We've interacted before on one of your other alias'. That's gotta be it.\r\n\r\nI suppose you want a ring on this character as well then? I can do that for ya...");
+                        cm.dispose();
+                    }
+
+                    // First time chatting, and they have a ring already? Cheating probably
+                    else
+                    {
+                        cm.sendOk("Hold on, you seem familiar...\r\n\r\nYes, we've interacted on another character of yours. Yet this is the first time we've chatted on this character, and you somehow have a ring already.\r\n\r\nHow might I ask?");
+                        cm.dispose();
+                    }
                 }
+            }
+
+            // They don't have room for a ring.
+            else
+            {
+                cm.sendOk("I'd like to give you something nice, but you don't have any room in your EQP tab. Please make room!");
+                cm.dispose();
             }
         }
 
@@ -90,7 +101,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 var itemId = missingItems[i];
 
                 // Check if the player has the item in their inventory
-                if (cm.haveItem(parseInt(itemId)))
+                if (cm.haveItem(itemId))
                 {
                     collectableItems.push(itemId); // Add item to the new array if it's in the inventory
                     selectionSlot++;
@@ -119,159 +130,82 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // They want to see their collection
         if (selection == 1)
         {
-            // Initialize allItems
-            var allItems = cm.getPlayer().getCollectorItems();
+            // Import the CollectorItemsProvider
+            const CollectorItemsProvider = Java.type('server.CollectorItemsProvider');
 
-            // Set variableString
-            var capString = "#eCaps#n\r\n";
-            var earringsString = "\r\n\r\n#eEarrings#n\r\n";
-            var topString = "\r\n\r\n#eTops#n\r\n";
-            var overallString = "\r\n\r\n#eOveralls#n\r\n";
-            var bottomString = "\r\n\r\n#eBottoms#n\r\n";
-            var shoesString = "\r\n\r\n#eShoes#n\r\n";
-            var glovesString = "\r\n\r\n#eGloves#n\r\n";
-            var shieldString = "\r\n\r\n#eShields#n\r\n";
-            var capeString = "\r\n\r\n#eCapes#n\r\n";
-            var ringString = "\r\n\r\n#eRings#n\r\n";
-            var pendantString = "\r\n\r\n#ePendants#n\r\n";
-            var medalString = "\r\n\r\n#eMedals#n\r\n";
-            var weaponString = "\r\n\r\n#eWeapons#n\r\n";
-            var etcString = "\r\n\r\n#eEtc#n\r\n";
-            var consumeString = "\r\n\r\n#eConsumables#n\r\n";
-            var scrollString = "\r\n\r\n#eScrolls#n\r\n";
-            var throwableString = "\r\n\r\n#eThrowables#n\r\n";
-            var cashString = "\r\n\r\n#eCash#n\r\n";
+            // Get all missing items
+            var missingItems = cm.getPlayer().getCollectorMissing();
+
+            // Convert missing items to a Map for efficient lookup
+            var missingMap = {};
+            for (var i = 0; i < missingItems.length; i++) {
+                missingMap[missingItems[i]] = true;
+            }
+
+            // Get all categories and their items from CollectorItemsProvider
+            var categoryItems = CollectorItemsProvider.getInstance().getAllCategorizedItems();
 
             // Store counts
             var totalEntries = 0;
             var completeEntries = 0;
 
-            // Get an iterator for the HashMap entries
-            var iterator = allItems.entrySet().iterator();
+            // Create a string for each category
+            var categoryStrings = {};
+            var categoryCompletionStatus = {};
 
-            // Iterate through each entry in the HashMap
-            while (iterator.hasNext())
-            {
-                var entry = iterator.next();
-                var itemId = entry.getKey(); // Get the key (itemId)
-                var itemValue = entry.getValue(); // Get the value associated with the itemId
+            // Iterate through each category
+            var categories = categoryItems.keySet().toArray();
+            for (var i = 0; i < categories.length; i++) {
+                var category = categories[i];
+                var items = categoryItems.get(category);
 
-                // Increment totalEntries
-                totalEntries++;
+                // Initialize the category string with the category name
+                categoryStrings[category] = "\r\n\r\n#e" + category + "#n";
 
-                // Count entries with a value of 1 (complete)
-                if (itemValue === 1)
-                {
-                    completeEntries++;
+                // Track completion status for this category
+                var categoryTotal = 0;
+                var categoryComplete = 0;
+
+                // Iterate through each item in the category
+                for (var j = 0; j < items.size(); j++) {
+                    var itemId = items.get(j);
+                    totalEntries++;
+                    categoryTotal++;
+
+                    // Check if the item is missing
+                    var isComplete = !missingMap[itemId];
+                    if (isComplete) {
+                        completeEntries++;
+                        categoryComplete++;
+                    }
+
+                    // Add the item to the category string
+                    categoryStrings[category] += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (isComplete ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
                 }
 
-                // Get the prefix from itemId (first 3 characters)
-                var itemPrefix = itemId.substring(0, 3);
+                // Check if the category is complete
+                categoryCompletionStatus[category] = (categoryComplete === categoryTotal);
 
-                // Use a switch statement based on itemPrefix
-                switch (itemPrefix) {
-                    case "100":
-                        capString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "103":
-                        earringsString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "104":
-                        topString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "105":
-                        overallString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "106":
-                        bottomString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "107":
-                        shoesString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "108":
-                        glovesString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "109":
-                        shieldString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "110":
-                        capeString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "111":
-                        ringString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "112":
-                        pendantString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "114":
-                        medalString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "130":
-                    case "132":
-                    case "133":
-                    case "137":
-                    case "138":
-                    case "140":
-                    case "142":
-                    case "143":
-                    case "144":
-                    case "145":
-                    case "146":
-                    case "147":
-                    case "148":
-                    case "149":
-                        weaponString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "181":
-                    case "500":
-                    case "522":
-                        cashString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "400":
-                        etcString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "200":
-                    case "202":
-                        consumeString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "203":
-                        scrollString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    case "206":
-                    case "207":
-                    case "233":
-                        throwableString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (itemValue === 1 ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                        break;
-
-                    default:
-                        // Optionally handle an unknown prefix or do nothing.
-                        break;
+                // Add completion status to the category header if complete
+                if (categoryCompletionStatus[category]) {
+                    var headerEnd = categoryStrings[category].indexOf("\r\n\t");
+                    if (headerEnd !== -1) {
+                        categoryStrings[category] = "\r\n\r\n#e" + category + " #b(COMPLETE)#k#n" + categoryStrings[category].substring(headerEnd);
+                    }
                 }
             }
 
             // Calculate progress
             var collectorProgress = Math.round((completeEntries / totalEntries) * 100);
 
-            // Calculate Strings
-            var defaultString = "#e#bTotal Progress#k\r\n#B" + collectorProgress + "# (" + collectorProgress + "%)#n\r\n\r\nBelow you will find the status on all the collectable items in the game!\r\n\r\n";
-            var finalString = defaultString += capString + earringsString + topString + overallString + bottomString + shoesString + glovesString + shieldString + capeString + ringString + pendantString + medalString + etcString + consumeString + scrollString + throwableString + cashString + weaponString;
+            // Build the final string
+            var defaultString = "#e#bTotal Progress#k\r\n#B" + collectorProgress + "# (" + collectorProgress + "%)#n\r\n\r\nBelow you will find the status on all the collectable items in the game!\r\n";
+            var finalString = defaultString;
+
+            // Add each category string to the final string
+            for (var i = 0; i < categories.length; i++) {
+                finalString += categoryStrings[categories[i]];
+            }
 
             // Send the finalized message
             cm.sendOk(finalString);

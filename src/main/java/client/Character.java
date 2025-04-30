@@ -8852,6 +8852,7 @@ public class Character extends AbstractCharacterObject {
         return result;
     }
 
+    // AdventureMS Custom
     public int[] getCollectorMissing() {
         // Get all items the player has already collected
         int[] collectedItems = getCollectorItems();
