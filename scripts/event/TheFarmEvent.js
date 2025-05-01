@@ -23,16 +23,15 @@ function setup(level, lobbyid) {
 
     // Spawn monsters - using the correct method
     var positions = [
-        new Point(1936, -811),
-        new Point(2115, -811),
-        new Point(2395, -811),
-        new Point(2571, -811),
-        new Point(2903, -811),
-        new Point(1869, -535),
-        new Point(2066, -535),
-        new Point(2448, -535),
-        new Point(2646, -535),
-        new Point(2837, -535)
+        new Point(2197, -325),
+        new Point(1824, -207),
+        new Point(1825, -483),
+        new Point(1824, -788),
+        new Point(2210, -680),
+        new Point(2567, -482),
+        new Point(2962, -812),
+        new Point(2579, -812),
+        new Point(2953, -324)
     ];
 
     for (var i = 0; i < positions.length; i++) {
@@ -42,7 +41,7 @@ function setup(level, lobbyid) {
     }
 
     // Start timer
-    eim.startEventTimer(18000); // 30 Seconds
+    eim.startEventTimer(18000); // 18 Seconds
 
     return eim;
 }
