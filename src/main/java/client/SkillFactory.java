@@ -217,7 +217,7 @@ public class SkillFactory {
                 case Paladin.STANCE:
                 case Paladin.SWORD_HOLY_CHARGE:
                 case Spearman.HYPER_BODY:
-                case Spearman.STEADFAST:
+                case Spearman.STEADFAST: // AdventureMS Custom
                 case Spearman.POLEARM_BOOSTER:
                 case Spearman.SPEAR_BOOSTER:
                 case DragonKnight.DRAGON_BLOOD:
