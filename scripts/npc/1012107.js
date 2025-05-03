@@ -1,4 +1,4 @@
-// AdventureMS Utah's First Test
+// AdventureMS Utah's Pet Tests
 var em = null;
 
 // Standard Status Code
@@ -15,7 +15,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Error Checking
             if (em == null)
             {
-                cm.sendOk("The Farm has encountered an error. Please report this in the bugs section of discord!");
+                cm.sendOk("The Farm has encountered an error. Please report this in the bugs section of #bDiscord#k!");
                 cm.dispose();
                 return;
             }

@@ -169,6 +169,9 @@ public class MapleMap {
     private Character mapOwner = null;
     private long mapOwnerLastActivityTime = Long.MAX_VALUE;
 
+    // AdventureMS Custom - NPC Arguments (Dungeon Portal)
+    private static final Map<Integer, Map<String, Object>> npcData = new HashMap<>();
+
     // events
     private boolean eventstarted = false, isMuted = false;
     private Snowball snowball0 = null;
@@ -401,6 +404,11 @@ public class MapleMap {
         }
     }
 
+    // AdventureMS Custom - Custom NPC Data for Dungeon Portal
+    public static Map<String, Object> getNpcData(int objectId) {
+        return npcData.get(objectId);
+    }
+
     // AdventureMS Custom - Spawn Dungeon Portal
     public void spawnDungeonPortal(final Character chr, final Monster monster)
     {
@@ -422,12 +430,19 @@ public class MapleMap {
         int fh = chr.getMap().getFootholds().findBelow(checkpos).getId();
 
         // Build NPC
-        NPC npc = Randomizer.nextInt(10) == 0 ? LifeFactory.getNPC(9800030) : LifeFactory.getNPC(9800017); // 10% chance to spawn rare dungeon
+        NPC npc = Randomizer.nextInt(25) == 0 ? LifeFactory.getNPC(9800030) : LifeFactory.getNPC(9800017); // 4% chance to spawn rare dungeon
         npc.setPosition(checkpos);
         npc.setCy(ypos);
         npc.setRx0(xpos + 53);
         npc.setRx1(xpos - 53);
         npc.setFh(fh);
+
+        // Store data with the NPC
+        Map<String, Object> data = new HashMap<>();
+        data.put("character", chr);
+        data.put("monster", monster.getId());
+        data.put("map", monster.getMap().getId());
+        npcData.put(npc.getObjectId(), data);
 
         // Create and Broadcast
         MapleMap map = monster.getMap();
@@ -445,6 +460,7 @@ public class MapleMap {
                 if (npc != null && map != null)
                 {
                     // Remove the NPC from the map
+                    npcData.remove(npc.getObjectId());
                     map.removeMapObject(npc);
                     map.broadcastMessage(PacketCreator.npcUpdateLimitedInfo(npc.getObjectId(), false));
                     map.broadcastMessage(PacketCreator.playSound("Portal/close"));

@@ -59,7 +59,6 @@ function monsterKilled(mob, eim) {
 
     // Check if this was the last monster on the map
     if (map.countMonsters() == 0) {
-        // This was the last monster, so we'll drop the special item
 
         // Create the item object
         const Item = Java.type('client.inventory.Item');

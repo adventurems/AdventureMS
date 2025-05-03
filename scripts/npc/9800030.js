@@ -1,4 +1,4 @@
-// AdventureMS Dungeon Portal
+// AdventureMS Rare Dungeon Portal
 
 // Get NPC data using the NPC's object ID
 var npcData = MapleMap.getNpcData(cm.getNpcObjectId());
