@@ -1803,18 +1803,18 @@ public class Monster extends AbstractLoadedLife {
     private float getDifficultyRate(final int difficulty) {
         switch (difficulty) {
             case 6:
-                return (7.7f);
+                return (12.0f);
             case 5:
-                return (5.6f);
+                return (10.0f);
             case 4:
-                return (3.2f);
+                return (8.0f);
             case 3:
-                return (2.1f);
+                return (6.0f);
             case 2:
-                return (1.4f);
+                return (4.0f);
         }
 
-        return (1.0f);
+        return (2.0f);
     }
 
     private void changeLevelByDifficulty(final int difficulty, boolean pqMob) {
