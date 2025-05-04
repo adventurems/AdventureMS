@@ -5,7 +5,6 @@ var MapleMap = Java.type('server.maps.MapleMap');
 
 // Additional Variables
 var dungeonTier = 1;
-var monsterLvl = monster.getLevel();
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
@@ -16,6 +15,8 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // Get NPC data using the NPC's object ID
         var npcData = MapleMap.getNpcData(cm.getNpcObjectId());
         var party = npcData.get("party");
+        var monster = npcData.get("monster");
+        var monsterLvl = monster.getLevel();
 
         // Check that they are in the correct party
         if (party === cm.getPlayer().getPartyId())
