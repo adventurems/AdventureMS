@@ -2,6 +2,7 @@
 
 // Import the MapleMap class
 var MapleMap = Java.type('server.maps.MapleMap');
+var LifeFactory = Java.type('server.life.LifeFactory');
 
 // Additional Variables
 var dungeonTier = 1;
@@ -15,8 +16,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // Get NPC data using the NPC's object ID
         var npcData = MapleMap.getNpcData(cm.getNpcObjectId());
         var party = npcData.get("party");
-        var monster = npcData.get("monster");
-        var monsterLvl = monster.getLevel();
+        var monsterLvl = LifeFactory.getMonsterLevel(npcData.get("monster"));
 
         // Check that they are in the correct party
         if (party === cm.getPlayer().getPartyId())
