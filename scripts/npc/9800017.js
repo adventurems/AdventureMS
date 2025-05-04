@@ -92,7 +92,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             }
 
             // Create the instance of the event
-            else (!em.startInstance(cm.getPlayer().getParty(), cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
+            else if (!em.startInstance(cm.getPlayer().getParty(), cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
             {
                 cm.sendOk("The Dungeon failed to start. Please report this in the bugs section of #bDiscord#k!");
             }
@@ -108,7 +108,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             }
 
             // Create the instance of the event
-            else (!em.startInstance(cm.getPlayer(), cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
+            else if (!em.startInstance(cm.getPlayer(), cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
             {
                 cm.sendOk("The Dungeon failed to start (solo). Please report this in the bugs section of #bDiscord#k!");
             }
