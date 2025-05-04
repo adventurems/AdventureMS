@@ -216,55 +216,40 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
     for (var i = 0; i < count; i++) {
         var mob = em.getMonster(monsterId);
 
-        // First use changeLevel to set all monster stats properly (attack, defense, etc.)
-        mob.changeLevel(mob.getLevel(), true); // true for pqMob to apply PQ scaling
-
-        // Then use setOverrideStats to explicitly set HP and EXP to the exact values we want
-        var OverrideMonsterStats = Java.type('server.life.OverrideMonsterStats');
-        var stats = new OverrideMonsterStats();
-
-        // Set HP to 2x the original HP * party size
-        stats.setOHp(Math.round(mob.getHp() * 2 * partySize));
-
-        // Set EXP to 1.5x the original EXP * party size
-        stats.setOExp(Math.round(mob.getExp() * 1.5 * partySize));
-
-        // Keep MP the same
-        stats.setOMp(mob.getMp());
-
-        // Apply the override stats
-        mob.setOverrideStats(stats);
-
+        // Register and spawn the monster with its original stats
         eim.registerMonster(mob);
         map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
+
+        // Scale the monster's stats after spawning
+        scaleMonsterStats(mob, partySize);
     }
 } // AdventureMS Custom
 function spawnBoss(eim, map, bossId){
     var partySize = eim.getPlayers().size();
     var mob = em.getMonster(bossId);
 
-    // First use changeLevel to set all monster stats properly (attack, defense, etc.)
-    mob.changeLevel(mob.getLevel(), true); // true for pqMob to apply PQ scaling
-
-    // Then use setOverrideStats to explicitly set HP and EXP to the exact values we want
-    var OverrideMonsterStats = Java.type('server.life.OverrideMonsterStats');
-    var stats = new OverrideMonsterStats();
-
-    // Set HP to 2x the original HP * party size
-    stats.setOHp(Math.round(mob.getHp() * 2 * partySize));
-
-    // Set EXP to 1.5x the original EXP * party size
-    stats.setOExp(Math.round(mob.getExp() * 1.5 * partySize));
-
-    // Keep MP the same
-    stats.setOMp(mob.getMp());
-
-    // Apply the override stats
-    mob.setOverrideStats(stats);
-
+    // Register and spawn the boss with its original stats
     eim.registerMonster(mob);
     map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
+
+    // Scale the boss's stats after spawning
+    scaleMonsterStats(mob, partySize);
 } // AdventureMS Custom
+function scaleMonsterStats(monster, partySize) {
+    // Get original stats
+    var originalHp = monster.getMaxHp();
+    var originalExp = monster.getExp();
+
+    // Calculate scaled values
+    var scaledHp = Math.round(originalHp * 2 * partySize);
+    var scaledExp = Math.round(originalExp * 1.5 * partySize);
+
+    // Set HP directly - this updates both the stats HP and current HP
+    monster.setStartingHp(scaledHp);
+
+    // Set EXP directly in the monster's stats
+    monster.getStats().setExp(scaledExp);
+}
 function changedMapInside(eim, mapid) {
     var stage = eim.getIntProperty("curStage");
 
