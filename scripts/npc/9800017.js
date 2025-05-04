@@ -99,9 +99,29 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         }
 
         // Create the instance of the event
-        else if (!em.startInstance(cm.getPlayer().getParty(), cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
+        else
         {
-            cm.sendOk("The Dungeon failed to start. Please report this in the bugs section of #bDiscord#k!");
+            // Get the party and set eligible members
+            var party = cm.getPlayer().getParty();
+            var eligibleMembers = [];
+
+            // Get all party members in the same map
+            var partyMembers = party.getPartyMembersOnline();
+            for (var i = 0; i < partyMembers.size(); i++) {
+                var member = partyMembers.get(i);
+                if (member.getMapId() == cm.getPlayer().getMapId()) {
+                    eligibleMembers.push(member);
+                }
+            }
+
+            // Set the eligible members before starting the instance
+            party.setEligibleMembers(eligibleMembers);
+
+            // Attemp to start the dungeon
+            if (!em.startInstance(party, cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
+            {
+                cm.sendOk("The Dungeon failed to start. Please report this in the bugs section of #bDiscord#k!");
+            }
         }
 
         // Dispose no matter what
