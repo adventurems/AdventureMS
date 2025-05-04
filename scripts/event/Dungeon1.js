@@ -65,11 +65,14 @@ function setup(level, lobbyid, monsterId, mapId)
         platforms.forEach(function(platform, index) {
             spawnMonstersOnPlatform(eim, map, monsterId, platform[0], platform[1], platform[2], index + 1);
         });
+
+        updateMobStats(eim, map);
     });
 
     // Handle boss room
     var map = eim.getInstanceMap(maxMapId);
     spawnBoss(eim, map, bossId);
+    updateMobStats(eim, map);
     return eim;
 }
 
@@ -210,56 +213,40 @@ function basicDungeonSetup(eim) {
     eim.setProperty("curStage", "1");
     eim.startEventTimer(eventTime * 60000);
 } // AdventureMS Custom
-function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
-    // Calculate multipliers based on player count
+function updateMobStats(eim, map) {
+
+    // Then scale all monsters on the map
     var playerCount = eim.getPlayerCount();
     var hpMultiplier = 2 * playerCount;
     var expMultiplier = 1.5 * playerCount;
 
+    var monsters = map.getAllMonsters();
+    for (var i = 0; i < monsters.size(); i++) {
+        var monster = monsters.get(i);
+        if (monster.getChangedStats() != null) {
+            // Apply custom HP multiplier
+            var baseHp = monster.getStats().getHp();
+            monster.getChangedStats().hp = Math.floor(baseHp * hpMultiplier);
+            monster.setHp(monster.getChangedStats().hp);
+
+            // Apply custom EXP multiplier
+            var baseExp = monster.getStats().getExp();
+            monster.getChangedStats().exp = Math.floor(baseExp * expMultiplier);
+        }
+    }
+} // AdventureMS Custom
+function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumber) {
     for (var i = 0; i < count; i++) {
-        spawnScaledMonster(eim, map, monsterId, x, y, hpMultiplier, expMultiplier);
+        var mob = em.getMonster(monsterId);
+        eim.registerMonster(mob);
+        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
     }
 } // AdventureMS Custom
 function spawnBoss(eim, map, bossId){
-    // Calculate multipliers based on player count
-    var playerCount = eim.getPlayerCount();
-    var hpMultiplier = 2 * playerCount;
-    var expMultiplier = 1.5 * playerCount;
-
-    return spawnScaledMonster(eim, map, bossId, 811, 368, hpMultiplier, expMultiplier);
-} // AdventureMS Custom
-function spawnScaledMonster(eim, map, monsterId, x, y, customHpMultiplier, customExpMultiplier) {
-    // Create a new monster
-    var mob = em.getMonster(monsterId);
-
-    // Register with event instance
+    var mob = em.getMonster(bossId);
     eim.registerMonster(mob);
-
-    // Position the monster
-    var spos = new java.awt.Point(x, y);
-    spos = map.getPointBelow(spos);
-    if (spos != null) {
-        spos.y--;
-        mob.setPosition(spos);
-
-        // First spawn the monster with base difficulty
-        map.spawnMonster(mob);
-
-        // Then directly modify its stats with our custom multipliers
-        if (mob.getChangedStats() != null) {
-            // Apply custom HP multiplier
-            var baseHp = mob.getStats().getHp();
-            mob.getChangedStats().hp = Math.floor(baseHp * customHpMultiplier);
-            mob.setHp(mob.getChangedStats().hp);
-
-            // Apply custom EXP multiplier
-            var baseExp = mob.getStats().getExp();
-            mob.getChangedStats().exp = Math.floor(baseExp * customExpMultiplier);
-        }
-    }
-
-    return mob;
-}
+    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
+} // AdventureMS Custom
 function changedMapInside(eim, mapid) {
     var stage = eim.getIntProperty("curStage");
 
