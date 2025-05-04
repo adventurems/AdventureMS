@@ -177,7 +177,10 @@ function getEligibleParty(party) {      //selects, from the given party, the tea
         for (var i = 0; i < party.size(); i++) {
             var ch = partyList[i];
 
-            if (ch.getMapId() === eim.getProperty("mapId") && ch.getLevel() >= minLevel && ch.getLevel() <= maxLevel) {
+            // Set the
+            if (ch.isLeader()) { leaderMapId = ch.getMapId(); }
+
+            if (ch.getMapId() === leaderMapId && ch.getLevel() >= minLevel && ch.getLevel() <= maxLevel) {
                 if (ch.isLeader()) {
                     hasLeader = true;
                 }
