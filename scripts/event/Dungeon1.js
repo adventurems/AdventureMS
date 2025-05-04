@@ -214,39 +214,33 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumbe
     for (var i = 0; i < count; i++) {
         var mob = em.getMonster(monsterId);
         eim.registerMonster(mob);
-        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
         updateMobStats(eim, mob);
+        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
     }
 } // AdventureMS Custom
 function spawnBoss(eim, map, bossId){
     var mob = em.getMonster(bossId);
     eim.registerMonster(mob);
-    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
     updateMobStats(eim, mob);
+    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
 } // AdventureMS Custom
 function updateMobStats(eim, mob) {
     // Get the number of registered players
     var playerCount = eim.getPlayerCount();
 
-    // Get the original monster stats
-    var originalStats = mob.getStats();
+    // Calculate a difficulty level based on player count
+    // The difficulty parameter in changeDifficulty affects the scaling factor
+    // Higher difficulty = higher stats
+    var difficulty = Math.min(6, Math.max(1, Math.floor(playerCount * 2)));
 
-    // Ensure the monster stats are marked as changeable
-    originalStats.setChange(true);
+    // Use the built-in changeDifficulty method with PQ flag set to true
+    mob.changeDifficulty(difficulty, true);
 
-    // Option 1: Skip the changeLevel call and directly set the stats
-    var hp = Math.floor(originalStats.getHp() * (2 * playerCount));
-    var mp = Math.floor(originalStats.getMp() * 2);
-    var exp = Math.floor(originalStats.getExp() * (1.5 * playerCount));
-
-    // Create an OverrideMonsterStats object with our custom values
-    var overrideStats = new Packages.server.life.OverrideMonsterStats();
-    overrideStats.setOHp(hp);
-    overrideStats.setOMp(mp);
-    overrideStats.setOExp(exp);
-
-    // Apply the override stats to the monster
-    mob.setOverrideStats(overrideStats);
+    // If you still want to adjust EXP separately (optional)
+    if (mob.getChangedStats() != null) {
+        var expMultiplier = 1.5 * playerCount;
+        mob.getChangedStats().exp = Math.floor(mob.getStats().getExp() * expMultiplier);
+    }
 } // AdventureMS Custom
 function changedMapInside(eim, mapid) {
     var stage = eim.getIntProperty("curStage");
