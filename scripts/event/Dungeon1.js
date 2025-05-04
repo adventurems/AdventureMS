@@ -248,7 +248,8 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumbe
         var baseExp = mob.getStats().getExp();
 
         // Create override stats object
-        var overrideStats = new server.life.OverrideMonsterStats();
+        var OverrideMonsterStats = Java.type('server.life.OverrideMonsterStats');
+        var overrideStats = new OverrideMonsterStats();
         overrideStats.setHp(Math.floor(baseHp * hpMultiplier));
         overrideStats.setMp(baseMp);
         overrideStats.setExp(Math.floor(baseExp * expMultiplier));
@@ -274,7 +275,8 @@ function spawnBoss(eim, map, bossId){
     var baseExp = mob.getStats().getExp();
 
     // Create override stats object
-    var overrideStats = new server.life.OverrideMonsterStats();
+    var OverrideMonsterStats = Java.type('server.life.OverrideMonsterStats');
+    var overrideStats = new OverrideMonsterStats();
     overrideStats.setHp(Math.floor(baseHp * hpMultiplier));
     overrideStats.setMp(baseMp);
     overrideStats.setExp(Math.floor(baseExp * expMultiplier));
