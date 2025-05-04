@@ -652,6 +652,83 @@ public class EventManager {
         return false;
     }
 
+    // AdventureMS Custom Implementation for Dungeons
+
+    // New method that accepts a party, map, difficulty, monsterId, and mapId
+    public boolean startInstance(Party party, MapleMap map, int difficulty, int monsterId, int mapId) {
+        return startInstance(-1, party, map, difficulty, monsterId, mapId);
+    }
+
+    // Overload with lobbyId parameter
+    public boolean startInstance(int lobbyId, Party party, MapleMap map, int difficulty, int monsterId, int mapId) {
+        return startInstance(lobbyId, party, map, difficulty, party.getLeader().getPlayer(), monsterId, mapId);
+    }
+
+    // Full implementation with all parameters
+    public boolean startInstance(int lobbyId, Party party, MapleMap map, int difficulty, Character leader, int monsterId, int mapId) {
+        if (this.isDisposed()) {
+            return false;
+        }
+
+        try {
+            if (!playerPermit.contains(leader.getId()) && startSemaphore.tryAcquire(7777, MILLISECONDS)) {
+                playerPermit.add(leader.getId());
+
+                startLock.lock();
+                try {
+                    try {
+                        if (lobbyId == -1) {
+                            lobbyId = availableLobbyInstance();
+                            if (lobbyId == -1) {
+                                return false;
+                            }
+                        } else {
+                            if (!startLobbyInstance(lobbyId)) {
+                                return false;
+                            }
+                        }
+
+                        EventInstanceManager eim;
+                        try {
+                            // Pass monsterId and mapId to the setup function
+                            eim = createInstance("setup", difficulty, (lobbyId > -1) ? lobbyId : party.getLeaderId(), monsterId, mapId);
+                            registerEventInstance(eim.getName(), lobbyId);
+                        } catch (ScriptException | NullPointerException e) {
+                            String message = getInternalScriptExceptionMessage(e);
+                            if (message != null && !message.startsWith(EventInstanceInProgressException.EIIP_KEY)) {
+                                throw e;
+                            }
+
+                            if (lobbyId > -1) {
+                                setLockLobby(lobbyId, false);
+                            }
+                            return false;
+                        }
+
+                        eim.setLeader(leader);
+
+                        eim.registerParty(party, map);
+                        party.setEligibleMembers(null);
+
+                        eim.startEvent();
+                    } catch (ScriptException | NoSuchMethodException ex) {
+                        log.error("Event script startInstance", ex);
+                    }
+
+                    return true;
+                } finally {
+                    startLock.unlock();
+                    playerPermit.remove(leader.getId());
+                    startSemaphore.release();
+                }
+            }
+        } catch (InterruptedException ie) {
+            playerPermit.remove(leader.getId());
+        }
+
+        return false;
+    }
+
     //non-PQ method for starting instance
     public boolean startInstance(EventInstanceManager eim, String ldr) {
         return startInstance(-1, eim, ldr);

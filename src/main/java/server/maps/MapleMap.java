@@ -413,10 +413,10 @@ public class MapleMap {
     public void spawnDungeonPortal(final Character chr, final Monster monster)
     {
         // Determine if the door will spawn
-        final int PORTAL_MIN_LEVEL = 30;
+        final int PORTAL_MIN_LEVEL = 1; // TODO Fix these rates
         final int PORTAL_MAX_LEVEL = 150;
-        final double PORTAL_BASE_CHANCE = 1250.0;
-        final double PORTAL_MAX_CHANCE = 2500.0;
+        final double PORTAL_BASE_CHANCE = 1;
+        final double PORTAL_MAX_CHANCE = 5;
         final int monsterLvl = monster.getLevel(); // Store the monster level for dungeon chance
 
         if (monsterLvl < PORTAL_MIN_LEVEL) {return;} // Exit early if monster level is too low
@@ -439,9 +439,8 @@ public class MapleMap {
 
         // Store data with the NPC
         Map<String, Object> data = new HashMap<>();
-        data.put("character", chr);
+        data.put("party", chr.getPartyId());
         data.put("monster", monster.getId());
-        data.put("map", monster.getMap().getId());
         npcData.put(npc.getObjectId(), data);
 
         // Create and Broadcast

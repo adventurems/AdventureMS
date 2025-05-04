@@ -2,9 +2,8 @@
 
 // Get NPC data using the NPC's object ID
 var npcData = MapleMap.getNpcData(cm.getNpcObjectId());
-var character = npcData.get("character");
+var party = npcData.get("party");
 var monster = npcData.get("monster");
-var map = npcData.get("map");
 
 // Additional Variables
 var dungeonTier = 1;
@@ -16,21 +15,42 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
     if (status == 0)
     {
-        // Determine the tier of the Dungeon
-        if (monsterLvl < 23) {dungeonTier = 1;}
-        else if (monsterLvl < 32) {dungeonTier = 2;}
-        else {dungeonTier = 3;}
-
-        // Run through all dungeons and find one that's not running'
-        for (var i = 1; i <= 10; i++)
+        // Check that they are in the correct party
+        if (party === cm.getPlayer().getPartyId())
         {
-            // Assign the next EventManager
-            em = cm.getEventManager("Dungeon" + dungeonTier + "_" + i);
+            // Check that they are the leader of the party
+            if (cm.getPlayer().isPartyLeader())
+            {
+                // Determine the tier of the Dungeon
+                // if (monsterLvl < 32) {dungeonTier = 1;}
+                // else if (monsterLvl < 32) {dungeonTier = 2;}
+                // else {dungeonTier = 3;}
 
-            // Check that the em is not fake and that it is not running
-            if (em != null && em.getProperty("running") !== "true") { break; }
-            em = null; // Couldn't find one open
+                // Send first message
+                cm.sendYesNo("Is your party ready to enter the Dungeon?");
+            }
+
+            // They aren't the party leader
+            else
+            {
+                cm.sendOk("Please have your party leader talk to me!");
+                cm.dispose();
+            }
         }
+
+        // They are not in the party that spawned this portal
+        else
+        {
+            cm.sendOk("You are not part of the party that spawned this portal!");
+            cm.dispose();
+        }
+    }
+
+    // They want in the dungeon
+    else if (status == 1)
+    {
+        // Assign the next EventManager
+        em = cm.getEventManager("Dungeon" + dungeonTier);
 
         // Error Checking
         if (em == null)
@@ -39,82 +59,13 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             cm.dispose();
         }
 
-        // Send first message
-        cm.sendYesNo("Is your party ready to enter the Dungeon?");
-    }
-
-    // They want in the dungeon
-    else if (status == 1)
-    {
-        // Make sure the dungeon is still free to enter
-        if (em.getProperty("running") !== "true")
+        // Create the instance of the event
+        else (!em.startInstance(cm.getPlayer().getParty(), cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
         {
-            // Create the instance of the event
-            eim = em.startInstance(cm.getPlayer());
-
-            // Start the event
-            if (eim)
-            {
-                // Now set properties on the instance
-                eim.setProperty("playerId", character.getId());
-                eim.setProperty("monsterId", monster.getId());
-                eim.setProperty("mapId", map.getId());
-            }
-
-            else
-            {
-                cm.sendOk("The Dungeon failed to start. Please report this in the bugs section of #bDiscord#k!");
-                cm.dispose();
-            }
+            cm.sendOk("The Dungeon failed to start. Please report this in the bugs section of #bDiscord#k!");
         }
 
-        // The dungeon was taken while they chose, find a new one
-        else
-        {
-
-            // Determine the tier of the Dungeon
-            if (monsterLvl < 23) {dungeonTier = 1;}
-            else if (monsterLvl < 32) {dungeonTier = 2;}
-            else {dungeonTier = 3;}
-
-            // Run through all dungeons and find one that's not running'
-            for (var i = 1; i <= 10; i++)
-            {
-                // Assign the next EventManager
-                em = cm.getEventManager("Dungeon" + dungeonTier + "_" + i);
-
-                // Check that the em is not fake and that it is not running
-                if (em != null && em.getProperty("running") !== "true") { break; }
-                em = null; // Couldn't find one open
-            }
-
-            // Now we couldn't find any open dungeons
-            if (em == null)
-            {
-                cm.sendOk("The Dungeon returned an empty instance. Please report this in the bugs section of #bDiscord#k!");
-                cm.dispose();
-            }
-
-            else // Start the new dungeon
-            {
-                // Create the instance of the event
-                eim = em.startInstance(cm.getPlayer());
-
-                // Start the event
-                if (eim)
-                {
-                    // Now set properties on the instance
-                    eim.setProperty("playerId", character.getId());
-                    eim.setProperty("monsterId", monster.getId());
-                    eim.setProperty("mapId", map.getId());
-                }
-
-                else
-                {
-                    cm.sendOk("The Dungeon failed to start. Please report this in the bugs section of #bDiscord#k!");
-                    cm.dispose();
-                }
-            }
-        }
+        // Dispose no matter what
+        cm.dispose();
     }
 }
