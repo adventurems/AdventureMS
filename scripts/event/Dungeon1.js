@@ -167,18 +167,26 @@ function monsterValue(eim, mobId) {
 }
 
 // AdventureMS Custom
-function getEligibleParty(party) {      //selects, from the given party, the team that is allowed to attempt this event
+function getEligibleParty(party) {
     var eligible = [];
     var hasLeader = false;
+    var leaderMapId = -1;  // Initialize with a default value
 
     if (party.size() > 0) {
         var partyList = party.toArray();
 
+        // First find the leader and get their map ID
         for (var i = 0; i < party.size(); i++) {
             var ch = partyList[i];
+            if (ch.isLeader()) {
+                leaderMapId = ch.getMapId();
+                break;
+            }
+        }
 
-            // Set the
-            if (ch.isLeader()) { leaderMapId = ch.getMapId(); }
+        // Now check eligibility based on the leader's map
+        for (var i = 0; i < party.size(); i++) {
+            var ch = partyList[i];
 
             if (ch.getMapId() === leaderMapId && ch.getLevel() >= minLevel && ch.getLevel() <= maxLevel) {
                 if (ch.isLeader()) {
