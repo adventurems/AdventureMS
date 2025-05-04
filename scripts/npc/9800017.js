@@ -23,25 +23,36 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // Check if they are solo
         if (party === -1) {solo = true;}
 
-        // Check that they are in the correct party
-        if (party === cm.getPlayer().getPartyId() && cm.getPlayer().getPartyId() != null)
+        // Check that they are in real party
+        if (party != -1)
         {
-            // Check that they are the leader of the party
-            if (cm.getPlayer().isPartyLeader())
+            // Check that they are in the party that spawned this portal
+            if (party === cm.getPlayer().getPartyId())
             {
-                // Determine the tier of the Dungeon
-                // if (monsterLvl < 32) {dungeonTier = 1;}
-                // else if (monsterLvl < 32) {dungeonTier = 2;}
-                // else {dungeonTier = 3;}
+                // Check that they are the leader of the party
+                if (cm.getPlayer().isPartyLeader())
+                {
+                    // Determine the tier of the Dungeon
+                    // if (monsterLvl < 32) {dungeonTier = 1;}
+                    // else if (monsterLvl < 32) {dungeonTier = 2;}
+                    // else {dungeonTier = 3;}
 
-                // Check for ready
-                cm.sendYesNo("Is your party ready to enter the Dungeon?");
+                    // Check for ready
+                    cm.sendYesNo("Is your party ready to enter the Dungeon?");
+                }
+
+                // They aren't the party leader
+                else
+                {
+                    cm.sendOk("Please have your party leader talk to me!");
+                    cm.dispose();
+                }
             }
 
-            // They aren't the party leader
+            // They are not in the party that spawned the portal
             else
             {
-                cm.sendOk("Please have your party leader talk to me!");
+                cm.sendOk("You are not in the party that spawned this portal!");
                 cm.dispose();
             }
         }
