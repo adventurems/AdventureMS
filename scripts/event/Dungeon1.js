@@ -211,14 +211,33 @@ function basicDungeonSetup(eim) {
     eim.startEventTimer(eventTime * 60000);
 } // AdventureMS Custom
 function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
+    var partySize = eim.getPlayers().size();
+
     for (var i = 0; i < count; i++) {
         var mob = em.getMonster(monsterId);
+
+        // Scale HP to 2x party size and EXP to 1.5x party size
+        var stats = new server.life.OverrideMonsterStats();
+        stats.setOHp(mob.getHp() * 2 * partySize);
+        stats.setOExp(mob.getExp() * 1.5 * partySize);
+        stats.setOMp(mob.getMp());
+
+        mob.setOverrideStats(stats);
         eim.registerMonster(mob);
         map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
     }
 } // AdventureMS Custom
 function spawnBoss(eim, map, bossId){
+    var partySize = eim.getPlayers().size();
     var mob = em.getMonster(bossId);
+
+    // Scale HP to 2x party size and EXP to 1.5x party size
+    var stats = new server.life.OverrideMonsterStats();
+    stats.setOHp(mob.getHp() * 2 * partySize);
+    stats.setOExp(mob.getExp() * 1.5 * partySize);
+    stats.setOMp(mob.getMp());
+
+    mob.setOverrideStats(stats);
     eim.registerMonster(mob);
     map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
 } // AdventureMS Custom
