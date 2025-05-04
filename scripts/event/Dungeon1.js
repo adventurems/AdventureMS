@@ -221,14 +221,14 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
         var newLevel = mob.getLevel() * (1 + (partySize * 0.5));
         mob.changeLevel(newLevel, true); // true for pqMob to apply PQ scaling
 
-        // Manually scale HP and EXP without using setOverrideStats
-        // This preserves the attack and defense stats set by changeLevel
-        var scaledHp = mob.getHp() * 2 * partySize;
-        var scaledExp = mob.getExp() * 1.5 * partySize;
+        // Scale HP and EXP using OverrideMonsterStats
+        var OverrideMonsterStats = Java.type('server.life.OverrideMonsterStats');
+        var stats = new OverrideMonsterStats();
+        stats.setOHp(mob.getHp() * 2 * partySize);
+        stats.setOExp(mob.getExp() * 1.5 * partySize);
+        stats.setOMp(mob.getMp());
 
-        // Set the HP and EXP directly
-        mob.setHp(scaledHp);
-        mob.setExp(scaledExp);
+        mob.setOverrideStats(stats);
 
         eim.registerMonster(mob);
         map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
@@ -243,14 +243,14 @@ function spawnBoss(eim, map, bossId){
     var newLevel = mob.getLevel() * (1 + (partySize * 0.5));
     mob.changeLevel(newLevel, true); // true for pqMob to apply PQ scaling
 
-    // Manually scale HP and EXP without using setOverrideStats
-    // This preserves the attack and defense stats set by changeLevel
-    var scaledHp = mob.getHp() * 2 * partySize;
-    var scaledExp = mob.getExp() * 1.5 * partySize;
+    // Scale HP and EXP using OverrideMonsterStats
+    var OverrideMonsterStats = Java.type('server.life.OverrideMonsterStats');
+    var stats = new OverrideMonsterStats();
+    stats.setOHp(mob.getHp() * 2 * partySize);
+    stats.setOExp(mob.getExp() * 1.5 * partySize);
+    stats.setOMp(mob.getMp());
 
-    // Set the HP and EXP directly
-    mob.setHp(scaledHp);
-    mob.setExp(scaledExp);
+    mob.setOverrideStats(stats);
 
     eim.registerMonster(mob);
     map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
