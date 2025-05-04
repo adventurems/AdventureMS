@@ -217,7 +217,8 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
         var mob = em.getMonster(monsterId);
 
         // Scale HP to 2x party size and EXP to 1.5x party size
-        var stats = new server.life.OverrideMonsterStats();
+        var OverrideMonsterStats = Java.type('server.life.OverrideMonsterStats');
+        var stats = new OverrideMonsterStats();
         stats.setOHp(mob.getHp() * 2 * partySize);
         stats.setOExp(mob.getExp() * 1.5 * partySize);
         stats.setOMp(mob.getMp());
@@ -232,7 +233,8 @@ function spawnBoss(eim, map, bossId){
     var mob = em.getMonster(bossId);
 
     // Scale HP to 2x party size and EXP to 1.5x party size
-    var stats = new server.life.OverrideMonsterStats();
+    var OverrideMonsterStats = Java.type('server.life.OverrideMonsterStats');
+    var stats = new OverrideMonsterStats();
     stats.setOHp(mob.getHp() * 2 * partySize);
     stats.setOExp(mob.getExp() * 1.5 * partySize);
     stats.setOMp(mob.getMp());
