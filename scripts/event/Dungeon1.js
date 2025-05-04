@@ -210,8 +210,21 @@ function basicDungeonSetup(eim) {
     eim.setProperty("curStage", "1");
     eim.startEventTimer(eventTime * 60000);
 } // AdventureMS Custom
+function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumber) {
+    for (var i = 0; i < count; i++) {
+        var mob = em.getMonster(monsterId);
+        updateMobStats(eim, mob);
+        eim.registerMonster(mob);
+        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
+    }
+} // AdventureMS Custom
+function spawnBoss(eim, map, bossId){
+    var mob = em.getMonster(bossId);
+    updateMobStats(eim, mob);
+    eim.registerMonster(mob);
+    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
+} // AdventureMS Custom
 function updateMobStats(eim, mob) {
-
     // Get the number of registered players
     var playerCount = eim.getPlayerCount();
 
@@ -226,29 +239,17 @@ function updateMobStats(eim, mob) {
     var scaledMp = originalMp * (2 * playerCount); // MP is 2x registered players
     var scaledExp = Math.floor(originalExp * (1.5 * playerCount)); // EXP is 1.5x registered players
 
-    // Create a new OverrideMonsterStats object with the scaled values
-    var overrideStats = new Packages.server.life.OverrideMonsterStats(
-        scaledHp,
-        scaledMp,
-        scaledExp
-    );
+    // Create a custom OverrideMonsterStats object
+    var CustomStats = Java.type('server.life.OverrideMonsterStats');
+    var overrideStats = new CustomStats();
+
+    // Set only the HP, MP, and EXP values
+    overrideStats.hp = scaledHp;
+    overrideStats.mp = scaledMp;
+    overrideStats.exp = scaledExp;
 
     // Apply the override stats to the monster
     mob.setOverrideStats(overrideStats);
-} // AdventureMS Custom
-function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumber) {
-    for (var i = 0; i < count; i++) {
-        var mob = em.getMonster(monsterId);
-        // updateMobStats(eim, mob);
-        eim.registerMonster(mob);
-        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
-    }
-} // AdventureMS Custom
-function spawnBoss(eim, map, bossId){
-    var mob = em.getMonster(bossId);
-    // updateMobStats(eim, mob);
-    eim.registerMonster(mob);
-    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
 } // AdventureMS Custom
 function changedMapInside(eim, mapid) {
     var stage = eim.getIntProperty("curStage");
