@@ -59,6 +59,7 @@ import server.events.gm.Fitness;
 import server.events.gm.Ola;
 import server.events.gm.OxQuiz;
 import server.events.gm.Snowball;
+import server.life.ChangeableStats;
 import server.life.LifeFactory;
 import server.life.LifeFactory.selfDestruction;
 import server.life.Monster;
@@ -2281,22 +2282,36 @@ public class MapleMap {
             return; // Respect mob capacity limit
         }
 
-        // Store the current override stats
-        OverrideMonsterStats originalStats = null;
-        if (monster.getStats().getHp() != monster.getHp()) {
-            originalStats = new OverrideMonsterStats();
-            originalStats.setOHp(monster.getHp());
-            originalStats.setOMp(monster.getMp());
-            originalStats.setOExp(monster.getStats().getExp());
-        }
+        // Store ALL original stats before initialization
+        int originalHp = monster.getHp();
+        int originalMp = monster.getMp();
+        int originalExp = monster.getStats().getExp();
 
-        // Initialize the monster with minimal difficulty
+        // Get original combat stats if they exist
+        int originalWatk = monster.getStats().getPADamage();
+        int originalMatk = monster.getStats().getMADamage();
+        int originalWdef = monster.getStats().getPDDamage();
+        int originalMdef = monster.getStats().getMDDamage();
+        int originalLevel = monster.getLevel();
+
+        // Initialize the monster (this creates the internal state needed for proper functioning)
         monster.changeDifficulty(1, false);
 
-        // Restore the original override stats if they existed
-        if (originalStats != null) {
-            monster.setOverrideStats(originalStats);
-        }
+        // Create a new ChangeableStats object with the original stats
+        ChangeableStats originalStats = new ChangeableStats(monster.getStats(), monster.getStats().getLevel(), false);
+
+        // Manually set all the original values
+        originalStats.hp = originalHp;
+        originalStats.mp = originalMp;
+        originalStats.exp = originalExp;
+        originalStats.watk = originalWatk;
+        originalStats.matk = originalMatk;
+        originalStats.wdef = originalWdef;
+        originalStats.mdef = originalMdef;
+        originalStats.level = originalLevel;
+
+        // Apply the complete original stats
+        monster.setOverrideStats(originalStats);
 
         // Set the map and register with event instance
         monster.setMap(this);
@@ -2304,7 +2319,7 @@ public class MapleMap {
             getEventInstance().registerMonster(monster);
         }
 
-        // This is the critical part - spawn the monster and send the packet to clients
+        // Spawn the monster and send the packet to clients
         spawnAndAddRangedMapObject(monster, c -> {
             c.sendPacket(PacketCreator.spawnMonster(monster, true));
 
