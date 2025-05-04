@@ -216,7 +216,12 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
     for (var i = 0; i < count; i++) {
         var mob = em.getMonster(monsterId);
 
-        // Scale HP to 2x party size and EXP to 1.5x party size
+        // Use changeLevel to properly set all monster stats
+        // Scale the level based on party size to make monsters stronger
+        var newLevel = mob.getLevel() * (1 + (partySize * 0.5));
+        mob.changeLevel(newLevel, true); // true for pqMob to apply PQ scaling
+
+        // Additionally scale HP and EXP as before
         var OverrideMonsterStats = Java.type('server.life.OverrideMonsterStats');
         var stats = new OverrideMonsterStats();
         stats.setOHp(mob.getHp() * 2 * partySize);
@@ -232,7 +237,12 @@ function spawnBoss(eim, map, bossId){
     var partySize = eim.getPlayers().size();
     var mob = em.getMonster(bossId);
 
-    // Scale HP to 2x party size and EXP to 1.5x party size
+    // Use changeLevel to properly set all monster stats
+    // Scale the level based on party size to make boss stronger
+    var newLevel = mob.getLevel() * (1 + (partySize * 0.5));
+    mob.changeLevel(newLevel, true); // true for pqMob to apply PQ scaling
+
+    // Additionally scale HP and EXP as before
     var OverrideMonsterStats = Java.type('server.life.OverrideMonsterStats');
     var stats = new OverrideMonsterStats();
     stats.setOHp(mob.getHp() * 2 * partySize);
