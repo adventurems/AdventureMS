@@ -211,34 +211,49 @@ function basicDungeonSetup(eim) {
     eim.startEventTimer(eventTime * 60000);
 } // AdventureMS Custom
 function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumber) {
-    for (var i = 0; i < count; i++) {
+    var difficulty = Math.min(6, Math.max(1, Math.floor(eim.getPlayerCount() * 2)));
+
+    for (var i = 0; i < count; i++)
+    {
         var mob = em.getMonster(monsterId);
         eim.registerMonster(mob);
-        updateMobStats(eim, mob);
-        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
+
+        // Position the monster
+        var point = new java.awt.Point(x, y);
+        var spos = new java.awt.Point(point.x, point.y - 1);
+        spos = map.calcPointBelow(spos);
+        spos.y--;
+        mob.setPosition(spos);
+
+        // Spawn with custom difficulty
+        map.spawnMonster(mob, difficulty, true);
+
+        // Optional: Adjust EXP separately if needed
+        if (mob.getChangedStats() != null) {
+            var expMultiplier = 1.5 * eim.getPlayerCount();
+            mob.getChangedStats().exp = Math.floor(mob.getStats().getExp() * expMultiplier);
+        }
     }
 } // AdventureMS Custom
 function spawnBoss(eim, map, bossId){
+    var difficulty = Math.min(6, Math.max(1, Math.floor(eim.getPlayerCount() * 2)));
+
     var mob = em.getMonster(bossId);
     eim.registerMonster(mob);
-    updateMobStats(eim, mob);
-    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
-} // AdventureMS Custom
-function updateMobStats(eim, mob) {
-    // Get the number of registered players
-    var playerCount = eim.getPlayerCount();
 
-    // Calculate a difficulty level based on player count
-    // The difficulty parameter in changeDifficulty affects the scaling factor
-    // Higher difficulty = higher stats
-    var difficulty = Math.min(6, Math.max(1, Math.floor(playerCount * 2)));
+    // Position the boss
+    var point = new java.awt.Point(811, 368);
+    var spos = new java.awt.Point(point.x, point.y - 1);
+    spos = map.calcPointBelow(spos);
+    spos.y--;
+    mob.setPosition(spos);
 
-    // Use the built-in changeDifficulty method with PQ flag set to true
-    mob.changeDifficulty(difficulty, true);
+    // Spawn with custom difficulty
+    map.spawnMonster(mob, difficulty, true);
 
-    // If you still want to adjust EXP separately (optional)
+    // Optional: Adjust EXP separately if needed
     if (mob.getChangedStats() != null) {
-        var expMultiplier = 1.5 * playerCount;
+        var expMultiplier = 1.5 * eim.getPlayerCount();
         mob.getChangedStats().exp = Math.floor(mob.getStats().getExp() * expMultiplier);
     }
 } // AdventureMS Custom
