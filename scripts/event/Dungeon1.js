@@ -213,16 +213,16 @@ function basicDungeonSetup(eim) {
 function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumber) {
     for (var i = 0; i < count; i++) {
         var mob = em.getMonster(monsterId);
-        updateMobStats(eim, mob);
         eim.registerMonster(mob);
         map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
+        updateMobStats(eim, mob);
     }
 } // AdventureMS Custom
 function spawnBoss(eim, map, bossId){
     var mob = em.getMonster(bossId);
-    updateMobStats(eim, mob);
     eim.registerMonster(mob);
     map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
+    updateMobStats(eim, mob);
 } // AdventureMS Custom
 function updateMobStats(eim, mob) {
     // Get the number of registered players
