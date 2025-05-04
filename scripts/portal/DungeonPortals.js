@@ -18,7 +18,8 @@ function enter(pi)
 
     else
     {
-        pi.getPlayer().dropMessage(5, "Defeat all the monsters prior to entering the next stage.");
+        pi.getPlayer().yellowMessage("curMap: " + curMap + " | target: " + target + " | Monsters: " + pi.getPlayer().getMap().countMonsters());
+        // pi.getPlayer().dropMessage(5, "Defeat all the monsters prior to entering the next stage.");
         return false;
     }
 }
