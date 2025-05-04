@@ -228,21 +228,25 @@ function updateMobStats(eim, mob) {
     // Get the number of registered players
     var playerCount = eim.getPlayerCount();
 
-    // Calculate a level multiplier based on player count
-    // This will scale all monster stats proportionally
-    var levelMultiplier = 1 + (0.5 * playerCount); // Adjust this formula as needed
+    // Get the original monster stats
+    var originalStats = mob.getStats();
+    var originalHp = originalStats.getHp();
 
-    // Use the built-in changeLevel method which properly scales all stats
-    mob.changeLevel(Math.floor(mob.getLevel() * levelMultiplier));
+    // Calculate a scaling factor that will give us approximately the HP we want
+    var targetHp = originalHp * (2 * playerCount);
+    var scaleFactor = Math.sqrt(targetHp / originalHp); // Square root provides a balanced scaling
 
-    // If you still want to specifically boost HP and EXP beyond the level scaling:
-    var stats = mob.getStats();
-    var ostats = mob.getOverrideStats();
+    // Create a custom OverrideMonsterStats for just the EXP if needed
+    var originalExp = originalStats.getExp();
+    var scaledExp = Math.floor(originalExp * (1.5 * playerCount));
 
+    // Apply the level change which will scale all stats proportionally
+    mob.changeLevel(Math.floor(mob.getLevel() * scaleFactor), false);
+
+    // Optionally override just the EXP if you want a different EXP scaling
+    var ostats = mob.getChangedStats();
     if (ostats != null) {
-        // Further boost HP and EXP if needed
-        ostats.setOHp(Math.floor(ostats.getHp() * (1 + 0.5 * playerCount)));
-        ostats.setOExp(Math.floor(ostats.getExp() * (1 + 0.3 * playerCount)));
+        ostats.exp = scaledExp;
     }
 } // AdventureMS Custom
 function changedMapInside(eim, mapid) {
