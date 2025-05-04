@@ -1,5 +1,8 @@
 // AdventureMS Dungeon Portal
 
+// Import the MapleMap class
+var MapleMap = Java.type('server.maps.MapleMap');
+
 // Get NPC data using the NPC's object ID
 var npcData = MapleMap.getNpcData(cm.getNpcObjectId());
 var party = npcData.get("party");
