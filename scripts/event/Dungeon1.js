@@ -230,14 +230,19 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
 } // AdventureMS Custom
 function spawnBoss(eim, map, bossId){
     var partySize = eim.getPlayers().size();
+
+    // Calculate a difficulty level based on party size
+    // This will give us approximately 2x HP and 1.5x EXP for each party member
+    var difficultyLevel = Math.max(1, Math.min(6, Math.ceil(partySize * 1.5)));
+
     var mob = em.getMonster(bossId);
 
-    // Register and spawn the boss with its original stats
+    // Scale the boss BEFORE spawning
+    mob.changeDifficulty(difficultyLevel, true);
+
+    // Register and spawn the boss
     eim.registerMonster(mob);
     map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
-
-    // Scale the boss's stats after spawning
-    scaleMonsterStats(mob, partySize);
 } // AdventureMS Custom
 function changedMapInside(eim, mapid) {
     var stage = eim.getIntProperty("curStage");
