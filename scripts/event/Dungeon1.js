@@ -212,16 +212,20 @@ function basicDungeonSetup(eim) {
 } // AdventureMS Custom
 function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
     var partySize = eim.getPlayers().size();
+    var difficultyLevel = Math.max(1, Math.min(6, Math.ceil(partySize * 1.5)));
 
     for (var i = 0; i < count; i++) {
-        var mob = em.getMonster(monsterId);
+        var partySize = eim.getPlayers().size();
+        var difficultyLevel = Math.max(1, Math.min(6, Math.ceil(partySize * 1.5)));
 
-        // Register and spawn the monster with its original stats
+        var mob = em.getMonster(bossId);
+
+        // Scale the boss BEFORE spawning
+        mob.changeDifficulty(difficultyLevel, true);
+
+        // Register and spawn the boss
         eim.registerMonster(mob);
-        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
-
-        // Scale the monster's stats after spawning
-        scaleMonsterStats(mob, partySize);
+        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
     }
 } // AdventureMS Custom
 function spawnBoss(eim, map, bossId){
@@ -235,21 +239,6 @@ function spawnBoss(eim, map, bossId){
     // Scale the boss's stats after spawning
     scaleMonsterStats(mob, partySize);
 } // AdventureMS Custom
-function scaleMonsterStats(monster, partySize) {
-    // Get original stats
-    var originalHp = monster.getMaxHp();
-    var originalExp = monster.getExp();
-
-    // Calculate scaled values
-    var scaledHp = Math.round(originalHp * 2 * partySize);
-    var scaledExp = Math.round(originalExp * 1.5 * partySize);
-
-    // Set HP directly - this updates both the stats HP and current HP
-    monster.setStartingHp(scaledHp);
-
-    // Set EXP directly in the monster's stats
-    monster.getStats().setExp(scaledExp);
-}
 function changedMapInside(eim, mapid) {
     var stage = eim.getIntProperty("curStage");
 
