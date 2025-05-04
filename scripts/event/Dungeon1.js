@@ -210,28 +210,6 @@ function basicDungeonSetup(eim) {
     eim.setProperty("curStage", "1");
     eim.startEventTimer(eventTime * 60000);
 } // AdventureMS Custom
-function updateMobStats(eim, map) {
-
-    // Then scale all monsters on the map
-    var playerCount = eim.getPlayerCount();
-    var hpMultiplier = 2 * playerCount;
-    var expMultiplier = 1.5 * playerCount;
-
-    var monsters = map.getAllMonsters();
-    for (var i = 0; i < monsters.size(); i++) {
-        var monster = monsters.get(i);
-        if (monster.getChangedStats() != null) {
-            // Apply custom HP multiplier
-            var baseHp = monster.getStats().getHp();
-            monster.getChangedStats().hp = Math.floor(baseHp * hpMultiplier);
-            monster.setHp(monster.getChangedStats().hp);
-
-            // Apply custom EXP multiplier
-            var baseExp = monster.getStats().getExp();
-            monster.getChangedStats().exp = Math.floor(baseExp * expMultiplier);
-        }
-    }
-} // AdventureMS Custom
 function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumber) {
     // Calculate multipliers based on player count
     var playerCount = eim.getPlayerCount();
@@ -257,7 +235,8 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumbe
         // Apply override stats
         mob.setOverrideStats(overrideStats);
 
-        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
+        // Use the new method that doesn't change stats
+        map.spawnMonsterOnGroundBelowWithoutChangingStats(mob, new java.awt.Point(x, y));
     }
 } // AdventureMS Custom
 function spawnBoss(eim, map, bossId){
@@ -284,7 +263,8 @@ function spawnBoss(eim, map, bossId){
     // Apply override stats
     mob.setOverrideStats(overrideStats);
 
-    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
+    // Use the new method that doesn't change stats
+    map.spawnMonsterOnGroundBelowWithoutChangingStats(mob, new java.awt.Point(811, 368));
 } // AdventureMS Custom
 function changedMapInside(eim, mapid) {
     var stage = eim.getIntProperty("curStage");

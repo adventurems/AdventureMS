@@ -2275,6 +2275,43 @@ public class MapleMap {
         updateBossSpawn(monster);
     }
 
+    // AdventureMS Custom Monster Dungeon Spawns
+    public void spawnMonsterWithoutChangingStats(final Monster monster) {
+        if (mobCapacity != -1 && mobCapacity == spawnedMonstersOnMap.get()) {
+            return; // Respect mob capacity limit
+        }
+
+        monster.setMap(this);
+        if (getEventInstance() != null) {
+            getEventInstance().registerMonster(monster);
+        }
+
+        spawnAndAddRangedMapObject(monster, c -> c.sendPacket(PacketCreator.spawnMonster(monster, true)), null);
+
+        monster.aggroUpdateController();
+        updateBossSpawn(monster);
+
+        spawnedMonstersOnMap.incrementAndGet();
+        addSelfDestructive(monster);
+        applyRemoveAfter(monster);
+    }
+
+    public void spawnMonsterOnGroundBelowWithoutChangingStats(Monster mob, Point pos) {
+        Point spos = new Point(pos.x, pos.y - 1);
+        spos = calcPointBelow(spos);
+        if (spos == null) {
+            return; // Invalid position
+        }
+        spos.y--; // Adjust y position
+        mob.setPosition(spos);
+        spawnMonsterWithoutChangingStats(mob);
+    }
+
+    public void spawnMonsterOnGroundBelowWithoutChangingStats(int id, int x, int y) {
+        Monster mob = LifeFactory.getMonster(id);
+        spawnMonsterOnGroundBelowWithoutChangingStats(mob, new Point(x, y));
+    }
+
     public void spawnReactor(final Reactor reactor) {
         reactor.setMap(this);
         spawnAndAddRangedMapObject(reactor, c -> c.sendPacket(reactor.makeSpawnData()));
