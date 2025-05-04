@@ -213,20 +213,15 @@ function basicDungeonSetup(eim) {
 function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumber) {
     var difficulty = Math.min(6, Math.max(1, Math.floor(eim.getPlayerCount() * 2)));
 
-    for (var i = 0; i < count; i++)
-    {
+    for (var i = 0; i < count; i++) {
         var mob = em.getMonster(monsterId);
         eim.registerMonster(mob);
 
-        // Position the monster
-        var point = new java.awt.Point(x, y);
-        var spos = new java.awt.Point(point.x, point.y - 1);
-        spos = map.calcPointBelow(spos);
-        spos.y--;
-        mob.setPosition(spos);
+        // Set difficulty before spawning
+        mob.changeDifficulty(difficulty, true);
 
-        // Spawn with custom difficulty
-        map.spawnMonster(mob, difficulty, true);
+        // Use spawnMonsterOnGroundBelow which handles positioning correctly
+        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
 
         // Optional: Adjust EXP separately if needed
         if (mob.getChangedStats() != null) {
@@ -241,15 +236,11 @@ function spawnBoss(eim, map, bossId){
     var mob = em.getMonster(bossId);
     eim.registerMonster(mob);
 
-    // Position the boss
-    var point = new java.awt.Point(811, 368);
-    var spos = new java.awt.Point(point.x, point.y - 1);
-    spos = map.calcPointBelow(spos);
-    spos.y--;
-    mob.setPosition(spos);
+    // Set difficulty before spawning
+    mob.changeDifficulty(difficulty, true);
 
-    // Spawn with custom difficulty
-    map.spawnMonster(mob, difficulty, true);
+    // Use spawnMonsterOnGroundBelow which handles positioning correctly
+    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
 
     // Optional: Adjust EXP separately if needed
     if (mob.getChangedStats() != null) {
