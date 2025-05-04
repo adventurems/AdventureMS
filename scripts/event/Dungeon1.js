@@ -216,25 +216,38 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
     for (var i = 0; i < count; i++) {
         var mob = em.getMonster(monsterId);
 
-        // Scale the boss BEFORE spawning
-        mob.changeDifficulty(partySize, true);
-
-        // Register and spawn the monster
+        // Register the monster with the event instance
         eim.registerMonster(mob);
-        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
+
+        // Calculate the ground position
+        var pos = new java.awt.Point(x, y);
+        var spos = map.getGroundBelow(pos);
+
+        // Set the monster's position
+        mob.setPosition(spos);
+
+        // Spawn the monster with the correct difficulty
+        map.spawnMonster(mob, partySize, true);
     }
-} // AdventureMS Custom
-function spawnBoss(eim, map, bossId){
+}
+
+function spawnBoss(eim, map, bossId) {
     var partySize = eim.getPlayers().size();
     var mob = em.getMonster(bossId);
 
-    // Scale the boss BEFORE spawning
-    mob.changeDifficulty(partySize, true);
-
-    // Register and spawn the boss
+    // Register the monster with the event instance
     eim.registerMonster(mob);
-    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
-} // AdventureMS Custom
+
+    // Calculate the ground position
+    var pos = new java.awt.Point(811, 368);
+    var spos = map.getGroundBelow(pos);
+
+    // Set the monster's position
+    mob.setPosition(spos);
+
+    // Spawn the monster with the correct difficulty
+    map.spawnMonster(mob, partySize, true);
+}
 function changedMapInside(eim, mapid) {
     var stage = eim.getIntProperty("curStage");
 
