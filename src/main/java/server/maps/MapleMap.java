@@ -450,8 +450,9 @@ public class MapleMap {
         Map<String, Object> data = new HashMap<>();
         data.put("party", chr.getPartyId());
         data.put("monster", monster.getId());
+        data.put("player", chr.getId());
         npcData.put(npc.getObjectId(), data);
-        chr.yellowMessage("NPC ID: " + npc.getObjectId() + " | Party: " + chr.getPartyId() + " | Monster: " + monster.getId());
+        chr.yellowMessage("NPC ID: " + npc.getObjectId() + " | Party: " + chr.getPartyId() + " | Monster: " + monster.getId() + " | Player: " + chr.getId());
 
         // Schedule NPC removal
         Runnable removeNpcTask = new Runnable() {

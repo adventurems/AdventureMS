@@ -652,7 +652,7 @@ public class EventManager {
         return false;
     }
 
-    // AdventureMS Custom Implementation for Dungeons
+    // AdventureMS Custom Implementation for Dungeons - Party
 
     // New method that accepts a party, map, difficulty, monsterId, and mapId
     public boolean startInstance(Party party, MapleMap map, int difficulty, int monsterId, int mapId) {
@@ -724,6 +724,75 @@ public class EventManager {
             }
         } catch (InterruptedException ie) {
             playerPermit.remove(leader.getId());
+        }
+
+        return false;
+    }
+
+    // AdventureMS Custom Implementation for Dungeons - Solo
+    public boolean startInstance(Character player, MapleMap map, int difficulty, int monsterId, int mapId) {
+        return startInstance(-1, player, map, difficulty, monsterId, mapId);
+    }
+
+    public boolean startInstance(int lobbyId, Character player, MapleMap map, int difficulty, int monsterId, int mapId) {
+        if (this.isDisposed()) {
+            return false;
+        }
+
+        try {
+            if (!playerPermit.contains(player.getId()) && startSemaphore.tryAcquire(7777, MILLISECONDS)) {
+                playerPermit.add(player.getId());
+
+                startLock.lock();
+                try {
+                    try {
+                        if (lobbyId == -1) {
+                            lobbyId = availableLobbyInstance();
+                            if (lobbyId == -1) {
+                                return false;
+                            }
+                        } else {
+                            if (!startLobbyInstance(lobbyId)) {
+                                return false;
+                            }
+                        }
+
+                        EventInstanceManager eim;
+                        try {
+                            // Pass monsterId and mapId to the setup function
+                            eim = createInstance("setup", difficulty, (lobbyId > -1) ? lobbyId : player.getId(), monsterId, mapId);
+                            registerEventInstance(eim.getName(), lobbyId);
+                        } catch (ScriptException | NullPointerException e) {
+                            String message = getInternalScriptExceptionMessage(e);
+                            if (message != null && !message.startsWith(EventInstanceInProgressException.EIIP_KEY)) {
+                                throw e;
+                            }
+
+                            if (lobbyId > -1) {
+                                setLockLobby(lobbyId, false);
+                            }
+                            return false;
+                        }
+
+                        eim.setLeader(player);
+
+                        // Register the single player instead of a party
+                        eim.registerPlayer(player);
+
+                        eim.startEvent();
+                    } catch (ScriptException | NoSuchMethodException ex) {
+                        log.error("Event script startInstance", ex);
+                    }
+
+                    return true;
+                } finally {
+                    startLock.unlock();
+                    playerPermit.remove(player.getId());
+                    startSemaphore.release();
+                }
+            }
+        } catch (InterruptedException ie) {
+            playerPermit.remove(player.getId());
         }
 
         return false;

@@ -1,11 +1,12 @@
 // AdventureMS Dungeon Portal
 
-// Import the MapleMap class
+// Import the classes
 var MapleMap = Java.type('server.maps.MapleMap');
 var LifeFactory = Java.type('server.life.LifeFactory');
 
 // Additional Variables
 var dungeonTier = 1;
+var solo = false;
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
@@ -16,7 +17,11 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // Get NPC data using the NPC's object ID
         var npcData = MapleMap.getNpcData(cm.getNpcObjectId());
         var party = npcData.get("party");
+        var player = npcData.get("player");
         var monsterLvl = LifeFactory.getMonsterLevel(npcData.get("monster"));
+
+        // Check if they are solo
+        if (party === -1) {solo = true;}
 
         // Check that they are in the correct party
         if (party === cm.getPlayer().getPartyId())
@@ -29,22 +34,29 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 // else if (monsterLvl < 32) {dungeonTier = 2;}
                 // else {dungeonTier = 3;}
 
-                // Send first message
+                // Check for ready
                 cm.sendYesNo("Is your party ready to enter the Dungeon?");
             }
 
             // They aren't the party leader
             else
             {
-                cm.sendOk("Please have your party leader talk to me! If you are solo, please create a party before talking to me.");
+                cm.sendOk("Please have your party leader talk to me!");
                 cm.dispose();
             }
         }
 
-        // They are not in the party that spawned this portal
+        // They are not in the party that spawned this portal, see if they are solo
+        else if (cm.getPlayer().getId() === player)
+        {
+            // Check for ready
+            cm.sendYesNo("Are you ready to enter the Dungeon?");
+        }
+
+        // They didn't spawn the portal and they are not in the party that did
         else
         {
-            cm.sendOk("You are not part of the party that spawned this portal!");
+            cm.sendOk("You are not in the party that spawned this portal!");
             cm.dispose();
         }
     }
@@ -59,17 +71,36 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // Assign the next EventManager
         em = cm.getEventManager("Dungeon" + dungeonTier);
 
-        // Error Checking
-        if (em == null)
+        // If not solo, start the party instance of the Dungeon
+        if (!solo)
         {
-            cm.sendOk("The Dungeon returned an empty instance. Please report this in the bugs section of #bDiscord#k!");
-            cm.dispose();
+            // Error Checking
+            if (em == null)
+            {
+                cm.sendOk("The Dungeon returned an empty instance. Please report this in the bugs section of #bDiscord#k!");
+            }
+
+            // Create the instance of the event
+            else (!em.startInstance(cm.getPlayer().getParty(), cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
+            {
+                cm.sendOk("The Dungeon failed to start. Please report this in the bugs section of #bDiscord#k!");
+            }
         }
 
-        // Create the instance of the event
-        else (!em.startInstance(cm.getPlayer().getParty(), cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
+        // If solo, start the player instance of the Dungeon
+        else
         {
-            cm.sendOk("The Dungeon failed to start. Please report this in the bugs section of #bDiscord#k!");
+            // Error Checking
+            if (em == null)
+            {
+                cm.sendOk("The Dungeon returned an empty instance. Please report this in the bugs section of #bDiscord#k!");
+            }
+
+            // Create the instance of the event
+            else (!em.startInstance(cm.getPlayer(), cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
+            {
+                cm.sendOk("The Dungeon failed to start (solo). Please report this in the bugs section of #bDiscord#k!");
+            }
         }
 
         // Dispose no matter what
