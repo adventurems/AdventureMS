@@ -216,16 +216,24 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
     for (var i = 0; i < count; i++) {
         var mob = em.getMonster(monsterId);
 
-        // Calculate a level that will give us approximately the HP and EXP scaling we want
-        // We want HP to be 2x party size and EXP to be 1.5x party size
-        // The formula in changeLevel uses a modifier of 1.5 for PQ mobs
-        // So we'll adjust our level calculation to account for this
-        var baseLevel = mob.getLevel();
-        var hpScaleFactor = 2 * partySize / 1.5; // Divide by 1.5 to account for PQ scaling
-        var newLevel = Math.round(baseLevel * Math.sqrt(hpScaleFactor));
+        // First use changeLevel to set all monster stats properly (attack, defense, etc.)
+        mob.changeLevel(mob.getLevel(), true); // true for pqMob to apply PQ scaling
 
-        // Use changeLevel to set all monster stats including HP, EXP, attack, and defense
-        mob.changeLevel(newLevel, true); // true for pqMob to apply PQ scaling
+        // Then use setOverrideStats to explicitly set HP and EXP to the exact values we want
+        var OverrideMonsterStats = Java.type('server.life.OverrideMonsterStats');
+        var stats = new OverrideMonsterStats();
+
+        // Set HP to 2x the original HP * party size
+        stats.setOHp(Math.round(mob.getHp() * 2 * partySize));
+
+        // Set EXP to 1.5x the original EXP * party size
+        stats.setOExp(Math.round(mob.getExp() * 1.5 * partySize));
+
+        // Keep MP the same
+        stats.setOMp(mob.getMp());
+
+        // Apply the override stats
+        mob.setOverrideStats(stats);
 
         eim.registerMonster(mob);
         map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
@@ -235,16 +243,24 @@ function spawnBoss(eim, map, bossId){
     var partySize = eim.getPlayers().size();
     var mob = em.getMonster(bossId);
 
-    // Calculate a level that will give us approximately the HP and EXP scaling we want
-    // We want HP to be 2x party size and EXP to be 1.5x party size
-    // The formula in changeLevel uses a modifier of 1.5 for PQ mobs
-    // So we'll adjust our level calculation to account for this
-    var baseLevel = mob.getLevel();
-    var hpScaleFactor = 2 * partySize / 1.5; // Divide by 1.5 to account for PQ scaling
-    var newLevel = Math.round(baseLevel * Math.sqrt(hpScaleFactor));
+    // First use changeLevel to set all monster stats properly (attack, defense, etc.)
+    mob.changeLevel(mob.getLevel(), true); // true for pqMob to apply PQ scaling
 
-    // Use changeLevel to set all monster stats including HP, EXP, attack, and defense
-    mob.changeLevel(newLevel, true); // true for pqMob to apply PQ scaling
+    // Then use setOverrideStats to explicitly set HP and EXP to the exact values we want
+    var OverrideMonsterStats = Java.type('server.life.OverrideMonsterStats');
+    var stats = new OverrideMonsterStats();
+
+    // Set HP to 2x the original HP * party size
+    stats.setOHp(Math.round(mob.getHp() * 2 * partySize));
+
+    // Set EXP to 1.5x the original EXP * party size
+    stats.setOExp(Math.round(mob.getExp() * 1.5 * partySize));
+
+    // Keep MP the same
+    stats.setOMp(mob.getMp());
+
+    // Apply the override stats
+    mob.setOverrideStats(stats);
 
     eim.registerMonster(mob);
     map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
