@@ -210,61 +210,17 @@ function basicDungeonSetup(eim) {
     eim.setProperty("curStage", "1");
     eim.startEventTimer(eventTime * 60000);
 } // AdventureMS Custom
-function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumber) {
-    // Calculate multipliers based on player count
-    var playerCount = eim.getPlayerCount();
-    var hpMultiplier = 2 * playerCount;
-    var expMultiplier = 1.5 * playerCount;
-
+function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
     for (var i = 0; i < count; i++) {
         var mob = em.getMonster(monsterId);
         eim.registerMonster(mob);
-
-        // Create custom stats
-        var baseHp = mob.getStats().getHp();
-        var baseMp = mob.getStats().getMp();
-        var baseExp = mob.getStats().getExp();
-
-        // Create override stats object
-        var OverrideMonsterStats = Java.type('server.life.OverrideMonsterStats');
-        var overrideStats = new OverrideMonsterStats();
-        overrideStats.setOHp(Math.floor(baseHp * hpMultiplier));
-        overrideStats.setOMp(baseMp);
-        overrideStats.setOExp(Math.floor(baseExp * expMultiplier));
-
-        // Apply override stats
-        mob.setOverrideStats(overrideStats);
-
-        // Use the new method that doesn't change stats
-        map.spawnMonsterOnGroundBelowWithoutChangingStats(mob, new java.awt.Point(x, y));
+        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
     }
 } // AdventureMS Custom
 function spawnBoss(eim, map, bossId){
-    // Calculate multipliers based on player count
-    var playerCount = eim.getPlayerCount();
-    var hpMultiplier = 2 * playerCount; // Higher multiplier for boss
-    var expMultiplier = 1.5 * playerCount;
-
     var mob = em.getMonster(bossId);
     eim.registerMonster(mob);
-
-    // Create custom stats
-    var baseHp = mob.getStats().getHp();
-    var baseMp = mob.getStats().getMp();
-    var baseExp = mob.getStats().getExp();
-
-    // Create override stats object
-    var OverrideMonsterStats = Java.type('server.life.OverrideMonsterStats');
-    var overrideStats = new OverrideMonsterStats();
-    overrideStats.setOHp(Math.floor(baseHp * hpMultiplier));
-    overrideStats.setOMp(baseMp);
-    overrideStats.setOExp(Math.floor(baseExp * expMultiplier));
-
-    // Apply override stats
-    mob.setOverrideStats(overrideStats);
-
-    // Use the new method that doesn't change stats
-    map.spawnMonsterOnGroundBelowWithoutChangingStats(mob, new java.awt.Point(811, 368));
+    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
 } // AdventureMS Custom
 function changedMapInside(eim, mapid) {
     var stage = eim.getIntProperty("curStage");
