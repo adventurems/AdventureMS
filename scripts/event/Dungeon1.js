@@ -214,38 +214,63 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumbe
     var difficulty = Math.min(6, Math.max(1, Math.floor(eim.getPlayerCount() * 2)));
 
     for (var i = 0; i < count; i++) {
+        // Create a new monster
         var mob = em.getMonster(monsterId);
+
+        // Register with event instance
         eim.registerMonster(mob);
 
-        // Set difficulty before spawning
-        mob.changeDifficulty(difficulty, true);
+        // Create a spawn point
+        var pos = new java.awt.Point(x, y);
 
-        // Use spawnMonsterOnGroundBelow which handles positioning correctly
-        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
+        // Position the monster
+        var spos = new java.awt.Point(pos.x, pos.y - 1);
+        spos = map.calcPointBelow(spos);
+        if (spos != null) {
+            spos.y--;
+            mob.setPosition(spos);
 
-        // Optional: Adjust EXP separately if needed
-        if (mob.getChangedStats() != null) {
-            var expMultiplier = 1.5 * eim.getPlayerCount();
-            mob.getChangedStats().exp = Math.floor(mob.getStats().getExp() * expMultiplier);
+            // Spawn with custom difficulty directly
+            map.spawnMonster(mob, difficulty, true);
+
+            // Adjust EXP separately if needed
+            if (mob.getChangedStats() != null) {
+                var expMultiplier = 1.5 * eim.getPlayerCount();
+                mob.getChangedStats().exp = Math.floor(mob.getStats().getExp() * expMultiplier);
+            }
         }
     }
 } // AdventureMS Custom
 function spawnBoss(eim, map, bossId){
     var difficulty = Math.min(6, Math.max(1, Math.floor(eim.getPlayerCount() * 2)));
 
-    var mob = em.getMonster(bossId);
-    eim.registerMonster(mob);
+    for (var i = 0; i < count; i++) {
+        // Create a new monster
+        var mob = em.getMonster(bossId);
 
-    // Set difficulty before spawning
-    mob.changeDifficulty(difficulty, true);
+        // Register with event instance
+        eim.registerMonster(mob);
 
-    // Use spawnMonsterOnGroundBelow which handles positioning correctly
-    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
+        // Create a spawn point
+        var pos = new java.awt.Point(x, y);
 
-    // Optional: Adjust EXP separately if needed
-    if (mob.getChangedStats() != null) {
-        var expMultiplier = 1.5 * eim.getPlayerCount();
-        mob.getChangedStats().exp = Math.floor(mob.getStats().getExp() * expMultiplier);
+        // IMPORTANT: Use this direct approach instead of spawnMonsterOnGroundBelow
+        // Position the monster
+        var spos = new java.awt.Point(pos.x, pos.y - 1);
+        spos = map.calcPointBelow(spos);
+        if (spos != null) {
+            spos.y--;
+            mob.setPosition(spos);
+
+            // Spawn with custom difficulty directly
+            map.spawnMonster(mob, difficulty, true);
+
+            // Adjust EXP separately if needed
+            if (mob.getChangedStats() != null) {
+                var expMultiplier = 1.5 * eim.getPlayerCount();
+                mob.getChangedStats().exp = Math.floor(mob.getStats().getExp() * expMultiplier);
+            }
+        }
     }
 } // AdventureMS Custom
 function changedMapInside(eim, mapid) {
