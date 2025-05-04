@@ -230,23 +230,21 @@ function updateMobStats(eim, mob) {
 
     // Get the original monster stats
     var originalStats = mob.getStats();
-    var originalHp = originalStats.getHp();
-    var originalExp = originalStats.getExp();
 
-    // Create a direct OverrideMonsterStats object with the scaled values
-    var scaledHp = Math.floor(originalHp * (2 * playerCount));
-    var scaledMp = Math.floor(originalStats.getMp() * (2 * playerCount));
-    var scaledExp = Math.floor(originalExp * (1.5 * playerCount));
+    // Ensure the monster stats are marked as changeable
+    originalStats.setChange(true);
 
-    // Create and apply the override stats directly
-    var overrideStats = new Packages.server.life.OverrideMonsterStats(
-        scaledHp,
-        scaledMp,
-        scaledExp
-    );
+    // Calculate a scaling factor based on player count
+    var scaleFactor = Math.sqrt(2 * playerCount);
 
-    // Apply the override stats to the monster
-    mob.setOverrideStats(overrideStats);
+    // Apply the level change with PQ modifier enabled (true)
+    mob.changeLevel(Math.floor(mob.getLevel() * scaleFactor), true);
+
+    // Optionally override just the EXP if you want a different EXP scaling
+    var ostats = mob.getChangedStats();
+    if (ostats != null) {
+        ostats.exp = Math.floor(originalStats.getExp() * (1.5 * playerCount));
+    }
 } // AdventureMS Custom
 function changedMapInside(eim, mapid) {
     var stage = eim.getIntProperty("curStage");
