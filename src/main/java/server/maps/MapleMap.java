@@ -849,7 +849,49 @@ public class MapleMap {
                     if (ItemConstants.getInventoryType(de.itemId) == InventoryType.EQUIP)
                     {
                         // It's a chaos item
-                        if (isChaos) {idrop = ii.randomizeChaosStats((Equip) ii.getEquipById(de.itemId));}
+                        if (isChaos)
+                        {
+                            idrop = ii.randomizeChaosStats((Equip) ii.getEquipById(de.itemId));
+
+                            // Chaos items spawn an effect (npc)
+
+                            // Find coordinates
+                            Point checkpos = calcDropPos(pos, mob.getPosition());
+                            int xpos = checkpos.x;
+                            int ypos = checkpos.y;
+                            int fh = chr.getMap().getFootholds().findBelow(checkpos).getId();
+
+                            // Build NPC
+                            NPC npc = LifeFactory.getNPC(9800018);
+                            npc.setPosition(checkpos);
+                            npc.setCy(ypos);
+                            npc.setRx0(xpos + 1);
+                            npc.setRx1(xpos - 1);
+                            npc.setFh(fh);
+
+                            // Create and Broadcast
+                            MapleMap map = chr.getMap();
+                            map.addMapObject(npc);
+                            map.broadcastMessage(PacketCreator.spawnNPC(npc));
+                            map.broadcastMessage(PacketCreator.playSound("Buyback/magician"));
+
+                            // Schedule NPC removal
+                            Runnable removeNpcTask = new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (npc != null && map != null)
+                                    {
+                                        // Remove the NPC from the map
+                                        map.removeMapObject(npc);
+                                        map.broadcastMessage(PacketCreator.removeNPCController(npc.getObjectId()));
+                                        map.broadcastMessage(PacketCreator.removeNPC(npc.getObjectId()));
+                                    }
+                                }
+                            };
+
+                            // Delete NPC after 40 seconds if it hasn't been picked up yet
+                            TimerManager.getInstance().schedule(removeNpcTask, 40000);
+                        }
 
                         // It's a normal item
                         else {idrop = ii.randomizeStats((Equip) ii.getEquipById(de.itemId));}
@@ -862,47 +904,6 @@ public class MapleMap {
 
                     // Normally spawn an item
                     spawnDrop(idrop, calcDropPos(pos, mob.getPosition()), mob, chr, droptype, de.questid, delay);
-
-                    // Chaos items spawn an effect (npc)
-                    if (isChaos)
-                    {
-                        // Find coordinates
-                        Point checkpos = calcDropPos(pos, mob.getPosition());
-                        int xpos = checkpos.x;
-                        int ypos = checkpos.y;
-                        int fh = chr.getMap().getFootholds().findBelow(checkpos).getId();
-
-                        // Build NPC
-                        NPC npc = LifeFactory.getNPC(9800018);
-                        npc.setPosition(checkpos);
-                        npc.setCy(ypos);
-                        npc.setRx0(xpos + 1);
-                        npc.setRx1(xpos - 1);
-                        npc.setFh(fh);
-
-                        // Create and Broadcast
-                        MapleMap map = chr.getMap();
-                        map.addMapObject(npc);
-                        map.broadcastMessage(PacketCreator.spawnNPC(npc));
-                        map.broadcastMessage(PacketCreator.playSound("Buyback/magician"));
-
-                        // Schedule NPC removal
-                        Runnable removeNpcTask = new Runnable() {
-                            @Override
-                            public void run() {
-                                if (npc != null && map != null)
-                                {
-                                    // Remove the NPC from the map
-                                    map.removeMapObject(npc);
-                                    map.broadcastMessage(PacketCreator.removeNPCController(npc.getObjectId()));
-                                    map.broadcastMessage(PacketCreator.removeNPC(npc.getObjectId()));
-                                }
-                            }
-                        };
-
-                        // Delete NPC after 40 seconds if it hasn't been picked up yet
-                        TimerManager.getInstance().schedule(removeNpcTask, 40000);
-                    }
                 }
                 index++;
             }
