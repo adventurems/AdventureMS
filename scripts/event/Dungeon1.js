@@ -239,14 +239,14 @@ function updateMobStats(eim, mob) {
 function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumber) {
     for (var i = 0; i < count; i++) {
         var mob = em.getMonster(monsterId);
-        updateMobStats(eim, mob);
+        // updateMobStats(eim, mob);
         eim.registerMonster(mob);
         map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
     }
 } // AdventureMS Custom
 function spawnBoss(eim, map, bossId){
     var mob = em.getMonster(bossId);
-    updateMobStats(eim, mob);
+    // updateMobStats(eim, mob);
     eim.registerMonster(mob);
     map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
 } // AdventureMS Custom
