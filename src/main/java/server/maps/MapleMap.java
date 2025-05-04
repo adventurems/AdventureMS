@@ -442,6 +442,7 @@ public class MapleMap {
         data.put("party", chr.getPartyId());
         data.put("monster", monster.getId());
         npcData.put(npc.getObjectId(), data);
+        chr.yellowMessage("NPC ID: " + npc.getObjectId() + " | Party: " + chr.getPartyId() + " | Monster: " + monster.getId());
 
         // Create and Broadcast
         MapleMap map = monster.getMap();
