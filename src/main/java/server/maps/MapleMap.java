@@ -2308,6 +2308,38 @@ public class MapleMap {
         monster.aggroUpdateController();
         updateBossSpawn(monster);
 
+        // Add CPQ map team buffs handling (missing in current implementation)
+        if ((monster.getTeam() == 1 || monster.getTeam() == 0) && (isCPQMap() || isCPQMap2())) {
+            List<MCSkill> teamS = null;
+            if (monster.getTeam() == 0) {
+                teamS = redTeamBuffs;
+            } else if (monster.getTeam() == 1) {
+                teamS = blueTeamBuffs;
+            }
+            if (teamS != null) {
+                for (MCSkill skil : teamS) {
+                    if (skil != null) {
+                        skil.getSkill().applyEffect(null, monster, false, null);
+                    }
+                }
+            }
+        }
+
+        // Add monster drop period time handling (missing in current implementation)
+        if (monster.getDropPeriodTime() > 0) {
+            if (monster.getId() == MobId.WATCH_HOG) {
+                monsterItemDrop(monster, monster.getDropPeriodTime());
+            } else if (monster.getId() == MobId.MOON_BUNNY) {
+                monsterItemDrop(monster, monster.getDropPeriodTime() / 3);
+            } else if (monster.getId() == MobId.TYLUS) {
+                monsterItemDrop(monster, monster.getDropPeriodTime());
+            } else if (monster.getId() == MobId.GIANT_SNOWMAN_LV5_EASY || monster.getId() == MobId.GIANT_SNOWMAN_LV5_MEDIUM || monster.getId() == MobId.GIANT_SNOWMAN_LV5_HARD) {
+                monsterItemDrop(monster, monster.getDropPeriodTime());
+            } else {
+                log.error("UNCODED TIMED MOB DETECTED: {}", monster.getId());
+            }
+        }
+
         spawnedMonstersOnMap.incrementAndGet();
         addSelfDestructive(monster);
         applyRemoveAfter(monster);
