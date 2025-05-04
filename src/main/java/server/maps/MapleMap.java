@@ -425,16 +425,16 @@ public class MapleMap {
 
         // Find coordinates
         Point checkpos = monster.getMap().getGroundBelow(monster.getPosition());
-        int xpos = checkpos.x;
-        int ypos = checkpos.y;
+        // int xpos = checkpos.x;
+        // int ypos = checkpos.y;
         int fh = chr.getMap().getFootholds().findBelow(checkpos).getId();
 
         // Build NPC
         NPC npc = Randomizer.nextInt(25) == 0 ? LifeFactory.getNPC(9800030) : LifeFactory.getNPC(9800017); // 4% chance to spawn rare dungeon
         npc.setPosition(checkpos);
-        npc.setCy(ypos);
-        npc.setRx0(xpos + 53);
-        npc.setRx1(xpos - 53);
+        // npc.setCy(ypos);
+        // npc.setRx0(xpos + 53);
+        // npc.setRx1(xpos - 53);
         npc.setFh(fh);
 
         // Store data with the NPC

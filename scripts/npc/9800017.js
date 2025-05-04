@@ -3,11 +3,6 @@
 // Import the MapleMap class
 var MapleMap = Java.type('server.maps.MapleMap');
 
-// Get NPC data using the NPC's object ID
-var npcData = MapleMap.getNpcData(cm.getNpcObjectId());
-var party = npcData.get("party");
-var monster = npcData.get("monster");
-
 // Additional Variables
 var dungeonTier = 1;
 var monsterLvl = monster.getLevel();
@@ -18,6 +13,10 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
     if (status == 0)
     {
+        // Get NPC data using the NPC's object ID
+        var npcData = MapleMap.getNpcData(cm.getNpcObjectId());
+        var party = npcData.get("party");
+
         // Check that they are in the correct party
         if (party === cm.getPlayer().getPartyId())
         {
@@ -52,6 +51,10 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
     // They want in the dungeon
     else if (status == 1)
     {
+        // Get NPC data using the NPC's object ID
+        var npcData = MapleMap.getNpcData(cm.getNpcObjectId());
+        var monster = npcData.get("monster");
+
         // Assign the next EventManager
         em = cm.getEventManager("Dungeon" + dungeonTier);
 
