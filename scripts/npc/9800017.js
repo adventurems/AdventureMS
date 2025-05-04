@@ -24,7 +24,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         if (party === -1) {solo = true;}
 
         // Check that they are in the correct party
-        if (party === cm.getPlayer().getPartyId())
+        if (party === cm.getPlayer().getPartyId() && cm.getPlayer().getPartyId() != null)
         {
             // Check that they are the leader of the party
             if (cm.getPlayer().isPartyLeader())
