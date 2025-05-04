@@ -244,6 +244,8 @@ function updateMobStats(eim, mob) {
     var ostats = mob.getChangedStats();
     if (ostats != null) {
         ostats.exp = Math.floor(originalStats.getExp() * (1.5 * playerCount));
+        ostats.hp = Math.floor(originalStats.getHp() * (2 * playerCount));
+        ostats.mp = Math.floor(originalStats.getMp() * 2);
     }
 } // AdventureMS Custom
 function changedMapInside(eim, mapid) {
