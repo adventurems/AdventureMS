@@ -2281,6 +2281,23 @@ public class MapleMap {
             return; // Respect mob capacity limit
         }
 
+        // Store the current override stats
+        OverrideMonsterStats originalStats = null;
+        if (monster.getStats().getHp() != monster.getHp()) {
+            originalStats = new OverrideMonsterStats();
+            originalStats.setOHp(monster.getHp());
+            originalStats.setOMp(monster.getMp());
+            originalStats.setOExp(monster.getStats().getExp());
+        }
+
+        // Initialize the monster (this is the key step we were missing)
+        monster.changeDifficulty(1, false);
+
+        // Restore the original override stats if they existed
+        if (originalStats != null) {
+            monster.setOverrideStats(originalStats);
+        }
+
         monster.setMap(this);
         if (getEventInstance() != null) {
             getEventInstance().registerMonster(monster);
