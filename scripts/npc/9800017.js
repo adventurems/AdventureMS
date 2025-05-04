@@ -60,8 +60,18 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // They are not in the party that spawned this portal, see if they are solo
         else if (cm.getPlayer().getId() === player)
         {
-            // Check for ready
-            cm.sendYesNo("Are you ready to enter the Dungeon?");
+            // Check that they are the leader of the party
+            if (cm.getPlayer().isPartyLeader())
+            {
+                // Check for ready
+                cm.sendYesNo("Are you ready to enter the Dungeon?");
+            }
+
+            else
+            {
+                cm.sendOk("Even if you are solo, you must start a party to enter the Dungeon.");
+                cm.dispose();
+            }
         }
 
         // They didn't spawn the portal and they are not in the party that did
@@ -82,36 +92,16 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // Assign the next EventManager
         em = cm.getEventManager("Dungeon" + dungeonTier);
 
-        // If not solo, start the party instance of the Dungeon
-        if (!solo)
+        // Error Checking
+        if (em == null)
         {
-            // Error Checking
-            if (em == null)
-            {
-                cm.sendOk("The Dungeon returned an empty instance. Please report this in the bugs section of #bDiscord#k!");
-            }
-
-            // Create the instance of the event
-            else if (!em.startInstance(cm.getPlayer().getParty(), cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
-            {
-                cm.sendOk("The Dungeon failed to start. Please report this in the bugs section of #bDiscord#k!");
-            }
+            cm.sendOk("The Dungeon returned an empty instance. Please report this in the bugs section of #bDiscord#k!");
         }
 
-        // If solo, start the player instance of the Dungeon
-        else
+        // Create the instance of the event
+        else if (!em.startInstance(cm.getPlayer().getParty(), cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
         {
-            // Error Checking
-            if (em == null)
-            {
-                cm.sendOk("The Dungeon returned an empty instance. Please report this in the bugs section of #bDiscord#k!");
-            }
-
-            // Create the instance of the event
-            else if (!em.startInstance(cm.getPlayer(), cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
-            {
-                cm.sendOk("The Dungeon failed to start (solo). Please report this in the bugs section of #bDiscord#k!");
-            }
+            cm.sendOk("The Dungeon failed to start. Please report this in the bugs section of #bDiscord#k!");
         }
 
         // Dispose no matter what
