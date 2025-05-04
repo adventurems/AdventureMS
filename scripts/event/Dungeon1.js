@@ -225,7 +225,7 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumbe
 
         // Position the monster
         var spos = new java.awt.Point(pos.x, pos.y - 1);
-        spos = map.calcPointBelow(spos);
+        spos = map.getPointBelow(spos);
         if (spos != null) {
             spos.y--;
             mob.setPosition(spos);
@@ -254,10 +254,9 @@ function spawnBoss(eim, map, bossId){
         // Create a spawn point
         var pos = new java.awt.Point(x, y);
 
-        // IMPORTANT: Use this direct approach instead of spawnMonsterOnGroundBelow
         // Position the monster
         var spos = new java.awt.Point(pos.x, pos.y - 1);
-        spos = map.calcPointBelow(spos);
+        spos = map.getPointBelow(spos);
         if (spos != null) {
             spos.y--;
             mob.setPosition(spos);
