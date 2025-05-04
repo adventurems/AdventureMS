@@ -250,13 +250,11 @@ function spawnBoss(eim, map, bossId){
     // Register with event instance
     eim.registerMonster(mob);
 
-    // Create a spawn point
-    var pos = new java.awt.Point(811, 368);
-
     // Position the monster
-    var spos = new java.awt.Point(pos.x, pos.y - 1);
+    var spos = new java.awt.Point(811, 367);
     spos = map.getPointBelow(spos);
-    if (spos != null) {
+    if (spos != null)
+    {
         spos.y--;
         mob.setPosition(spos);
 
