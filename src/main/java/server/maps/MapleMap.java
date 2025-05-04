@@ -2290,7 +2290,7 @@ public class MapleMap {
             originalStats.setOExp(monster.getStats().getExp());
         }
 
-        // Initialize the monster (this is the key step we were missing)
+        // Initialize the monster with minimal difficulty
         monster.changeDifficulty(1, false);
 
         // Restore the original override stats if they existed
@@ -2298,48 +2298,28 @@ public class MapleMap {
             monster.setOverrideStats(originalStats);
         }
 
+        // Set the map and register with event instance
         monster.setMap(this);
         if (getEventInstance() != null) {
             getEventInstance().registerMonster(monster);
         }
 
-        spawnAndAddRangedMapObject(monster, c -> c.sendPacket(PacketCreator.spawnMonster(monster, true)), null);
+        // This is the critical part - spawn the monster and send the packet to clients
+        spawnAndAddRangedMapObject(monster, c -> {
+            c.sendPacket(PacketCreator.spawnMonster(monster, true));
 
+            // Force the client to take control of the monster
+            Character chr = c.getPlayer();
+            if (chr != null && chr.isAlive()) {
+                monster.aggroSwitchController(chr, false);
+            }
+        }, null);
+
+        // Update controller and boss spawn
         monster.aggroUpdateController();
         updateBossSpawn(monster);
 
-        // Add CPQ map team buffs handling (missing in current implementation)
-        if ((monster.getTeam() == 1 || monster.getTeam() == 0) && (isCPQMap() || isCPQMap2())) {
-            List<MCSkill> teamS = null;
-            if (monster.getTeam() == 0) {
-                teamS = redTeamBuffs;
-            } else if (monster.getTeam() == 1) {
-                teamS = blueTeamBuffs;
-            }
-            if (teamS != null) {
-                for (MCSkill skil : teamS) {
-                    if (skil != null) {
-                        skil.getSkill().applyEffect(null, monster, false, null);
-                    }
-                }
-            }
-        }
-
-        // Add monster drop period time handling (missing in current implementation)
-        if (monster.getDropPeriodTime() > 0) {
-            if (monster.getId() == MobId.WATCH_HOG) {
-                monsterItemDrop(monster, monster.getDropPeriodTime());
-            } else if (monster.getId() == MobId.MOON_BUNNY) {
-                monsterItemDrop(monster, monster.getDropPeriodTime() / 3);
-            } else if (monster.getId() == MobId.TYLUS) {
-                monsterItemDrop(monster, monster.getDropPeriodTime());
-            } else if (monster.getId() == MobId.GIANT_SNOWMAN_LV5_EASY || monster.getId() == MobId.GIANT_SNOWMAN_LV5_MEDIUM || monster.getId() == MobId.GIANT_SNOWMAN_LV5_HARD) {
-                monsterItemDrop(monster, monster.getDropPeriodTime());
-            } else {
-                log.error("UNCODED TIMED MOB DETECTED: {}", monster.getId());
-            }
-        }
-
+        // Increment monster count and handle self-destructive monsters
         spawnedMonstersOnMap.incrementAndGet();
         addSelfDestructive(monster);
         applyRemoveAfter(monster);
