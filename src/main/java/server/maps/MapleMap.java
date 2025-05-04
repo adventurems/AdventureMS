@@ -437,13 +437,6 @@ public class MapleMap {
         // npc.setRx1(xpos - 53);
         npc.setFh(fh);
 
-        // Store data with the NPC
-        Map<String, Object> data = new HashMap<>();
-        data.put("party", chr.getPartyId());
-        data.put("monster", monster.getId());
-        npcData.put(npc.getObjectId(), data);
-        chr.yellowMessage("NPC ID: " + npc.getObjectId() + " | Party: " + chr.getPartyId() + " | Monster: " + monster.getId());
-
         // Create and Broadcast
         MapleMap map = monster.getMap();
         map.addMapObject(npc);
@@ -452,6 +445,13 @@ public class MapleMap {
 
         // Determine which sound to play
         if (npc.getId() == 9800017) { map.broadcastMessage(PacketCreator.playSound("Portal/dungeonPortal"));} else {map.broadcastMessage(PacketCreator.playSound("Portal/dungeonPortalRare"));}
+
+        // Store data with the NPC
+        Map<String, Object> data = new HashMap<>();
+        data.put("party", chr.getPartyId());
+        data.put("monster", monster.getId());
+        npcData.put(npc.getObjectId(), data);
+        chr.yellowMessage("NPC ID: " + npc.getObjectId() + " | Party: " + chr.getPartyId() + " | Monster: " + monster.getId());
 
         // Schedule NPC removal
         Runnable removeNpcTask = new Runnable() {
