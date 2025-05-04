@@ -36,7 +36,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // They aren't the party leader
             else
             {
-                cm.sendOk("Please have your party leader talk to me!");
+                cm.sendOk("Please have your party leader talk to me! If you are solo, please create a party before talking to me.");
                 cm.dispose();
             }
         }

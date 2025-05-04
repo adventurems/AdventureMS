@@ -234,7 +234,7 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumbe
     }
 } // AdventureMS Custom
 function spawnBoss(eim, map, bossId){
-    var mob = em.getMonster(monsterId);
+    var mob = em.getMonster(bossId);
     updateMobStats(eim, mob);
     eim.registerMonster(mob);
     map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
