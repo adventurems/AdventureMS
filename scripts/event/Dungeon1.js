@@ -267,7 +267,8 @@ function changedMapInside(eim, mapid) {
 } // AdventureMS Custom
 function playerExit(eim, player) {
     eim.unregisterPlayer(player);
-    player.changeMap(eim.getProperty("entranceMap"), 0);
+    var mapId = eim.getProperty("entranceMap");
+    player.changeMap(mapId, 0);
 } // AdventureMS Custom
 function monsterKilled(mob, eim) {  // AdventureMS Custom
     var map = mob.getMap(); // Get the map the monster is on
