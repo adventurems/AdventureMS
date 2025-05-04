@@ -65,14 +65,11 @@ function setup(level, lobbyid, monsterId, mapId)
         platforms.forEach(function(platform, index) {
             spawnMonstersOnPlatform(eim, map, monsterId, platform[0], platform[1], platform[2], index + 1);
         });
-
-        updateMobStats(eim, map);
     });
 
     // Handle boss room
     var map = eim.getInstanceMap(maxMapId);
     spawnBoss(eim, map, bossId);
-    updateMobStats(eim, map);
     return eim;
 }
 
@@ -236,17 +233,55 @@ function updateMobStats(eim, map) {
     }
 } // AdventureMS Custom
 function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count, platformNumber) {
+    // Calculate multipliers based on player count
+    var playerCount = eim.getPlayerCount();
+    var hpMultiplier = 2 * playerCount;
+    var expMultiplier = 1.5 * playerCount;
+
     for (var i = 0; i < count; i++) {
         var mob = em.getMonster(monsterId);
         eim.registerMonster(mob);
-        mob.changeDifficulty(1, true);
+
+        // Create custom stats
+        var baseHp = mob.getStats().getHp();
+        var baseMp = mob.getStats().getMp();
+        var baseExp = mob.getStats().getExp();
+
+        // Create override stats object
+        var overrideStats = new server.life.OverrideMonsterStats();
+        overrideStats.setHp(Math.floor(baseHp * hpMultiplier));
+        overrideStats.setMp(baseMp);
+        overrideStats.setExp(Math.floor(baseExp * expMultiplier));
+
+        // Apply override stats
+        mob.setOverrideStats(overrideStats);
+
         map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
     }
 } // AdventureMS Custom
 function spawnBoss(eim, map, bossId){
+    // Calculate multipliers based on player count
+    var playerCount = eim.getPlayerCount();
+    var hpMultiplier = 2 * playerCount; // Higher multiplier for boss
+    var expMultiplier = 1.5 * playerCount;
+
     var mob = em.getMonster(bossId);
     eim.registerMonster(mob);
-    mob.changeDifficulty(1, true);
+
+    // Create custom stats
+    var baseHp = mob.getStats().getHp();
+    var baseMp = mob.getStats().getMp();
+    var baseExp = mob.getStats().getExp();
+
+    // Create override stats object
+    var overrideStats = new server.life.OverrideMonsterStats();
+    overrideStats.setHp(Math.floor(baseHp * hpMultiplier));
+    overrideStats.setMp(baseMp);
+    overrideStats.setExp(Math.floor(baseExp * expMultiplier));
+
+    // Apply override stats
+    mob.setOverrideStats(overrideStats);
+
     map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
 } // AdventureMS Custom
 function changedMapInside(eim, mapid) {
