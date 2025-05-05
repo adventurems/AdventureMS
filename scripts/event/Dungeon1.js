@@ -218,8 +218,11 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
         // Register the monster with the event instance
         eim.registerMonster(mob);
 
+        // Set the monster's stats to be changeable
+        mob.getStats().setChange(true);
+
         // Scale the monster BEFORE spawning using changeDifficulty
-        mob.changeDifficulty(partySize, true);
+        mob.changeDifficulty(partySize, false);
 
         // Spawn the monster on the map
         map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
@@ -232,8 +235,11 @@ function spawnBoss(eim, map, bossId) {
     // Register the monster with the event instance
     eim.registerMonster(mob);
 
+    // Set the monster's stats to be changeable
+    mob.getStats().setChange(true);
+
     // Scale the boss BEFORE spawning using changeDifficulty
-    mob.changeDifficulty(partySize, true);
+    mob.changeDifficulty(partySize, false);
 
     // Spawn the boss on the map
     map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
