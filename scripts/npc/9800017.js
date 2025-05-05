@@ -121,7 +121,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             party.setEligibleMembers(eligibleMembers);
 
             // Remove the NPC
-            MapleMap.removeDungeonPortal(npcOID);
+            cm.getMap().removeDungeonPortal(npcOID);
 
             // Attempt to start the dungeon
             if (!em.startInstance(party, cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
