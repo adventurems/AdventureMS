@@ -613,6 +613,7 @@ public class Monster extends AbstractLoadedLife {
 
         long totalDamage = maxHpPlusHeal.get();
         int mobExp = getExp();
+        this.getMap().broadcastMessage(PacketCreator.serverNotice(6, "[Debug] Final Goblin EXP: " + mobExp));
         float expPerDmg = ((float) mobExp) / totalDamage;
 
         Map<Integer, Float> personalRatio = new HashMap<>();
@@ -1768,7 +1769,7 @@ public class Monster extends AbstractLoadedLife {
         // Map basic ostats to mob
         this.hp.set(ostats.getoHP());
         setMp(ostats.getoMP());
-        this.stats.setExp(ostats.getoEXP());
+        stats.setExp(ostats.getoEXP());
     }
 
     public final int getMaxHp() {if (ostats != null) {return ostats.getoHP();} return stats.getHp();}
