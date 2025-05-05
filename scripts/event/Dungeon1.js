@@ -216,7 +216,7 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
         var mob = em.getMonster(monsterId);
 
         // Scale the monster BEFORE spawning using changeDifficulty
-        mob.changeDifficultyBasicWithStats(mob.getStats(), partySize * 2);
+        mob.changeDifficultyBasicWithStats(mob, partySize * 2);
 
         // Spawn the monster on the map
         map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
