@@ -567,20 +567,16 @@ public class MapleMap {
 
         // Set the goblin's position to match the original monster's position
         goblin.setPosition(monster.getPosition());
-        monster.getMap().broadcastMessage(PacketCreator.serverNotice(6, "[Debug] 1st: Goblin EXP: " + goblin.getExp()));
 
         // Multiply HP by 10 and exp by 7.5
         goblin.changeDifficultyBasicWithStats(monster, 10);
 
-        monster.getMap().broadcastMessage(PacketCreator.serverNotice(6, "[Debug] 2nd: Goblin EXP: " + goblin.getExp()));
-
         // Announce the monster spawn to the map
+        monster.getMap().broadcastMessage(PacketCreator.serverNotice(6, "A rare monster has spawned!"));
         monster.getMap().broadcastMessage(PacketCreator.playSound("AdventureMS/goblin"));
 
         // Spawn the goblin on the map
         spawnMonster(goblin);
-
-        monster.getMap().broadcastMessage(PacketCreator.serverNotice(6, "[Debug] 3rd: Goblin EXP: " + goblin.getExp()));
     }
 
     public void addSelfDestructive(Monster mob) {
@@ -2201,7 +2197,7 @@ public class MapleMap {
         }
     }
 
-    public void spawnMonster(Monster monster) {
+    public void spawnMonster(final Monster monster) {
         if (mobCapacity != -1 && mobCapacity == spawnedMonstersOnMap.get()) {
             return;
         }
