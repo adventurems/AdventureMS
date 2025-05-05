@@ -69,7 +69,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
             else
             {
-                cm.sendOk("Even if you are solo, you must start a party to enter the Dungeon.");
+                cm.sendOk("Please create a party, prior to starting the dungeon.");
                 cm.dispose();
             }
         }
@@ -85,8 +85,11 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
     // They want in the dungeon
     else if (status == 1)
     {
+        // Store the Object ID
+        var npcOID = cm.getNpcObjectId();
+
         // Get NPC data using the NPC's object ID
-        var npcData = MapleMap.getNpcData(cm.getNpcObjectId());
+        var npcData = MapleMap.getNpcData(npcOID);
         var monster = npcData.get("monster");
 
         // Assign the next EventManager
@@ -117,8 +120,15 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Set the eligible members before starting the instance
             party.setEligibleMembers(eligibleMembers);
 
-            // Attemp to start the dungeon
-            if (!em.startInstance(party, cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
+            // Attempt to start the dungeon
+            if (em.startInstance(party, cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
+            {
+                // Remove the NPC
+                MapleMap.removeDungeonPortal(npcOID);
+            }
+
+            // Dungeon failed to start
+            else
             {
                 cm.sendOk("The Dungeon failed to start. Please report this in the bugs section of #bDiscord#k!");
             }

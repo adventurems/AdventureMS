@@ -426,16 +426,11 @@ public class MapleMap {
 
         // Find coordinates
         Point checkpos = monster.getMap().getGroundBelow(monster.getPosition());
-        // int xpos = checkpos.x;
-        // int ypos = checkpos.y;
         int fh = chr.getMap().getFootholds().findBelow(checkpos).getId();
 
         // Build NPC
         NPC npc = Randomizer.nextInt(25) == 0 ? LifeFactory.getNPC(9800030) : LifeFactory.getNPC(9800017); // 4% chance to spawn rare dungeon
         npc.setPosition(checkpos);
-        // npc.setCy(ypos);
-        // npc.setRx0(xpos + 53);
-        // npc.setRx1(xpos - 53);
         npc.setFh(fh);
 
         // Create and Broadcast
@@ -453,7 +448,6 @@ public class MapleMap {
         data.put("monster", monster.getId());
         data.put("player", chr.getId());
         npcData.put(npc.getObjectId(), data);
-        chr.yellowMessage("NPC ID: " + npc.getObjectId() + " | Party: " + chr.getPartyId() + " | Monster: " + monster.getId() + " | Player: " + chr.getId());
 
         // Schedule NPC removal
         Runnable removeNpcTask = new Runnable() {
@@ -1954,7 +1948,42 @@ public class MapleMap {
         return false;
     }
 
-    public void destroyNPC(int npcid) {     // assumption: there's at most one of the same NPC in a map.
+    // AdventureMS Custom - Remove Dungeon Portal
+    public void removeDungeonPortal(int objectId)
+    {
+        chrRLock.lock();
+        objectWLock.lock();
+
+        try
+        {
+            // Get the NPC object first
+            MapObject obj = getMapObject(objectId);
+            if (obj != null && obj.getType() == MapObjectType.NPC) {
+                NPC npc = (NPC) obj;
+
+                // Cancel any pending NPC removal task
+                OverallService service = (OverallService) this.getChannelServer().getServiceAccess(ChannelServices.OVERALL);
+                if (service != null) {
+                    service.forceRunOverallAction(mapid, () -> {
+                    });
+                }
+
+                // Remove the NPC from the map
+                npcData.remove(objectId);
+                removeMapObject(objectId);
+                broadcastMessage(PacketCreator.npcUpdateLimitedInfo(objectId, false));
+                broadcastMessage(PacketCreator.playSound("Portal/close"));
+            }
+        }
+
+        finally
+        {
+            objectWLock.unlock();
+            chrRLock.unlock();
+        }
+    }
+
+    public void destroyNPC(int npcid) {
         List<MapObject> npcs = getMapObjectsInRange(new Point(0, 0), Double.POSITIVE_INFINITY, Arrays.asList(MapObjectType.NPC));
 
         chrRLock.lock();
