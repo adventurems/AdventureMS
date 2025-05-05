@@ -1751,7 +1751,7 @@ public class Monster extends AbstractLoadedLife {
         ostats.basicDifficultyUpdate(stats, difficulty);
 
         // Map basic ostats to mob
-        this.hp.set(300);
+        this.hp.set(9000);
         // setMp(ostats.getoMP());
         // stats.setExp(ostats.getoEXP());
     }
