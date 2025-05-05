@@ -13,7 +13,9 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 	// They want to leave the dungeon
 	else if (status == 1)
 	{
-		// Warp to the entranceMap
-		cm.warp(parseInt(cm.getPlayer().getEventInstance().getProperty("entranceMap")));
+		// Get the event instance & exit the player
+		var eventInstance = cm.getPlayer().getEventInstance();
+		eventInstance.playerExit(cm.getPlayer());
+		cm.dispose();
 	}
 }
