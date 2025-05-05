@@ -282,7 +282,7 @@ function monsterKilled(mob, eim) {  // AdventureMS Custom
         eim.showClearEffect(map.getId());  // Show clear effect when all monsters dead
 
         // If it's the last map, clear the event
-        if (map === maxMapId) {clearPQ(eim);}
+        if (map.getId() === maxMapId) {clearPQ(eim);}
     }
 }
 function clearPQ(eim) {
