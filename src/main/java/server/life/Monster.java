@@ -270,9 +270,13 @@ public class Monster extends AbstractLoadedLife {
         return stats.getMp();
     }
 
-    public int getExp() {
+    public int getExp() { // AdventureMS Custom
+        if (ostats != null) {
+            return ostats.getExp();
+        }
         return stats.getExp();
     }
+
 
     public int getLevel() {
         return stats.getLevel();
@@ -1793,7 +1797,6 @@ public class Monster extends AbstractLoadedLife {
         this.ostats = new ChangeableStats(stats, difficulty * 2);
         this.hp.set(ostats.getHp());
         this.mp = ostats.getMp();
-        this.stats.setExp((int) (stats.getExp() * difficulty * .75));
     }
 
     // ---------------------------------------------------------------------------------
