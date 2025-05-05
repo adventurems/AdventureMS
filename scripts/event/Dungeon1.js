@@ -10,9 +10,6 @@ var minMapId = 3000000;
 var maxMapId = 3000030;
 var bossId = 3300008; // AdventureMS Custom Boss Spawn
 
-// Import Java classes
-const Point = Java.type('java.awt.Point');
-
 function setup(level, lobbyid, monsterId, mapId)
 {
     // Set up the event
@@ -66,7 +63,7 @@ function setup(level, lobbyid, monsterId, mapId)
 
         // Spawn monsters on all platforms
         platforms.forEach(function(platform, index) {
-            spawnMonstersOnPlatform(eim, map, monsterId, platform[0], platform[1], platform[2]);
+            spawnMonstersOnPlatform(eim, map, monsterId, platform[0], platform[1], platform[2], index + 1);
         });
     });
 
@@ -214,37 +211,34 @@ function basicDungeonSetup(eim) {
     eim.startEventTimer(eventTime * 60000);
 } // AdventureMS Custom
 function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
-    var difficulty = eim.getPlayers().size() * 2;
 
-    // Loop through and create / modify monsters
-    for (var i = 0; i < count; i++)
-    {
+    // Get the Dungeon Difficulty
+    var diff = eim.getPlayers().size() * 2;
+
+    // Loop through and create monsters
+    for (var i = 0; i < count; i++) {
         var mob = em.getMonster(monsterId);
 
         // Scale the monster BEFORE spawning using changeDifficulty
-        // mob.changeDifficultyBasic(difficulty);
-
-        // Set the position
-        var spos = new Point(x, y);
-        mob.setPosition(spos);
+        mob.changeDifficultyBasic(diff);
 
         // Spawn the monster on the map
-        map.spawnMonster(mob);
+        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
     }
 }
 function spawnBoss(eim, map, bossId) {
-    var difficulty = eim.getPlayers().size() * 2;
+
+    // Get the Dungeon Difficulty
+    var diff = eim.getPlayers().size() * 2;
+
+    // Get the boss monster
     var mob = em.getMonster(bossId);
 
     // Scale the boss BEFORE spawning using changeDifficulty
-    // mob.changeDifficultyBasic(difficulty);
+    mob.changeDifficultyBasic(diff);
 
-    // Set the position
-    var spos = new Point(811, 368);
-    mob.setPosition(spos);
-
-    // Spawn the monster on the map
-    map.spawnMonster(mob);
+    // Spawn the boss on the map
+    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
 }
 function changedMapInside(eim, mapid) {
     var stage = eim.getIntProperty("curStage");
