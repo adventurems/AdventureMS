@@ -572,13 +572,11 @@ public class MapleMap {
         // Set the goblin's position to match the original monster's position
         goblin.setPosition(monster.getPosition());
 
-        // Create override stats with 10x HP and 8x EXP
-        OverrideMonsterStats overrideStats = new OverrideMonsterStats();
-        overrideStats.setOHp(monster.getHp() * 10);  // 10 times higher HP
-        overrideStats.setOExp(monster.getExp() * 8); // 8 times higher EXP
-
         // Apply the override stats to the goblin
-        goblin.setOverrideStats(overrideStats);
+        goblin.getStats().setChange(true);
+
+        // Multiply HP by 10 and exp by 7.5
+        goblin.changeDifficulty(5);
 
         // Announce the monster spawn to the map
         monster.getMap().broadcastMessage(PacketCreator.serverNotice(6, "A rare monster has appeared!"));
