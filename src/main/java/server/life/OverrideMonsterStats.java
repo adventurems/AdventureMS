@@ -29,7 +29,7 @@ public class OverrideMonsterStats {
     }
 
     public OverrideMonsterStats(int hp, int mp, int exp, boolean change) {
-        this.hp = /*change ? (hp * 3L / 2L) : */ hp;
+        this.hp = hp;
         this.mp = mp;
         this.exp = exp;
     }
