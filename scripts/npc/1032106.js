@@ -14,6 +14,6 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 	else if (status == 1)
 	{
 		// Warp to the entranceMap
-		cm.warp(cm.getPlayer().getEventInstance().entranceMap);
+		cm.warp(parseInt(cm.getPlayer().getEventInstance().getProperty("entranceMap")));
 	}
 }
