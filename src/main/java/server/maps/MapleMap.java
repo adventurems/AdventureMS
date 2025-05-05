@@ -2201,7 +2201,7 @@ public class MapleMap {
         }
     }
 
-    public void spawnMonster(final Monster monster) {
+    public void spawnMonster(Monster monster) {
         if (mobCapacity != -1 && mobCapacity == spawnedMonstersOnMap.get()) {
             return;
         }
