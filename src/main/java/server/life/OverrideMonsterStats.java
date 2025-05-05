@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package server.life;
 
 public class OverrideMonsterStats {
-    
+
     public int oHP, oMP, oEXP, oPAD, oMAD, oPDD, oMDD, oLEVEL;
 
     // Default stats are set to provided monster stats
@@ -45,6 +45,11 @@ public class OverrideMonsterStats {
         oPDD = stats.getPDDamage();
         oMDD = stats.getMDDamage();
         oLEVEL = stats.getLevel();
+
+        // Print stats to console with labels and | delimiter
+        System.out.println("Monster Stats: HP: " + oHP + " | MP: " + oMP + " | EXP: " + oEXP + 
+                          " | PAD: " + oPAD + " | MAD: " + oMAD + " | PDD: " + oPDD + 
+                          " | MDD: " + oMDD + " | LEVEL: " + oLEVEL);
     }
 
     // Public getter methods
