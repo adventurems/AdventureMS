@@ -1725,7 +1725,7 @@ public class MapleMap {
             }
 
             // AdventureMS Custom - Dungeon Portal / Goblin
-            if (!monster.isBoss())
+            if (!monster.isBoss() && (monster.getMap().getId() > 3999999 || monster.getMap().getId() < 3000000))
             {
                 spawnDungeonPortal(chr, monster); // Chance to spawn Dungeon Portal
                 spawnGoblin(monster); // Chance to spawn Goblin
