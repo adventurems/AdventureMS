@@ -221,11 +221,14 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
         // Scale the monster BEFORE spawning using changeDifficulty
         mob.changeDifficultyBasic(difficulty);
 
-        // Register Monster
-        eim.registerMonster(mob);
+        // Set the position
+        Point spos = new Point(pos.x, pos.y - 1);
+        spos = calcPointBelow(spos);
+        spos.y--;
+        mob.setPosition(spos);
 
         // Spawn the monster on the map
-        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
+        spawnMonster(mob);
     }
 }
 function spawnBoss(eim, map, bossId) {
@@ -234,9 +237,6 @@ function spawnBoss(eim, map, bossId) {
 
     // Scale the boss BEFORE spawning using changeDifficulty
     mob.changeDifficultyBasic(difficulty);
-
-    // Register Monster
-    eim.registerMonster(mob);
 
     // Spawn the boss on the map
     map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
