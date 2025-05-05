@@ -225,8 +225,7 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
         mob.changeDifficultyBasic(difficulty);
 
         // Set the position
-        var spos = new Point(x, y - 1);
-        spos = calcPointBelow(spos);
+        var spos = new Point(x, y);
         mob.setPosition(spos);
 
         // Spawn the monster on the map
@@ -241,8 +240,7 @@ function spawnBoss(eim, map, bossId) {
     mob.changeDifficultyBasic(difficulty);
 
     // Set the position
-    var spos = new Point(811, 368 - 1);
-    spos = calcPointBelow(spos);
+    var spos = new Point(811, 368);
     mob.setPosition(spos);
 
     // Spawn the monster on the map
