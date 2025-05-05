@@ -88,7 +88,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Monster extends AbstractLoadedLife {
     private static final Logger log = LoggerFactory.getLogger(Monster.class);
 
-    private ChangeableStats ostats = null;  //unused, v83 WZs offers no support for changeable stats.
+    private ChangeableStats ostats = null;
     private MonsterStats stats;
     private final AtomicInteger hp = new AtomicInteger(1);
     private final AtomicLong maxHpPlusHeal = new AtomicLong(1);
@@ -1791,6 +1791,9 @@ public class Monster extends AbstractLoadedLife {
         if (!stats.isChangeable()) { return; }
 
         this.ostats = new ChangeableStats(stats, difficulty * 2);
+        this.hp.set(ostats.getHp());
+        this.mp = ostats.getMp();
+        this.stats.setExp(ostats.getExp());
     }
 
     // ---------------------------------------------------------------------------------
