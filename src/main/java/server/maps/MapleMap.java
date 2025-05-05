@@ -521,8 +521,8 @@ public class MapleMap {
         // Determine if a goblin will spawn
         final int GOBLIN_MIN_LEVEL = 10;
         final int GOBLIN_MAX_LEVEL = 150;
-        final double GOBLIN_BASE_CHANCE = 1000.0;
-        final double GOBLIN_MAX_CHANCE = 2000.0;
+        final double GOBLIN_BASE_CHANCE = 1; // TODO Fix these rates
+        final double GOBLIN_MAX_CHANCE = 5;
         final int monsterLvl = monster.getLevel(); // Store the monster level for dungeon chance
 
         if (monsterLvl < GOBLIN_MIN_LEVEL) {return;} // Exit early if monster level is too low

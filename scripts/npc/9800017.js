@@ -6,7 +6,6 @@ var LifeFactory = Java.type('server.life.LifeFactory');
 
 // Additional Variables
 var dungeonTier = 1;
-var solo = false;
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
@@ -19,9 +18,6 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         var party = npcData.get("party");
         var player = npcData.get("player");
         var monsterLvl = LifeFactory.getMonsterLevel(npcData.get("monster"));
-
-        // Check if they are solo
-        if (party === -1) {solo = true;}
 
         // Check that they are in real party
         if (party != -1)
