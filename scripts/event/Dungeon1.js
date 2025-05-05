@@ -272,7 +272,7 @@ function changedMapInside(eim, mapid) {
 } // AdventureMS Custom
 function playerExit(eim, player) {
     eim.unregisterPlayer(player);
-    var mapId = eim.getProperty("entranceMap");
+    var mapId = parseInt(eim.getProperty("entranceMap"));
     player.changeMap(mapId, 0);
 } // AdventureMS Custom
 function monsterKilled(mob, eim) {  // AdventureMS Custom
