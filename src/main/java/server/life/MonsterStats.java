@@ -38,7 +38,6 @@ import java.util.Set;
  * @author Frz
  */
 public class MonsterStats {
-    public boolean changeable;
     public int exp, hp, mp, level, PADamage, PDDamage, MADamage, MDDamage, dropPeriod, cp, buffToGive = -1, removeAfter;
     public boolean boss, undead, ffaLoot, isExplosiveReward, firstAttack, removeOnMiss;
     public String name;
@@ -53,14 +52,6 @@ public class MonsterStats {
     public selfDestruction selfDestruction = null;
     public int fixedStance = 0;
     public boolean friendly;
-
-    public void setChange(boolean change) {
-        this.changeable = change;
-    }
-
-    public boolean isChangeable() {
-        return changeable;
-    }
 
     public int getExp() {
         return exp;

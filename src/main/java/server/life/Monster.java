@@ -88,7 +88,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Monster extends AbstractLoadedLife {
     private static final Logger log = LoggerFactory.getLogger(Monster.class);
 
-    private ChangeableStats ostats = null;
+    private OverrideMonsterStats ostats = null;
     private MonsterStats stats;
     private final AtomicInteger hp = new AtomicInteger(1);
     private final AtomicLong maxHpPlusHeal = new AtomicLong(1);
@@ -251,10 +251,6 @@ public class Monster extends AbstractLoadedLife {
         this.hp.set(hp);
     }
 
-    public int getMaxHp() {
-        return stats.getHp();
-    }
-
     public int getMp() {
         return mp;
     }
@@ -266,66 +262,39 @@ public class Monster extends AbstractLoadedLife {
         this.mp = mp;
     }
 
-    public int getMaxMp() {
-        return stats.getMp();
-    }
-
-    public int getExp() { // AdventureMS Custom
-        if (ostats != null) {
-            return ostats.getExp();
-        }
-        return stats.getExp();
-    }
-
-
-    public int getLevel() {
-        return stats.getLevel();
-    }
-
     public int getCP() {
         return stats.getCP();
     }
-
     public int getTeam() {
         return team;
     }
-
     public void setTeam(int team) {
         this.team = team;
     }
-
     public int getVenomMulti() {
         return this.VenomMultiplier;
     }
-
     public void setVenomMulti(int multiplier) {
         this.VenomMultiplier = multiplier;
     }
-
     public MonsterStats getStats() {
         return stats;
     }
-
     public boolean isBoss() {
         return stats.isBoss();
     }
-
     public int getAnimationTime(String name) {
         return stats.getAnimationTime(name);
     }
-
     private List<Integer> getRevives() {
         return stats.getRevives();
     }
-
     private byte getTagColor() {
         return stats.getTagColor();
     }
-
     private byte getTagBgColor() {
         return stats.getTagBgColor();
     }
-
     public void setHpZero() {     // force HP = 0
         applyAndGetHpDamage(Integer.MAX_VALUE, false);
     }
@@ -393,7 +362,7 @@ public class Monster extends AbstractLoadedLife {
             from.setPlayerAggro(this.hashCode());
             from.getMap().broadcastBossHpMessage(this, this.hashCode(), makeBossHPBarPacket(), getPosition());
         } else if (!isBoss()) {
-            int remainingHP = (int) Math.max(1, hp.get() * 100f / getMobMaxHp());
+            int remainingHP = (int) Math.max(1, hp.get() * 100f / getMaxHp());
             Packet packet = PacketCreator.showMonsterHP(getObjectId(), remainingHP);
             if (from.getParty() != null) {
                 for (PartyCharacter mpc : from.getParty().getMembers()) {
@@ -1041,7 +1010,7 @@ public class Monster extends AbstractLoadedLife {
 
     // AdventureMS Custom - Fixed HP Ratio
     public Packet makeBossHPBarPacket() {
-        return PacketCreator.showBossHP(getId(), getHp(), getMobMaxHp(), getTagColor(), getTagBgColor());
+        return PacketCreator.showBossHP(getId(), getHp(), getMaxHp(), getTagColor(), getTagBgColor());
     }
 
     public boolean hasBossHPBar() {
@@ -1752,10 +1721,6 @@ public class Monster extends AbstractLoadedLife {
         return stats.getDropPeriod();
     }
 
-    public int getPADamage() {
-        return stats.getPADamage();
-    }
-
     public Map<MonsterStatus, MonsterStatusEffect> getStati() {
         statiLock.lock();
         try {
@@ -1774,32 +1739,28 @@ public class Monster extends AbstractLoadedLife {
         }
     }
 
-    // ---- one can always have fun trying these pieces of codes below in-game rofl ----
+    // AdventureMS Custom Stat Overrides
 
-    public final ChangeableStats getChangedStats() {
-        return ostats;
+    public final void changeDifficultyBasic(final int difficulty)
+    {
+        // Assign monster ostats to new OverrideMonsterStats object
+        this.ostats = new OverrideMonsterStats(stats);
+
+        // Update the basic ostats
+        ostats.basicDifficultyUpdate(difficulty);
+
+        // this.hp.set(ostats.oHP * difficulty);
+        // setMp(ostats.oMP * difficulty);
     }
 
-    public final int getMobMaxHp() {
-        if (ostats != null) {
-            return ostats.hp;
-        }
-        return stats.getHp();
-    }
-
-    public final void setOverrideStats(final OverrideMonsterStats ostats) {
-        this.ostats = new ChangeableStats(stats, ostats);
-        this.hp.set(ostats.getHp());
-        this.mp = ostats.getMp();
-    }
-
-    public final void changeDifficulty(final int difficulty) {
-        if (!stats.isChangeable()) { return; }
-
-        this.ostats = new ChangeableStats(stats, difficulty * 2);
-        this.hp.set(ostats.getHp());
-        this.mp = ostats.getMp();
-    }
+    public final int getMaxHp() {if (ostats != null) {return ostats.getoHP();} return stats.getHp();}
+    public final int getMaxMp() {if (ostats != null) {return ostats.getoMP();} return stats.getMp();}
+    public int getExp() {if (ostats != null) {return ostats.getoEXP();} return stats.getExp();}
+    public int getPADamage() {if (ostats != null) {return ostats.getoPAD();} return stats.getPADamage();}
+    public int getMADamage() {if (ostats != null) {return ostats.getoMAD();} return stats.getMADamage();}
+    public int getPDDamage() {if (ostats != null) {return ostats.getoPDD();} return stats.getPDDamage();}
+    public int getMDDamage() {if (ostats != null) {return ostats.getoMDD();} return stats.getMDDamage();}
+    public int getLevel() {if (ostats != null) {return ostats.getoLEVEL();} return stats.getLevel();}
 
     // ---------------------------------------------------------------------------------
 

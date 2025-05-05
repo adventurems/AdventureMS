@@ -47,8 +47,6 @@ import net.server.world.Party;
 import net.server.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import provider.Data;
-import provider.DataTool;
 import scripting.event.EventInstanceManager;
 import scripting.map.MapScriptManager;
 import server.ItemInformationProvider;
@@ -59,7 +57,6 @@ import server.events.gm.Fitness;
 import server.events.gm.Ola;
 import server.events.gm.OxQuiz;
 import server.events.gm.Snowball;
-import server.life.ChangeableStats;
 import server.life.LifeFactory;
 import server.life.LifeFactory.selfDestruction;
 import server.life.Monster;
@@ -68,7 +65,6 @@ import server.life.MonsterGlobalDropEntry;
 import server.life.MonsterInformationProvider;
 import server.life.MonsterListener;
 import server.life.NPC;
-import server.life.OverrideMonsterStats;
 import server.life.PlayerNPC;
 import server.life.SpawnPoint;
 import server.partyquest.CarnivalFactory;
@@ -572,11 +568,8 @@ public class MapleMap {
         // Set the goblin's position to match the original monster's position
         goblin.setPosition(monster.getPosition());
 
-        // Apply the override stats to the goblin
-        goblin.getStats().setChange(true);
-
         // Multiply HP by 10 and exp by 7.5
-        goblin.changeDifficulty(5);
+        goblin.changeDifficultyBasic(10);
 
         // Announce the monster spawn to the map
         monster.getMap().broadcastMessage(PacketCreator.serverNotice(6, "A rare monster has appeared!"));
@@ -2221,7 +2214,7 @@ public class MapleMap {
             return;//PyPQ
         }
 
-        monster.changeDifficulty(difficulty);
+        monster.changeDifficultyBasic(difficulty);
 
         monster.setMap(this);
         if (getEventInstance() != null) {

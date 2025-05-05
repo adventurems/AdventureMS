@@ -18,47 +18,47 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package server.life;
 
 public class OverrideMonsterStats {
+    
+    public int oHP, oMP, oEXP, oPAD, oMAD, oPDD, oMDD, oLEVEL;
 
-    public int hp;
-    public int exp, mp;
-
-    public OverrideMonsterStats() {
-        hp = 1;
-        exp = 0;
-        mp = 0;
+    // Default stats are set to provided monster stats
+    public OverrideMonsterStats(MonsterStats stats)
+    {
+        this.oHP = stats.getHp();
+        this.oMP = stats.getMp();
+        this.oEXP = stats.getExp();
+        this.oPAD = stats.getPADamage();
+        this.oMAD = stats.getMADamage();
+        this.oPDD = stats.getPDDamage();
+        this.oMDD = stats.getMDDamage();
+        this.oLEVEL = stats.getLevel();
     }
 
-    public OverrideMonsterStats(int hp, int mp, int exp, boolean change) {
-        this.hp = hp;
-        this.mp = mp;
-        this.exp = exp;
+    // Updates only HP / MP / EXP
+    public void basicDifficultyUpdate(int difficulty)
+    {
+        oHP = oHP * difficulty;
+        oMP = oMP * difficulty;
+        oEXP = (int) (oEXP * (difficulty * .75));
     }
 
-    public OverrideMonsterStats(int hp, int mp, int exp) {
-        this(hp, mp, exp, true);
-    }
+    // Public getter methods
+    public int getoHP()     {return oHP;}
+    public int getoMP()     {return oMP;}
+    public int getoEXP()    {return oEXP;}
+    public int getoPAD()    {return oPAD;}
+    public int getoMAD()    {return oMAD;}
+    public int getoPDD()    {return oPDD;}
+    public int getoMDD()    {return oMDD;}
+    public int getoLEVEL()  {return oLEVEL;}
 
-    public int getExp() {
-        return exp;
-    }
-
-    public void setOExp(int exp) {
-        this.exp = exp;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setOHp(int hp) {
-        this.hp = hp;
-    }
-
-    public int getMp() {
-        return mp;
-    }
-
-    public void setOMp(int mp) {
-        this.mp = mp;
-    }
+    // Public setter methods
+    public void setoHP(int oHP)         {this.oHP = oHP;}
+    public void setoMP(int oMP)         {this.oMP = oMP;}
+    public void setoEXP(int oEXP)       {this.oEXP = oEXP;}
+    public void setoPAD(int oPAD)       {this.oPAD = oPAD;}
+    public void setoMAD(int oMAD)       {this.oMAD = oMAD;}
+    public void setoPDD(int oPDD)       {this.oPDD = oPDD;}
+    public void setoMDD(int oMDD)       {this.oMDD = oMDD;}
+    public void setoLEVEL(int oLEVEL)   {this.oLEVEL = oLEVEL;}
 }

@@ -222,7 +222,7 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
         mob.getStats().setChange(true);
 
         // Scale the monster BEFORE spawning using changeDifficulty
-        mob.changeDifficulty(partySize);
+        mob.changeDifficultyBasic(partySize);
 
         // Spawn the monster on the map
         map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
@@ -239,7 +239,7 @@ function spawnBoss(eim, map, bossId) {
     mob.getStats().setChange(true);
 
     // Scale the boss BEFORE spawning using changeDifficulty
-    mob.changeDifficulty(partySize);
+    mob.changeDifficultyBasic(partySize);
 
     // Spawn the boss on the map
     map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
