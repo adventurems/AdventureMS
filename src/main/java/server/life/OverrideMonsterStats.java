@@ -39,7 +39,7 @@ public class OverrideMonsterStats {
     {
         oHP = oHP * difficulty;
         oMP = oMP * difficulty;
-        oEXP = (int) (oEXP * (difficulty * .75));
+        // oEXP = (int) (oEXP * (difficulty * .75));
     }
 
     // Public getter methods
