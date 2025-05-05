@@ -125,6 +125,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             {
                 // Remove the NPC
                 MapleMap.removeDungeonPortal(npcOID);
+                cm.getPlayer().yellowMessage("The Dungeon has started!");
             }
 
             // Dungeon failed to start
