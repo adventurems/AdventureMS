@@ -212,11 +212,15 @@ function basicDungeonSetup(eim) {
 } // AdventureMS Custom
 function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
     var partySize = eim.getPlayers().size();
-    for (var i = 0; i < count; i++) {
+
+    // Loop through and create / modify monsters
+    for (var i = 0; i < count; i++)
+    {
         var mob = em.getMonster(monsterId);
+        var referenceMob = em.getMonster(monsterId);
 
         // Scale the monster BEFORE spawning using changeDifficulty
-        mob.changeDifficultyBasicWithStats(mob, partySize * 2);
+        mob.changeDifficultyBasicWithStats(referenceMob, partySize * 2);
 
         // Spawn the monster on the map
         map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
