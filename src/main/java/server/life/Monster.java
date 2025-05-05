@@ -1039,8 +1039,9 @@ public class Monster extends AbstractLoadedLife {
         this.controllerHasPuppet = controllerHasPuppet;
     }
 
+    // AdventureMS Custom - Fixed HP Ratio
     public Packet makeBossHPBarPacket() {
-        return PacketCreator.showBossHP(getId(), getHp(), getMaxHp(), getTagColor(), getTagBgColor());
+        return PacketCreator.showBossHP(getId(), getHp(), getMobMaxHp(), getTagColor(), getTagBgColor());
     }
 
     public boolean hasBossHPBar() {
