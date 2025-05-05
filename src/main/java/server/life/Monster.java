@@ -387,16 +387,17 @@ public class Monster extends AbstractLoadedLife {
         hp.set(-1);
     }
 
+    // AdventureMS Custom - Includes oStats handling
     public void broadcastMobHpBar(Character from) {
         if (hasBossHPBar()) {
             from.setPlayerAggro(this.hashCode());
             from.getMap().broadcastBossHpMessage(this, this.hashCode(), makeBossHPBarPacket(), getPosition());
         } else if (!isBoss()) {
-            int remainingHP = (int) Math.max(1, hp.get() * 100f / getMaxHp());
+            int remainingHP = (int) Math.max(1, hp.get() * 100f / getMobMaxHp());
             Packet packet = PacketCreator.showMonsterHP(getObjectId(), remainingHP);
             if (from.getParty() != null) {
                 for (PartyCharacter mpc : from.getParty().getMembers()) {
-                    Character member = from.getMap().getCharacterById(mpc.getId()); // god bless
+                    Character member = from.getMap().getCharacterById(mpc.getId());
                     if (member != null) {
                         member.sendPacket(packet);
                     }
@@ -1795,7 +1796,7 @@ public class Monster extends AbstractLoadedLife {
         if (!stats.isChangeable()) { return; }
 
         this.ostats = new ChangeableStats(stats, difficulty * 2);
-        setStartingHp(ostats.getHp());
+        this.hp.set(ostats.getHp());
         this.mp = ostats.getMp();
     }
 
