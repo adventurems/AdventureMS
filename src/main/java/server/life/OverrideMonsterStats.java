@@ -35,16 +35,11 @@ public class OverrideMonsterStats {
     }
 
     // Updates only HP / MP / EXP
-    public void basicDifficultyUpdate(MonsterStats stats, int difficulty)
+    public void basicDifficultyUpdate(int difficulty)
     {
         oHP = oHP * difficulty;
         oMP = oMP * difficulty;
         oEXP = (int) (oEXP * .75);
-        oPAD = stats.getPADamage();
-        oMAD = stats.getMADamage();
-        oPDD = stats.getPDDamage();
-        oMDD = stats.getMDDamage();
-        oLEVEL = stats.getLevel();
 
         // Print stats to console with labels and | delimiter
         System.out.println("Monster Stats: HP: " + oHP + " | MP: " + oMP + " | EXP: " + oEXP + 

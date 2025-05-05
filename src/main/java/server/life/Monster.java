@@ -1748,10 +1748,10 @@ public class Monster extends AbstractLoadedLife {
         this.ostats = new OverrideMonsterStats(stats);
 
         // Update the basic ostats
-        ostats.basicDifficultyUpdate(stats, difficulty);
+        ostats.basicDifficultyUpdate(difficulty);
 
         // Map basic ostats to mob
-        this.hp.set(9000);
+        this.hp.set(ostats.getoHP());
         this.maxHpPlusHeal.set(ostats.getoHP());
         // setMp(ostats.getoMP());
         // stats.setExp(ostats.getoEXP());
@@ -1764,7 +1764,7 @@ public class Monster extends AbstractLoadedLife {
         this.ostats = new OverrideMonsterStats(monster.getStats());
 
         // Update the basic ostats
-        ostats.basicDifficultyUpdate(monster.getStats(), difficulty);
+        ostats.basicDifficultyUpdate(difficulty);
 
         // Map basic ostats to mob
         this.hp.set(ostats.getoHP());
