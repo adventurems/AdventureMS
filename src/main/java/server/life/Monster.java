@@ -1787,42 +1787,10 @@ public class Monster extends AbstractLoadedLife {
         this.mp = ostats.getMp();
     }
 
-    public final void changeLevel(final int newLevel) {
-        changeLevel(newLevel, true);
-    }
+    public final void changeDifficulty(final int difficulty) {
+        if (!stats.isChangeable()) { return; }
 
-    public final void changeLevel(final int newLevel, boolean pqMob) {
-        if (!stats.isChangeable()) {
-            return;
-        }
-        this.ostats = new ChangeableStats(stats, newLevel, pqMob);
-        this.hp.set(ostats.getHp());
-        this.mp = ostats.getMp();
-    }
-
-    private float getDifficultyRate(final int difficulty) {
-        switch (difficulty) {
-            case 6:
-                return (12.0f);
-            case 5:
-                return (10.0f);
-            case 4:
-                return (8.0f);
-            case 3:
-                return (6.0f);
-            case 2:
-                return (4.0f);
-        }
-
-        return (2.0f);
-    }
-
-    private void changeLevelByDifficulty(final int difficulty, boolean pqMob) {
-        changeLevel((int) (this.getLevel() * getDifficultyRate(difficulty)), pqMob);
-    }
-
-    public final void changeDifficulty(final int difficulty, boolean pqMob) {
-        changeLevelByDifficulty(difficulty, pqMob);
+        this.ostats = new ChangeableStats(stats, difficulty * 2);
     }
 
     // ---------------------------------------------------------------------------------

@@ -34,21 +34,17 @@ public class ChangeableStats extends OverrideMonsterStats {
         level = stats.getLevel();
     }
 
-    public ChangeableStats(MonsterStats stats, int newLevel, boolean pqMob) { // here we go i think
-        final double mod = (double) newLevel / (double) stats.getLevel();
-        final double hpRatio = (double) stats.getHp() / (double) stats.getExp();
-        final double pqMod = (pqMob ? 1.5 : 1.0); // god damn
-        hp = Math.min((int) Math.round((!stats.isBoss() ? GameConstants.getMonsterHP(newLevel) : (stats.getHp() * mod)) * pqMod), Integer.MAX_VALUE); // right here lol
-        exp = Math.min((int) Math.round((!stats.isBoss() ? (GameConstants.getMonsterHP(newLevel) / hpRatio) : (stats.getExp())) * pqMod), Integer.MAX_VALUE);
-        mp = Math.min((int) Math.round(stats.getMp() * mod * pqMod), Integer.MAX_VALUE);
-        watk = Math.min((int) Math.round(stats.getPADamage() * mod), Integer.MAX_VALUE);
-        matk = Math.min((int) Math.round(stats.getMADamage() * mod), Integer.MAX_VALUE);
-        wdef = Math.min(Math.min(stats.isBoss() ? 30 : 20, (int) Math.round(stats.getPDDamage() * mod)), Integer.MAX_VALUE);
-        mdef = Math.min(Math.min(stats.isBoss() ? 30 : 20, (int) Math.round(stats.getMDDamage() * mod)), Integer.MAX_VALUE);
-        level = newLevel;
+    public ChangeableStats(MonsterStats stats, int difficulty) {
+        hp = stats.getHp() * difficulty;
+        exp = (int) (stats.getExp() * (difficulty * .75));
+        mp = stats.getMp() * difficulty;
+        watk = stats.getPADamage();
+        matk = stats.getMADamage();
+        wdef = stats.getPDDamage();
+        mdef = stats.getMDDamage();
     }
 
-    public ChangeableStats(MonsterStats stats, float statModifier, boolean pqMob) {
-        this(stats, (int) (statModifier * stats.getLevel()), pqMob);
+    public ChangeableStats(MonsterStats stats, float statModifier) {
+        this(stats, (int) (statModifier * stats.getLevel()));
     }
 }

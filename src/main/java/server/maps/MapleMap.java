@@ -2152,37 +2152,37 @@ public class MapleMap {
     }
 
     public void spawnAllMonsterIdFromMapSpawnList(int id) {
-        spawnAllMonsterIdFromMapSpawnList(id, 1, false);
+        spawnAllMonsterIdFromMapSpawnList(id, 1);
     }
 
-    public void spawnAllMonsterIdFromMapSpawnList(int id, int difficulty, boolean isPq) {
+    public void spawnAllMonsterIdFromMapSpawnList(int id, int difficulty) {
         for (SpawnPoint sp : getAllMonsterSpawn()) {
             if (sp.getMonsterId() == id && sp.shouldForceSpawn()) {
-                spawnMonster(sp.getMonster(), difficulty, isPq);
+                spawnMonster(sp.getMonster(), difficulty);
             }
         }
     }
 
     public void spawnAllMonstersFromMapSpawnList() {
-        spawnAllMonstersFromMapSpawnList(1, false);
+        spawnAllMonstersFromMapSpawnList(1);
     }
 
-    public void spawnAllMonstersFromMapSpawnList(int difficulty, boolean isPq) {
+    public void spawnAllMonstersFromMapSpawnList(int difficulty) {
         for (SpawnPoint sp : getAllMonsterSpawn()) {
-            spawnMonster(sp.getMonster(), difficulty, isPq);
+            spawnMonster(sp.getMonster(), difficulty);
         }
     }
 
     public void spawnMonster(final Monster monster) {
-        spawnMonster(monster, 1, false);
+        spawnMonster(monster, 1);
     }
 
-    public void spawnMonster(final Monster monster, int difficulty, boolean isPq) {
+    public void spawnMonster(final Monster monster, int difficulty) {
         if (mobCapacity != -1 && mobCapacity == spawnedMonstersOnMap.get()) {
             return;//PyPQ
         }
 
-        monster.changeDifficulty(difficulty, isPq);
+        monster.changeDifficulty(difficulty);
 
         monster.setMap(this);
         if (getEventInstance() != null) {
