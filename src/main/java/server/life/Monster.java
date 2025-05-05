@@ -1768,7 +1768,7 @@ public class Monster extends AbstractLoadedLife {
         // Map basic ostats to mob
         this.hp.set(ostats.getoHP());
         setMp(ostats.getoMP());
-        stats.setExp(ostats.getoEXP());
+        this.stats.setExp(ostats.getoEXP());
     }
 
     public final int getMaxHp() {if (ostats != null) {return ostats.getoHP();} return stats.getHp();}
