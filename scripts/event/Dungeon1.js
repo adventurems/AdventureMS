@@ -63,7 +63,7 @@ function setup(level, lobbyid, monsterId, mapId)
 
         // Spawn monsters on all platforms
         platforms.forEach(function(platform, index) {
-            spawnMonstersOnPlatform(eim, map, monsterId, platform[0], platform[1], platform[2], index + 1);
+            spawnMonstersOnPlatform(eim, map, monsterId, platform[0], platform[1], platform[2]);
         });
     });
 
@@ -211,27 +211,32 @@ function basicDungeonSetup(eim) {
     eim.startEventTimer(eventTime * 60000);
 } // AdventureMS Custom
 function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
-    var partySize = eim.getPlayers().size();
+    var difficulty = eim.getPlayers().size() * 2;
 
     // Loop through and create / modify monsters
     for (var i = 0; i < count; i++)
     {
         var mob = em.getMonster(monsterId);
-        var referenceMob = em.getMonster(monsterId);
 
         // Scale the monster BEFORE spawning using changeDifficulty
-        mob.changeDifficultyBasicWithStats(referenceMob, partySize * 2);
+        mob.changeDifficultyBasic(difficulty);
+
+        // Register Monster
+        eim.registerMonster(mob);
 
         // Spawn the monster on the map
         map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
     }
 }
 function spawnBoss(eim, map, bossId) {
-    var partySize = eim.getPlayers().size();
+    var difficulty = eim.getPlayers().size() * 2;
     var mob = em.getMonster(bossId);
 
     // Scale the boss BEFORE spawning using changeDifficulty
-    mob.changeDifficultyBasic(partySize * 2);
+    mob.changeDifficultyBasic(difficulty);
+
+    // Register Monster
+    eim.registerMonster(mob);
 
     // Spawn the boss on the map
     map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
