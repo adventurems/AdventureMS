@@ -93,7 +93,6 @@ public class Monster extends AbstractLoadedLife {
     private final AtomicInteger hp = new AtomicInteger(1);
     private final AtomicLong maxHpPlusHeal = new AtomicLong(1);
     private int mp;
-    private int exp;
     private WeakReference<Character> controller = new WeakReference<>(null);
     private boolean controllerHasAggro, controllerKnowsAboutAggro, controllerHasPuppet;
     private final Collection<MonsterListener> listeners = new LinkedList<>();
@@ -145,7 +144,6 @@ public class Monster extends AbstractLoadedLife {
         this.stats = baseStats.copy();
         hp.set(stats.getHp());
         mp = stats.getMp();
-        exp = stats.getExp();
 
         maxHpPlusHeal.set(hp.get());
     }
@@ -1795,7 +1793,7 @@ public class Monster extends AbstractLoadedLife {
         this.ostats = new ChangeableStats(stats, difficulty * 2);
         this.hp.set(ostats.getHp());
         this.mp = ostats.getMp();
-        this.exp = ostats.getExp();
+        this.stats.setExp((int) (stats.getExp() * difficulty * .75));
     }
 
     // ---------------------------------------------------------------------------------
