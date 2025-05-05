@@ -1752,6 +1752,7 @@ public class Monster extends AbstractLoadedLife {
 
         // Map basic ostats to mob
         this.hp.set(9000);
+        this.maxHpPlusHeal.set(9000);
         // setMp(ostats.getoMP());
         // stats.setExp(ostats.getoEXP());
     }
