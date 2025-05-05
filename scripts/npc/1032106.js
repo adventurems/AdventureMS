@@ -15,7 +15,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 	{
 		// Get the event instance & exit the player
 		var eventInstance = cm.getPlayer().getEventInstance();
-		eventInstance.playerExit(cm.getPlayer());
+		eventInstance.removePlayer(cm.getPlayer());
 		cm.dispose();
 	}
 }
