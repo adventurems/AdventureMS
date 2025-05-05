@@ -13,9 +13,18 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 	// They want to leave the dungeon
 	else if (status == 1)
 	{
-		// Get the event instance & exit the player
+		// Get the event instance
 		var eventInstance = cm.getPlayer().getEventInstance();
-		eventInstance.removePlayer(cm.getPlayer());
+
+		// Check if this is the last player in the event
+		if (eventInstance.isEventTeamLackingNow(true, 1, cm.getPlayer())) {
+			// If this is the last player, end the event properly
+			eventInstance.invokeScriptFunction("end", eventInstance);
+		} else {
+			// Otherwise, just remove the player
+			eventInstance.removePlayer(cm.getPlayer());
+		}
+
 		cm.dispose();
 	}
 }
