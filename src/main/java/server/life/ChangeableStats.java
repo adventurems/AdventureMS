@@ -37,7 +37,7 @@ public class ChangeableStats extends OverrideMonsterStats {
     // AdventureMS Custom - Monster Stats
     public ChangeableStats(MonsterStats stats, int difficulty) {
         hp = stats.getHp() * difficulty;
-        exp = (int) (stats.getExp() * (difficulty * .75));
+        exp = (int) (stats.getExp() * (difficulty * .25));
         mp = stats.getMp() * difficulty;
         watk = stats.getPADamage();
         matk = stats.getMADamage();
