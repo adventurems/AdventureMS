@@ -237,7 +237,7 @@ function spawnBoss(eim, map, bossId) {
     var diff = eim.getPlayers().size() * 2;
 
     // Get the boss monster object
-    var mob = LifeFactory.getMonster(monsterId);
+    var mob = LifeFactory.getMonster(bossId);
 
     // Scale the boss BEFORE spawning using changeDifficulty
     mob.changeDifficultyBasic(diff);
