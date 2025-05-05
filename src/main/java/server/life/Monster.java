@@ -1793,7 +1793,7 @@ public class Monster extends AbstractLoadedLife {
         this.ostats = new ChangeableStats(stats, difficulty * 2);
         this.hp.set(ostats.getHp());
         this.mp = ostats.getMp();
-        this.stats.setExp((int) (difficulty * .75));
+        this.stats.exp = ((int) (difficulty * .75));
     }
 
     // ---------------------------------------------------------------------------------
