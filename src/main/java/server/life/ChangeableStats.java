@@ -44,8 +44,4 @@ public class ChangeableStats extends OverrideMonsterStats {
         wdef = stats.getPDDamage();
         mdef = stats.getMDDamage();
     }
-
-    public ChangeableStats(MonsterStats stats, float statModifier) {
-        this(stats, (int) (statModifier * stats.getLevel()));
-    }
 }
