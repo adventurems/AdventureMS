@@ -214,7 +214,7 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
 
     // Get the Dungeon Difficulty
     var diff = eim.getPlayers().size() * 2;
-    System.out.println("Dungeon1 diff: " + diff);
+    console.log("Dungeon1 diff: " + diff);
 
     // Loop through and create monsters
     for (var i = 0; i < count; i++)
