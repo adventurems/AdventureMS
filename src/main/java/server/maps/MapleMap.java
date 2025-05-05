@@ -447,7 +447,6 @@ public class MapleMap {
         data.put("party", chr.getPartyId());
         data.put("monster", monster.getId());
         data.put("player", chr.getId());
-        npcData.put(npc.getObjectId(), data);
 
         // Schedule NPC removal
         Runnable removeNpcTask = new Runnable() {
@@ -464,8 +463,56 @@ public class MapleMap {
             }
         };
 
-        // Use TimerManager to schedule the removal task after 45 seconds
-        TimerManager.getInstance().schedule(removeNpcTask, 45000);
+        // Store the task in the NPC data
+        data.put("removeTask", removeNpcTask);
+        npcData.put(npc.getObjectId(), data);
+
+        // Use OverallService to schedule the removal task after 45 seconds
+        OverallService service = (OverallService) this.getChannelServer().getServiceAccess(ChannelServices.OVERALL);
+        if (service != null) {
+            service.registerOverallAction(mapid, removeNpcTask, 45000);
+        }
+    }
+
+    // AdventureMS Custom - Remove Dungeon Portal
+    public void removeDungeonPortal(int objectId)
+    {
+        chrRLock.lock();
+        objectWLock.lock();
+
+        try
+        {
+            // Get the NPC object first
+            MapObject obj = getMapObject(objectId);
+            if (obj != null && obj.getType() == MapObjectType.NPC) {
+                NPC npc = (NPC) obj;
+
+                // Get the NPC data
+                Map<String, Object> data = npcData.get(objectId);
+                if (data != null) {
+                    // Get the removal task
+                    Runnable removeTask = (Runnable) data.get("removeTask");
+
+                    // Cancel any pending NPC removal task
+                    OverallService service = (OverallService) this.getChannelServer().getServiceAccess(ChannelServices.OVERALL);
+                    if (service != null && removeTask != null) {
+                        service.forceRunOverallAction(mapid, removeTask);
+                    }
+                }
+
+                // Remove the NPC from the map
+                npcData.remove(objectId);
+                removeMapObject(objectId);
+                broadcastMessage(PacketCreator.npcUpdateLimitedInfo(objectId, false));
+                broadcastMessage(PacketCreator.playSound("Portal/close"));
+            }
+        }
+
+        finally
+        {
+            objectWLock.unlock();
+            chrRLock.unlock();
+        }
     }
 
     // AdventureMS Custom - Spawn Goblin
@@ -1946,41 +1993,6 @@ public class MapleMap {
             objectRLock.unlock();
         }
         return false;
-    }
-
-    // AdventureMS Custom - Remove Dungeon Portal
-    public void removeDungeonPortal(int objectId)
-    {
-        chrRLock.lock();
-        objectWLock.lock();
-
-        try
-        {
-            // Get the NPC object first
-            MapObject obj = getMapObject(objectId);
-            if (obj != null && obj.getType() == MapObjectType.NPC) {
-                NPC npc = (NPC) obj;
-
-                // Cancel any pending NPC removal task
-                OverallService service = (OverallService) this.getChannelServer().getServiceAccess(ChannelServices.OVERALL);
-                if (service != null) {
-                    service.forceRunOverallAction(mapid, () -> {
-                    });
-                }
-
-                // Remove the NPC from the map
-                npcData.remove(objectId);
-                removeMapObject(objectId);
-                broadcastMessage(PacketCreator.npcUpdateLimitedInfo(objectId, false));
-                broadcastMessage(PacketCreator.playSound("Portal/close"));
-            }
-        }
-
-        finally
-        {
-            objectWLock.unlock();
-            chrRLock.unlock();
-        }
     }
 
     public void destroyNPC(int npcid) {

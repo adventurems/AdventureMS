@@ -120,7 +120,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Set the eligible members before starting the instance
             party.setEligibleMembers(eligibleMembers);
 
-            // Remove the NPC
+            // Remove this NPC
             cm.getMap().removeDungeonPortal(npcOID);
 
             // Attempt to start the dungeon
