@@ -10,6 +10,9 @@ var minMapId = 3000000;
 var maxMapId = 3000030;
 var bossId = 3300008; // AdventureMS Custom Boss Spawn
 
+// To create monsters
+var LifeFactory = Java.type('server.life.LifeFactory');
+
 function setup(level, lobbyid, monsterId, mapId)
 {
     // Set up the event
@@ -216,8 +219,10 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
     var diff = eim.getPlayers().size() * 2;
 
     // Loop through and create monsters
-    for (var i = 0; i < count; i++) {
-        var mob = em.getMonster(monsterId);
+    for (var i = 0; i < count; i++)
+    {
+        // Get the monster object
+        var mob = LifeFactory.getMonster(monsterId);
 
         // Scale the monster BEFORE spawning using changeDifficulty
         mob.changeDifficultyBasic(diff);
@@ -231,8 +236,8 @@ function spawnBoss(eim, map, bossId) {
     // Get the Dungeon Difficulty
     var diff = eim.getPlayers().size() * 2;
 
-    // Get the boss monster
-    var mob = em.getMonster(bossId);
+    // Get the boss monster object
+    var mob = LifeFactory.getMonster(monsterId);
 
     // Scale the boss BEFORE spawning using changeDifficulty
     mob.changeDifficultyBasic(diff);
