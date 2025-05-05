@@ -222,7 +222,7 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
         mob.changeDifficultyBasic(difficulty);
 
         // Set the position
-        Point spos = new Point(pos.x, pos.y - 1);
+        var spos = new Point(x, y - 1);
         spos = calcPointBelow(spos);
         spos.y--;
         mob.setPosition(spos);
@@ -238,8 +238,14 @@ function spawnBoss(eim, map, bossId) {
     // Scale the boss BEFORE spawning using changeDifficulty
     mob.changeDifficultyBasic(difficulty);
 
-    // Spawn the boss on the map
-    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
+    // Set the position
+    var spos = new Point(x, y - 1);
+    spos = calcPointBelow(spos);
+    spos.y--;
+    mob.setPosition(spos);
+
+    // Spawn the monster on the map
+    spawnMonster(mob);
 }
 function changedMapInside(eim, mapid) {
     var stage = eim.getIntProperty("curStage");
