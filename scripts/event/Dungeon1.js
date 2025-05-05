@@ -222,7 +222,7 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
         var mob = em.getMonster(monsterId);
 
         // Scale the monster BEFORE spawning using changeDifficulty
-        mob.changeDifficultyBasic(difficulty);
+        // mob.changeDifficultyBasic(difficulty);
 
         // Set the position
         var spos = new Point(x, y);
@@ -237,7 +237,7 @@ function spawnBoss(eim, map, bossId) {
     var mob = em.getMonster(bossId);
 
     // Scale the boss BEFORE spawning using changeDifficulty
-    mob.changeDifficultyBasic(difficulty);
+    // mob.changeDifficultyBasic(difficulty);
 
     // Set the position
     var spos = new Point(811, 368);
