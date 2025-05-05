@@ -120,16 +120,11 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Set the eligible members before starting the instance
             party.setEligibleMembers(eligibleMembers);
 
-            // Attempt to start the dungeon
-            if (em.startInstance(party, cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
-            {
-                // Remove the NPC
-                MapleMap.removeDungeonPortal(npcOID);
-                cm.getPlayer().yellowMessage("The Dungeon has started!");
-            }
+            // Remove the NPC
+            MapleMap.removeDungeonPortal(npcOID);
 
-            // Dungeon failed to start
-            else
+            // Attempt to start the dungeon
+            if (!em.startInstance(party, cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
             {
                 cm.sendOk("The Dungeon failed to start. Please report this in the bugs section of #bDiscord#k!");
             }
