@@ -215,9 +215,6 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
     for (var i = 0; i < count; i++) {
         var mob = em.getMonster(monsterId);
 
-        // Register the monster with the event instance
-        eim.registerMonster(mob);
-
         // Scale the monster BEFORE spawning using changeDifficulty
         mob.changeDifficultyBasic(partySize * 2);
 
@@ -228,9 +225,6 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
 function spawnBoss(eim, map, bossId) {
     var partySize = eim.getPlayers().size();
     var mob = em.getMonster(bossId);
-
-    // Register the monster with the event instance
-    eim.registerMonster(mob);
 
     // Scale the boss BEFORE spawning using changeDifficulty
     mob.changeDifficultyBasic(partySize * 2);
