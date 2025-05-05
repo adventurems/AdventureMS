@@ -1742,7 +1742,7 @@ public class Monster extends AbstractLoadedLife {
     // AdventureMS Custom - Custom Mob Stats
 
     // Takes this monsters stats and modifies the basics
-    public final void changeDifficultyBasic(final int difficulty)
+    public void changeDifficultyBasic(final int difficulty)
     {
         // Assign monster ostats to new OverrideMonsterStats object
         this.ostats = new OverrideMonsterStats(stats);
@@ -1757,10 +1757,10 @@ public class Monster extends AbstractLoadedLife {
     }
 
     // Takes another monsters stats and modifies / makes them this monsters own
-    public final void changeDifficultyBasicWithStats(MonsterStats stats, final int difficulty)
+    public void changeDifficultyBasicWithStats(Monster monster, final int difficulty)
     {
         // Assign monster ostats to new OverrideMonsterStats object
-        this.ostats = new OverrideMonsterStats(stats);
+        this.ostats = new OverrideMonsterStats(monster.getStats());
 
         // Update the basic ostats
         ostats.basicDifficultyUpdate(difficulty);
