@@ -10,6 +10,9 @@ var minMapId = 3000000;
 var maxMapId = 3000030;
 var bossId = 3300008; // AdventureMS Custom Boss Spawn
 
+// Import Java classes
+const Point = Java.type('java.awt.Point');
+
 function setup(level, lobbyid, monsterId, mapId)
 {
     // Set up the event
@@ -224,7 +227,6 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
         // Set the position
         var spos = new Point(x, y - 1);
         spos = calcPointBelow(spos);
-        spos.y--;
         mob.setPosition(spos);
 
         // Spawn the monster on the map
@@ -239,9 +241,8 @@ function spawnBoss(eim, map, bossId) {
     mob.changeDifficultyBasic(difficulty);
 
     // Set the position
-    var spos = new Point(x, y - 1);
+    var spos = new Point(811, 368 - 1);
     spos = calcPointBelow(spos);
-    spos.y--;
     mob.setPosition(spos);
 
     // Spawn the monster on the map
