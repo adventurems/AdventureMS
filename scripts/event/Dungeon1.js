@@ -229,7 +229,7 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
         mob.setPosition(spos);
 
         // Spawn the monster on the map
-        spawnMonster(mob);
+        map.spawnMonster(mob);
     }
 }
 function spawnBoss(eim, map, bossId) {
@@ -244,7 +244,7 @@ function spawnBoss(eim, map, bossId) {
     mob.setPosition(spos);
 
     // Spawn the monster on the map
-    spawnMonster(mob);
+    map.spawnMonster(mob);
 }
 function changedMapInside(eim, mapid) {
     var stage = eim.getIntProperty("curStage");
