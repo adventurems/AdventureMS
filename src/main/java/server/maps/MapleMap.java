@@ -2184,37 +2184,23 @@ public class MapleMap {
     }
 
     public void spawnAllMonsterIdFromMapSpawnList(int id) {
-        spawnAllMonsterIdFromMapSpawnList(id, 1);
-    }
-
-    public void spawnAllMonsterIdFromMapSpawnList(int id, int difficulty) {
         for (SpawnPoint sp : getAllMonsterSpawn()) {
             if (sp.getMonsterId() == id && sp.shouldForceSpawn()) {
-                spawnMonster(sp.getMonster(), difficulty);
+                spawnMonster(sp.getMonster());
             }
         }
     }
 
     public void spawnAllMonstersFromMapSpawnList() {
-        spawnAllMonstersFromMapSpawnList(1);
-    }
-
-    public void spawnAllMonstersFromMapSpawnList(int difficulty) {
         for (SpawnPoint sp : getAllMonsterSpawn()) {
-            spawnMonster(sp.getMonster(), difficulty);
+            spawnMonster(sp.getMonster());
         }
     }
 
     public void spawnMonster(final Monster monster) {
-        spawnMonster(monster, 1);
-    }
-
-    public void spawnMonster(final Monster monster, int difficulty) {
         if (mobCapacity != -1 && mobCapacity == spawnedMonstersOnMap.get()) {
-            return;//PyPQ
+            return;
         }
-
-        monster.changeDifficultyBasic(difficulty);
 
         monster.setMap(this);
         if (getEventInstance() != null) {
