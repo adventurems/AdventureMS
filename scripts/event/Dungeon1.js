@@ -221,11 +221,11 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
         // Get the monster object
         var mob = em.getMonster(monsterId);
 
-        // Spawn the monster on the map
-        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
-
         // Scale monster stats
         mob.changeDifficultyBasic(diff);
+
+        // Spawn the monster on the map
+        map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
     }
 }
 function spawnBoss(eim, map, bossId) {
@@ -236,11 +236,11 @@ function spawnBoss(eim, map, bossId) {
     // Get the boss monster object
     var mob = em.getMonster(bossId);
 
-    // Spawn the boss on the map
-    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
-
     // Scale monster stats
     mob.changeDifficultyBasic(diff);
+
+    // Spawn the boss on the map
+    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
 }
 function changedMapInside(eim, mapid) {
     var stage = eim.getIntProperty("curStage");
