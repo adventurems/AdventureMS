@@ -19,7 +19,7 @@ package server.life;
 
 public class OverrideMonsterStats {
 
-    public int oHP, oMP, oEXP, oPAD, oMAD, oPDD, oMDD, oLEVEL;
+    public int oHP, oMP, oEXP;
 
     // Default stats are set to provided monster stats
     public OverrideMonsterStats(MonsterStats stats)
@@ -27,20 +27,13 @@ public class OverrideMonsterStats {
         this.oHP = stats.getHp();
         this.oMP = stats.getMp();
         this.oEXP = stats.getExp();
-        this.oPAD = stats.getPADamage();
-        this.oMAD = stats.getMADamage();
-        this.oPDD = stats.getPDDamage();
-        this.oMDD = stats.getMDDamage();
-        this.oLEVEL = stats.getLevel();
     }
 
     // Updates only HP / MP / EXP
     public void basicDifficultyUpdate(int difficulty)
     {
         // Print stats to console with labels and | delimiter
-        System.out.println("Monster Stats: HP: " + oHP + " | MP: " + oMP + " | EXP: " + oEXP +
-                " | PAD: " + oPAD + " | MAD: " + oMAD + " | PDD: " + oPDD +
-                " | MDD: " + oMDD + " | LEVEL: " + oLEVEL + " | DIFFICULTY: " + difficulty);
+        System.out.println("Monster Stats: HP: " + oHP + " | MP: " + oMP + " | EXP: " + oEXP + " | DIFFICULTY: " + difficulty);
 
         oHP = oHP * difficulty;
         oMP = oMP * difficulty;
@@ -51,19 +44,9 @@ public class OverrideMonsterStats {
     public int getoHP()     {return oHP;}
     public int getoMP()     {return oMP;}
     public int getoEXP()    {return oEXP;}
-    public int getoPAD()    {return oPAD;}
-    public int getoMAD()    {return oMAD;}
-    public int getoPDD()    {return oPDD;}
-    public int getoMDD()    {return oMDD;}
-    public int getoLEVEL()  {return oLEVEL;}
 
     // Public setter methods
     public void setoHP(int oHP)         {this.oHP = oHP;}
     public void setoMP(int oMP)         {this.oMP = oMP;}
     public void setoEXP(int oEXP)       {this.oEXP = oEXP;}
-    public void setoPAD(int oPAD)       {this.oPAD = oPAD;}
-    public void setoMAD(int oMAD)       {this.oMAD = oMAD;}
-    public void setoPDD(int oPDD)       {this.oPDD = oPDD;}
-    public void setoMDD(int oMDD)       {this.oMDD = oMDD;}
-    public void setoLEVEL(int oLEVEL)   {this.oLEVEL = oLEVEL;}
 }

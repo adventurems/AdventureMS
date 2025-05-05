@@ -1776,11 +1776,11 @@ public class Monster extends AbstractLoadedLife {
     public final int getMaxHp() {if (ostats != null) {return ostats.getoHP();} return stats.getHp();}
     public final int getMaxMp() {if (ostats != null) {return ostats.getoMP();} return stats.getMp();}
     public int getExp() {if (ostats != null) {return ostats.getoEXP();} return stats.getExp();}
-    public int getPADamage() {if (ostats != null) {return ostats.getoPAD();} return stats.getPADamage();}
-    public int getMADamage() {if (ostats != null) {return ostats.getoMAD();} return stats.getMADamage();}
-    public int getPDDamage() {if (ostats != null) {return ostats.getoPDD();} return stats.getPDDamage();}
-    public int getMDDamage() {if (ostats != null) {return ostats.getoMDD();} return stats.getMDDamage();}
-    public int getLevel() {if (ostats != null) {return ostats.getoLEVEL();} return stats.getLevel();}
+    public int getPADamage() {return stats.getPADamage();}
+    public int getMADamage() {return stats.getMADamage();}
+    public int getPDDamage() {return stats.getPDDamage();}
+    public int getMDDamage() {return stats.getMDDamage();}
+    public int getLevel() {return stats.getLevel();}
 
     // ---------------------------------------------------------------------------------
 
