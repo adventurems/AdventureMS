@@ -427,7 +427,7 @@ public class MapleMap {
         // Build NPC
         NPC npc = Randomizer.nextInt(25) == 0 ? LifeFactory.getNPC(9800030) : LifeFactory.getNPC(9800017); // 4% chance to spawn rare dungeon
         npc.setPosition(checkpos);
-        // npc.setFh(fh);
+        npc.setFh(fh);
 
         // Create and Broadcast
         MapleMap map = monster.getMap();
@@ -567,12 +567,14 @@ public class MapleMap {
 
         // Set the goblin's position to match the original monster's position
         goblin.setPosition(monster.getPosition());
+        monster.getMap().broadcastMessage(PacketCreator.serverNotice(6, "A rare monster has appeared!" + " [Debug] Goblin EXP: " + goblin.getExp()));
 
         // Multiply HP by 10 and exp by 7.5
         goblin.changeDifficultyBasicWithStats(monster, 10);
 
+        monster.getMap().broadcastMessage(PacketCreator.serverNotice(6, "A rare monster has appeared!" + " [Debug] Goblin EXP: " + goblin.getExp()));
+
         // Announce the monster spawn to the map
-        monster.getMap().broadcastMessage(PacketCreator.serverNotice(6, "A rare monster has appeared!"));
         monster.getMap().broadcastMessage(PacketCreator.playSound("AdventureMS/goblin"));
 
         // Spawn the goblin on the map
