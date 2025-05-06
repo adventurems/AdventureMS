@@ -10,7 +10,7 @@ function start()
         {
             // Gain Items
             cm.gainItem(4011007, 1); // Moon Rock
-            cm.gainItem(4007023, -1) // Take the Map
+            cm.gainItem(3997006, -1) // Take the Map
             cm.gainMeso(1000000); // Mesos
             cm.gainExp(75000); // Exp
 
