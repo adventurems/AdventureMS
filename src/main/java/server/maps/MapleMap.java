@@ -569,7 +569,7 @@ public class MapleMap {
         goblin.setPosition(monster.getPosition());
 
         // Multiply HP by 10 and exp by 7.5
-        goblin.changeDifficultyBasicWithStats(monster, 10);
+        goblin.cDBWS(monster, 10);
 
         // Announce the monster spawn to the map
         monster.getMap().broadcastMessage(PacketCreator.serverNotice(6, "A rare monster has spawned!"));

@@ -63,7 +63,7 @@ function setup(level, lobbyid, monsterId, mapId)
 
         // Spawn monsters on all platforms
         platforms.forEach(function(platform, index) {
-            spawnMonstersOnPlatform(eim, map, monsterId, platform[0], platform[1], platform[2], index + 1);
+            spawnMonstersOnPlatform(eim, map, monsterId, platform[0], platform[1], platform[2]);
         });
     });
 
@@ -212,10 +212,6 @@ function basicDungeonSetup(eim) {
 } // AdventureMS Custom
 function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
 
-    // Get the Dungeon Difficulty
-    var diff = eim.getPlayers().size() * 2;
-    console.log("Dungeon1 diff: " + diff);
-
     // Loop through and create monsters
     for (var i = 0; i < count; i++)
     {
@@ -223,7 +219,7 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
         var mob = em.getMonster(monsterId);
 
         // Scale monster stats
-        mob.changeDifficultyBasic(diff);
+        mob.changeDifficultyBasic(eim.getProperty("level") * 2);
 
         // Spawn the monster on the map
         map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(x, y));
@@ -231,14 +227,11 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
 }
 function spawnBoss(eim, map, bossId) {
 
-    // Get the Dungeon Difficulty
-    var diff = eim.getPlayers().size() * 2;
-
     // Get the boss monster object
     var mob = em.getMonster(bossId);
 
     // Scale monster stats
-    mob.changeDifficultyBasic(diff);
+    mob.changeDifficultyBasic(eim.getProperty("level") * 2);
 
     // Spawn the boss on the map
     map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
