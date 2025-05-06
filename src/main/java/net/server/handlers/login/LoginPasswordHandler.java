@@ -78,7 +78,7 @@ public final class LoginPasswordHandler implements PacketHandler {
 
         // AdventureMS Custom
         if (YamlConfig.config.server.AUTOMATIC_REGISTER && loginok == 5) {
-            try (Connection con = DatabaseConnection.getConnection();
+            try (Connection con = DatabaseConnection.getConnection(); // AdventureMS Custom - cashstorage
                  PreparedStatement ps = con.prepareStatement("INSERT INTO accounts (name, password, birthday, tempban, cashstorage) VALUES (?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS)) { //Jayd: Added birthday, tempban
                 ps.setString(1, login);
                 ps.setString(2, YamlConfig.config.server.BCRYPT_MIGRATION ? BCrypt.hashpw(pwd, BCrypt.gensalt(12)) : hashpwSHA512(pwd));

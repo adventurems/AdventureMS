@@ -8211,7 +8211,7 @@ public class Character extends AbstractCharacterObject {
         }
     }
 
-    // AdventureMS Custom
+    // AdventureMS Custom - cashstorage
     public int getAvailableCashSlots()
     {
         Connection con = null;
