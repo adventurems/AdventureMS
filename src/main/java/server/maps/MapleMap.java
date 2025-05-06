@@ -425,7 +425,7 @@ public class MapleMap {
         int fh = chr.getMap().getFootholds().findBelow(checkpos).getId();
 
         // Build NPC
-        NPC npc = Randomizer.nextInt(25) == 0 ? LifeFactory.getNPC(9800030) : LifeFactory.getNPC(9800017); // 4% chance to spawn rare dungeon
+        NPC npc = Randomizer.nextInt(2) == 0 ? LifeFactory.getNPC(9800030) : LifeFactory.getNPC(9800017); // 4% chance to spawn rare dungeon
         npc.setPosition(checkpos);
         npc.setFh(fh);
 
