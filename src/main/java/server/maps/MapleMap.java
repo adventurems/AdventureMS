@@ -421,12 +421,14 @@ public class MapleMap {
         if (Math.random() > chance) {return;} // Exit if RNG check fails
 
         // Find coordinates
-        Point checkpos = monster.getMap().getGroundBelow(monster.getPosition());
+        Point checkpos = monster.getPosition();
+        int ypos = checkpos.y;
         int fh = chr.getMap().getFootholds().findBelow(checkpos).getId();
 
         // Build NPC
         NPC npc = Randomizer.nextInt(25) == 0 ? LifeFactory.getNPC(9800030) : LifeFactory.getNPC(9800017); // 4% chance to spawn rare dungeon
         npc.setPosition(checkpos);
+        npc.setCy(ypos);
         npc.setFh(fh);
 
         // Create and Broadcast
