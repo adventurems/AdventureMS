@@ -412,8 +412,8 @@ public class MapleMap {
         // Determine if the door will spawn
         final int PORTAL_MIN_LEVEL = 30;
         final int PORTAL_MAX_LEVEL = 150;
-        final double PORTAL_BASE_CHANCE = 1;
-        final double PORTAL_MAX_CHANCE = 5;
+        final double PORTAL_BASE_CHANCE = 750;
+        final double PORTAL_MAX_CHANCE = 1500;
         final int monsterLvl = monster.getLevel(); // Store the monster level for dungeon chance
 
         if (monsterLvl < PORTAL_MIN_LEVEL) {return;} // Exit early if monster level is too low
@@ -425,7 +425,7 @@ public class MapleMap {
         int fh = chr.getMap().getFootholds().findBelow(checkpos).getId();
 
         // Build NPC
-        NPC npc = Randomizer.nextInt(2) == 0 ? LifeFactory.getNPC(9800030) : LifeFactory.getNPC(9800017); // 4% chance to spawn rare dungeon
+        NPC npc = Randomizer.nextInt(25) == 0 ? LifeFactory.getNPC(9800030) : LifeFactory.getNPC(9800017); // 4% chance to spawn rare dungeon
         npc.setPosition(checkpos);
         npc.setFh(fh);
 
@@ -515,7 +515,7 @@ public class MapleMap {
     public void spawnGoblin(Monster monster)
     {
         // Determine if a goblin will spawn
-        final int GOBLIN_MIN_LEVEL = 10;
+        final int GOBLIN_MIN_LEVEL = 30;
         final int GOBLIN_MAX_LEVEL = 150;
         final double GOBLIN_BASE_CHANCE = 750;
         final double GOBLIN_MAX_CHANCE = 1500;
@@ -527,9 +527,6 @@ public class MapleMap {
 
         // Determine the tier of the Goblin
         int goblinTier = 1;
-        if (monsterLvl < 23) {goblinTier = 1;}
-        else if (monsterLvl < 32) {goblinTier = 2;}
-        else {goblinTier = 3;}
 
         // Base Goblin ID's
         int baseLootMouseID = 9402050;
@@ -845,7 +842,8 @@ public class MapleMap {
 
         for (final MonsterDropEntry de : dropEntry) {
             float cardRate = chr.getCardRate(de.itemId);
-            int dropChance = (int) Math.min((float) de.chance * chRate * cardRate, Integer.MAX_VALUE);
+            float dungeonMultiplier = mob.isDungeonMob() ? 2.0f : 1.0f;
+            int dropChance = (int) Math.min((float) de.chance * chRate * cardRate * dungeonMultiplier, Integer.MAX_VALUE);
 
             if (Randomizer.nextInt(999999) < dropChance) {
                 if (droptype == 3) {
@@ -2197,51 +2195,16 @@ public class MapleMap {
         }
     }
 
-    public void spawnMonster(final Monster monster) {
-        if (mobCapacity != -1 && mobCapacity == spawnedMonstersOnMap.get()) {
-            return;
-        }
-
+    // AdventureMS Custom - spawnMonster
+    public void spawnMonster(final Monster monster)
+    {
+        // Default Monster Settings
+        if (mobCapacity != -1 && mobCapacity == spawnedMonstersOnMap.get()) {return;}
         monster.setMap(this);
-        if (getEventInstance() != null) {
-            getEventInstance().registerMonster(monster);
-        }
-
+        if (getEventInstance() != null) {getEventInstance().registerMonster(monster);}
         spawnAndAddRangedMapObject(monster, c -> c.sendPacket(PacketCreator.spawnMonster(monster, true)), null);
-
         monster.aggroUpdateController();
         updateBossSpawn(monster);
-
-        if ((monster.getTeam() == 1 || monster.getTeam() == 0) && (isCPQMap() || isCPQMap2())) {
-            List<MCSkill> teamS = null;
-            if (monster.getTeam() == 0) {
-                teamS = redTeamBuffs;
-            } else if (monster.getTeam() == 1) {
-                teamS = blueTeamBuffs;
-            }
-            if (teamS != null) {
-                for (MCSkill skil : teamS) {
-                    if (skil != null) {
-                        skil.getSkill().applyEffect(null, monster, false, null);
-                    }
-                }
-            }
-        }
-
-        if (monster.getDropPeriodTime() > 0) { //9300102 - Watchhog, 9300061 - Moon Bunny (HPQ), 9300093 - Tylus
-            if (monster.getId() == MobId.WATCH_HOG) {
-                monsterItemDrop(monster, monster.getDropPeriodTime());
-            } else if (monster.getId() == MobId.MOON_BUNNY) {
-                monsterItemDrop(monster, monster.getDropPeriodTime() / 3);
-            } else if (monster.getId() == MobId.TYLUS) {
-                monsterItemDrop(monster, monster.getDropPeriodTime());
-            } else if (monster.getId() == MobId.GIANT_SNOWMAN_LV5_EASY || monster.getId() == MobId.GIANT_SNOWMAN_LV5_MEDIUM || monster.getId() == MobId.GIANT_SNOWMAN_LV5_HARD) {
-                monsterItemDrop(monster, monster.getDropPeriodTime());
-            } else {
-                log.error("UNCODED TIMED MOB DETECTED: {}", monster.getId());
-            }
-        }
-
         spawnedMonstersOnMap.incrementAndGet();
         addSelfDestructive(monster);
         applyRemoveAfter(monster);  // thanks LightRyuzaki for pointing issues with spawned CWKPQ mobs not applying this

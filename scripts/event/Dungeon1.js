@@ -1,21 +1,25 @@
 // AdventureMS Custom Dungeon
 
-// Dungeon Information
-var isPq = true;
-var eventTime = 5; // 5 minutes
-var minPlayers = 1, maxPlayers = 6;
-var minLevel = 1, maxLevel = 255;
-var startMap = 3000000;
-var minMapId = 3000000;
-var maxMapId = 3000030;
-var bossId = 3300008;
+// Varied Dungeon Information
+const dungeonName = "Dungeon1";
+const dungeonTier = 1;
+const startMap = 3000000 + dungeonTier - 1;
+const minMapId = 3000000 + dungeonTier - 1;
+const maxMapId = 3000030 + dungeonTier - 1;
+let bossId = 3300008;
+
+// Default Dungeon Information
+const isPq = true;
+let eventTime = 5; // 5 minutes
+const minPlayers = 1, maxPlayers = 6;
+const minLevel = 1, maxLevel = 255;
 
 // Rare Dungeon Information
-var rare = false;
-var rareBossId = 9400569;
-var goblinLoot = 9402050;
-var goblinMeso = 9010150;
-var goblinGem = 2600420;
+let rare = false;
+const rareBossId = 9400569;
+const goblinLoot = 9402050 + dungeonTier - 1;
+const goblinMeso = 9010150 + dungeonTier - 1;
+const goblinGem = 2600420 + dungeonTier - 1;
 
 function setup(level, lobbyid, monsterId, mapId)
 {
@@ -28,7 +32,7 @@ function setup(level, lobbyid, monsterId, mapId)
     }
 
     // Set up the event
-    var eim = em.newInstance("Dungeon1" + lobbyid); // Create new instance
+    var eim = em.newInstance(dungeonName + lobbyid); // Create new instance
     eim.setProperty("level", level); // Set difficulty of dungeon
     eim.setProperty("entranceMap", mapId); // The map where the dungeon was spawned
     basicDungeonSetup(eim); // Set stages, set timer, etc...
@@ -225,6 +229,12 @@ function end(eim) {
 function monsterValue(eim, mobId) {
     return 1;
 }
+function allMonstersDead(eim) {}
+function cancelSchedule() {}
+function dispose(eim) {}
+function playerDead(eim, player) {}
+function playerUnregistered(eim, player) {}
+function afterSetup(eim) {}
 
 // AdventureMS Custom
 function getEligibleParty(party) {
@@ -261,7 +271,7 @@ function getEligibleParty(party) {
         eligible = [];
     }
     return Java.to(eligible, Java.type('net.server.world.PartyCharacter[]'));
-} // AdventureMS Custom
+}
 function basicDungeonSetup(eim) {
     eim.setProperty("stage1", "0");
     eim.setProperty("stage2", "0");
@@ -269,14 +279,14 @@ function basicDungeonSetup(eim) {
     eim.setProperty("stage4", "0");
     eim.setProperty("curStage", "1");
     eim.startEventTimer(eventTime * 60000);
-} // AdventureMS Custom
+}
 function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
 
     // Loop through and create monsters
     for (var i = 0; i < count; i++)
     {
         // Assign the normal mob if not a rare dungeon
-        if (!rare) {var mob = em.getMonster(monsterId);}
+        if (!rare) {var mob = em.getMonster(monsterId); mob.setDungeonMob();}
         else
         {
             // Randomly select a monster from the loot table
@@ -329,12 +339,12 @@ function changedMapInside(eim, mapid) {
             eim.setIntProperty("curStage", 4);
         }
     }
-} // AdventureMS Custom
+}
 function playerExit(eim, player) {
     eim.unregisterPlayer(player);
     var mapId = parseInt(eim.getProperty("entranceMap"));
     player.changeMap(mapId, 0);
-} // AdventureMS Custom
+}
 function monsterKilled(mob, eim) {  // AdventureMS Custom
     var map = mob.getMap(); // Get the map the monster is on
     if (map.countMonsters() === 0)
@@ -348,12 +358,4 @@ function monsterKilled(mob, eim) {  // AdventureMS Custom
 function clearPQ(eim) {
     eim.restartEventTimer(30000);
     eim.setEventCleared();
-} // AdventureMS Custom
-
-// Think I can remove
-function allMonstersDead(eim) {}
-function cancelSchedule() {}
-function dispose(eim) {}
-function playerDead(eim, player) {}
-function playerUnregistered(eim, player) {}
-function afterSetup(eim) {}
+}

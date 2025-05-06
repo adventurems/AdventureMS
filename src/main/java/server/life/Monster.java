@@ -114,6 +114,7 @@ public class Monster extends AbstractLoadedLife {
     private ScheduledFuture<?> monsterItemDrop = null;
     private Runnable removeAfterAction = null;
     private boolean availablePuppetUpdate = true;
+    private boolean dungeonMob = false; // AdventureMS Custom - Added for DungeonMob
 
     private final Lock externalLock = new ReentrantLock();
     private final Lock monsterLock = new ReentrantLock(true);
@@ -154,6 +155,18 @@ public class Monster extends AbstractLoadedLife {
 
     public int getSpawnEffect() {
         return spawnEffect;
+    }
+
+    // AdventureMS Custom - Set as DungeonMob
+    public void setDungeonMob()
+    {
+        this.dungeonMob = true;
+    }
+
+    // AdventureMS Custom - Get DungeonMob
+    public boolean isDungeonMob()
+    {
+        return this.dungeonMob;
     }
 
     public void disableDrops() {
