@@ -1,16 +1,35 @@
-// AdventureMS Lime Balloon NPC Helper
+// AdventureMS Lime Balloon Guide
 
-function start() {
-    if (cm.getPlayer().gmLevel() > 1) {
-        cm.sendYesNo("Do you want to level up?");
-    } else {
-        cm.sendOk("Hey wassup?");
-    }
-}
+// Standard Status Code
+function start() {status = -1; action(1,0,0);}
+function action(mode, type, selection) { if (mode == 1) {status++;} else {status--;} if (status == -1) {cm.dispose();}
 
-function action(i, am, pro) {
-    if (i > 0 && cm.getPlayer().gmLevel() > 1) {
-        cm.getPlayer().levelUp(true);
+    // Initial Click
+    else if (status == 0)
+    {
+        cm.sendNext("Very well done... On to the next step!");
     }
-    cm.dispose();
+
+    // After pressing yes/next
+    else if (status == 1)
+    {
+        cm.sendGetText();
+    }
+
+    // After Advancing one further
+    else if (status == 2)
+    {
+        // Test the text they sent
+        if (cm.getText() === "Alakazam")
+        {
+            cm.sendOk("Great job!");
+            cm.dispose();
+        }
+
+        else
+        {
+            cm.sendOk("Not quite, try again...");
+            cm.dispose();
+        }
+    }
 }
