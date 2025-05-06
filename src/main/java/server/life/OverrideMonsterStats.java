@@ -35,9 +35,6 @@ public class OverrideMonsterStats {
         oHP = oHP * difficulty;
         oMP = oMP * difficulty;
         oEXP = (int) (oEXP * (difficulty * .75));
-
-        // Print stats to console with labels and | delimiter
-        System.out.println("Monster Stats: HP: " + oHP + " | MP: " + oMP + " | EXP: " + oEXP + " | DIFFICULTY: " + difficulty);
     }
 
     // Public getter methods

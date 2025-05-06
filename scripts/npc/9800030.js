@@ -1,4 +1,4 @@
-// AdventureMS Rare Dungeon Portal
+// AdventureMS Dungeon Portal
 
 // Import the classes
 var MapleMap = Java.type('server.maps.MapleMap');
@@ -120,7 +120,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             cm.getMap().removeDungeonPortal(npcOID);
 
             // Attempt to start the dungeon
-            if (!em.startInstance(party, cm.getMap(), 1, monster, cm.getPlayer().getMapId()))
+            if (!em.startInstance(party, cm.getMap(), partyMembers.size(), 9402050, cm.getPlayer().getMapId()))
             {
                 cm.sendOk("The Dungeon failed to start. Please report this in the bugs section of #bDiscord#k!");
             }

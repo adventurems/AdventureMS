@@ -8,52 +8,112 @@ var minLevel = 1, maxLevel = 255;
 var startMap = 3000000;
 var minMapId = 3000000;
 var maxMapId = 3000030;
-var bossId = 3300008; // AdventureMS Custom Boss Spawn
+var bossId = 3300008;
+
+// Rare Dungeon Information
+var rare = false;
+var rareBossId = 9400569;
+var goblinLoot = 9402050;
+var goblinMeso = 9010150;
+var goblinGem = 2600420;
 
 function setup(level, lobbyid, monsterId, mapId)
 {
+    // Check if it's a rare dungeon
+    if (goblinLoot === monsterId) 
+    {
+        rare = true;
+        bossId = rareBossId;
+        eventTime = 7;
+    }
+
     // Set up the event
     var eim = em.newInstance("Dungeon1" + lobbyid); // Create new instance
     eim.setProperty("level", level); // Set difficulty of dungeon
     eim.setProperty("entranceMap", mapId); // The map where the dungeon was spawned
     basicDungeonSetup(eim); // Set stages, set timer, etc...
 
-    // Format: [mapOffset, [[x, y, spawnCount], [x, y, spawnCount], ...]]
-    var mapPlatforms = [
-        // First map (startMap)
-        [0, [
-            [855, 798, 6],    // Platform 1
-            [234, 678, 6],    // Platform 2
-            [384, 378, 6],    // Platform 3
-            [304, -162, 9],   // Platform 4
-            [888, -462, 9],   // Platform 5
-            [154, -762, 8],   // Platform 6
-            [684, -1122, 8],  // Platform 7
-            [227, -1422, 7]   // Platform 8
-        ]],
+    // Normal Dungeon
+    if (!rare)
+    {
+        // Format: [mapOffset, [[x, y, spawnCount], [x, y, spawnCount], ...]]
+        var mapPlatforms = [
+            // First map (startMap)
+            [0, [
+                [855, 798, 6],    // Platform 1
+                [234, 678, 6],    // Platform 2
+                [384, 378, 6],    // Platform 3
+                [304, -162, 9],   // Platform 4
+                [888, -462, 9],   // Platform 5
+                [154, -762, 8],   // Platform 6
+                [684, -1122, 8],  // Platform 7
+                [227, -1422, 7]   // Platform 8
+            ]],
 
-        // Second map (startMap + 10)
-        [10, [
-            [475, -1487, 5],  // Platform 1
-            [232, -1187, 5],  // Platform 2
-            [922, -1067, 7],  // Platform 3
-            [1583, -1436, 8], // Platform 4
-            [2033, -1099, 9], // Platform 5
-            [3555, -1234, 5], // Platform 6
-            [3015, -1055, 6], // Platform 7
-            [2791, -1436, 7]  // Platform 8
-        ]],
+            // Second map (startMap + 10)
+            [10, [
+                [475, -1487, 5],  // Platform 1
+                [232, -1187, 5],  // Platform 2
+                [922, -1067, 7],  // Platform 3
+                [1583, -1436, 8], // Platform 4
+                [2033, -1099, 9], // Platform 5
+                [3555, -1234, 5], // Platform 6
+                [3015, -1055, 6], // Platform 7
+                [2791, -1436, 7]  // Platform 8
+            ]],
 
-        // Third map (startMap + 20)
-        [20, [
-            [585, 68, 8],     // Platform 1
-            [585, 188, 7],    // Platform 2
-            [675, -52, 9],    // Platform 3
-            [675, -832, 9],   // Platform 4
-            [585, -952, 8],   // Platform 5
-            [675, -1072, 7],  // Platform 6
-        ]]
-    ];
+            // Third map (startMap + 20)
+            [20, [
+                [585, 68, 8],     // Platform 1
+                [585, 188, 7],    // Platform 2
+                [675, -52, 9],    // Platform 3
+                [675, -832, 9],   // Platform 4
+                [585, -952, 8],   // Platform 5
+                [675, -1072, 7],  // Platform 6
+            ]]
+        ];
+    }
+
+    // Rare Dungeon
+    else
+    {
+        // Format: [mapOffset, [[x, y, spawnCount], [x, y, spawnCount], ...]]
+        var mapPlatforms = [
+            // First map (startMap)
+            [0, [
+                [855, 798, 2],    // Platform 1
+                [234, 678, 2],    // Platform 2
+                [384, 378, 2],    // Platform 3
+                [304, -162, 3],   // Platform 4
+                [888, -462, 3],   // Platform 5
+                [154, -762, 2],   // Platform 6
+                [684, -1122, 3],  // Platform 7
+                [227, -1422, 2]   // Platform 8
+            ]],
+
+            // Second map (startMap + 10)
+            [10, [
+                [475, -1487, 1],  // Platform 1
+                [232, -1187, 2],  // Platform 2
+                [922, -1067, 2],  // Platform 3
+                [1583, -1436, 2], // Platform 4
+                [2033, -1099, 3], // Platform 5
+                [3555, -1234, 1], // Platform 6
+                [3015, -1055, 2], // Platform 7
+                [2791, -1436, 2]  // Platform 8
+            ]],
+
+            // Third map (startMap + 20)
+            [20, [
+                [585, 68, 2],     // Platform 1
+                [585, 188, 2],    // Platform 2
+                [675, -52, 3],    // Platform 3
+                [675, -832, 3],   // Platform 4
+                [585, -952, 2],   // Platform 5
+                [675, -1072, 2],  // Platform 6
+            ]]
+        ];
+    }
 
     // Process each map
     mapPlatforms.forEach(function(mapData) {
@@ -215,8 +275,16 @@ function spawnMonstersOnPlatform(eim, map, monsterId, x, y, count) {
     // Loop through and create monsters
     for (var i = 0; i < count; i++)
     {
-        // Get the monster object
-        var mob = em.getMonster(monsterId);
+        // Assign the normal mob if not a rare dungeon
+        if (!rare) {var mob = em.getMonster(monsterId);}
+        else
+        {
+            // Randomly select a monster from the loot table
+            var roll = Math.floor(Math.random() * 3);
+            if (roll === 0) {mob = em.getMonster(goblinLoot);}
+            else if (roll === 1) {mob = em.getMonster(goblinMeso);}
+            else {mob = em.getMonster(goblinGem);}
+        }
 
         // Scale monster stats
         mob.changeDifficultyBasic(eim.getProperty("level") * 2);
