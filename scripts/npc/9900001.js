@@ -7,13 +7,13 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
     // Initial Click
     else if (status == 0)
     {
-        cm.sendNext("Very well done... On to the next step!");
+        cm.sendNext("You are pretty smart, huh?");
     }
 
     // After pressing yes/next
     else if (status == 1)
     {
-        cm.sendGetText("Have you found the password?");
+        cm.sendGetText("Have you found the password though?");
     }
 
     // After Advancing one further
@@ -22,7 +22,8 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // Test the text they sent
         if (cm.getText() === "Alakazam")
         {
-            cm.sendOk("Great job!");
+            // Send them to the jump map
+            cm.warp(106010119, "out00");
             cm.dispose();
         }
 
