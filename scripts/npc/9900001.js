@@ -13,7 +13,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
     // After pressing yes/next
     else if (status == 1)
     {
-        cm.sendGetText();
+        cm.sendGetText("Have you found the password?");
     }
 
     // After Advancing one further
