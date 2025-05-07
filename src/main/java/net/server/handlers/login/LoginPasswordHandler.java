@@ -51,7 +51,7 @@ public final class LoginPasswordHandler implements PacketHandler {
         // Check if GMSERVER is true and validate IP
         if (YamlConfig.config.server.GMSERVER) {
             // Define a list of allowed IPs (you can modify this logic as needed)
-            String[] allowedIps = {"76.121.7.141"}; // Allowed IPs, update as necessary
+            String[] allowedIps = {"76.121.7.141", "68.48.180.124"}; // Allowed IPs, update as necessary
             boolean isValidIp = false;
 
             for (String allowedIp : allowedIps) {
