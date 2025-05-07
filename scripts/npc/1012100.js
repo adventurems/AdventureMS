@@ -3,14 +3,14 @@
 function start() {status = -1; action(1,0,0);}
 function action(mode, type, selection) { if (mode == 1) {status++;} else {status--;} if (status == -1) {cm.dispose();}
 
-    else if (status == 0)
+    else if (status === 0)
     {
         // Variables
         actionx = {"1stJob" : false, "2ndJob" : false, "2ndJobT" : false, "3thJobI" : false, "3thJobC" : false};
         Job = cm.getJobId();
 
         // They are beginners
-        if (Job == 0)
+        if (Job === 0)
         {
             // Set Action to 1st Job
             actionx["1stJob"] = true;
@@ -20,27 +20,24 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         }
 
         // They are ready for 2nd job
-        else if (cm.getLevel() >= 30 && Job == 300)
+        else if (cm.getLevel() >= 30 && Job === 300)
         {
-            // Disable 2nd job
-            cm.sendOk("2nd job is not currently available :(, I'm working on it...");
-            cm.dispose();
 
-            /*/ Set Action to 1st Job
+            // Set Action to 2nd Job
             actionx["2ndJob"] = true;
 
             if (cm.getZoneProgress() == 3)
             {
                 // Start the prompt
                 cm.sendSimple("Ah #h #, you've done it!\r\n\r\nYou are looking great, congratulations on reaching level 30 and clearing #bZone 3#k!" +
-                "\r\n\r\n#r#eThis decision is FINAL! Which class would you like to be#k#n?\r\n\r\n#L1#I'd like to be a #rHunter#k!#l\r\n#L2#I'd like to be a #rCrossbowman#k!#l");
+                "\r\n\r\n#r#eThis decision is FINAL! Which class would you like to be#k#n?\r\n\r\n#L0#I'd like to be a #rHunter#k!#l\r\n#L1#I'd like to be a #rCrossbowman#k!#l");
             }
 
             else
             {
                 cm.sendOk("You are level 30, but you have not cleared #bZone 3#k! Clear #bThe Vault#k!");
                 cm.dispose();
-            }*/
+            }
         }
 
         // Not ready for a job advancement
@@ -73,7 +70,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         }
     }
 
-    else if (status == 1)
+    else if (status === 1)
     {
         if (actionx["1stJob"])
         {
@@ -98,7 +95,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         else if (actionx["2ndJob"])
         {
             // Confirmed their job selection
-            if (selection == 1) {newJob = 310; newJobName = "Hunter";} else if (selection == 2) {newJob = 320; newJobName = "Crossbowman";}
+            if (selection === 0) {newJob = 310; newJobName = "Hunter";} else if (selection === 1) {newJob = 320; newJobName = "Crossbowman";}
 
             // Send Message
             cm.sendOk("Congratulations on your success! You've proven to be a great adventurer and have achieved a new level of power! You are now a #r" + newJobName + "#k!\r\n\r\n" +
