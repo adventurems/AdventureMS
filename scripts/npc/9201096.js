@@ -1,133 +1,60 @@
-/*
-    This file is part of the HeavenMS MapleStory Server
-    Copyleft (L) 2016 - 2019 RonanLana
+// AdventureMS Jack
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation version 3 as published by
-    the Free Software Foundation. You may not use, modify or distribute
-    this program under any other version of the GNU Affero General Public
-    License.
+function start()
+{
+    // Check heart of the forge quest
+    if (cm.getQuestStatus(1026) === 2)
+    {
+        // Check Jack quest
+        if (cm.getQuestStatus(1027) < 2)
+        {
+            // Check if the player has a piece of ice already, if not, grant it
+            if (!cm.haveItem(4003002)) {cm.gainItem(4003002, 1);}
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
+            // Complete the jack quest so they get different text next time
+            cm.completeQuest(1027);
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/* Jack - Refining NPC
-	@author ronancpl (Ronan)
- */
+            // Send Message
+            cm.sendOk("Interesting, you found your way past the golem. Great job...\r\n\r\n" +
+                "When you restored the forge, I saw a monster drop this #rpiece of ice#k, I'm not sure what what to do with it though.\r\n\r\n" +
+                "You figured out the golem, maybe you can figure out what to do with this ice.");
 
-var status = 0;
-var selectedType = -1;
-var selectedItem = -1;
-var item;
-var mats;
-var matQty;
-var cost;
-var qty;
-var equip;
-var last_use; //last item is a use item
+            // Kill convo
+            cm.dispose();
+        }
 
-function start() {
-    cm.getPlayer().setCS(true);
-    status = -1;
-    action(1, 0, 0);
-}
+        // They've gotten a piece of ice already
+        else
+        {
+            // Check if they have the ice already
+            if (cm.haveItem(4003002))
+            {
+                // Send Message
+                cm.sendOk("Well, I'm not sure how to help ya out with this. I've been stuck trying to understand what the ice means as well...");
 
-function action(mode, type, selection) {
-    if (mode == 1) {
-        status++;
-    } else {
-        cm.sendOk("Very well, see you around.");
-        cm.dispose();
-        return;
+                // Kill Convo
+                cm.dispose()
+            }
+
+            // They don't have the ice yet, give them it'
+            else
+            {
+                // Give them the ice
+                cm.gainItem(4003002, 1);
+
+                // Send Message
+                cm.sendOk("Lost your ice? It just so happens that I have another! Here ya go...");
+
+                // Kill Convo
+                cm.dispose()
+            }
+        }
     }
 
-    if (status == 0) {
-        var selStr = "Hey, are you aware about the expeditions running right now at the Crimsonwood Keep? So, there is a great opportunity for one to improve themselves, one can rack up experience and loot pretty fast there.";
-        cm.sendNext(selStr);
-    } else if (status == 1) {
-        var selStr = "Said so, methinks making use of some strong utility potions can potentially create some differential on the front, and by this I mean to start crafting #b#t2022284##k's to help on the efforts. So, getting right down to business, I'm currently pursuing #rplenty#k of those items: #r#t4032010##k, #r#t4032011##k, #r#t4032012##k, and some funds to support the cause. Would you want to get some of these boosters?";
-        cm.sendYesNo(selStr);
-    } else if (status == 2) {
-        //selectedItem = selection;
-        selectedItem = 0;
-
-        var itemSet = [2022284, 7777777];
-        var matSet = new Array([4032010, 4032011, 4032012]);
-        var matQtySet = new Array([60, 60, 45]);
-        var costSet = [75000, 7777777];
-        item = itemSet[selectedItem];
-        mats = matSet[selectedItem];
-        matQty = matQtySet[selectedItem];
-        cost = costSet[selectedItem];
-
-        var prompt = "Ok, I'll be crafting some #t" + item + "#. In that case, how many of those do you want me to make?";
-        cm.sendGetNumber(prompt, 1, 1, 100)
-    } else if (status == 3) {
-        qty = (selection > 0) ? selection : (selection < 0 ? -selection : 1);
-        last_use = false;
-
-        var prompt = "So, you want me to make ";
-        if (qty == 1) {
-            prompt += "a #t" + item + "#?";
-        } else {
-            prompt += qty + " #t" + item + "#?";
-        }
-
-        prompt += " In that case, I'm going to need specific items from you in order to make it. And make sure you have room in your inventory!#b";
-
-        if (mats instanceof Array) {
-            for (var i = 0; i < mats.length; i++) {
-                prompt += "\r\n#i" + mats[i] + "# " + matQty[i] * qty + " #t" + mats[i] + "#";
-            }
-        } else {
-            prompt += "\r\n#i" + mats + "# " + matQty * qty + " #t" + mats + "#";
-        }
-
-        if (cost > 0) {
-            prompt += "\r\n#i4031138# " + cost * qty + " meso";
-        }
-        cm.sendYesNo(prompt);
-    } else if (status == 4) {
-        var complete = true;
-
-        if (cm.getMeso() < cost * qty) {
-            cm.sendOk("Well, I DID say I would be needing some funds to craft it, wasn't it?");
-        } else if (!cm.canHold(item, qty)) {
-            cm.sendOk("You didn't check if you got a slot to spare on your inventory before crafting, right?");
-        } else {
-            if (mats instanceof Array) {
-                for (var i = 0; complete && i < mats.length; i++) {
-                    if (matQty[i] * qty == 1) {
-                        complete = cm.haveItem(mats[i]);
-                    } else {
-                        complete = cm.haveItem(mats[i], matQty[i] * qty);
-                    }
-                }
-            } else {
-                complete = cm.haveItem(mats, matQty * qty);
-            }
-
-            if (!complete) {
-                cm.sendOk("There are not enough resources on your inventory. Please check it again.");
-            } else {
-                if (mats instanceof Array) {
-                    for (var i = 0; i < mats.length; i++) {
-                        cm.gainItem(mats[i], -matQty[i] * qty);
-                    }
-                } else {
-                    cm.gainItem(mats, -matQty * qty);
-                }
-                cm.gainMeso(-cost * qty);
-                cm.gainItem(item, qty);
-                cm.sendOk("There it is! Thanks for your cooperation.");
-            }
-        }
+    // They haven't cleared the forge yet
+    else
+    {
+        cm.sendOk("I've been trying to figure out how to beat this golem for so long. I'm clearly not strong enough to beat it. Seems like I've got plenty of time, but I can't event hit it...");
         cm.dispose();
     }
 }
