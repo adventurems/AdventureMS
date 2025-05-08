@@ -18,8 +18,9 @@ function enter(pi) {
                 pi.playerMessage(5, "You may only access the vault alone!");
                 return false;
             }
-            else {
-                if (job === "MAGICIAN" || job === "BOWMAN" || job === "THIEF" || job === "PIRATE" || "WARRIOR")
+            else
+            {
+                if (job === "MAGICIAN" || job === "BOWMAN" || job === "THIEF" || job === "PIRATE" || job === "WARRIOR")
                 {
                     for (var i = 0; i < singledungeons; i++)
                     {
