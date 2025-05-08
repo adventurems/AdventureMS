@@ -9,7 +9,7 @@ var multidungeons = 5;
 
 function enter(pi) {
     var job = pi.getPlayer().getJob();
-    if (pi.getMapId() == baseid)
+    if (pi.getMapId() === baseid)
     {
         if (pi.getPlayer().haveItem(3997002) && pi.getPlayer().getZoneProgress() <= 2)
         {
@@ -19,7 +19,7 @@ function enter(pi) {
                 return false;
             }
             else {
-                if (job == "MAGICIAN" || job == "BOWMAN" || job == "THIEF" || job == "PIRATE")
+                if (job === "MAGICIAN" || job === "BOWMAN" || job === "THIEF" || job === "PIRATE" || "WARRIOR")
                 {
                     for (var i = 0; i < singledungeons; i++)
                     {
