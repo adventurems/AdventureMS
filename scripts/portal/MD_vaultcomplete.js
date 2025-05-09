@@ -22,7 +22,7 @@ function enter(pi)
     else
     {
         // Check for any monsters for other maps
-        if (pi.getPlayer().getMap().countMonsters() == 0)
+        if (pi.getPlayer().getMap().countMonsters() === 0)
         {
             pi.playPortalSound();
             pi.warp(198000105, "st00");

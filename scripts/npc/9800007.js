@@ -8,144 +8,158 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
     // First prompt when clicking the NPC
     else if (status == 0)
     {
-        // Find job ID and return string
-        switch (cm.getJobId())
+        // Check if they got back in somehow
+        if (cm.getZoneProgress >= 3)
         {
-            // Warrior Prompt
-            case 100:
-            {
-                cm.sendSimple("(you unlock the chest with the Vault Key, reach inside, and find...)" +
-                "\r\n\r\n#rA choice of one of the following:#k" +
-                "\r\n#L1##v1302004# #t1302004##l\r\n#L2##v1402006# #t1402006##l\r\n#L3##v1322008# #t1322008##l\r\n#L4##v1422004# #t1422004##l\r\n#L5##v1432016# #t1432016##l" +
-                "\r\n\r\n\r\n#rAdditionally, you find:#k" +
-                "\r\n\r\n#v4031012# #t4031012#" +
-                "\r\n#v1122900# #t1122900#" +
-                "\r\n#v1142201# #t1142201#" +
-                "\r\n#v5200002# 500,000 Mesos" +
-                "\r\n#v4310000# #t4310000# x 20");
-                break;
-            }
+            cm.sendOk("You aren't supposed to be here!");
+            cm.warp(100000203, 0);
+            cm.getPlayer().setSavedLocation("FREE_MARKET", 198000000); // Update saved location
+            cm.dispose();
+        }
 
-            // Mage Prompt
-            case 200:
+        else
+        {
+            // Find job ID and return string
+            switch (cm.getJobId())
             {
-                // Rewards / Actions
-                if (cm.canHoldAll([4031012, 1372001, 1122900, 4310000, 1142201]))
+                // Warrior Prompt
+                case 100:
                 {
-                    cm.gainItem(3997002, -1); // Remove the Black Key
-                    cm.gainItem(3997003, -1); // Remove the Mountain Pass Key
-                    cm.gainItem(4031012, 1); // Gain Proof of a Hero
-                    cm.gainItem(1372001, 1); // Gain Weapon
-                    cm.gainItem(1122900, 1); // Gain Black Pendant
-                    cm.gainItem(1142201, 1); // Gain Medal
-                    cm.gainItem(4310000, 20); // Gain Ancient Coins
-                    cm.gainMeso(500000); // Gain Mesos
-                    cm.getPlayer().updateZoneProgress(); // Update Zone Progress
-                    cm.completeQuest(1005); // Make sure the Adonis Quest is closed
-                    cm.warp(910000000, 0); // Warp to Home
-                    cm.sendOk("(as you turn the key, the chest whisks you back home...but not without your plunder...)" +
-                    "\r\n\r\n#eYou have completed #bZone 3#k!#n Use your #rProof of a Hero#k to job advance and unlock #bZone 4#k!" +
-                    "\r\n\r\n#v4031012# #t4031012#" +
-                    "\r\n#v1372001# #t1372001#" +
-                    "\r\n#v1122900# #t1122900#" +
-                    "\r\n#v1142201# #t1142201#" +
-                    "\r\n#v5200002# 500,000 Mesos" +
-                    "\r\n#v4310000# #t4310000# x 20");
-                    cm.dispose();
+                    cm.sendSimple("(you unlock the chest with the Vault Key, reach inside, and find...)" +
+                        "\r\n\r\n#rA choice of one of the following:#k" +
+                        "\r\n#L1##v1302004# #t1302004##l\r\n#L2##v1402006# #t1402006##l\r\n#L3##v1322008# #t1322008##l\r\n#L4##v1422004# #t1422004##l\r\n#L5##v1432016# #t1432016##l" +
+                        "\r\n\r\n\r\n#rAdditionally, you find:#k" +
+                        "\r\n\r\n#v4031012# #t4031012#" +
+                        "\r\n#v1122900# #t1122900#" +
+                        "\r\n#v1142201# #t1142201#" +
+                        "\r\n#v5200002# 500,000 Mesos" +
+                        "\r\n#v4310000# #t4310000# x 20");
+                    break;
                 }
 
-                // Not enough room for rewards, send exit message
-                else
+                // Mage Prompt
+                case 200:
                 {
-                    cm.sendOk("You don't have enough space to hold your rewards!\r\n\r\nYou need 3 EQUIP slots, 1 ETC slot and must either already have Ancient coins, or have 1 slot available for them.");
-                    cm.dispose();
-                }
-                break;
-            }
+                    // Rewards / Actions
+                    if (cm.canHoldAll([4031012, 1372001, 1122900, 4310000, 1142201]))
+                    {
+                        cm.gainItem(3997002, -1); // Remove the Black Key
+                        cm.gainItem(3997003, -1); // Remove the Mountain Pass Key
+                        cm.gainItem(4031012, 1); // Gain Proof of a Hero
+                        cm.gainItem(1372001, 1); // Gain Weapon
+                        cm.gainItem(1122900, 1); // Gain Black Pendant
+                        cm.gainItem(1142201, 1); // Gain Medal
+                        cm.gainItem(4310000, 20); // Gain Ancient Coins
+                        cm.gainMeso(500000); // Gain Mesos
+                        cm.getPlayer().updateZoneProgress(); // Update Zone Progress
+                        cm.completeQuest(1005); // Make sure the Adonis Quest is closed
+                        cm.warp(100000203, 0); // Warp to Home
+                        cm.getPlayer().setSavedLocation("FREE_MARKET", 198000000); // Update saved location
+                        cm.sendOk("(as you turn the key, the chest whisks you back home...but not without your plunder...)" +
+                            "\r\n\r\n#eYou have completed #bZone 3#k!#n Use your #rProof of a Hero#k to job advance and unlock #bZone 4#k!" +
+                            "\r\n\r\n#v4031012# #t4031012#" +
+                            "\r\n#v1372001# #t1372001#" +
+                            "\r\n#v1122900# #t1122900#" +
+                            "\r\n#v1142201# #t1142201#" +
+                            "\r\n#v5200002# 500,000 Mesos" +
+                            "\r\n#v4310000# #t4310000# x 20");
+                        cm.dispose();
+                    }
 
-            // Archer Prompt
-            case 300:
-            {
-                cm.sendSimple("(you unlock the chest with the Vault Key, reach inside, and find...)" +
-                "\r\n\r\n#rA choice of one of the following:#k" +
-                "\r\n#L1##v1452006# #t1452006##l\r\n#L2##v1462005# #t1462005##l" +
-                "\r\n\r\n\r\n#rAdditionally, you find:#k" +
-                "\r\n\r\n#v4031012# #t4031012#" +
-                "\r\n#v1122900# #t1122900#" +
-                "\r\n#v1142201# #t1142201#" +
-                "\r\n#v5200002# 500,000 Mesos" +
-                "\r\n#v4310000# #t4310000# x 20");
-                break;
-            }
-
-            // Thief Prompt
-            case 400:
-            {
-                cm.sendSimple("(you unlock the chest with the Vault Key, reach inside, and find...)" +
-                "\r\n\r\n#rA choice of one of the following:#k" +
-                "\r\n#L1##v1472013# #t1472013##l\r\n#L2##v1332020# #t1332020##l" +
-                "\r\n\r\n\r\n#rAdditionally, you find:#k" +
-                "\r\n\r\n#v4031012# #t4031012#" +
-                "\r\n#v1122900# #t1122900#" +
-                "\r\n#v1142201# #t1142201#" +
-                "\r\n#v5200002# 500,000 Mesos" +
-                "\r\n#v4310000# #t4310000# x 20");
-                break;
-            }
-
-            // Pirate Prompt
-            case 500:
-            {
-                cm.sendSimple("(you unlock the chest with the Vault Key, reach inside, and find...)" +
-                "\r\n\r\n#rA choice of one of the following:#k" +
-                "\r\n#L1##v1492005# #t1492005##l\r\n#L2##v1482005# #t1482005##l" +
-                "\r\n\r\n\r\n#rAdditionally, you find:#k" +
-                "\r\n\r\n#v4031012# #t4031012#" +
-                "\r\n#v1122900# #t1122900#" +
-                "\r\n#v1142201# #t1142201#" +
-                "\r\n#v5200002# 500,000 Mesos" +
-                "\r\n#v4310000# #t4310000# x 20");
-                break;
-            }
-
-            // Aran Prompt
-            case 2100:
-            {
-                // Rewards / Actions
-                if (cm.canHoldAll([4031012, 1442050, 1122900, 4310000, 1142201]))
-                {
-                    cm.gainItem(3997002, -1); // Remove the Black Key
-                    cm.gainItem(3997003, -1); // Remove the Mountain Pass Key
-                    cm.gainItem(4031012, 1); // Gain Proof of a Hero
-                    cm.gainItem(1442050, 1); // Gain Weapon
-                    cm.gainItem(1122900, 1); // Gain Black Pendant
-                    cm.gainItem(1142201, 1); // Gain Medal
-                    cm.gainItem(4310000, 20); // Gain Ancient Coins
-                    cm.gainMeso(500000); // Gain Mesos
-                    cm.getPlayer().updateZoneProgress(); // Update Zone Progress
-                    cm.completeQuest(1005); // Make sure the Adonis Quest is closed
-                    cm.warp(910000000, 0); // Warp to Home
-                    cm.sendOk("(as you turn the key, the chest whisks you back home...but not without your plunder...)" +
-                    "\r\n\r\n#eYou have completed #bZone 3#k!#n Use your #rProof of a Hero#k to job advance and unlock #bZone 4#k!" +
-                    "\r\n\r\n#v4031012# #t4031012#" +
-                    "\r\n#v1442050# #t1442050#" +
-                    "\r\n#v1122900# #t1122900#" +
-                    "\r\n#v1142201# #t1142201#" +
-                    "\r\n#v5200002# 500,000 Mesos" +
-                    "\r\n#v4310000# #t4310000# x 20");
-                    cm.dispose();
+                    // Not enough room for rewards, send exit message
+                    else
+                    {
+                        cm.sendOk("You don't have enough space to hold your rewards!\r\n\r\nYou need 3 EQUIP slots, 1 ETC slot and must either already have Ancient coins, or have 1 slot available for them.");
+                        cm.dispose();
+                    }
+                    break;
                 }
 
-                // Not enough room for rewards, send exit message
-                else
+                // Archer Prompt
+                case 300:
                 {
-                    cm.sendOk("You don't have enough space to hold your rewards!\r\n\r\nYou need 3 EQUIP slots, 1 ETC slot and must either already have Ancient coins, or have 1 slot available for them.");
-                    cm.dispose();
+                    cm.sendSimple("(you unlock the chest with the Vault Key, reach inside, and find...)" +
+                        "\r\n\r\n#rA choice of one of the following:#k" +
+                        "\r\n#L1##v1452006# #t1452006##l\r\n#L2##v1462005# #t1462005##l" +
+                        "\r\n\r\n\r\n#rAdditionally, you find:#k" +
+                        "\r\n\r\n#v4031012# #t4031012#" +
+                        "\r\n#v1122900# #t1122900#" +
+                        "\r\n#v1142201# #t1142201#" +
+                        "\r\n#v5200002# 500,000 Mesos" +
+                        "\r\n#v4310000# #t4310000# x 20");
+                    break;
                 }
-                break;
-            }
 
-            default: break;
+                // Thief Prompt
+                case 400:
+                {
+                    cm.sendSimple("(you unlock the chest with the Vault Key, reach inside, and find...)" +
+                        "\r\n\r\n#rA choice of one of the following:#k" +
+                        "\r\n#L1##v1472013# #t1472013##l\r\n#L2##v1332020# #t1332020##l" +
+                        "\r\n\r\n\r\n#rAdditionally, you find:#k" +
+                        "\r\n\r\n#v4031012# #t4031012#" +
+                        "\r\n#v1122900# #t1122900#" +
+                        "\r\n#v1142201# #t1142201#" +
+                        "\r\n#v5200002# 500,000 Mesos" +
+                        "\r\n#v4310000# #t4310000# x 20");
+                    break;
+                }
+
+                // Pirate Prompt
+                case 500:
+                {
+                    cm.sendSimple("(you unlock the chest with the Vault Key, reach inside, and find...)" +
+                        "\r\n\r\n#rA choice of one of the following:#k" +
+                        "\r\n#L1##v1492005# #t1492005##l\r\n#L2##v1482005# #t1482005##l" +
+                        "\r\n\r\n\r\n#rAdditionally, you find:#k" +
+                        "\r\n\r\n#v4031012# #t4031012#" +
+                        "\r\n#v1122900# #t1122900#" +
+                        "\r\n#v1142201# #t1142201#" +
+                        "\r\n#v5200002# 500,000 Mesos" +
+                        "\r\n#v4310000# #t4310000# x 20");
+                    break;
+                }
+
+                // Aran Prompt
+                case 2100:
+                {
+                    // Rewards / Actions
+                    if (cm.canHoldAll([4031012, 1442050, 1122900, 4310000, 1142201]))
+                    {
+                        cm.gainItem(3997002, -1); // Remove the Black Key
+                        cm.gainItem(3997003, -1); // Remove the Mountain Pass Key
+                        cm.gainItem(4031012, 1); // Gain Proof of a Hero
+                        cm.gainItem(1442050, 1); // Gain Weapon
+                        cm.gainItem(1122900, 1); // Gain Black Pendant
+                        cm.gainItem(1142201, 1); // Gain Medal
+                        cm.gainItem(4310000, 20); // Gain Ancient Coins
+                        cm.gainMeso(500000); // Gain Mesos
+                        cm.getPlayer().updateZoneProgress(); // Update Zone Progress
+                        cm.completeQuest(1005); // Make sure the Adonis Quest is closed
+                        cm.warp(100000203, 0); // Warp to Home
+                        cm.getPlayer().setSavedLocation("FREE_MARKET", 198000000); // Update saved location
+                        cm.sendOk("(as you turn the key, the chest whisks you back home...but not without your plunder...)" +
+                            "\r\n\r\n#eYou have completed #bZone 3#k!#n Use your #rProof of a Hero#k to job advance and unlock #bZone 4#k!" +
+                            "\r\n\r\n#v4031012# #t4031012#" +
+                            "\r\n#v1442050# #t1442050#" +
+                            "\r\n#v1122900# #t1122900#" +
+                            "\r\n#v1142201# #t1142201#" +
+                            "\r\n#v5200002# 500,000 Mesos" +
+                            "\r\n#v4310000# #t4310000# x 20");
+                        cm.dispose();
+                    }
+
+                    // Not enough room for rewards, send exit message
+                    else
+                    {
+                        cm.sendOk("You don't have enough space to hold your rewards!\r\n\r\nYou need 3 EQUIP slots, 1 ETC slot and must either already have Ancient coins, or have 1 slot available for them.");
+                        cm.dispose();
+                    }
+                    break;
+                }
+
+                default: break;
+            }
         }
     }
 
@@ -258,7 +272,8 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             cm.gainMeso(500000); // Gain Mesos
             cm.getPlayer().updateZoneProgress(); // Update Zone Progress
             cm.completeQuest(1005); // Make sure the Adonis Quest is closed
-            cm.warp(910000000, 0); // Warp to Home
+            cm.warp(100000203, 0); // Warp to Home
+            cm.getPlayer().setSavedLocation("FREE_MARKET", 198000000); // Update saved location
             cm.sendOk("After choosing your reward, the chest whisks you back home!\r\n\r\n#eYou have completed #bZone 3#k!#n\r\n\r\nUse your #rProof of a Hero#k to job advance and unlock #bZone 4#k!");
             cm.dispose();
         }

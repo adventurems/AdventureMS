@@ -321,10 +321,7 @@ public class Party {
     public static boolean createParty(Character player, boolean silentCheck) {
         Party party = player.getParty();
         if (party == null) {
-            if (player.getLevel() < 10 && !YamlConfig.config.server.USE_PARTY_FOR_STARTERS) {
-                player.sendPacket(PacketCreator.partyStatusMessage(10));
-                return false;
-            } else if (player.getAriantColiseum() != null) {
+            if (player.getAriantColiseum() != null) {
                 player.dropMessage(5, "You cannot request a party creation while participating the Ariant Battle Arena.");
                 return false;
             }

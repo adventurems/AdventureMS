@@ -1,6 +1,6 @@
-// AdventureMS West Corridor Altar
+// AdventureMS West (Fire) Corridor Altar
 
 function act()
 {
-    // rm.warp(106010113, "out00");
+    rm.dropItems(); // Give soul item
 }

@@ -1,6 +1,6 @@
-// AdventureMS East Corridor Altar
+// AdventureMS East (frozen) Corridor Altar
 
 function act()
 {
-    // rm.warp(106010113, "out00");
+    rm.dropItems(); // Give soul item
 }

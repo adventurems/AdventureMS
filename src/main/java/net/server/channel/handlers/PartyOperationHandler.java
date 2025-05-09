@@ -76,16 +76,8 @@ public final class PartyOperationHandler extends AbstractPacketHandler {
             case 4: { // invite
                 String name = p.readString();
                 Character invited = world.getPlayerStorage().getCharacterByName(name);
-                if (invited != null) {
-                    if (invited.getLevel() < 10 && (!YamlConfig.config.server.USE_PARTY_FOR_STARTERS || player.getLevel() >= 10)) { //min requirement is level 10
-                        c.sendPacket(PacketCreator.serverNotice(5, "The player you have invited does not meet the requirements."));
-                        return;
-                    }
-                    if (YamlConfig.config.server.USE_PARTY_FOR_STARTERS && invited.getLevel() >= 10 && player.getLevel() < 10) {    //trying to invite high level
-                        c.sendPacket(PacketCreator.serverNotice(5, "The player you have invited does not meet the requirements."));
-                        return;
-                    }
-
+                if (invited != null)
+                {
                     if (invited.getParty() == null) {
                         if (party == null) {
                             if (!Party.createParty(player, false)) {

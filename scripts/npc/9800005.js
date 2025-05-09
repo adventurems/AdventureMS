@@ -37,18 +37,27 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 	    if (cm.haveItem(2000000))
 	    {
 	        // Check to see if they have enough red potions
-	        if (cm.itemQuantity(2000000) >= 500)
+	        if (cm.itemQuantity(2000000) === 500)
 	        {
                 cm.sendOk("(the statue opens his mouth and begins vacuuming all of your red potions...)\r\n\r\n(the statues bleeding recedes and the statue appears to heal revealing the key tip, #r#eallowing you to grab it#k#n!");
                 cm.gainItem(3997001, 1); // Gain Vault Key tip
                 cm.gainItem(2000000, -500); // Remove Red Potions
                 cm.dispose();
             }
+
             // They have red potions but not enough
-            else
+            else if (cm.itemQuantity(2000000) < 500)
             {
                 cm.getPlayer().updateHpMp(0); // Kill the player
                 cm.sendOk("(you reach your hand into the bowl and the statue clamps down!)\r\n\r\n#r(the statue bellows out)... MORE!!!#k");
+                cm.dispose();
+            }
+
+            // They have too many red potions
+            else
+            {
+                cm.getPlayer().updateHpMp(0); // Kill the player
+                cm.sendOk("(you reach your hand into the bowl and the statue clamps down!)\r\n\r\n#r(the statue bellows out)... LESS!!!#k");
                 cm.dispose();
             }
         }

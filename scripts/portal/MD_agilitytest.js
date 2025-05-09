@@ -1,6 +1,4 @@
-/*
-MiniDungeon - The Peak
-*/ 
+// AdventureMS - The Peak Agility Test
 
 var baseid = 101040002;
 var dungeonid = 260020100;

@@ -2,14 +2,12 @@
 
 // AdventureMS
 
-function start() {
-	if ()
-	{
+function start()
+{
+
 	    cm.sendOk("");
 	    cm.dispose();
-	} else
-	{
+
         cm.sendOk("");
         cm.dispose();
-	}
 }

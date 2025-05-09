@@ -9043,6 +9043,12 @@ public class Character extends AbstractCharacterObject {
         savedLocations[SavedLocationType.fromString(type).ordinal()] = new SavedLocation(getMapId(), closest != null ? closest.getId() : 0);
     }
 
+    // AdventureMS Custom - SavedLocation
+    public void setSavedLocation(String type, int mapId) {
+        Portal closest = map.findClosestPortal(getPosition());
+        savedLocations[SavedLocationType.fromString(type).ordinal()] = new SavedLocation(mapId, closest != null ? closest.getId() : 0);
+    }
+
     public final boolean insertNewChar(CharacterFactoryRecipe recipe) {
         str = recipe.getStr();
         dex = recipe.getDex();

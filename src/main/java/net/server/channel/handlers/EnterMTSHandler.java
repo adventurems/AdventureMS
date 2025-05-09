@@ -86,7 +86,16 @@ public final class EnterMTSHandler extends AbstractPacketHandler {
                         106010148, // Treasure Hunt #1
                         106010149, // Shipwreck
                         106010150, // Treasure Hunt #1
-                        106010114 // Guardians Chamber
+                        106010125, // Guardians Chamber
+                        106010126, // Guardians Chamber
+                        106010127, // Guardians Chamber
+                        106010128, // Guardians Chamber
+                        106010129, // Guardians Chamber
+                        106010130, // Guardians Chamber
+                        106010131, // Guardians Chamber
+                        106010132, // Guardians Chamber
+                        106010133, // Guardians Chamber
+                        106010134 // Guardians Chamber
                 };
 
         // Current Map
