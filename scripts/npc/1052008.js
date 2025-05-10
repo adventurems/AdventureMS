@@ -3,7 +3,7 @@
 function start()
 {
     // Check that we have started Hill's quest
-    if (cm.getQuestStatus(1016) == 1)
+    if (cm.getQuestStatus(1016) === 1)
     {
         // Check that we can hold the Moon Rock
         if (cm.canHold(4011007, 1))
@@ -19,6 +19,7 @@ function start()
 
             // Send Message
             cm.sendOk("You found the chest! You eagerly break it open to find:\r\n#v5200002# 1,000,000 Mesos\r\n#v4011007# #t4011007#!");
+            cm.warp(100000203, "west00");
 
             // Kill convo
             cm.dispose();
