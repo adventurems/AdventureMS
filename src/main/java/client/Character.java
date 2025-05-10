@@ -9016,15 +9016,16 @@ public class Character extends AbstractCharacterObject {
         Item item = getInventory(InventoryType.EQUIPPED).getItem((short) -3);
 
         // Check if null
-        if (item == null) { return false; }
-
-        // Get ID of Item
-        int itemId = item.getItemId();
-
-        // Check if ID is 1022500 (Dimensional Lens) or 1022082 (Spectrum Goggles)
-        if (itemId == 1022500 || itemId == 1022082)
+        if (item != null)
         {
-            gogglesEquipped = true;
+            // Get ID of Item
+            int itemId = item.getItemId();
+
+            // Check if ID is 1022500 (Dimensional Lens) or 1022082 (Spectrum Goggles)
+            if (itemId == 1022500 || itemId == 1022082)
+            {
+                gogglesEquipped = true;
+            }
         }
 
         return gogglesEquipped;
