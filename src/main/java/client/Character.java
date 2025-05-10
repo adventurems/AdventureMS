@@ -9015,6 +9015,9 @@ public class Character extends AbstractCharacterObject {
         // Create Item Instance
         Item item = getInventory(InventoryType.EQUIPPED).getItem((short) -3);
 
+        // Check if null
+        if (item == null) { return false; }
+
         // Get ID of Item
         int itemId = item.getItemId();
 
