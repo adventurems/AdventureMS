@@ -7,6 +7,7 @@ function enter(pi)
     if (cm.getPlayer().areGogglesEquipped())
     {
         pi.playPortalSound(); // Sound
+        pi.playerMessage("areGogglesEquipped: " + cm.getPlayer().areGogglesEquipped());
 
         // Send to working portal map
         pi.warp(100000202, "out00");
@@ -17,6 +18,7 @@ function enter(pi)
     else
     {
         pi.playPortalSound(); // Sound
+        pi.playerMessage("areGogglesEquipped: " + cm.getPlayer().areGogglesEquipped());
 
         // Send to broken portal map
         pi.warp(100000201, "out00");
