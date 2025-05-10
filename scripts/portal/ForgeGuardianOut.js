@@ -1,4 +1,4 @@
-// AdventureMS Portal Default
+// AdventureMS Forge Guardian Out
 
 function enter(pi)
 {

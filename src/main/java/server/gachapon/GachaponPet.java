@@ -7,7 +7,7 @@ package server.gachapon;
  * MapleSEA-like loots thanks to AyumiLove - src: https://ayumilovemaple.wordpress.com/maplestory-gachapon-guide/
  */
 
-public class Ellinia extends GachaponItems {
+public class GachaponPet extends GachaponItems {
 
     @Override
     public int[] getCommonItems()

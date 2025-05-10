@@ -7,7 +7,7 @@ package server.gachapon;
  * MapleSEA-like loots thanks to AyumiLove - src: https://ayumilovemaple.wordpress.com/maplestory-gachapon-guide/
  */
 
-public class Henesys extends GachaponItems
+public class GachaponCash extends GachaponItems
 {
 
     @Override

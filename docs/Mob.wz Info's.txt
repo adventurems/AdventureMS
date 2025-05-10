@@ -1,0 +1,131 @@
+Mob.wz Info's
+
+info.bodyAttack = Determines if a monster can hit you by touching you. Editing this will create a godmode, but you WILL d/c if you attack the monster. 1=on 0=off. All monsters.
+
+info.level = Mobs level. Editing this to any other value will result in instant D/C upon attacking. All monsters.
+
+info.maxHP = Mobs HP. Editing this won't do jack shit. All monsters.
+
+info.maxMP = Mobs MP. Editing this won't do jack shit. All monsters.
+
+info.speed = Mobs movement speed. Editing this will work, but you have to change via the hex box. All ground monsters.
+
+info.flySpeed = Mobs flying speed. Editing this will work, but you have to change via the hex box. All flying monsters.
+
+info.PADamage = Mobs Physical Attack Damage. Editing this to a value of 1 or less will make monsters do 1 damage to you. All monsters.
+
+info.PDDamage = Mobs Physical Defense. Editing this will be client sided damage. All monsters.
+
+info.MADamage = Mobs Magic Attack Damage. Editing this to a value of 1 or less will make monsters do 1 damage to you. All monsters.
+
+info.MDDamage = Mobs Magic Defense. Editing this will be client sided damage. All monsters.
+
+info.acc = How much accuracy a mob has. Editing this will be server sided, a value of -127 will be a close replica to miss godmode. All monsters.
+
+info.eva = How much evasion a mob has. Higher it is means you need more accuracy to hit it. All monsters.
+
+info.exp = How much experience a mob gives. Editing this will do nothing. All monsters.
+
+info.undead = If you can heal the mob or not. Editing this to a value of 1 will enable you to kill monsters with heal. 1=on 0=off. All monsters.
+
+info.pushed = How much damage is required to Knockback a mob. Editing this to a value of 0 will enable you to knockback a mob with any damage. All monsters.
+
+info.hpRecovery = How much hp the mob recovers after it's set time limit or whatever triggers it. Mushmom.
+
+info.mpRecovery = Same as above, but mp. Mushmom.
+
+info.elemAttr = Elemental atrribute of the monster (if you see one with H1I2F3 it means ICE-least effective FIRE-most effective HOLY-Non-effective). Editing this will show you CSided damage. All monsters.
+
+info.fs = ???? Editing the value to 0 or a negative number will stop the monster from moving completely. I made the value get to 40, it changed absolutely nothing. All monsters.
+
+info.summonType = 2 means monster can summon monster. All monsters.
+
+info.hpTagColor = Hp bar at the top of your screens color. Only for bosses, pointless. Zakum1/2/3.
+
+info.hpTagBgcolor = Same as above but the background color. Zakum1/2/3
+
+info.HPgaugeHide = Self explanatory. Crashes game if you hit an edited monster with this. Most bosses, Mushmom.
+
+info.noFlip = Monsters image doesn't flip when it is at a value of 1. 1=on 0=off. Tutorial Leatty.
+
+info.noRegen = Monster doesn't respawn after death. 1=on 0=off. Transformed yeti.
+
+info.revive.0 = Spawns mob after death (put new monsters I.D. in value box. Can be info.revive.1/2/3/4/5/6/7/8/9/10 ETC). Bombing fish house.
+
+info.link = Links to another monsters attributes. All attacks/graphics/delays/etc. Transformed yeti.
+
+info.onlyNormalAttack = Only hitting the monster with a normal attack can hurt it. 1=on 0=off. Snowman1.
+
+info.fixedDamage = How much damage an attack will do to the monster no matter what. Snowman1
+
+info.boss = Determines if the monster is a boss or not. 1=on 0=off. All monsters.
+
+info.firstAttack = Auto aggrivated monster. Meaning you don't have to attack it for it to attack you. 1=on 0=off. Pinboom.
+
+info.publicReward = Anyone can loot the monsters drops, regardless of them hitting it or not. 1=on 0=off. Zakum3.
+
+info.explosiveReward = Monsters drops go all over the place. 1=on 0=off. Zakum3.
+
+info.invincible = Determines if the monster can be attacked or not. 1=on 0=off. Super stirge.
+
+info.notAttack = Monster can not attack or damage you. But you can damage it. Yay. Tutorial Leatty.
+
+info.removeAfter = Removes monster from map after set time limit. OR removes after a set amount of attacks to it. Purple Flying Book.
+
+info.selfDestruction.action = Determines if the monster kills itself. 1=on 0=off. Firebomb.
+
+info.selfDestruction.hp = Determines how much hp the monster takes before it kills itself. Firebomb.
+
+info.selfDestruction.removeAfter = How much time before it kills itself. Boomer.
+
+info.defaultHP = Has a value of Measurement not, in korean. Wtf. Papulatus.
+
+info.defaultMP = Has a value of Measurement not, in korean. Wtf. Papulatus.
+
+info.buff = When monster is killed it gives you a buff. Ummm abuse the shit out of this? Go to horntail and change the I.D. to an equip or something? Horntail.
+
+info.hideName = Hides monsters name. Crashes game if you hit an edited monster with this. 1=on 0=off. Mostly bosses, Mushmom.
+
+info.damagedByMob = Editing this will become server sided, but the mob will not be damaged. Combining this and vaccing 1 monster might be a possible way on a new vac. 1=on 0=off. Juliet.
+
+info.damagedBySelectedMob.0 = Only a certain monster can damage it. Doesn't damage monster, but draws other monsters to it. Juliet.
+
+info.dropItemPeriod = Don't know. moon Bunny.
+
+info.doNotRemove = Does not remove monster even if it's dead. 1=on 0=off. Juliet.
+
+info.chaseSpeed = The speed at which the monster chases you after you attack it. Headless horseman.
+
+info.removeQuest = Removes quest? 1=on 0=off. Making a wish to the full moon .
+
+info.loseItem.0.id = Makes you DROP an item in your inventory. Possible way to drop your z helm with this? Item may or may not have to be in your inventory. Bomb.
+
+info.loseItem.0.prop = Usually at value 40. So I'd keep it that way. Bomb.
+
+info.loseItem.0.x = Usually at value 5. Bomb. Think Ariant Colosseum
+
+info.ban.banType = Don't know. Value is usually at 0. Security Camera.
+
+info.ban.banMsg = If you hit this monster it will display a message on your screen saying you've been sent back to town. Security Camera.
+
+info.ban.banMap.0.field = The map I.D. it sends you to after you hit it. Security Camera.
+
+info.ban.banMap.0.potal = Don't know. Security Camera.
+
+info.skill.0.skill. = A value of 200 will give the monster a skill to summon other monsters.Low Darkstar
+
+info.skill.0.action = Usually at a value of 1. Low Darkstar.
+
+info.skill.0.level = Look below. Low Darkstar.
+
+info.skill.0.effectAfter = Usually at 0 Low Darkstar.
+
+info.mobType = Who knows. Slime
+
+info.mbookID = Something to do with monster book. Any magatia monsters.
+
+info.getCP = How much CP a monster gives in carnival PQ. All CPQ monsters
+
+info.cantPassByTeleport = Pretty obvious, teleport doesn't work when you are next to this monster. Master Guardian
+
+info.damagedBySelectedSkill = Only a certain skill can damage it. Forgot :S 

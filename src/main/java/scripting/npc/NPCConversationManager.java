@@ -402,11 +402,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction {
     // AdventureMS Custom
     public void doCashGachapon()
     {
-        // int[] maps = {100000203}; AdventureMS Custom
-
         GachaponItem item = Gachapon.getInstance().process(npc);
-
-        // Item itemGained = gainItem(item.getId(), (short) (item.getId() / 10000 == 200 ? 100 : 1), true, true); // For normal potions, make it give 100. AdventureMS Custom
 
         // Gain Cash Item
         Item itemGained = gainItem(item.getId(), (short) 1, false, true);
@@ -414,9 +410,6 @@ public class NPCConversationManager extends AbstractPlayerInteraction {
         sendOk("You have obtained a #b#t" + item.getId() + "##k.");
 
         String map = "Cash";
-
-        // AdventureMS Custom
-        // String map = c.getChannelServer().getMapFactory().getMap(maps[(getNpc() != 9100117 && getNpc() != 9100109) ? (getNpc() - 9100100) : getNpc() == 9100109 ? 8 : 9]).getMapName();
 
         // Log to Console
         Gachapon.log(getPlayer(), item.getId(), map);
@@ -443,6 +436,31 @@ public class NPCConversationManager extends AbstractPlayerInteraction {
 
         // Assign map for server message
         String map = "Pet";
+
+        // Log to Console
+        Gachapon.log(getPlayer(), item.getId(), map);
+
+        //Rare Only - Send Server Message
+        if (item.getTier() > 2)
+        {
+            Server.getInstance().broadcastMessage(c.getWorld(), PacketCreator.gachaponMessage(itemGained, map, getPlayer()));
+        }
+    }
+
+    // AdventureMS Custom
+    public void doChairGachapon()
+    {
+        // Find a gacha item
+        GachaponItem item = Gachapon.getInstance().process(npc);
+
+        // Gain Cash Item
+        Item itemGained = gainItem(item.getId(), (short) 1, false, true);
+
+        // Send NPC Message Window
+        sendOk("You have obtained a #b#t" + item.getId() + "##k.");
+
+        // Assign map for server message
+        String map = "Chair";
 
         // Log to Console
         Gachapon.log(getPlayer(), item.getId(), map);

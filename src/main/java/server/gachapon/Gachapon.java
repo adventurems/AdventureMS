@@ -42,19 +42,10 @@ public class Gachapon {
     public enum GachaponType {
 
         // AdventureMS Custom
-        // GLOBAL(-1, -1, -1, -1, new Global()),
-        HENESYS(9100100, 99, 0, 1, new Henesys()),
-        ELLINIA(9100101, 100, 0, 0, new Ellinia());
-        // PERION(9100102, 90, 8, 2, new Perion()),
-        // KERNING_CITY(9100103, 90, 8, 2, new KerningCity()),
-        // SLEEPYWOOD(9100104, 90, 8, 2, new Sleepywood()),
-        // MUSHROOM_SHRINE(9100105, 90, 8, 2, new MushroomShrine()),
-        // SHOWA_SPA_MALE(9100106, 90, 8, 2, new ShowaSpaMale()),
-        // SHOWA_SPA_FEMALE(9100107, 90, 8, 2, new ShowaSpaFemale()),
-        // LUDIBRIUM(9100108, 90, 8, 2, new Ludibrium()),
-        // NEW_LEAF_CITY(9100109, 90, 8, 2, new NewLeafCity()),
-        // EL_NATH(9100110, 90, 8, 2, new ElNath()),
-        // NAUTILUS_HARBOR(9100117, 90, 8, 2, new NautilusHarbor());
+        CASH_GACHAPON(9100100, 99, 0, 1, new GachaponCash()),
+        PET_GACHAPON(9100101, 100, 0, 0, new GachaponPet()),
+        CHAIR_GACHAPON(9100102, 90, 8, 2, new GachaponChair());
+
 
         private static final GachaponType[] values = GachaponType.values();
 
