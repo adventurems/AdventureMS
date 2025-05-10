@@ -60,13 +60,23 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Kill the convo
             cm.dispose();
         }
+    }
 
     // They've pressed "yes" that they would have protected her
-    } else if (status >= 2)
+    else if (status >= 2)
     {
-        cm.sendOk("...I'm not sure I trust you, as there aren't many I do trust anymore...\r\n\r\nHowever, you've earned this, a real tank, deserving of the title...\r\n\r\n#i1142200# #t1142200#");
-        cm.gainItem(1142200, 1);
-        cm.completeQuest(1000);
-        cm.dispose();
+        if (cm.canHold(1142200))
+        {
+            cm.sendOk("...I'm not sure I trust you, as there aren't many I do trust anymore...\r\n\r\nHowever, you've earned this, a real tank, deserving of the title...\r\n\r\n#i1142200# #t1142200#");
+            cm.gainItem(1142200, 1);
+            cm.completeQuest(1000);
+            cm.dispose();
+        }
+
+        else
+        {
+            cm.sendOk("All that power, but you can't hold a medal? Make some room in your #rEQUIP#k tab...");
+            cm.dispose();
+        }
     }
 }

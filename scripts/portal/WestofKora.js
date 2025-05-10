@@ -9,7 +9,7 @@ function enter(pi)
         pi.playPortalSound(); // Sound
 
         // Send to working portal map
-        pi.warp(106010138, "out00");
+        pi.warp(100000202, "out00");
         return true;
     }
 
@@ -19,7 +19,7 @@ function enter(pi)
         pi.playPortalSound(); // Sound
 
         // Send to broken portal map
-        pi.warp(106010139, "out00");
+        pi.warp(100000201, "out00");
         return true;
     }
 }
