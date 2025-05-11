@@ -44,7 +44,7 @@ public class Gachapon {
         // AdventureMS Custom
         CASH_GACHAPON(9100100, 99, 0, 1, new GachaponCash()),
         PET_GACHAPON(9100101, 100, 0, 0, new GachaponPet()),
-        CHAIR_GACHAPON(9100102, 90, 8, 2, new GachaponChair());
+        CHAIR_GACHAPON(9100102, 100, 0, 0, new GachaponChair());
 
 
         private static final GachaponType[] values = GachaponType.values();
