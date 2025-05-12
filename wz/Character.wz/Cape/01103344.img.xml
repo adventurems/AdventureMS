@@ -1,1514 +1,1510 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" ?>
 <imgdir name="01103344.img">
     <imgdir name="info">
         <canvas name="icon" width="33" height="31" pixFormat="1" magLevel="0" bytedata="eJyMlc9PU0EQx3uBvL6SeOaVf8DSmydb/gGK/gGAnjxZTLjopRC9EVL8C9oDBxMTiwk30hSDN5q0iEeVNl77FhtDoNSZfY+3zuzy7G/1TZp2+/b72ZndmdlIZPRRd0pTYIPTZ3bPxghGHq1OQAoysEKWoV+JfgrPkTPjlBcRsKTlRml2ipQ5KECh2oU8ZGmUEil31p0F+2sUYzgjtQ3rKzZGaU6C5uehBDU4q3ZvAmJUaJyDFXfRva/2IY5xEZdzg4yLyLYlLOEI9j0LRazjD/RYz0aMGlEKkAuOlAo+YloueA9lUsz1GGB9swXHvoo7eEhqH/0WsBo99JihKSXIB6e4hps8lo9lMiSAdR7DeZGBNdzDJvqS1C1QivVffrWQGT0KFqtdpUASY4FjYQLaIoEZ2KDV26GaH9aztRAkyJCCdSLJfgLY6IhV3KDY+9RaDz1jCvui1HEHG5q0iQtIBD5fZP+1XqnxemPM8HzNqFO8a+SLowkOrtK4bfS8c+iBHNWTH30MqHAs9OH8SFAEzVC/dbl1ybH0bOvy4Lo3MrEQoQZ59gFsMQvp0APPH55vCINMkLdelCjzEkRwcAkPjQcgW8h20B38vrVhQoVyjwlx2oUPg4S3ndAmEUwccocymDNhddiHCTZMqFOtpIAqYTSKvxKQM8vzOStwB9LgnDu0k8WQADjZDIfn3RKaVENpiHM90a+GOQvO1vFm9JyTPO+4Iz0ivMY0xug0HZEVh9Uu7/BEhvbCVJjno8eEm5+U10kiUEeiqsyJ2j8YOhvZtN5nb4LPOIcz51E+D+qFec5TwzCZPWx8AqGerBl8lw+4ssrUm6g2TGercM2ZlXi+ido8ptscd4wePHwvH4kkUm0r6ySKUd2bM9xbxRlTyleDxspQLduySTE9k/N426G2retprtDg5Z8OXaKMrVHOSD7h8hU0qO+12WRDnuCe+d+1X0yHXVbfEGyOe9ddDI4gG5xC3n3Hq5av3BIxi7jnf8IiblJNShMX7W5hsNs/n4KovhEcepuizr4MK7T+U3fZ5XtniXs0ztPux4wP4++q62m06Eaw6ePovUmQD0QNXql9WnZfrWNMd8ax+oFbr8/Kb8y32u2bUZisHuZEIuUnZqzW/0c17infI/Xu5Pe/AQAA//8=">
-            <vector name="origin" x="1" y="32" />
+            <vector name="origin" x="1" y="32"/>
         </canvas>
         <canvas name="iconRaw" width="33" height="32" pixFormat="1" magLevel="0" bytedata="eJyElU9sG1UQxreHVutNJMyNrHMIlahUN4eUC6qdQ9VcqAGpSnqApkiV4FASDjlQCSUVyoUocjjANb5Xwqng1lp2G8QlRk5aJC4ujcvV+0IUVXHqzrzd7mPmPW/9N2U/Wd613vd7M/tmxpbVf6m38ifBAbdDTlsDDH2XdichBRm4RsrQXbKTwmvk8CDncwtsaXsxWp0i5yKsw3q5CVmYo6eUSHkj3gg4T2I4hMNSq9dfdDBGa5K0Pgt5qMDTcvNVSIwiPS/CNe+yd0H9CglMiIQc7WY8t1ZtYQtXcOxzkMNt/Bd99rOIUSHKOiyGm0qFv2FaTvqfyHEx2maA/bcjOPdZXMMSuQMM6sBu9NFnhqbkIRs+xnm8zc/yczkeEcDeG8JzIgPzuIE1DCS566AU+6sv68iMNgVz5aZSIIkxybkwAR2RxAws0e77kZsv9rPqCBJkRMFtIslOAjjoillcotw73NoPbTGFY1Fq6wh3Nek2TiIR+HyR49d+pQb7jZjhB5qxTfnOUyyuJrg4S8/7xs9vDn2Q/X6Ko4MBRc6FPlwfScqgFvlXDlcOOZe2Vg7vvWg/mVyIUIEsxwCOGIF0FIEf9K43hG4myFYUeaq8JBFc/AhLJgKQdWTda3Z/t9RLKFLtMSFBb+FBN+HOUaTjCCYPuUYVzJUw2xvDMeolbFOvpIA6oT+LNxKQK8sPuCpwDdLg7rn0JnMRAfB4GQ6vaxFq1ENpSHA/0d2uOQuu1sEyfq5JXrd1JH0i/IBpHKLTdMWcKJWb/IaPZegoTIf5AfpMeHVAdT1OBJpI1JWLovI/DF2NLO0POJrwTxzF4b0YnwfNwizXqWGYyu4Vn0DkJ9XCf+TH3FkFmk3UG2ayFbnnzE683mRtLjNtto6MH3y8K6+LcaTeVvZODGN6Nmd4toqnTCk0usXOyC33ZY1y+lqew9aEWrVfnOIODb97PaHzVLEVqhnJJ1xowC7NvX2W3JU7uGF+95xbp6Ipq/8hWK531rscbr6cCx9D1vuZdy00vDwxN8RG8AhzuEQ9KU1e9HbXu6f9Nyer9pN3qiSlqheqn1ZvVr8qNKrflm9qfRZu3v/wzgffn/nyPRPDoH+cd0+cP/H+2we/nD99sDk9NT01M/PF1ULj0syl6VLu2UOlnj0srVkXSRPkH7PiAxBx+n2CVlyxbpAW4svxZWt55S9rmbWzYy1E2vqD1kz0MdjPbl7Dnh+Nrv5uvlcLhkRaIP5gQsf+bU39ZC3Q/je0rmhRHm/IYkxnEulix/1YS3Gt19d/AAAA//8=">
-            <vector name="origin" x="1" y="32" />
+            <vector name="origin" x="1" y="32"/>
         </canvas>
-        <string name="islot" value="Sr" />
-        <string name="vslot" value="Sr" />
-        <int name="reqJob" value="0" />
-        <int name="reqLevel" value="0" />
-        <int name="reqSTR" value="0" />
-        <int name="reqDEX" value="0" />
-        <int name="reqINT" value="0" />
-        <int name="reqLUK" value="0" />
-        <int name="incSTR" value="0" />
-        <int name="incINT" value="0" />
-        <int name="incDEX" value="0" />
-        <int name="incLUK" value="0" />
-        <int name="cash" value="1" />
-        <int name="cashTradeBlock" value="1" />
+        <string name="islot" value="Sr"/>
+        <string name="vslot" value="Sr"/>
+        <int name="reqJob" value="0"/>
+        <int name="reqLevel" value="0"/>
+        <int name="reqSTR" value="0"/>
+        <int name="reqDEX" value="0"/>
+        <int name="reqINT" value="0"/>
+        <int name="reqLUK" value="0"/>
+        <int name="cash" value="1"/>
+        <int name="cashTradeBlock" value="1"/>
     </imgdir>
     <imgdir name="walk1">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="3">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="walk2">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="3">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="stand1">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="stand2">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="alert">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="swingO1">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJwyYgAAAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJwyYgAAAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="swingO2">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="swingO3">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="swingOF">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="3">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="swingT1">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="swingT2">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="swingT3">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="swingTF">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="3">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="swingP1">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="swingP2">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="swingPF">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="3">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="stabO1">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="stabO2">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="stabOF">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="stabT1">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="stabT2">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="stabTF">
         <imgdir name="0">
-            <uol name="capeBelowBody" value="../../swingPF/0/capeBelowBody" />
-            <uol name="cape" value="../../swingPF/0/cape" />
+            <uol name="capeBelowBody" value="../../swingPF/0/capeBelowBody"/>
+            <uol name="cape" value="../../swingPF/0/cape"/>
         </imgdir>
         <imgdir name="1">
-            <uol name="capeBelowbody" value="../../swingPF/1/capeBelowBody" />
-            <uol name="cape" value="../../swingPF/1/cape" />
+            <uol name="capeBelowbody" value="../../swingPF/1/capeBelowBody"/>
+            <uol name="cape" value="../../swingPF/1/cape"/>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="3">
-            <uol name="capeBelowBody" value="../../stabT1/2/capeBelowBody" />
-            <uol name="cape" value="../../stabT1/2/cape" />
+            <uol name="capeBelowBody" value="../../stabT1/2/capeBelowBody"/>
+            <uol name="cape" value="../../stabT1/2/cape"/>
         </imgdir>
     </imgdir>
     <imgdir name="shoot1">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="shoot2">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="3">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="4">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="shootF">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="2">
-            <uol name="capeBelowBody" value="../../shootF/1/capeBelowBody" />
-            <uol name="cape" value="../../shootF/1/cape" />
+            <uol name="capeBelowBody" value="../../shootF/1/capeBelowBody"/>
+            <uol name="cape" value="../../shootF/1/cape"/>
         </imgdir>
     </imgdir>
     <imgdir name="proneStab">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="prone">
         <imgdir name="0">
-            <uol name="capeBelowBody" value="../../proneStab/0/capeBelowBody" />
-            <uol name="cape" value="../../proneStab/0/cape" />
+            <uol name="capeBelowBody" value="../../proneStab/0/capeBelowBody"/>
+            <uol name="cape" value="../../proneStab/0/cape"/>
         </imgdir>
     </imgdir>
     <imgdir name="heal">
         <imgdir name="0">
-            <uol name="capeBelowBody" value="../../alert/1/capeBelowBody" />
-            <uol name="capeOverHead" value="../../alert/1/capeOverHead" />
+            <uol name="capeBelowBody" value="../../alert/1/capeBelowBody"/>
+            <uol name="capeOverHead" value="../../alert/1/capeOverHead"/>
         </imgdir>
         <imgdir name="1">
-            <uol name="capeBelowBody" value="../../swingO2/1/capeBelowBody" />
-            <uol name="capeOverHead" value="../../swingO2/1/capeOverHead" />
+            <uol name="capeBelowBody" value="../../swingO2/1/capeBelowBody"/>
+            <uol name="capeOverHead" value="../../swingO2/1/capeOverHead"/>
         </imgdir>
         <imgdir name="2">
-            <uol name="capeBelowBody" value="../../swingO2/0/capeBelowBody" />
-            <uol name="capeOverHead" value="../../swingO2/0/capeOverHead" />
+            <uol name="capeBelowBody" value="../../swingO2/0/capeBelowBody"/>
+            <uol name="capeOverHead" value="../../swingO2/0/capeOverHead"/>
         </imgdir>
     </imgdir>
     <imgdir name="fly">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="jump">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="sit">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="cape" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="cape" />
+                <string name="z" value="cape"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="ladder">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
     <imgdir name="rope">
         <imgdir name="0">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
         <imgdir name="1">
             <canvas name="capeBelowBody" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeBelowBody" />
+                <string name="z" value="capeBelowBody"/>
             </canvas>
             <canvas name="capeOverHead" width="1" height="1" pixFormat="1" magLevel="0" bytedata="eJz6zw8AAAD//w==">
-                <vector name="origin" x="0" y="0" />
+                <vector name="origin" x="0" y="0"/>
                 <imgdir name="map">
-                    <vector name="navel" x="0" y="0" />
+                    <vector name="navel" x="0" y="0"/>
                 </imgdir>
-                <string name="z" value="capeOverHead" />
+                <string name="z" value="capeOverHead"/>
             </canvas>
         </imgdir>
     </imgdir>
