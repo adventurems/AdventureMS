@@ -1,0 +1,1022 @@
+<?xml version="1.0" ?>
+<imgdir name="5000343.img">
+    <imgdir name="info">
+        <canvas name="icon" width="34" height="31" pixFormat="1" magLevel="0" bytedata="eJyklNFtgzAQQD0CIzBCugHdIFUWQJ0AIfU/EgtUTVfJFP3LF2NYQiQNdULPd5yNwSYK9pOIie5e7s4QIRaXHFi/5Kk5NVEGdHxFO6INInIS7Ig3RPfx1r1eIyySDC+/abvKAvmlIgNyfrInzNeGkeMZD+Yf7oc7OcYW3D324O9rg7WMHbTH6YQ8OIFSpe3UkTRTS2DKkqsni+2FDeSgjtIWu5o5dDxb5tNwLOxw/xHAQDGU6zfYSnQ3aOkA6Tp0lK7CVA3o+6DjD5Guo1R0vpzl3nvr4FrWOi4G6XWcg47zssP2z2fqmYdx7FrC7YVIGm2ga/hU2LDjJ05SxGNsFR8Xhh11X/dH4Ptmr+6njqjUezc1GAdYKlX3SxzRQE/oz83rwDe/UmFsvibgGDyrcFciUpGJrSiAPfA5YW8oRA5xG8iYrgS+1Y4cKGbkyBbJIDL1GLgSzcaQjfbpQIKY9Q8AAP//">
+            <vector name="origin" x="1" y="31"/>
+        </canvas>
+        <canvas name="iconRaw" width="34" height="28" pixFormat="1" magLevel="0" bytedata="eJyk1NENgjAQBuCOwAis4AiOYNzAEUicgA3UVZjCN58Yo0lTVKxg786jFFqMlD9BSHqfdwUVYvGQ36w/5E3dVJKAxinZSBZE4k6wkS4kz7Frt88ERZKweeR6lWLrC0MCpvlzJqwHYWT842D9uTt3ZIwVvPrt4PeD4JSxQde4OzEHd6AwuZ4amZoqkV2W3D0pbhYWyKCJco1TzQxYz8p8NzyFDf8fwQq0hmrDgusEpkGltZG+Aaugi6FrG7iPGi+M9I3C0PPlKv8+2Af3sta4D5FBo4kazbLh5udnGtiPwdhrij8LJVMg0Dn+VFjY8xsnacXvuC6Odw4bdV/3lc3l7c7+J6wozaGdCoNhldLU/VIqFOgNvb6DBv7ySxOPq4dEjK+zKuIDAAD//w==">
+            <vector name="origin" x="1" y="31"/>
+        </canvas>
+        <canvas name="iconD" width="28" height="32" pixFormat="1" magLevel="0" bytedata="eJy01OFtgzAQBWBG8AgegW5AN0g2QJ2gYoJKbJB0lSySX4zhgkBtRELv3WFswIGQqn5SAs598tkoRNHiMH22DXOuztVmRe7wjIqe6PAPan95/dkojaiXb10/LMlkrShO80C/bKA8t2bZHG/Hmzhf8lXY8jpQTvpOrnm3Zqz2l6zV9dSpaiq9kzK2M5GuT6vESbe65o7ZocbK+e5G0jlSMi/1YeVWRKdyRuLwC1YbOqLgft1lrTwLWzm+/1fX3HXN3Ln92PMP7C/oxEDJ58Jp8vOT2fV4q7EruqI7UT6v7nP8jYq8fbt4imXeFt1STqwC/wkDez9B49nFrA2j67zFzrAfqlde5gOzmkL9qlJOQpU5nn0yJKZoT0PENL+LUnSkSnm/q1KV/MZ+H5JSTdxLKBjMG5zcoUK1XO2+yH30mTq7Vho8j5SrkSTQp+ZebRLvWvcZncwvAAAA//8=">
+            <vector name="origin" x="-3" y="32"/>
+        </canvas>
+        <canvas name="iconRawD" width="28" height="31" pixFormat="1" magLevel="0" bytedata="eJy01NENgjAQBmBG6Ais4AhuoCs4Ait0A3EVF/GJMWoJREkVe/dbW7RCwdhLsGC/9O4IzbLRoZ4xb6hTfapnK+v2S1S2IMMf1LZbX2dKBbW65E2ytKYwUBxtQr5sSAVuyrIp7+UdLpQ8i1veh5SXocOcq1VDte0KkzfvTtTvMuiUcplB+jydgkO2ecMZs6M1Tn5WN5DeWYXnWB9XfkfKFD2Co39ot1dGNuh+2hUG78KtHN7/1bVfXfvpfD2u/5H6og6GFK4j3eT3h6fTEezGruqr/mjjcPPX4S+tkGbXBYqlNFU/FkdWkW9Ckf0eURPY0ZgaKm+kocqonvTzRRqh0QmhpZlzLgmN811ooRNPbEWd29e0GrPNOc2l9uMBAAD//w==">
+            <vector name="origin" x="-3" y="32"/>
+        </canvas>
+        <int name="life" value="0"/>
+        <int name="hungry" value="2"/>
+        <int name="cash" value="1"/>
+        <int name="permanent" value="1"/>
+    </imgdir>
+    <imgdir name="interact">
+        <imgdir name="0">
+            <string name="command" value="c1"/>
+            <int name="inc" value="1"/>
+            <int name="prob" value="30"/>
+            <int name="l0" value="1"/>
+            <int name="l1" value="9"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="rest0"/>
+                    <string name="0" value="c1_s1"/>
+                    <string name="1" value="c1_s2"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="chat"/>
+                    <string name="0" value="c1_f1"/>
+                    <string name="1" value="c1_f2"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="1">
+            <string name="command" value="c2"/>
+            <int name="inc" value="2"/>
+            <int name="prob" value="45"/>
+            <int name="l0" value="10"/>
+            <int name="l1" value="19"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="rest0"/>
+                    <string name="0" value="c2_s1"/>
+                    <string name="1" value="c2_s2"/>
+                    <string name="2" value="c2_s3"/>
+                    <string name="3" value="c2_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="chat"/>
+                    <string name="0" value="c2_f1"/>
+                    <string name="1" value="c2_f2"/>
+                    <string name="2" value="c2_f3"/>
+                    <string name="3" value="c2_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="2">
+            <string name="command" value="c3"/>
+            <int name="inc" value="3"/>
+            <int name="prob" value="60"/>
+            <int name="l0" value="20"/>
+            <int name="l1" value="29"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="rest0"/>
+                    <string name="0" value="c3_s1"/>
+                    <string name="1" value="c3_s2"/>
+                    <string name="2" value="c3_s3"/>
+                    <string name="3" value="c3_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="cry"/>
+                    <string name="0" value="c3_f1"/>
+                    <string name="1" value="c3_f2"/>
+                    <string name="2" value="c3_f3"/>
+                    <string name="3" value="c3_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="3">
+            <string name="command" value="c4"/>
+            <int name="inc" value="2"/>
+            <int name="prob" value="70"/>
+            <int name="l0" value="30"/>
+            <int name="l1" value="30"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="rest0"/>
+                    <string name="0" value="c4_s1"/>
+                    <string name="1" value="c4_s2"/>
+                    <string name="2" value="c4_s3"/>
+                    <string name="3" value="c4_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="angry"/>
+                    <string name="0" value="c4_f1"/>
+                    <string name="1" value="c4_f2"/>
+                    <string name="2" value="c4_f3"/>
+                    <string name="3" value="c4_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="4">
+            <string name="command" value="c5"/>
+            <int name="inc" value="1"/>
+            <int name="prob" value="30"/>
+            <int name="l0" value="1"/>
+            <int name="l1" value="9"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="cry"/>
+                    <string name="0" value="c5_s1"/>
+                    <string name="1" value="c5_s2"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="chat"/>
+                    <string name="0" value="c5_f1"/>
+                    <string name="1" value="c5_f2"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="5">
+            <string name="command" value="c6"/>
+            <int name="inc" value="2"/>
+            <int name="prob" value="50"/>
+            <int name="l0" value="10"/>
+            <int name="l1" value="19"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="cry"/>
+                    <string name="0" value="c6_s1"/>
+                    <string name="1" value="c6_s2"/>
+                    <string name="2" value="c6_s3"/>
+                    <string name="3" value="c6_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="chat"/>
+                    <string name="0" value="c6_f1"/>
+                    <string name="1" value="c6_f2"/>
+                    <string name="2" value="c6_f3"/>
+                    <string name="3" value="c6_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="6">
+            <string name="command" value="c7"/>
+            <int name="inc" value="2"/>
+            <int name="prob" value="60"/>
+            <int name="l0" value="20"/>
+            <int name="l1" value="29"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="cry"/>
+                    <string name="0" value="c7_s1"/>
+                    <string name="1" value="c7_s2"/>
+                    <string name="2" value="c7_s3"/>
+                    <string name="3" value="c7_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="angry"/>
+                    <string name="0" value="c7_f1"/>
+                    <string name="1" value="c7_f2"/>
+                    <string name="2" value="c7_f3"/>
+                    <string name="3" value="c7_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="7">
+            <string name="command" value="c8"/>
+            <int name="inc" value="3"/>
+            <int name="prob" value="70"/>
+            <int name="l0" value="30"/>
+            <int name="l1" value="30"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="cry"/>
+                    <string name="0" value="c8_s1"/>
+                    <string name="1" value="c8_s2"/>
+                    <string name="2" value="c8_s3"/>
+                    <string name="3" value="c8_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="chat"/>
+                    <string name="0" value="c8_f1"/>
+                    <string name="1" value="c8_f2"/>
+                    <string name="2" value="c8_f3"/>
+                    <string name="3" value="c8_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="8">
+            <string name="command" value="c9"/>
+            <int name="inc" value="1"/>
+            <int name="prob" value="30"/>
+            <int name="l0" value="1"/>
+            <int name="l1" value="9"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="love"/>
+                    <string name="0" value="c9_s1"/>
+                    <string name="1" value="c9_s2"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="cry"/>
+                    <string name="0" value="c9_f1"/>
+                    <string name="1" value="c9_f2"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="9">
+            <string name="command" value="c10"/>
+            <int name="inc" value="2"/>
+            <int name="prob" value="50"/>
+            <int name="l0" value="10"/>
+            <int name="l1" value="19"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="love"/>
+                    <string name="0" value="c10_s1"/>
+                    <string name="1" value="c10_s2"/>
+                    <string name="2" value="c10_s3"/>
+                    <string name="3" value="c10_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="chat"/>
+                    <string name="0" value="c10_f1"/>
+                    <string name="1" value="c10_f2"/>
+                    <string name="2" value="c10_f3"/>
+                    <string name="3" value="c10_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="10">
+            <string name="command" value="c11"/>
+            <int name="inc" value="2"/>
+            <int name="prob" value="60"/>
+            <int name="l0" value="20"/>
+            <int name="l1" value="29"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="love"/>
+                    <string name="0" value="c11_s1"/>
+                    <string name="1" value="c11_s2"/>
+                    <string name="2" value="c11_s3"/>
+                    <string name="3" value="c11_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="angry"/>
+                    <string name="0" value="c11_f1"/>
+                    <string name="1" value="c11_f2"/>
+                    <string name="2" value="c11_f3"/>
+                    <string name="4" value="c11_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="11">
+            <string name="command" value="c12"/>
+            <int name="inc" value="3"/>
+            <int name="prob" value="70"/>
+            <int name="l0" value="30"/>
+            <int name="l1" value="30"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="roll"/>
+                    <string name="0" value="c12_s1"/>
+                    <string name="1" value="c12_s2"/>
+                    <string name="2" value="c12_s3"/>
+                    <string name="3" value="c12_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="chat"/>
+                    <string name="0" value="c12_f1"/>
+                    <string name="1" value="c12_f2"/>
+                    <string name="2" value="c12_f3"/>
+                    <string name="3" value="c12_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="12">
+            <string name="command" value="c13"/>
+            <int name="inc" value="1"/>
+            <int name="prob" value="30"/>
+            <int name="l0" value="10"/>
+            <int name="l1" value="19"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="dung"/>
+                    <string name="0" value="c13_s1"/>
+                    <string name="1" value="c13_s2"/>
+                    <string name="2" value="c13_s3"/>
+                    <string name="3" value="c13_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="cry"/>
+                    <string name="0" value="c13_f1"/>
+                    <string name="1" value="c13_f2"/>
+                    <string name="2" value="c13_f3"/>
+                    <string name="3" value="c13_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="13">
+            <string name="command" value="c14"/>
+            <int name="inc" value="2"/>
+            <int name="prob" value="50"/>
+            <int name="l0" value="20"/>
+            <int name="l1" value="29"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="dung"/>
+                    <string name="0" value="c14_s1"/>
+                    <string name="1" value="c14_s2"/>
+                    <string name="2" value="c14_s3"/>
+                    <string name="3" value="c14_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="cry"/>
+                    <string name="0" value="c14_f1"/>
+                    <string name="1" value="c14_f2"/>
+                    <string name="2" value="c14_f3"/>
+                    <string name="3" value="c14_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="14">
+            <string name="command" value="c15"/>
+            <int name="inc" value="3"/>
+            <int name="prob" value="70"/>
+            <int name="l0" value="30"/>
+            <int name="l1" value="30"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="dung"/>
+                    <string name="0" value="c15_s1"/>
+                    <string name="1" value="c15_s2"/>
+                    <string name="2" value="c15_s3"/>
+                    <string name="3" value="c15_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="angry"/>
+                    <string name="0" value="c15_f1"/>
+                    <string name="1" value="c15_f2"/>
+                    <string name="2" value="c15_f3"/>
+                    <string name="3" value="c15_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="15">
+            <string name="command" value="c16"/>
+            <int name="inc" value="1"/>
+            <int name="prob" value="30"/>
+            <int name="l0" value="10"/>
+            <int name="l1" value="19"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="sleep"/>
+                    <string name="0" value="c16_s1"/>
+                    <string name="1" value="c16_s2"/>
+                    <string name="2" value="c16_s3"/>
+                    <string name="3" value="c16_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="chat"/>
+                    <string name="0" value="c16_f1"/>
+                    <string name="1" value="c16_f2"/>
+                    <string name="2" value="c16_f3"/>
+                    <string name="3" value="c16_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="16">
+            <string name="command" value="c17"/>
+            <int name="inc" value="2"/>
+            <int name="prob" value="45"/>
+            <int name="l0" value="20"/>
+            <int name="l1" value="29"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="sleep"/>
+                    <string name="0" value="c17_s1"/>
+                    <string name="1" value="c17_s2"/>
+                    <string name="2" value="c17_s3"/>
+                    <string name="3" value="c17_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="cry"/>
+                    <string name="0" value="c17_f1"/>
+                    <string name="1" value="c17_f2"/>
+                    <string name="2" value="c17_f3"/>
+                    <string name="3" value="c17_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="17">
+            <string name="command" value="c18"/>
+            <int name="inc" value="3"/>
+            <int name="prob" value="60"/>
+            <int name="l0" value="30"/>
+            <int name="l1" value="30"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="sleep"/>
+                    <string name="0" value="c18_s1"/>
+                    <string name="1" value="c18_s2"/>
+                    <string name="2" value="c18_s3"/>
+                    <string name="3" value="c18_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="roll"/>
+                    <string name="0" value="c18_f1"/>
+                    <string name="1" value="c18_f2"/>
+                    <string name="2" value="c18_f3"/>
+                    <string name="3" value="c18_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="18">
+            <string name="command" value="c19"/>
+            <int name="inc" value="1"/>
+            <int name="prob" value="30"/>
+            <int name="l0" value="10"/>
+            <int name="l1" value="19"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="love"/>
+                    <string name="0" value="c19_s1"/>
+                    <string name="1" value="c19_s2"/>
+                    <string name="2" value="c19_s3"/>
+                    <string name="3" value="c19_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="chat"/>
+                    <string name="0" value="c19_f1"/>
+                    <string name="1" value="c19_f2"/>
+                    <string name="2" value="c19_f3"/>
+                    <string name="3" value="c19_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="19">
+            <string name="command" value="c20"/>
+            <int name="inc" value="2"/>
+            <int name="prob" value="45"/>
+            <int name="l0" value="20"/>
+            <int name="l1" value="29"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="chat"/>
+                    <string name="0" value="c20_s1"/>
+                    <string name="1" value="c20_s2"/>
+                    <string name="2" value="c20_s3"/>
+                    <string name="3" value="c20_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="cry"/>
+                    <string name="0" value="c20_f1"/>
+                    <string name="1" value="c20_f2"/>
+                    <string name="2" value="c20_f3"/>
+                    <string name="3" value="c20_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="20">
+            <string name="command" value="c21"/>
+            <int name="inc" value="3"/>
+            <int name="prob" value="60"/>
+            <int name="l0" value="30"/>
+            <int name="l1" value="30"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="chat"/>
+                    <string name="0" value="c21_s1"/>
+                    <string name="1" value="c21_s2"/>
+                    <string name="2" value="c21_s3"/>
+                    <string name="3" value="c21_s4"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="angry"/>
+                    <string name="0" value="c21_f1"/>
+                    <string name="1" value="c21_f2"/>
+                    <string name="2" value="c21_f3"/>
+                    <string name="3" value="c21_f4"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+    </imgdir>
+    <imgdir name="food">
+        <imgdir name="0">
+            <int name="l0" value="1"/>
+            <int name="l1" value="9"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="eat"/>
+                    <string name="0" value="f1_s"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="ignore"/>
+                    <string name="0" value="f1_f"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="1">
+            <int name="l0" value="10"/>
+            <int name="l1" value="19"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="eat"/>
+                    <string name="0" value="f2_s"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="ignore"/>
+                    <string name="0" value="f2_f"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="2">
+            <int name="l0" value="20"/>
+            <int name="l1" value="29"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="eat"/>
+                    <string name="0" value="f3_s"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="angry"/>
+                    <string name="0" value="f3_f"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+        <imgdir name="3">
+            <int name="l0" value="30"/>
+            <int name="l1" value="30"/>
+            <imgdir name="success">
+                <imgdir name="0">
+                    <string name="act" value="eat"/>
+                    <string name="0" value="f4_s"/>
+                </imgdir>
+            </imgdir>
+            <imgdir name="fail">
+                <imgdir name="0">
+                    <string name="act" value="angry"/>
+                    <string name="0" value="f4_f"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+    </imgdir>
+    <imgdir name="slang">
+        <imgdir name="0">
+            <int name="l0" value="1"/>
+            <int name="l1" value="9"/>
+            <string name="act" value="ignore"/>
+            <string name="0" value="s1"/>
+        </imgdir>
+        <imgdir name="1">
+            <int name="l0" value="10"/>
+            <int name="l1" value="19"/>
+            <string name="act" value="ignore"/>
+            <string name="0" value="s2"/>
+        </imgdir>
+        <imgdir name="2">
+            <int name="l0" value="20"/>
+            <int name="l1" value="29"/>
+            <string name="act" value="angry"/>
+            <string name="0" value="s3"/>
+        </imgdir>
+        <imgdir name="3">
+            <int name="l0" value="30"/>
+            <int name="l1" value="30"/>
+            <string name="act" value="angry"/>
+            <string name="0" value="s4"/>
+        </imgdir>
+    </imgdir>
+    <imgdir name="stand0">
+        <canvas name="0" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJzE1u1tgzAQBmBGYASvwAhsEFbICKzABqSrdBF+MQYBGRXkhvr1B8aAE2OQ6pMignOPzochRJHXaEScG03VVd1JhRu3Z3laucC4pifRBQI3svH8arIxHQgNdkQ3YCQ/SS+cY5LIz1nOlCGjT3rvPqt8CDAWinDmqtyWEB4vhFSsWhbSXNeOgQoer3pyO6o2Xg+hStoY2agrcVcDB2fgQLKcRufkjNClIZW4sxWH05gsOOYbFGNYTr9SuJEOJs+OdX+d1fC9hVkfw1mNMOSsj7FWlDMrch7X21SNwJmPa1ooyJB7792Zf1D6cMV0weyS430xd13c2bttbXxWtLAnLa5fv7frjoQ2bCUdCvY96fj6fX9csI0hnILVU+2Rr5X7CGfzhGlQS+0RBYMBZfdpx89hFr9yh8x3Pi9nSUfcEoqc+0ho3C5nvP9T+PoINT0gFJ9H/4+kIfsQ6DTIi1tbwZqOOoiyq1SU/B3o9gx6/xBvPjJgCCVk8BXoKyKOwgbvj75D5qMgZ+fIMf4AAAD//w==">
+            <vector name="origin" x="15" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="1" width="35" height="42" pixFormat="1" magLevel="0" bytedata="eJzE1v+NgyAUB/CO4Ais4Ahu0K7QEVzBDeytcov0L8egNZLTcPX4gsgPpQU1OV7SWOj75AkUPZ0iGhWxt9F7e4xS73WEcX7sVw4wpHOAcTrGuAy7HWEUPek2O5gNaeQ/OZNOmiTzS17yyVDBcqZG4gTkQ4BhKdKZqwpbUri9EEpxarGkua4VAxXcXs0YdqbaRD2km6SFcRl0JeFq4KAHDiTHoTqn5KSzDaVkrasEHGqy4JhvUIzhOMxThFH0Js8Nf36D1Yi9hdEYI1iNNNRojOErkzMrahzrbapGoOfjPVkKMtTee9fzDwrbrphZMLskfV7Mvy5r3d3mG58VLaxJ1vqxtV2XEtpwlaKv+Peo4+v3/XXFF4Z0Kt6MTUS+Vq4DnMUJQ1FLExEVhwFl9bQTfRjFr8Kh8oPn5SzpyJ6kQ851IF32tEfinwOVOKvMHJAOn0lPJIpMGGoejIOZS3EQvhJ9J15FCyW90bq9T1GLd6nzY5uCNygVMDYqch/qdZVX2xqdV4Qmrc3CWbkKtD8AAAD//w==">
+            <vector name="origin" x="15" y="42"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="2" width="35" height="41" pixFormat="1" magLevel="0" bytedata="eJzE1v+NgyAUB3BHcARWcAQ3aFfoCK7gBvZWuUX8yzFoDeY0XD2+/BBRaRFNzpc0FPo+eT6pmiRBB5Vx7KB1W7cHFWFcHtVh5QTjnJ4kJwjCuA7Hz+Y65D1h0Y7sBozsJ+uks0+S+QUvuDZUdFkX3GedDwHGTJHOVJXfksL9hVCKU8tMmuraMFDB/dWMfkfXJuohTEsr4zqYSvzVwMEMHEiOQ01OwQmbG0pJW1fxONRmwbHfoFjDcbqFIoy8t3luLPvrrUbsLayGGN5qpKFWQ4ylop1JUeu43rZqBGY+ntNMQYbae+9m/kHp4hXbBbtL9vfF/uvS1t1tS+OzYoQtaXb9uq1dtyeM4Sp5X/Lv0cTX7/txyVeGdErejE1AvlFuA5zVHYailiYgSg4DyubdTsxhFb/yh8r33i8nyUT6JAw5t4Gw9DlfCX6miPMjzPaAMHzufR4pQ/Uh0qHIWyuw9znoylqJeP+gVVvrqMSb1OUR9byX708qYEQqssfmuspR3CG6bP5n0yjK2Rh5jj8AAAD//w==">
+            <vector name="origin" x="15" y="41"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="3" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJzE1u1tgzAQBmBGYASvwAhsEFbICKzABqSrdBF+MQYBGRXkhvr1B8aAE2OQ6pMignOPzochRJHXaEScG03VVd1JhRu3Z3laucC4pifRBQI3svH8arIxHQgNdkQ3YCQ/SS+cY5LIz1nOlCGjT3rvPqt8CDAWinDmqtyWEB4vhFSsWhbSXNeOgQoer3pyO6o2Xg+hStoY2agrcVcDB2fgQLKcRufkjNClIZW4sxWH05gsOOYbFGNYTr9SuJEOJs+OdX+d1fC9hVkfw1mNMOSsj7FWlDMrch7X21SNwJmPa1ooyJB7792Zf1D6cMV0weyS430xd13c2bttbXxWtLAnLa5fv7frjoQ2bCUdCvY96fj6fX9csI0hnILVU+2Rr5X7CGfzhGlQS+0RBYMBZfdpx89hFr9yh8x3Pi9nSUfcEoqc+0ho3C5nvP9T+PoINT0gFJ9H/4+kIfsQ6DTIi1tbwZqOOoiyq1SU/B3o9gx6/xBvPjJgCCVk8BXoKyKOwgbvj75D5qMgZ+fIMf4AAAD//w==">
+            <vector name="origin" x="15" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+    </imgdir>
+    <imgdir name="stand1">
+        <canvas name="0" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJzE1u1tgzAQBmBGYASvwAhsEFbICKzABqSrdBF+MQYBGRXkhvr1B8aAE2OQ6pMignOPzochRJHXaEScG03VVd1JhRu3Z3laucC4pifRBQI3svH8arIxHQgNdkQ3YCQ/SS+cY5LIz1nOlCGjT3rvPqt8CDAWinDmqtyWEB4vhFSsWhbSXNeOgQoer3pyO6o2Xg+hStoY2agrcVcDB2fgQLKcRufkjNClIZW4sxWH05gsOOYbFGNYTr9SuJEOJs+OdX+d1fC9hVkfw1mNMOSsj7FWlDMrch7X21SNwJmPa1ooyJB7792Zf1D6cMV0weyS430xd13c2bttbXxWtLAnLa5fv7frjoQ2bCUdCvY96fj6fX9csI0hnILVU+2Rr5X7CGfzhGlQS+0RBYMBZfdpx89hFr9yh8x3Pi9nSUfcEoqc+0ho3C5nvP9T+PoINT0gFJ9H/4+kIfsQ6DTIi1tbwZqOOoiyq1SU/B3o9gx6/xBvPjJgCCVk8BXoKyKOwgbvj75D5qMgZ+fIMf4AAAD//w==">
+            <vector name="origin" x="15" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="1" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJzE1u1tgzAQBmBGYARWyAjdIFkhI7ACG5Cu0kX4xRgOCNQiN9Svzx8YMDEGqT4pskzu0dkYQ5IENibjWGNVW7UHFWFcn+Vh5QTjnDVJThCEcRuOz+Y2fPxkXaRDayGNy/ell84eSWbnPOdKQPSIYMnkQzCGcYzkt6TweD1epEwqmUkIjySFeoSy7qjaRDUIJS0MqsOvkIMRciA5DqOsnGfd1CAlbV3F6zCdB8caUKzhOP1CYdM8N+bru1GN3FkhxkY1wqCrIcZSUY5S6DrulK0agZGAORkFGbTzbM5y5B+UPl6xq2B3yf51sU9d2rq7bW68V7SwJk3u33z3MjpLwsMarlLwr1HH5+92v+ArhnQKXo/123yt3Ac69RYnDEM1dUAUHAqc1dNOjOEq/uUPyveel0bSkTZZh5z7kHVpM70S/EYR88s6uwpZh9+d7zVl0DpEOgx5aeMqmNNeB1G2lYpSfAFdn1FfH/K7hwKGVGKamIG+I7IX18T66CfE9KKclZ6n/QEAAP//">
+            <vector name="origin" x="15" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="2" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJys1v2NgyAUAHBHcARWcAQ3qCt0BFdwA3ur3CL+5RhUg6mGq8fjQ0BBQeUlDZG+Xx6IaJIENczjWsNN3/QXFWY83vVl5QbjnjVJbhCYUUzXZ1NM+YjIaYevBhjZJxu4Eyfx/JKWVBoihmwIXmeZDwIYhsKdpSq/xYXXF0IoVi2GtNTlMKCC17ed/Y6sjdWDiJQ2RjGpSvzVgANXwAHJcrDKWc/IrXgcrLMQUWurlbR3OMNKYUY+6jxEdB8U09iphu0tGDVz3fPZqYYbYjTEWCvSWRQ9rqveVT5uJSyOFbH77az1tSOlpOpJ5Ht9ey26Fn1/Y2sxn7q0t/fJ9g4cKUpwScb9G1y7LiaUYSv5WNHfWcXP336/ohuDOxVt5zYgXynPCZzNCYOhljYgKgoGKM7Tjl2DUfiXP0S+97xcJBVphwjkPNlJkXbmSPA7hc0PEb0GiMBv7PtIGGIdTjoY8tLOVmBOsQ5E3TcyavYN9Hif+v7gXz4iwODKmcZmoO4I751rbH3UE7L0TjmOnqf9AwAA//8=">
+            <vector name="origin" x="15" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="3" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJzE1uuRgyAQAOCUYAm0YAl2kLSQEtKCHZhr5Rrxl2UQHZjT4ZJjWZ4RIj5mjp3JEHG/gRUfp1NGoyr2NdoO7bBTkcb50exWDjCOqcnpAEEal2n/ai5TNRK2w6FolD8lV87a6qiMm7gJrWDwkmdbOh8EiGoMnYx5aeH+hHCOVaxk5xUxcA73Z/dKO6ZOhGlpZkCGmUl6NrhGcEAKHGoywCHMN1ApBl9JOJ6Cjv+/Gp3hOfxNkQYcd3lhvNU3NRu5u3A0x0jMRhtxJ2aEinY8BcfheuN5xoAjC2sKFMjA3ffpyD8ofLviquB2yfq6uPuuGMLdFho5ihFikr16PL7r8sMYoQIjtfh+mfj6/dSvxcxQDgidjKV8jFpcJ3BmTxiKM+kWoxZggBJ92sljMApnpQPzk89LK5koesIg5zoRVvT+SPY7Ra6PMFcDwuB37fsIjU7Xe5NDIa/oQwXWtNaBaIZWRyO/gs6PTV8g6tsHAwylbGlyBeaKqN62Jutj7hDb2+REeon2BwAA//8=">
+            <vector name="origin" x="15" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+    </imgdir>
+    <imgdir name="rest0">
+        <canvas name="0" width="35" height="38" pixFormat="1" magLevel="0" bytedata="eJys1tuxgyAQBmBLoARbsAQ7iC1Ygi3YwclpxUbyZBlERyc6nHj4uagoKF7cFwey3yybjTEIvC4q4tpFX/Wrvqhw4/H+uazcYNzTk+AGgRtJf/00SR93YXPaEd2AEX2iVjjHJJGfsYwpQ0Ybtd59VvkQYMwU4YxVuS0hPL8IqRi1zKSxLouBCp7fcnA7qjZeT9goaWUkva7EXQ0crMCBZDhU58AJm8mQCqlNxeHQKStsdG/ntVicdqFwI+6mPDOW/XVWw2cLuz6GsxphyF0fY6koZ1SwLycOJ9QTp1d2zjRToo+aS7q1sq9kTE7w1sohpT2vyD6YE2J2xU/RvzpST47N2Fe0YJMmYzG9auqOhDZMJe5yVgw6fv+273O2MoSTs3IoPfK1kvZwVk8YilpKj8gZDCjWpx1fwy4+5Q6Z73xejtIUpAobZKX8mUMqc88pLDzkyo6jAngn/tl4n0glO1UMpIJ0Rkl7ZEOBlvbiTIcV9EW9QfE7Up14g6GF+EaRqe8e7+OKNTaufwAAAP//">
+            <vector name="origin" x="16" y="38"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="1" width="35" height="38" pixFormat="1" magLevel="0" bytedata="eJys1tuRgyAUBmBLoARbsAQ7iC1Ygi3YwWZbsZE8WYbR0YkMG5efi3gBxYvnxUjON79IiEHgdVSirh3Vq3k1FxVuPN4/l5UbjHvmJLhB4EZCr99NQuM+bE87YjZgRJ+oE84xSfRnLGPKkNVFnfc8q34IMCaKcMZUbksIzy9KKrMsE2nMZTGQ4PktB7ejsvE8YauklZFQncSdBg6uwIE0cyrds7wju+JwKtOVsbA1n6RCGovTLRRuxL3uClsjmCzGcabhawuj827HM3KlEYYc9TGWinJGxYyb1JvKx6741b4iV/+8a3ltT8mY/iWKtb6+djiLebZHs0x/daSZrrW1sa9owSZNnl9nW3VHShtzJe5zVgy6fv+2z3O2MoSTs3IoPfq1klI4qx2mQpbSo3IGA4p1t+PXMIpvuUv2O/fLUTJF6rBFV8p3C1LPx5zCwkOvnHEkgHfin43PE6nlTBUDqSGdUVKKbijQUiru6bCCeVFvUPyM1CfeYKpCPFF06rPH+7hirY3jHwAA//8=">
+            <vector name="origin" x="16" y="38"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="2" width="35" height="38" pixFormat="1" magLevel="0" bytedata="eJys1tuRgyAUBmBLoARbsAQ7iC1Ygi3YwWZbsZE8WYbR0YkMG5efi3gBxYvnxUjON79IiEHgdVSirh3Vq3k1FxVuPN4/l5UbjHvmJLhB4EZCr99NQuM+bE87YjZgRJ+oE84xSfRnLGPKkNVFnfc8q34IMCaKcMZUbksIzy9KKrMsE2nMZTGQ4PktB7ejsvE8YauklZFQncSdBg6uwIE0cyrds7wju+JwKtOVsbA1n6RCGovTLRRuxL3uClsjmCzGcabhawuj827HM3KlEYYc9TGWinJGxYyb1JvKx6741b4iV/+8a3ltT8mY/iWKtb6+djiLebZHs0x/daSZrrW1sa9owSZNnl9nW3VHShtzJe5zVgy6fv+2z3O2MoSTs3IoPfq1klI4qx2mQpbSo3IGA4p1t+PXMIpvuUv2O/fLUTJF6rBFV8p3C1LPx5zCwkOvnHEkgHfin43PE6nlTBUDqSGdUVKKbijQUiru6bCCeVFvUPyM1CfeYKpCPFF06rPH+7hirY3jHwAA//8=">
+            <vector name="origin" x="16" y="38"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="3" width="35" height="38" pixFormat="1" magLevel="0" bytedata="eJys1tuxgyAQBmBLoARbsAQ7iC1Ygi3YwclpxUbyZBlERyc6nHj4uagoKF7cFwey3yybjTEIvC4q4tpFX/Wrvqhw4/H+uazcYNzTk+AGgRtJf/00SR93YXPaEd2AEX2iVjjHJJGfsYwpQ0Ybtd59VvkQYMwU4YxVuS0hPL8IqRi1zKSxLouBCp7fcnA7qjZeT9goaWUkva7EXQ0crMCBZDhU58AJm8mQCqlNxeHQKStsdG/ntVicdqFwI+6mPDOW/XVWw2cLuz6GsxphyF0fY6koZ1SwLycOJ9QTp1d2zjRToo+aS7q1sq9kTE7w1sohpT2vyD6YE2J2xU/RvzpST47N2Fe0YJMmYzG9auqOhDZMJe5yVgw6fv+273O2MoSTs3IoPfK1kvZwVk8YilpKj8gZDCjWpx1fwy4+5Q6Z73xejtIUpAobZKX8mUMqc88pLDzkyo6jAngn/tl4n0glO1UMpIJ0Rkl7ZEOBlvbiTIcV9EW9QfE7Up14g6GF+EaRqe8e7+OKNTaufwAAAP//">
+            <vector name="origin" x="16" y="38"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+    </imgdir>
+    <imgdir name="move">
+        <canvas name="0" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJys1l3SgiAUBuCWwBLYQu2gHdQWuuneLbiD+rbSRrpyGRaDUw7px8uPgEopyplpCDrPHJDUzWZSK1Usa+Wd3dlCRRqHx2WxsoKxzp5sVhCkcayXr+ZY79+UJztqN2BsX9tKOfMklZ+JTBhDR7WtJu+zyYcAw1OU01UVt5RwbRBaCWrxpK6uEQMVXJuijTumNlkP5UYaGMfaVhKvBg5G4EAKnNLmZIJy39AKYaEScUqXBcd9g+KMwKl6ijT2b5cXRn9/o9XIs4XZKUa0GmXo2SlGXzFOp+h5XG9XNQIjP9fkKcjQZ+/byCylWkOx1zdF6XahIsw5c/dFB4TdZ/dx0tD4rcDRypfr/OqdXnPq/CDs3JwbwsJRv47gtBhl/87FrbXx97m1WI3t++OIXAwM5eSiaItITr8P5VTDGdxhStRSTIhcwIAyereTY5jFr+Kh86P3y06yQZ6UI+dUU06e/szkZ4pcH+VuDyjH59znkTb0PiQ6JfLIM1SwprkO4sLuJi7yHejwSHr/UG8+OmAoJaXJFdgronppTe6P/Yd0vSRnpBdp/wAAAP//">
+            <vector name="origin" x="15" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="1" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJys1tGRgjAQBmBLSAm0oB1cB9qCL77bAh3otUIjPlFGJAPjMRHMn4UkEPBCgH1hFvebZZMJ7naBF9ex7uIP8RArFWUcn7fVygbGNjPZbSAo41Svf5tT/fOXlJEOzUIb+9e+0s4SSVdf5VV2AqJCBEumHoIxjGOkeUsL9+bekOJ0MpIQM5IW8hbKtNP1prpBdJJnUB/zCjnIkANp4HCqusqkdA1SmBgqsw7v6+BYA4o1Bk7lKdytG8Z4vl+60TsrxPjSjTLoaYjhK53TKfQcK2W7RiAT8E5GQQXtPFvjZxYp1RZKv74xiplCxYR1ls6FAsLhfXhbyTf+V+CQ8mWdX97u5XSW2GDi0lwaJoZZt4/RbumUVGZtH7/vrMXb9PduHpHKCUM7qczbfLJmfA/lXNOp550wHN3kAZFKKHAmTzuVw1P8aj6ofva8NFIfrEhK1JzrpGSF+2TBF4UnZT8FVqCHqK8apymp1dKG7iZaYUXWwjg+45SbeOhgBYxYBf97KGBEKRwr7q5J1HzVVMa70ssEOQEZ5/oAAAD//w==">
+            <vector name="origin" x="15" y="41"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="2" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJys1l3SgiAUBuCWwBLYQu2gHdQWuuneLbiD+rbSRrpyGRaDUw7px8uPgEopyplpCDrPHJDUzWZSK1Usa+Wd3dlCRRqHx2WxsoKxzp5sVhCkcayXr+ZY79+UJztqN2BsX9tKOfMklZ+JTBhDR7WtJu+zyYcAw1OU01UVt5RwbRBaCWrxpK6uEQMVXJuijTumNlkP5UYaGMfaVhKvBg5G4EAKnNLmZIJy39AKYaEScUqXBcd9g+KMwKl6ijT2b5cXRn9/o9XIs4XZKUa0GmXo2SlGXzFOp+h5XG9XNQIjP9fkKcjQZ+/byCylWkOx1zdF6XahIsw5c/dFB4TdZ/dx0tD4rcDRypfr/OqdXnPq/CDs3JwbwsJRv47gtBhl/87FrbXx97m1WI3t++OIXAwM5eSiaItITr8P5VTDGdxhStRSTIhcwIAyereTY5jFr+Kh86P3y06yQZ6UI+dUU06e/szkZ4pcH+VuDyjH59znkTb0PiQ6JfLIM1SwprkO4sLuJi7yHejwSHr/UG8+OmAoJaXJFdgronppTe6P/Yd0vSRnpBdp/wAAAP//">
+            <vector name="origin" x="15" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="3" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJys1lGygiAUBuCW4BLcQu2gHdQWeum9LbiDultpIz25DIqRKcc0fg8giNwg9cw0Bp5v4MCgq1XExfqYd7Ebv/GZijR29/NsZQFjmZqsFhCksa/nz2Zfb195NcNhZKyfa9E7qdXpM07NqVEKhViLaEvlQ0BsX64TMS4lXFrE4BjFSGZcEwaN4dKWXdjRdcorJXkGMvRIwqOhOcKB5DhMZ8DJK9sgJeO2EnAshRz7//Y1GJYjRoo00D7kuTGqb2g0cndRb4wRGI0ypp0pw1WUYynUj/Wm57SBli9zchRk0O77ryVJEUsoen1/UUwVRMYHJ7UuFBA27817kMZGjAKHlOA6P0e71+w6OzJ+bI9txt1WawcIf++ip2iunY6/97XDbPS93X7tisYzegdCKWMqx78vmkMNxzthGI2k/BpFAwPK5Gkn29CLp8JB+cHz0kg6skdeIedQ51X2sHvi3wOFPKmGGuQVfpPeSAyZMEpVb+2gcikO5uMqZk5pFzvzm4qz/Ara3X96V/ffPhQwflIYVtxeE1XdRMWro98S5US0WNcHAAD//w==">
+            <vector name="origin" x="15" y="41"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+    </imgdir>
+    <imgdir name="jump">
+        <canvas name="0" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJys1sGRgjAUBmBLoARa0A5gG9AZbcCDe7cFOsBthUY8UUY0AyMxwOZPCAlgEMG8C+bxPl4CA65WkwaRsWyQK73ShYowtrd4sfIF4zt7svqCIIwdW76aHQsKP5vtyN2AsX6sc+l8Jsn6Mz/zxlCRr/PJ+9zUQ4BhKdJpu3JbUrhUCKV0erGktq8XBjq4VGntdpreRD9+1kgDY8d0J+5u4GAGDqSOQ3TNmfuZbSjFo13F4RBTBcf8gmKMjpP3FGEEhanrRn9/nd2IZwvZKYazG2mo7BSjrzROq6g87rfpGoGZt2uyFFSoZ29s5iMln6eEIkyNvr96Btn3Sljsn/tnWDS7kHvUOMJosuMKzjqVp1KdCWFTbkot2dmgGFEeP+zAD3zP1PW0otdqstb9y4dPXViELGzP8uhv9Vt5VNd0s8boKkER8aTW8VcmNVajj+15RMQHhnQintapo6Z/DOXI4AzeMAS9pBMi4jCgvHzbiTlkcZY7VL3zfdlKOry7n6HmyPzMu9uZSd8Bksiu/czsgZ+pTpL6g2+SvJreJe3M+ub3FLmmzweJ6bWJWPwH2t5mKAT3KqYqYMxT5D5agVXNcV66y8eo8Q8AAP//">
+            <vector name="origin" x="15" y="41"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+    </imgdir>
+    <imgdir name="hang">
+        <canvas name="0" width="35" height="34" pixFormat="1" magLevel="0" bytedata="eJys1d1xgzAMAGBGgREYIRuUEVgho9SrZAve8tQpcjYcXMP5oJYlxQZsfgroIcFYn4WCSZJED2nj7CGfzbM57cjv5ktd5VxxV5f0BqULjKI/35miv73T9t+O7QgY+W/eWeeoZDLu+q7JwOjy7kCvPwIYnmKdXVVZQQxiQGVSiydRVREDahDDzxhzsLa0TVuSgkbRYyXxapwD0sKRnDW9o5Cy4kiXx70Nd4acLqAY4/Z2mX5ElFA15umC69vGajVWWTohY1vhGRwhY3pPnmKeIPP7BzN2KeDIR/NoSGLrs2cmz6o9c3XiXqh0peFT1OCMI86EFeATxkRN+4/m8HXaS7JUYFglwVkjHSygkikYyxQqLEG+qDG8HWVGWcEMuF6qzKwFY5XOFOahDOvjjNJ/t9uKYT7O4pU5YzkCAcZS8e8jU1wNBlaC36JK4nrhS5kqKdwZ2BFjVs1cFPVreA3cz1K5WL4b2MH++AoYzlkxyHG/+LwSVjYM2guV9tflmBt73uDcu3Ac+TdZicDxBwAA//8=">
+            <vector name="origin" x="15" y="53"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+    </imgdir>
+    <imgdir name="hungry">
+        <canvas name="0" width="40" height="47" pixFormat="1" magLevel="0" bytedata="eJys1s1R4zAUB/CU4BKWEpytwAkFsGxogMUNZBg34IPvzM5AC1tALlACN065bA8iHhtJKOvV8/Oz/CElsYL+M0GRrd88SR6H2axtbBT/pme/fL58/t1T4Ju3yUCqRg1UD5F1LVxp15wodjSy+uZEsfVQoh59nuNR+hVO9cxZkGEq9TqTgdivze+E8dkbPy0W7bQnvXme+7HMZI8fjx8nVtxbq7UKrc3zu2LyDuAJW8a9NKrVPur7lrB7X9nYk/xCUWuZuPTbvYEEAS3hcVmL/nuo86yeFWqYuIxLj5NpJLBAMx6KbaWnqLX1uoeg162va7a1HtSgqtf9v8otYr1Q42XRmAe0J0nVuSsEEUZABNMhMpo9XK/dOyoyM9+chn0HSbypV31j89gflQkjBHm3l4kgP1ShRWSZjHkiMkkJcvqbaC3m/SQCsyqXxbJYDT2WyBWHxCKRFC3Vn0GO17qJBWZZfi8gy77I7uVPjrkT/dB4P+bqvIAsBt4vueCUtaK4R64FZsEvCsh84F3LiGPWyrz918o+ErVe1HjhyAs5hWqB2f0R+h7ySGBCh/ej45FhvHGmeyAe08D7VkAcXglPR5C7HLyqr5ekhaVFa0V9h74OM0wFJjAOc01tqLm8SKRqU6G4qX7vNxUF+6jReKoOaLWYqm21rUAErythYJ3mW6puJYgOrRE3FZhhua3GMaOpAg28I29ofRXug/vdQemo1TFPzPTGoJ5gB7sQ7LB/K4Od/68w7Huwe8jfclCxf/Xu78Hez9jV+0Nu+md49N8bS9t3TN07t+l1N4rpnSlaeoP2HwAA//8=">
+            <vector name="origin" x="24" y="47"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="1" width="39" height="48" pixFormat="1" magLevel="0" bytedata="eJys1kFS2zAUBuAcwUdoj2B6AkIOQCG5AC0+QKeQA2QGd810UQ6SDblFV1nQO4h4bCTh1PXvl2dJsUywUv0zQZasL0+2kzAatU10EtrqtavX1eufLQdHgaKAU3UazMGesCXaoy0O8iyLJVcc5LUaOdzj13CN41Y3TDN3gAVTZcCd2PPcukLuKj1r3ecjwGo8Et14nt73f0acXXpXifQlfRm+80bzWJ+yWR6wd29lgRZ5vncI/1457B9hPej/5tXWDzUNvWqWg8Cay6RovND7gGe6XJVkUZIiKQbfj50DCZbRyGurPGw20tMWIc2uzRbbOt+wUNHT9m/V71GtqG+a78Re60FzZf3VwcMIPIheT/Da/Z36tQOeeGxXP5YIH3WvHHtJMcknPq22UvVLc6LM7qUqym6lSaootxLaJL/e90SqEzlXqeZEGf+d11Yi3cwVZdZUN3M1caevJXKj7jQnyug1ymjOzo2iTIuzHJnanviuLyXlq3LD427M7EmOnDnaFz2WnG8lp3/kUlHG8mOOnDjahTYrzW8Ere6OjOWForAW72mx5HAdWOuO8HEsTxUl9mqfLY0Fo3UzVIN3yIL2IUe8WoHnIcr6FJqt5wu24qJjtV49X8/ifPPuJhjHSlMXWX7tVC3KZUXesvq5XVYc6pPF44uy12q8Rbmu1hU8aLZDwQ7N0aK80vC81s5bVhDjYl11Y0YXJSxob3771nM4C2f3h5wDkiW+M8ObQDXRBlcg2lD/Skeb0N9VXO9oc5/9zmBS//w5VMM1H4nz5/vM9IM1/m9OLNpvkqZ3XKt3vDNM7yjP03PaPwAAAP//">
+            <vector name="origin" x="24" y="48"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="2" width="40" height="47" pixFormat="1" magLevel="0" bytedata="eJys1s9R4zAUBvCU4BJ2SzBbAYECWDY0kCUpYGc2FOCDfWb2AC1wzyklwIlTLvQg4rFHEma8/vz8LP+Rk1hB30yQ5eg3z7IQTCZ1E724t2L25mPz8fbJwZWzKSDlvQbVQRRNi560aY4UGxpbbXOkWHskcY8/T/E47QrHeuZdsGEqdXonHbFdm9sbpr3X3y0W7bidXu3ndiwzRSQjeWTFrWe1VlFoP+KbZPQK0Bu2jDtpXKt91PWUsHtf2cST/kKx0B6V4+p1JARaJJdpKbqvYZGX7CUjjbJMl6nDm6kkWNCMR2Jd6TFqadG5T16zvqZZ17pXQ1X4bR4WqV7UeJNU5h7tSXN1wxVCxAhEmAOi4Nnd57V7B0XxXM9/zhC+6q8gi/zUtvNjk0XqUXO8uNmLlBffSZNIUe7kLEEsonjQKxmqB83xYv4ZFtpKthMqyiK9TC6TRdcToV5IZKVCzSmk8tOL6V4zK0WZpRcJMmuL4q+eScqtaofH2zF3zxLkouP91lPJ+ZNxhkd+KcpU+gly1vHm2sw1pz/N749M5bWiTOX3BPE73rX2JYdrwez2CF/78lxR/AHvZ8Njw3j9jPcgHtLgfUuQAS/F7vDiIYfuFvdT1vzUotVi8Y3iPmaYCkwwjrmmNtKGvHMVZOucxHX+73Odc6hPGo8H2R6tFINsm29ziPCaEgXPaa6CbK4hDmiVuM5h+uk278eMBhk0eAdOaIGdPdf4/nBIOmg1zCMzvgnU4+2wCt6O+nPt7dz/CmPdvd19/BpDpf7Vu7uHtZ+Iq/f72PRP8Pi/NxHUZ0zZO7UVz10ppneiaOl12n8AAAD//w==">
+            <vector name="origin" x="24" y="47"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="3" width="39" height="48" pixFormat="1" magLevel="0" bytedata="eJys1sFxozAUBmCXQAmbEvBWgJ0CslmngWxowJOhAQ7cMzuTtLAF+JKUkNuefNkeFDMQSZGX1eP5IckIE+Tln3FkCX1+QhhnNusO1kvooee+fLx8/NlT4F2gyMBpegeYkz1mS7hGW5zkWRZJrjjJ6zR0qEWv4RrFrW6aZnaABFNlwE4ceW5dIbuK91r//giwWg9FN5679/PfEWeV3lns8f3xffrKW81jzcu7KmDt3soCLfR8nxD+XBn3z7Ce5H/ztFWIy9CrZjkQsDKe1q0Xug86z+pZoYVJ67SevB8HBySwjIZeV+W42Uqvewhqdm222NV5woKKXvd/m2EPa4X6LquDOGg9SapsuDrwoAc8EL0eo7nHK/VrIx4zs80e+K8ceTftem/6GvulCmHmR6XdKkRUnqqu57FCpjwThaREJf3NtJVyN5nArOpltaxWrsYyueKQVGSSop32NSpxzE4qMMv6awVZ2h67l9855k64oX43ZnReQRaO9kMuOGWtKMM91wKz4BcVZO5o1zLhmLUyvxFr5e9JOi05aPGRFnMK1QFz3R56H/NEYGKv9s3SSDBaP1M18MYs0L5UEK9Ww/0QlUMKjurxmqy47lmdp8f1KJxvPt0E+mGmqQstv5aIXG0a9DbNz/2moWAbLerP1aDVernaNtsGPNBsBwMrNO9ydSvB81oHb9OAGNfbph/TmyuwQDv59NVjcBacPRx0RiRL/GSmHwyqiXZwBaIdtm9ltAv9XYXrHe0eyt8lmNi+egvV4JrP2NXbQ2nawRr9N8fy7knSts479IoPhmmd5XlazvEPAAD//w==">
+            <vector name="origin" x="24" y="48"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+    </imgdir>
+    <imgdir name="angry">
+        <canvas name="0" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJys1l3SgiAUBuCWwBLYQu2gHdQWuuneLbiD+rbSRrpyGRaDUw7px8uPgEopyplpCDrPHJDUzWZSK1Usa+Wd3dlCRRqHx2WxsoKxzp5sVhCkcayXr+ZY79+UJztqN2BsX9tKOfMklZ+JTBhDR7WtJu+zyYcAw1OU01UVt5RwbRBaCWrxpK6uEQMVXJuijTumNlkP5UYaGMfaVhKvBg5G4EAKnNLmZIJy39AKYaEScUqXBcd9g+KMwKl6ijT2b5cXRn9/o9XIs4XZKUa0GmXo2SlGXzFOp+h5XG9XNQIjP9fkKcjQZ+/byCylWkOx1zdF6XahIsw5c/dFB4TdZ/dx0tD4rcDRypfr/OqdXnPq/CDs3JwbwsJRv47gtBhl/87FrbXx97m1WI3t++OIXAwM5eSiaItITr8P5VTDGdxhStRSTIhcwIAyereTY5jFr+Kh86P3y06yQZ6UI+dUU06e/szkZ4pcH+VuDyjH59znkTb0PiQ6JfLIM1SwprkO4sLuJi7yHejwSHr/UG8+OmAoJaXJFdgronppTe6P/Yd0vSRnpBdp/wAAAP//">
+            <vector name="origin" x="15" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="1" width="35" height="42" pixFormat="1" magLevel="0" bytedata="eJy81uFxgjAUB3BGwA2ADeIG3HUA2+sEXCdoR3ADzyU6AIv4ySm42BqEQELz8gghAi2i1/zv2hh4P5+RUjxvxqAq9w56+H6MsrvXUcbmdL/yAEM7DzC8xxir6m5HGSvu5Ysd2A1trMpVoZ3bJF0fyUi2BqZQFp1ptfVaAMMq2um6mra08KTTKpWjQC4mExKNRCRe5WfzKiGRCCuI42BvFz/381a6Mtaqai3epMm6VUIelr1wnRIckByHvghSQV7Eh4SY1yo8LGwIx2SNzzLps7Dv0ETEHJMIiHkVc1KSwkkJyZowz2TAQnsl0fc6Lp/5eGKl+GerxEqAkCKTkM6hzxyODoXgfG2ggyF5wAJGUNEGHjW1Vhkaqgfdi+5JwqfSTqfYd4EeIP55aOBZqEAvQ4UUSYXBavhpVm5RvBPmt5VuX4rpXqCi/87Dlf9ScB/c3Rzuyt/KX7GGc710V51NcO6nf+TacJW43NZpgyFsL8w8bfaCMDvH39t6YGhnWx+bY++89Jc5KAkHh1zf1Sn0cpyRbQ0GKKN3O7UGR/GuCue6wXWsnxB60lF37FH/K2BQk/CA+V92fdb/AZp2Z9s9CFhvfc6g+LmhCvcBHbs+S/FMz64C3Sx4dhhTbh90931os1PPUpvTMgWeoDBgLFT0Pps9mv3djChpY/7OutkiZ2Q2MX4AAAD//w==">
+            <vector name="origin" x="15" y="42"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="2" width="35" height="41" pixFormat="1" magLevel="0" bytedata="eJy01u2RgjAQBmBKIB0QO0gJzliA14Kt2IFzVdx/GvGXVTjxA4QE4bK7hMSAHKLHOx4xkodlz0GiaNImMe9tcn/ZX95UjLE+7d5WPmB8pifRBwRjMP3+1TDNVJTPdrAbYLCSFei8JuH6Rb2oW4NSGGtqn9v1KIDhFHS6qp5bKKwwraIflE7q6howoIJV/dOMOKrrUt5KPYNpW8lINYqkYxPlxyZwpF3Tu6JhRZECFXmOdKu83g53xggQdqN9p4ChvHWPMUp87VdjZnMIu7WO5JqVXHEdJr7y0CihJxAONdXHulWk0LzAKKEh8ZX2MOIFvIIoEOAVZxB0nFKIkmKcdj9g4FHHBl6kcFSWShQ2G00xjnkHf+2MO8aeSxRJBuH4bf7ylOhEGZtZlpTnykbDCv/M/ZlQEf+kUB/89+GMNcaVv+IMkXcGfuvAcedYlsnVj/9JaDwqy3JbpQ1FZN93O06b77vI3Jj226pnoLOtDs3BOy4dGYOyUeCI8K4uoZbDhGwrMEAZvNuZOfiU7qpw7GNontY/ETzpgBVHMj4nGazZqCSLz25+0u+ATLujXQ+SzJufskm6blhFfSDHzU9S7BNCoEA1M54chpTXN7m77NvszJPU+jRPgecnChgzFeyz7dHk/82AktrfGjea5QyMnmy/AAAA//8=">
+            <vector name="origin" x="15" y="41"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="3" width="39" height="46" pixFormat="1" magLevel="0" bytedata="eJys1T1z2kgYB3B9BPwBNAPuKUivArhWMw64VSOpJcUhSq4IsTul8MSkMt3FnptJOiZOcW5vQiYqUvmwQz6AzYtjixMCdm+ffbRIRALD5fY/RquX/c2jR8JI0mbjifxE3vDSR0dRLqpFtZD9f7RCtmbXTgpqQUa7LDP/P9eaV5rvPgxK9WK2nDWVmnb4rFYxtX1lW9GQDbmczavNiz61TsqaWXnd6jhfh9ffzi4ObVPd39gzZEuxtIP6Qd2wmw6lrx3j7ZkzoDgI/TQ8bJnqplZVPbY7zvWw8+28d86QD4Pjr4SK0Wfp9KxKeYPqDFlXGvbVEKvo01u+vkPQuWLp0i7pDqx6+dEnDXU9t3//PA/qmFOc3TIZ7S55Tz6SzqB6UtIK2XVPw5BfqG9aV8MuueEKobOFBh7W2yV/kS554xz8adVLa+qrZo/r10PK65ixvzm9CQyYiUHo30xjdz207CStLJcgWUM9fdcPqgHlhncN9255sGL8PO1VE3u3r5iaUdErv9qnTp9KIxRm/O5wj/AOggn7hD+Rj71my1INGevBlGRphDlzTtn7AJoQKJvvTIVOKV53G9w/Ye9J86Wl8HqypmqyNxxqkka7BFbBlUKAamC24+/44MFZnN+wvpGFzcO12m+HrebFmQMaBJQrGtrcmkBQwtmc3y87Amc8sGCwb7Kyr5n2wdvzXtTDOZOmQmARW4+vH4XzqhL2v8ie5FO1pAltl/zCE2iL2n6IJ7Ks4WD/vUbC+oOu8bBWTxpLY6G90Iz494H3SlS2pjofxQGVxgMK2nE9po3E2tidJms+alCheApJGni7USveOSZBdjzcxjSw/Mj65TAt9RCvjr0rY+zfDx68V5MkL+XGrAn0jNe2qHFJQ2sSeswQ2kPcwupQS6gu1BZ3wYRgm2DFtX9WaBN9hkEFPsWRpM6lxpBlLRPRpDvMuiMZH5Os5aYZT0Sfwkp97RGhZbyUC1nW8ltquQlGaJllzc95YfSpPo3ux45MFvHSLiQzjmpP/eXV65OfYHJeZhyzFp64CpJ+EIF3JHomtHJjrCyXoOUnjVmbYnLuq7mYt+mrec4N57htzFZa3GvMLull5Pr2mjloug9eohV4bXq5QRozsEDD35cVg52Dq+Dq1UHnESkiiqS+p11Yq/tpN/U9emYjKfAueV+kUdoNe5R2w+MbOoHWDlaJLqIXHt9Ow+7ENXF8K23Ru6P7L0GO7vfu9u626lfM3Ls7useAxbWfGSPeJZ6t+5WgtcWvWzj7KS9htmL8CwAA//8=">
+            <vector name="origin" x="19" y="46"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="4" width="62" height="67" pixFormat="1" magLevel="0" bytedata="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">
+            <vector name="origin" x="27" y="67"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="5" width="82" height="74" pixFormat="1" magLevel="0" bytedata="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">
+            <vector name="origin" x="38" y="74"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="6" width="96" height="76" pixFormat="1" magLevel="0" bytedata="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">
+            <vector name="origin" x="46" y="76"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+    </imgdir>
+    <imgdir name="chat">
+        <canvas name="0" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJy81uFxgjAUB3BHYISswAikC+idLuAHB3AFNtCu0kX8xBgoF07SqM0/ISQBgxG85t21lMf79SVEZLGIGqWKeaM8VadqpiKN5fkwW/mA8Zk1WXxAkMaKz5/NimcNYZMdtRow0mtaK+c9SdXvxV60ho46raPXua2HAMNRlNN1FbaUcLwjtOL14khdX08MdHC8F4+w0/Ym+yGslQbGiptOwt3AwRk4kDynNDV7QZhraCWpfCXglLYKjv0LijU8p+4p0sgaW+dHf32D3ci9hWyMEexGGTobY/SV1ukUncf9tl0jcOblnBwFFXrvjZ35D4XKcGpqX0H2tUKb9e/6lzZmFewuwRmTHVdw1e62u5kr0zqprONms2ZEuX7xjdiINadqx2vB/Hazzv2rh7uONpRT7v4vN/pZY/hK1uTi52Hi+zZ+nIuBoZxcFI8iot4oWw5n8IQp0UsREbmAAeXp006eQxZXhUPXB5+XnWQiuRCGmi0nLLm4mejvFDk/wuwaEIaf734faUOvw0SnRF1y8RXM6V0HcahObRzkO9DyPOn9Q7356IChlClDzsDcEXU0bcj1MZ+Q7miS8+QoMP4AAAD//w==">
+            <vector name="origin" x="15" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="1" width="35" height="42" pixFormat="1" magLevel="0" bytedata="eJys1tuxgjAQBmBLoARa0A7ABnRGG/BB322BDvS0YiM+UUaUgTEY4OTPhQQwyi0742CW/VwSBlwsegzCY+og92Qe5TLV4cbmMV2ZwRDODMZiHmObT3a4EVA/He1gNYSxfC0z4QyTRP2ZnZkyZGTLTGb6CaiHAMNShFN35baEcC0RUmn0Ykl1Xx8MdHAt48rtqN54P36qpI6xzXUn7m7gYAYOpIZDdM2Z+altSMVLmorDIaYKjvkGxRgNJ2sp3AioqWtGe32d3fB7C9k+hrMbYchsH6OtKKdWZB77bbpGYObnNVkKKuS9921mkJKNU0Iepkbvr55B9rcS0t179w6pWoXMS4zDDZX9ruCsY3Es5JkQVsWq0JKdDegX5bXO92zPdrn8Pa3oazVZa/+y7l0X0jAP67O85FSeSi/RNc2sMZpKQCN2q3T8FbcKV6OP7XlExDqGcCIWV7Gjpn0M5ZDD6TxhCHqJe0TEYED5+LTjc8jiLHfIeufzspZ0eE8/Rc0h91PvaWf6vwci/qwya+Cn+Bz0RiKohCHXwThYuSEOoq30vpJWRx1l+CCX5K7iwv9LbR7jFPyDkgFjpCLuQ72v4mjcIPWOkEF703E+HDnGPwAAAP//">
+            <vector name="origin" x="15" y="42"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="2" width="35" height="41" pixFormat="1" magLevel="0" bytedata="eJys1tGRgjAQAFBLoIS0QAnmGtAZbcAPC5AS6ECvlWvEL8pAmTAQg5pNCAkk4WKQnTkziftuWSKwWgUdpYhlR3mtrtVChRub23mx8gXjOz1ZfUHgxpYuP5stXbeIRDuiG2CkTVoL5zNJ5J/YifWGjDqtg/vc54MAhqEIZ6jKbwnh8oSQyqgWQxrqchhQweVZvPxOXxuvB5FesowtVZX4qwEHZsABaeSUKmd6Rm7F45Q6CxHVW60klcOpJwo31q3OQ0SPQTGNmWr43oJVM9d9PjPVCEOuhhhTpXcGRa/rqmeVxq2Exf+K3P3jrOncvIKbjKlfotjrvSHnMoYDFNzuHrtH1qn/q68vzGQdrOJ2XgHj2B079c20TirtmKtm7y2l+aF7tmc7isVelYL6NFeN61fbuw63mGKK2+nVljFdVcZYWbc5+3up+O3mxzmzDOHkrHgVAflKOVBwrDtMCbUUAZEzMEBx3u34HKzCt/wh8733y0FSkdwRgZwDv1Mkd3Ml+JnCzw8R3QNE4O+nzyNpyD5EOiXk2QrYnznQFVuJeP8oz9W1jzN/k9rcop734v1JBhiRiuixuq5iFHfwLqvf2TCKchwjz/EGAAD//w==">
+            <vector name="origin" x="15" y="41"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="3" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJys1t2RgjAQB3BLoARa0A7gGtAZbcAH790W6ECvFRvxiTJQBkZigMs/HyQBoxBkZ5yYZX+3CRyyWIw6Mh7zjuyaX/OZCjPWt9Ns5QvGd/Zk8QWBGRsyfzUbElVh4e3w3YCxfCxL7kyTeP2RHqk0RJTLcvQ+y3oIMAyFO11XbosL5wYhFKsXQ+r6emGgg3OTtm5H9sb6CQspDYwNUZ24u4GDGTiQLCdTNUcaFqYhlCC3FYeT6So4+hsUbVhO2VOYEVW6zo7+/jq7YfcWsmMMZzfcENkxRl+RTqeIPK637hqBmY9rMhRUiHvv3cwkpfRTYha6Rl1fNYPsZyWuts/tM67kLpRBrh1myOx7BWcd6kMtzoSwqle1ksxsVL1RHj9kR3d0S8TfU4paq84a168c3nVxFZO4OyvIf5vfJshVjZ3Vhq1EVUIvrYq/+tJiNWpsziMSOjC4k9C0TR01/TGUPYEzeMJk6CUdEQmFAeXl047NIYuz3CHqnc/LTlIR3MMCNXsSFsHdzIz+TWHrCwu9B2GBz6m/R8IQ++DpZKgL7raCNU11EKf8KuPE3oHWN6/3D/7mIwIGV3wOtgJ1RfjI72D7o/5DupGX82LkOP4BAAD//w==">
+            <vector name="origin" x="15" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+    </imgdir>
+    <imgdir name="love">
+        <canvas name="0" width="37" height="40" pixFormat="1" magLevel="0" bytedata="eJys1k1u2kAUAGCOYLFqV7jLrBBq91XAWTdgyAFS9QIQ2ihZovxI3ZGqNwg3YNdTsOIW8Q9GMPZ4+t6Mx2Mb2wrG8yQYjcef3xszxo3Gu5vF4/RmrdyVW4MEzqU9r0WqyalvjRo1KeD0ST2V9cn5XvdOsvjqoNPZdbbcOl7jxjgYB5EjYtvZHrX2kYEKOgmJW3F25R5XXkIMIaVySmhxfgUOZvISrlmxFeUIeelepOU6fTIOdE84WUlzlYUjaKF2YIEzIAPyyctWp3ISlpBKLHvCJQy13vkrFVvbtHTWums33QntEtM3/UlGkZLQM1Imq99t+m24+e739g/+gjYdcf+yjvyFFWd11vr3dbh5CKZkSl7pcMN4U5Z01PihJKyPrfu2AeejtKDG5g3m3+7wDFmBkp53B1Kqvg+tpoM5MfZKm+4bd1QdSnpOjBfeP9v0Macb2rAhLFWFkjByqstK1gDWewj3TcyOr71N5iTHe6S7L5eMwKBfaMO6jVdD/qqFhdUZFKPnd0mhRHpkBHM+Q+DMc75TNTfeITs8fgFXwuMjavrlEs40Ikkq4ltII370gkvd1E5O7BfL9IcBzA0h4ismw/R/0Cs8Gl5FM6STlQbEJNPwkT2yv2zBluwPXTIZ2F/A+BP7xX6GT3zGLMh1uDUL1mydY+T1lyBdE7Ryn1BgLdn6HTEL0EGp8KkJ4zgDZxaHMEqfvbEmQ3N0D8+7JrqnOckjR/1fQa26p9ZE9/Czyv+dcMS6nGBZeK7mpCWsr4qFMXdXUczhPezSrvzuw9++RKDDpaoNqpF3iveqN1gvucfjXmUrp1fQ/gMAAP//">
+            <vector name="origin" x="17" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="1" width="39" height="40" pixFormat="1" magLevel="0" bytedata="eJys1r1v2kAUAHB7y0g3OoWMTCgJe8TX0qUJiKyREpp0QwKVVurQAZVE6kaqJhJDtihTOjEg9R9gZWLKv1CwhQX2vbveu/MHdsGI2PcW63z++b07n21F2bJNRMTTJiN9pMekcet42o1Ni9GKd86UGCVunZjxVXli5hapWURPzpWw9uf7hvBeIwqlQRrEljAMjK1F10HJtVzPFTebQrqlt1RqS5kFRIwNopDGDLXVnp0rzw7DFn1tZze5u8NDmTZJk+zNpBXUErrnYY/0UPQ86fDIqNoF5K09owl+y8tNelJb5aGVznw96317917Va9AiNVK2msRZg9Uz53qGX8Maf5zBAzxfzmtwB0MY0u/QhLJVNv1aQ9whoAWyw8z+1OE3PNwv7mDAradFyVC1JimbZZ/lPH9h2SW51qujNYABGdL7BWUvTNWU6fIKoMV487ygJr0krzR91Kuj9iS0F9SmqDnVhGqBWvk6ZNJHJWMAjA1pyfi4ULW/zKvJ0W7mKG7W0FP1FhmQDlV1zMzVDE9DabMmPVWrWJfkAjCvL3OnIud5ldqN3V8w84v1mqK85bugQoqkCFlQpu7sGAl92cMoAkbBypthOwK1EmTpIRzK0XOUDuAApJibF8wq8BHifBUqVqg2qRA+mmb5eNRyYh9JTcyT0Kois5LQ8oHd79/7b3QcXaU87Dsn9Ct6RRO6zKJifYBTPEtP7RGe9b/Ga7U+0Q7rsF/skfXZT+gzrLJvHz/y/mv2mbXotRjRJiGWqLZNxmwsrnVi3XGfa+emfAuvtGyvz1DE9RuzVSHPtAlq6IW+ffk5HIVXoB0M2S+dje9xV5RVK5OElprhtedmapbQZFbOV3G77xbWkpp5s4SusF7XJmjJ2XK8SN/6iV/DWqNoXX1kR5f/CR5Po2n4/ycDrYiaWAtnBSOsgKv1mW14R5G8FUdr2j8AAAD//w==">
+            <vector name="origin" x="19" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="2" width="44" height="40" pixFormat="1" magLevel="0" bytedata="eJy01j9v2kAUAHAzlZHRmXCkLp0QJTsCw0wCJUMWpJAu7RApqG0kBgYkEqlDJFr1I+Qb8EWY+BbBWLbgfPb1vTuf/4EpKuaeFC7nux/Pz2djRfnPtuSRdVvOzbmZuQvqpTE9gXsS9VS1VU5ignpFTlGDK1LbaFaGMq8qquV12ebysTYXH+gD9VURdtk+5Armi9GImiiiiWrE5XKQ+U49X3xXVIv5kgwV/gebm788DOHG8o3YQe6xJky1lK/KgH4pZwwoqguWLvv5Q86a5dsxFU21lW+pLbUnPnNm3207A3puCTXpFsxQxhGU0Q5lof4cMWjDF/V++IK9iac7defcTtYhzFfIwt2WRbZfe8xv6kj2urTutCHCq7a7woFsR90zUNXql3u21bpUd/ruIGZKV3xXwo1lvMcFNbdSDNwTSVXu6PSMRR3U1k1Cbjp3oL6xN+iHslTFHCnHXSlzF3bDzSiqVkifu4w9rnG9PNfQfV5vuclKJOSuWyGVDbjGG1fDMw7d58h42p7gLpexzu9tnVY26GJt0dh24+NpbkSuDns5U3c+bnQycMXaIC87mq8c10l9k+6ijDvjDCK3ajs6adCGewHyY1BFeYcJGevQcDHg/iHprqJ8wDpDKAa6TVhRgcB1Nf58KZjBvbvWSddtwvfi8a7bcfa54ZMRXVjnXfj51NbSFJ/C7fKjTe7WY8+f1CfysuN8orDSgwiyiUbH+exe41Hv2p8h1f1um3TIN2/CJuwPe2Uz9tudMRnYf4XxJ/aDffee+IwxPUDl8pgu2GKHuKs/A/eWoPwP1ZdnbHFAjCmq6B74SwqzcD6uSw8hHmxGbBmFlWahcks0q7CKHjniFx+qollhLTUL/x7//iBUUc/M5CVKhVXcxUocL2NMzbkfU3irvjQyelvl79IiUOVuNg3OW1593suqQZ19LexlJO/opbS/AAAA//8=">
+            <vector name="origin" x="24" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="3" width="47" height="40" pixFormat="1" magLevel="0" bytedata="eJy0171u4kAQAGCT5ii5blOZSGlSRSHXI35Sk4BIQYOU6BQpVyAF3Y9E4QIpiZQiEjndI+QNeBEqHgPwGYHt9d7Ozq5tDDiHsHeksFnjb8bDmh9N23NMRKQzJiNzZKakc/tyOkhNT9FOt+daijK3r+z0unJll5Z5K2Efey3ss8XZXPhJZBDqg/vgShliDrF3Bt8F2bd938+wNUdWD0dUfvPePNRDlUcyQGzKkNU/6UTPnqog/H+ZQchjBvpmX14Lrx5CZggNlMlptqiCyAzYjyML7aieMwMfVtCHDIEPNsiklq2RGmnjI2TITLtu3T6ysC+BHdSOPuqbfbRfDMZH75V0eq8wezGyxcysS+tCgysI7PXO+/58VcfKv7WZHMRQs2PrltaduhOVlY7rET1S/SG3SfG+w9bG8bzilO2uq/Z51FbrcdVv15tuYXlLtSnMw76yg/VNOvrYGVJrddYrj+rq6mP1SG+EzndMywjslnHwF/Qu1Sa/FiAFPVD688p6TOcjfssgtQNT6C4KvjIP9JX1mF0pdOFD/+87fNcXM2bDqdioQPWoqPsH15/lesUuLz/a88Iv9trwl99Js4ZTdav0nIb2xjxnhn2IKoWA3RV3xxIdds+hCP6oa9OG26Sgn4uzSwuQC7RAMUNpUbGb9IJ+EcebtOHE6Zp2Av2XcSJ1OLsqdegL6qLPQm+KoxdCL0fezeLf8T+bcHbT4yEry5l33p2XM7HKhvOVXsNR71o+I7A/1nn1znfvkT2yP+ydDdlvOmTQlaGcv/P1J/aT/fCexDP67g62eG/vu2M2FpaKbfMh129s/JT6L1v6QwYZYH+M2abAI30XdPB3+ozlz4WzQIBc0cB1dHeUQxmwS9okN8tbYN3YeSs3w6rVt5D9vhfAteetoMuQR9jJjAnY2G3lJ/pdbLKqQ2+S1AfmSMaA/zK4nCarw+8BDLAT1sVrq3ZIgq+orw+ZNINZov6G2ZbxDwAA//8=">
+            <vector name="origin" x="27" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="4" width="51" height="40" pixFormat="1" magLevel="0" bytedata="eJy8171u4kAQAGC6o6RcKvwGCF16i5/UBDhSpEGKdE1SIEW6u4KCAikp0pHTPULegBeh4jEckFFYbO/NzO7aXrCRiWx2FNh48XzMrm3sUimX5lAU25zlZrkpWAHj5mNeuHIB4zJrUrqAAEaPFz9bPd7cWW5hDq0GGo3PxpacfCXK/+Q9ecqQsW1ssx0H5ZqOUwLmRwGNmEJOWFWiVa59qzEp1PGVwf9HFglvAYZUjFpiUliX0UioszoINgX1UYobWMFbsBLpjqoN6rFcJRkGZLWZXe4yCngHi8UdB7PqStKrQQe3oINS5EjjdSygTaZsNJli73UsncjAsFzT0EplE1eOHVnJ40ioxqa69zgKq1GK5WI9eu3NWo6cbVypkvIQKlF7IKVaQ6O5i/Kacbj+ydVkUXoc985ipFeDCrPvxqZxN2ZyXZw+13tnMQ4V7UiFdeMOGF2t9Pjh/tGsnFQS5izuREbVULJF2nHGtGPj+sB62NKg41gprZ08ujDMrNF2OZKmhA5IE1mFNpTShiNYXZ/oOkPXEmVE23GktUtX0MGZq9YxZF+f9T3e2nW8jm9+Y31+mLV0/Pa+xdOVsKIaiwRS+rzNh37H/w6BWZp0VaxswvPwE8ev/SsaH/qD/WklsYXKFfxJRQvyXSpDGr0mpWVcNTP+ujn9/Q8P8gQQ4TeNx2D/07/F0eBWfUIbZyl8wH8Fz+JZ/BPvYiH++guhA/vvsP1F/BG/gxf6xMw72yBn5q3EKiF/Un8Byj1H5yxDOQuxyhAzDw1UvnS/Afvg3pglPWT+LwoxSUdlbbmY8x5+dSrr+Ehu90wwf5YbrYHl4mve92PSkOtQkONg3sraVHDO8nYw5pulijk8I918FPJ8QU9GMtAgpYgGM6SPKOoV02B9VO6oV4iT0Etp/wEAAP//">
+            <vector name="origin" x="31" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="5" width="52" height="40" pixFormat="1" magLevel="0" bytedata="eJy817tu4kAUBmCXW3o7p4I3sHLpEZfUJItIkSZSpChS0iHtbkGJlKyUjqy2TZc38ItQ8RgGC0SMx5P558x4bGNIwmLmCDEa4/N5zviGZe2s+TLKbv4oGAWlO0I5mwz34OxF2dfaWHsxhHIe7qNm52H9rTorTaI1kcrh4nAupd1aMn8v6kXKQMwRO7QSAUaiJFJi/Y8mjef4OSYnNZuchSi2nMq3JJxKsQJjzOEUS2p+YkYIZeUM6bgyKk6RJatVnZGSd+zASBghCZaRHOR1HRcfp0bf4pOVfOStzqhqRjHzIYmcIomUpzZ7YS/9K6fWv0LvqZ2TfJ0ZszLK6gol0nzVua8hN8Jp6959LeUoJW9oh8ZzTm5GyHaXOCbuMg7y9SJ93eQVPb5pRp9whELZuGxG0ooZL3JIQjbHvWxnlcu24xY7fxbIp2uTH/+gcm5WkoqbrprOh2ymQsZJj29aobSklVUHkdRnbpzM+AfnNnJjncS6ZBXh/AibIR23WXF9ZWbHm2Hjbb2jJGH1a2Rkr9HOshW12DGz/GQV5naQljDeYojmshFuuisciNwHMvCdveN0oi6Dcyzz1BcwjtgRI6u+aIZddspO5PYu6yw3ORuack7U8dblXYYcuR7S6cqtp9Jp5O6nn31GfJ/eiP27sQh1tHZwG9/GdkBH3lnesAtsjS/UL4zyFceadJY/4wf+wP/xV+7xv8zjqJmn+q9i/JH/5r/iR/mLQbSVIms3iMZ8LLPqWNf3hHMd0pP1i4qSPA4LZ/CYFwVtGURwIG359BZ7YX/kgpoPGidhayNlUQ0t355WZ8h6LZ5/9pRmot+1dvXOg8pUZ2Y1IEpl182HQquipZLeR/2sg8qV4wyDkYqh+I91NinLwT8rCiilOfJs0GdXKedA4nhcZTe9kqSC3pr2DgAA//8=">
+            <vector name="origin" x="32" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="6" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJys1uttwjAQAGBGyAhZAcECIfCfR2EApC6A1HYAJOhvqDoCG7AIvxgjECUKxol7d7bzdCgEfFJr+fHl7DghrdZdxaN4rngH/+A/qYAxPG2eVl5gvGZPWi8QwBix51czYs7FDho7tBtotKN2SM5jEs1f8AVXhoywHd69z2o+CmjkFHLSrOotErYJhlQKueSkNC+DgRlsk6Ood1RukI8dKKlijNiC24E0yorlZw62oINSwfHkHDsoryjLRTpSqXG8bFa2t+adSZ2wpIDhXEyCVmR7SSlnA2cLexdcn5SyodtvZEOGHCug5B1tZO1VRTlGRWd9U4nMyneEM7Lcze3/KTjSpBTb6xWXydF4VTU6zCu63WW9S53Su/R5P+7E+XuhT2t2j/oxhnvtMZMyZi6bxqh0aJRDT53lp6c+wv5B3KX+aTy53lK66lpOpAX5XypT6h2Q0is8lfrUja9vHMYlEOmV8jG5vscz7E1maoQ2CgqbsI9kJVbiV+zEXvzEe6ED6ztoX4sv8ZmsacSSVwxylvwojob5pvoelDlDp/KGAWcvjnfEkqOBivFtB23Yi6PqQ86vfV+mkg7rbAc4Zw7vLuuc77n7NwXWZwfZHtgB/n3090gach8aOh7Os85FBdf0qIOx8Q8qNvANNDw1+v6gLx8ZaJDSpMAK9B2hWrMC+6OfkLTWyDHUasofAAAA//8=">
+            <vector name="origin" x="15" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+    </imgdir>
+    <imgdir name="eat">
+        <canvas name="0" width="35" height="40" pixFormat="1" magLevel="0" bytedata="eJzE1u1tgzAQBmBGYASvwAhsEFbICKzABqSrdBF+MQYBGRXkhvr1B8aAE2OQ6pMignOPzochRJHXaEScG03VVd1JhRu3Z3laucC4pifRBQI3svH8arIxHQgNdkQ3YCQ/SS+cY5LIz1nOlCGjT3rvPqt8CDAWinDmqtyWEB4vhFSsWhbSXNeOgQoer3pyO6o2Xg+hStoY2agrcVcDB2fgQLKcRufkjNClIZW4sxWH05gsOOYbFGNYTr9SuJEOJs+OdX+d1fC9hVkfw1mNMOSsj7FWlDMrch7X21SNwJmPa1ooyJB7792Zf1D6cMV0weyS430xd13c2bttbXxWtLAnLa5fv7frjoQ2bCUdCvY96fj6fX9csI0hnILVU+2Rr5X7CGfzhGlQS+0RBYMBZfdpx89hFr9yh8x3Pi9nSUfcEoqc+0ho3C5nvP9T+PoINT0gFJ9H/4+kIfsQ6DTIi1tbwZqOOoiyq1SU/B3o9gx6/xBvPjJgCCVk8BXoKyKOwgbvj75D5qMgZ+fIMf4AAAD//w==">
+            <vector name="origin" x="15" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="1" width="35" height="42" pixFormat="1" magLevel="0" bytedata="eJys1t3NgjAUBmBHYARWwA3cQFfwxntXYAP8VnERrxijSiBCKnx9+0N/oNoCPYmprefJoW2Ku11AIyzWNvKotlGKtQ4zjs/1ygYGdzYwdtsYp261w4xDm9aLHawGN7J31nAnTuL5V3ql0hDRZI2YCROQDwGGoXBnrMpvceHWI4Ri1WJIY10zBiq49eXgd2RtrJ60ltLEOHWqEn81cDACB5LlEJVzpWltGkJJKlvxOERnwdHfoGjDchpHYcah1Xl2uOvrrYadLcyGGN5quCFmQwxXkc6oiHnst64agZGfz2QoyBBn79tIlNJsoaj9XaKMq9AklXZi10UEhP1n/9HS1PitwBHKl31+O6dXnjozkurSX/qkskfNOqzTIpVDm9P7oOLvcx/wNKpvjiNyOjG4k9NyKD05bh/KuYMzuWEIaikDIqcwoMzedmwMs/iVP0S+974cJRXJK62Rc+7SOnmZM+HvgZzdVXoN0hqfUW8kgkwYYh20g5WLcRCuEvwkTkUTJb6RonrIKNh/qeNzmYJ/UCJgLFT4OVT7ynvLGhl3hETtzcSZ6XnaPwAAAP//">
+            <vector name="origin" x="15" y="42"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="2" width="50" height="39" pixFormat="1" magLevel="0" bytedata="eJy0l+9tgzAQxZMNMgIdgRGyQZIRGIENKjZIu0FHqLpBJ8inDNEPbhEpARP3zubAmDPQ1OVJVWSr7+d3Z/NntbrrElpBrnXDE075KQ/DWDdCMRQg7D6PQRjr5lEJ9TimiHAEoUgO5Q+9cNfrz3GPGzmOKUw/RNrMUzg3X385QiLj7zkK5+ati+WOQsKh3l41xcsZu60bMybacab+oNfb680QDvUetC3jkus+59aPCGvG9kd39EdCItF/X20rzIJ6KGySz82bQ/u/KxQwJCox/kAAlZDlQiKOvypMP/T639WHGlKwG61/ib9i4ERFVLScye46O0FgdSgF6qXpcmh/I80DDlKQ01P4XWpxhak/Up5uRIBu1MC4xmXsMMYU/nwMzkLHSGVUpFITak3AXpebnKFc3CRjgnUBIZGGgIqKNgEQkGET/ElmLjhphzqRqaS9ZBIYgu0/nWSOgEpqIuwnCC5jEUUzzEk76Pr34gh3VUukkk6yzzUIozvJpiNDT3fsPkZPaO+26HghgjX2F4YmDNfc79gQOZLavlu0umzy4blwCb9nDH3In+NYe647HzNnXFP2lb2+JSICMjxvZSPG9prJN0V6bqZ/Z9ImzD212xmRybM6L3AnRlIhxWTwvJV1hG5GYI7zAmUSCcgwT8LpHLQGokD34X/Rwy/j3j9pnZVO51gRh7T5gnt8hYqKzZc9w72b+AjsrHhTZsVR0dc+KvBvqO+PPgt1558omjRkYLXCZznmp1ZH+MLZfYb8WlvpfZxJ/K4xQgLu7KCVEtrPUXgKO7a4Vj8AAAD//w==">
+            <vector name="origin" x="23" y="39"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="3" width="46" height="40" pixFormat="1" magLevel="0" bytedata="eJys1+txozAQAGC7g5QAJVACHQSXQAnu4IarwE4HyZVAKsg5/z0TX1q4xw8lHjDGepxWAiRghcGEnfHY8ujzallAXixcx5I5v5p5LNk34dCJilk2wW2yP+6Pc2zImggkcynff2xutpdMy6TSWz6ZJ9cusXxjz6v1cN63u8ZH6022fLre7wikT6S8ZkFxXbfnYf3W6m9VZZBjFpVKH/BtzdVv6rNSX/gL17KOqIxK11m1NfiVOro10Cq4IBtb680KiC23NTRv5b4JCG3bedt+swYkb7TeKt83wYRb1+uA3IOi8h1nrytveZ21O/N15YMOvq2jJ7mSt0oPClvWtp+1bVy/ZmvdfALbyLZeV+aKLeU123I8umdzYubyCoE5Y+SJmStZzxkjd+2gCN16Y+tZ0Ilm3RAw4qzKKTiF5zE2OPoKGhqp7RUFOcgH7mS32nR1kW7u58Fpqh2VDpuCG9P4EpZ+7md+FuTjbFNd09WtetOVcuNLVIZnkD1pu6/Jtl3fk2BeZ1S6Wo4ucDcJCy+DGNrV9O3abfkgS3Wl3bPskdyrsnbsahp9fS10xnB/PRtZZ43uaqrnDFwlB/5b1PFLdN+/y3gVP/hOPMtIqJaHdgfNasiBM3nnxlQtP/NXsRMgpzISGpdQC/euprUaAnkzJP6JvzL+NL+SUJDBXhBX3r1npuziR/7ID1bs+E+e8if2IOM7S1itqo4mSIZWRXqjxMTdp5eBFJdedvdpf9N91uN9gu11UrXqhHpZ2tTWy+DVdfW5+hsZqzJLVW+8j9TxccfRsaEqQ/oUeUE2x30VG7mzv/+Y/69Ey1Bv2M/rADmhqfiKvTLUo9cX5Ot0dGxUTf4DAAD//w==">
+            <vector name="origin" x="21" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="4" width="50" height="39" pixFormat="1" magLevel="0" bytedata="eJy0l+91qjAYxnEDR8ARHIEN6gqO4AY9bKAdoY5AR2i/+6WucO/9kpYDFZuQ8uQPSSABrlKeczyayPPjed9EIYpuOojQLMeC+Qmn/JTPw1gwwj2UhvDwsZ+FsWCPnPDHPoXMRyBcq0O5oxfd6w3nuMVNO/Ypnn6QzXWc4nML9ddHSKq4GKP43IJ1sdwhENaXdSkoQU7fbcHkGFHjnvo32tEdVQSpcl36uu9zMyPEmrH94Q5/ECyGoLSJiJ2g7xbMIfwPNSQZTg6L02YarIqnH+L6D/WZhykqV5MlLhRnsLudlUDgqVOEk4CCEVBWxfrLUPyr1OIS7bijcWETJGOZu4w+xb8/nL1AjCco5hMYhuBQym6SPsE6GkJSGVdX3a7bSVagXCb91jQ7DedOIbhJGkaZTGEIgjx3CsFlYHUl1SilZcizsYJNPSCM+KslGF//x4Cf3IlDI5qRXFblrzMqEO5ilMOMzc0MU32zK/z9wJoA4RaG/u1b5u7e6xK235vvexja38dBlSShqZUijOzxlmI6OSzUyBDACNyV9RhJldKMaz2x7vsXoWP9xt/4O89qmzD2r61mSErP/Nxzf1Her/zIXrn0F9+rDxQUmSFwV9YS2hmCHOdWf4T+WvqnlNUggCH/CYdz6GvQlIhsr9trSoXYE3tmR5ZBtZF01/69Kx3OEWmO1vIzLsDcXuNi+WnP+O5NQgTvLMm4TBIXsispBQWvcz1/mCy6O79EESSXgWrNn2Wfn5T2zRPOw8ecT2uRWMcpxXONFAhY2bNWigi/juaneMcm1+oHAAD//w==">
+            <vector name="origin" x="23" y="39"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="5" width="46" height="40" pixFormat="1" magLevel="0" bytedata="eJzM1+2RgjAQBmDsgBJowRLs4GzBEuzghg70WrERf1FGlIE5GZDjzQdJYDcG8cexM84ZJ4+bZSO5JOGuTcd+tPLadN89owsZq2xB2+JaXss1NrIWPZH5IH/dTm/bm07JQuueL9bJxhWOb+11tQ7n/b5rfbLeYt8s1+cdQfTJIO8eWfVad+dR/eb1t6wy5O3vtpZ6wHc1rt/ke6ke22OrZRX1tubuqqvhW0xMa6BUuJAdW+rjCoQr+xqZt3TPT4Syvbwdf1wDkTdZb5nv+Vn0vK7XMeSeVdpn7t5U3jcmaz5z6BiBDt/VyZusZcSxzSpXVnZa+jatv7KVbt/BtrKn11H2IO8eVvNjejcXZj7sEMyJkRdmLmU1J0ae2kF9tNUsdKJdNwIjb1bFseGoHRQa+ed2/WnbVtd29et683vSt81vUlr6e2YqWzt0qpnbxqV8p4dqkzVzqhl1m09MGFllTZ5q9HMGuyRvL72Jny78d94qOXQ6GFcj8rboiwjV2IcGteBPNd5qBPIuIiJvIcNOBJf37Jk5dDHmYC4fSnWfaHS9iVFhI71nFaRDk1Xp3f1k+qyn+4Q661x6lWFW2dpmFV653cf1NzGmMzPVj9Ppceaa2KhKSF8iJ+JUXnWchpP91239fyVKRr1xnlcBGR36ibMy6jHrC/E5nRyLqskfAAAA//8=">
+            <vector name="origin" x="21" y="40"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+    </imgdir>
+    <imgdir name="dung">
+        <canvas name="0" width="40" height="47" pixFormat="1" magLevel="0" bytedata="eJys1s1R4zAUB/CU4BKWEpytwAkFsGxogMUNZBg34IPvzM5AC1tALlACN065bA8iHhtJKOvV8/Oz/CElsYL+M0GRrd88SR6H2axtbBT/pme/fL58/t1T4Ju3yUCqRg1UD5F1LVxp15wodjSy+uZEsfVQoh59nuNR+hVO9cxZkGEq9TqTgdivze+E8dkbPy0W7bQnvXme+7HMZI8fjx8nVtxbq7UKrc3zu2LyDuAJW8a9NKrVPur7lrB7X9nYk/xCUWuZuPTbvYEEAS3hcVmL/nuo86yeFWqYuIxLj5NpJLBAMx6KbaWnqLX1uoeg162va7a1HtSgqtf9v8otYr1Q42XRmAe0J0nVuSsEEUZABNMhMpo9XK/dOyoyM9+chn0HSbypV31j89gflQkjBHm3l4kgP1ShRWSZjHkiMkkJcvqbaC3m/SQCsyqXxbJYDT2WyBWHxCKRFC3Vn0GO17qJBWZZfi8gy77I7uVPjrkT/dB4P+bqvIAsBt4vueCUtaK4R64FZsEvCsh84F3LiGPWyrz918o+ErVe1HjhyAs5hWqB2f0R+h7ySGBCh/ej45FhvHGmeyAe08D7VkAcXglPR5C7HLyqr5ekhaVFa0V9h74OM0wFJjAOc01tqLm8SKRqU6G4qX7vNxUF+6jReKoOaLWYqm21rUAErythYJ3mW6puJYgOrRE3FZhhua3GMaOpAg28I29ofRXug/vdQemo1TFPzPTGoJ5gB7sQ7LB/K4Od/68w7Huwe8jfclCxf/Xu78Hez9jV+0Nu+md49N8bS9t3TN07t+l1N4rpnSlaeoP2HwAA//8=">
+            <vector name="origin" x="24" y="47"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="1" width="39" height="48" pixFormat="1" magLevel="0" bytedata="eJys1kFS2zAUBuAcwUdoj2B6AkIOQCG5AC0+QKeQA2QGd810UQ6SDblFV1nQO4h4bCTh1PXvl2dJsUywUv0zQZasL0+2kzAatU10EtrqtavX1eufLQdHgaKAU3UazMGesCXaoy0O8iyLJVcc5LUaOdzj13CN41Y3TDN3gAVTZcCd2PPcukLuKj1r3ecjwGo8Et14nt73f0acXXpXifQlfRm+80bzWJ+yWR6wd29lgRZ5vncI/1457B9hPej/5tXWDzUNvWqWg8Cay6RovND7gGe6XJVkUZIiKQbfj50DCZbRyGurPGw20tMWIc2uzRbbOt+wUNHT9m/V71GtqG+a78Re60FzZf3VwcMIPIheT/Da/Z36tQOeeGxXP5YIH3WvHHtJMcknPq22UvVLc6LM7qUqym6lSaootxLaJL/e90SqEzlXqeZEGf+d11Yi3cwVZdZUN3M1caevJXKj7jQnyug1ymjOzo2iTIuzHJnanviuLyXlq3LD427M7EmOnDnaFz2WnG8lp3/kUlHG8mOOnDjahTYrzW8Ere6OjOWForAW72mx5HAdWOuO8HEsTxUl9mqfLY0Fo3UzVIN3yIL2IUe8WoHnIcr6FJqt5wu24qJjtV49X8/ifPPuJhjHSlMXWX7tVC3KZUXesvq5XVYc6pPF44uy12q8Rbmu1hU8aLZDwQ7N0aK80vC81s5bVhDjYl11Y0YXJSxob3771nM4C2f3h5wDkiW+M8ObQDXRBlcg2lD/Skeb0N9VXO9oc5/9zmBS//w5VMM1H4nz5/vM9IM1/m9OLNpvkqZ3XKt3vDNM7yjP03PaPwAAAP//">
+            <vector name="origin" x="24" y="48"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="2" width="40" height="47" pixFormat="1" magLevel="0" bytedata="eJys1s9R4zAUBvCU4BJ2SzBbAYECWDY0kCUpYGc2FOCDfWb2AC1wzyklwIlTLvQg4rFHEma8/vz8LP+Rk1hB30yQ5eg3z7IQTCZ1E724t2L25mPz8fbJwZWzKSDlvQbVQRRNi560aY4UGxpbbXOkWHskcY8/T/E47QrHeuZdsGEqdXonHbFdm9sbpr3X3y0W7bidXu3ndiwzRSQjeWTFrWe1VlFoP+KbZPQK0Bu2jDtpXKt91PWUsHtf2cST/kKx0B6V4+p1JARaJJdpKbqvYZGX7CUjjbJMl6nDm6kkWNCMR2Jd6TFqadG5T16zvqZZ17pXQ1X4bR4WqV7UeJNU5h7tSXN1wxVCxAhEmAOi4Nnd57V7B0XxXM9/zhC+6q8gi/zUtvNjk0XqUXO8uNmLlBffSZNIUe7kLEEsonjQKxmqB83xYv4ZFtpKthMqyiK9TC6TRdcToV5IZKVCzSmk8tOL6V4zK0WZpRcJMmuL4q+eScqtaofH2zF3zxLkouP91lPJ+ZNxhkd+KcpU+gly1vHm2sw1pz/N749M5bWiTOX3BPE73rX2JYdrwez2CF/78lxR/AHvZ8Njw3j9jPcgHtLgfUuQAS/F7vDiIYfuFvdT1vzUotVi8Y3iPmaYCkwwjrmmNtKGvHMVZOucxHX+73Odc6hPGo8H2R6tFINsm29ziPCaEgXPaa6CbK4hDmiVuM5h+uk278eMBhk0eAdOaIGdPdf4/nBIOmg1zCMzvgnU4+2wCt6O+nPt7dz/CmPdvd19/BpDpf7Vu7uHtZ+Iq/f72PRP8Pi/NxHUZ0zZO7UVz10ppneiaOl12n8AAAD//w==">
+            <vector name="origin" x="24" y="47"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="3" width="39" height="48" pixFormat="1" magLevel="0" bytedata="eJys1sFxozAUBmCXQAmbEvBWgJ0CslmngWxowJOhAQ7cMzuTtLAF+JKUkNuefNkeFDMQSZGX1eP5IckIE+Tln3FkCX1+QhhnNusO1kvooee+fLx8/NlT4F2gyMBpegeYkz1mS7hGW5zkWRZJrjjJ6zR0qEWv4RrFrW6aZnaABFNlwE4ceW5dIbuK91r//giwWg9FN5679/PfEWeV3lns8f3xffrKW81jzcu7KmDt3soCLfR8nxD+XBn3z7Ce5H/ztFWIy9CrZjkQsDKe1q0Xug86z+pZoYVJ67SevB8HBySwjIZeV+W42Uqvewhqdm222NV5woKKXvd/m2EPa4X6LquDOGg9SapsuDrwoAc8EL0eo7nHK/VrIx4zs80e+K8ceTftem/6GvulCmHmR6XdKkRUnqqu57FCpjwThaREJf3NtJVyN5nArOpltaxWrsYyueKQVGSSop32NSpxzE4qMMv6awVZ2h67l9855k64oX43ZnReQRaO9kMuOGWtKMM91wKz4BcVZO5o1zLhmLUyvxFr5e9JOi05aPGRFnMK1QFz3R56H/NEYGKv9s3SSDBaP1M18MYs0L5UEK9Ww/0QlUMKjurxmqy47lmdp8f1KJxvPt0E+mGmqQstv5aIXG0a9DbNz/2moWAbLerP1aDVernaNtsGPNBsBwMrNO9ydSvB81oHb9OAGNfbph/TmyuwQDv59NVjcBacPRx0RiRL/GSmHwyqiXZwBaIdtm9ltAv9XYXrHe0eyt8lmNi+egvV4JrP2NXbQ2nawRr9N8fy7knSts479IoPhmmd5XlazvEPAAD//w==">
+            <vector name="origin" x="24" y="48"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+    </imgdir>
+    <imgdir name="sleep">
+        <canvas name="0" width="45" height="39" pixFormat="1" magLevel="0" bytedata="eJy81lFu2kAQBmCOQG5gbgBSLxDS9xSJvPcleTeII+QAlOc+cQOk9gJIPUBEpR6AA9imtoxZPN3fw9i77tq1pageRcRe+dvxeHZhMOh5BEW8/xG8nd5O7yiLpN1P4ReHTI/Ex2NPt5QN19KJvgYIoj7u/XmSlFpg/GdnTb3coHBTHWyX6iy7P5t2r5z1/Qs1y2BAhj3LWF0ojJh2jzprdZNvchaQNefpxfZI7w4s8pL7ubqSO+xBYMyZ9LALBTab8uxFvVOpTPkOeK7OMp6eTal1Ja8yLulzyr4Xd7ZvmaIa/NTleyyC6PAbQYTsJf9uMjLd5L+o2f6u+4sr4cXPZ6IOnXHrNcnYJcNFEOGKFxN9zjlaujkYRuLUq1HJUufXC1cfNpEHt7kmhszroTqzuqMIuIWdsNsiB7t8GKHf3NEkw+VotIMjDSPc0cWt7NeLvMAfeU3mrtEZs+yyXW6V9TDa5Ry+Eg3uQR3UPt2nlTxJF4rvkU++JmO2PIx8Ja6vxuE+hXjbG2s5Y13jfvlsumZmDBVh5Gy8vyPhHU7SpRqE3Bl1ma8t1bSUJePSdXbGkY50F03P88vqenfiVVNVVXao5XV+mV+mZ8heLJWAPQ7b5G3+IX25vlxX+fJqumwvFFyMwx4ZbqOsc1knsH/SN/qYPal5NnX2wzR90KNP6kGvkIXhlnJgq+iNdQJ7l291TJJRPIpd8iTV1/UOt835GSXg+hGc6lv41iOFv078yI/4Xe5y7GR/R5XlOLSDlbLnqm94XQ/MuU/ZZt0VPIYc7Wj6xQDZtO2ntaPFdR+BH4nOVXEHnrwSxyFq2NBxpQwRNnSuuSlI1LPFim53UXnJmv/MwAj/1V1+b827c7WLSIYiIlx22Q/m/Q7ZuF6sG55BqmDXROpbXxctFTEqXu5axSyus39Ut60y5iyus7bq/m/Z/kVfm8c+6+m2zdNZ+wMAAP//">
+            <vector name="origin" x="20" y="37"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="1" width="45" height="39" pixFormat="1" magLevel="0" bytedata="eJy81kFu2kAUBmCOQG4ANwCpFwhhn0Yi+26avUEchLLuihsgNRfgBhGVegAOYBtsDWaY6fx+PM/YHTu2hOqnCGzL37z5PTbp9TpuYV7338KP48fxjjJLxv0a/bifbGcfOq6j62dN23M39/E8TgstdL5ZWf8MUVp36da4whTZhfqSPZ6rdmvXXD+XLxkMyLBfMlLnEmes3alno67VWpGArqnPQVI+Q6l0yDnvi6+ndLl32L3QGTPtsFJyBTaZPPc8b0HJTE/U5DK7jdVaxuzJ5Kwd2dha708ok2w4SFrbt06RBs26uI9Oaf1u7hjdWZ7Bp0nnva7VH11vw0VpPUgwg2+KqmF13NYad1wnLzPOGVkMEnwfNLr9mJ1qGtU8kDylTzLcdjI9D3bv36QLO4VLVWOHW9WPsd78VSuL74Jv4PTklw+6H+OKNq5r9+NAbhWqsvroDWY6Jtln+1xXJnerAska3L3cy53YCSuPxVzSNfxJx/hcWbYdBzKQo2gnIN7ejZWe8Vzjev6sO+Z2DBXl9Ozcv4PGPRyLhexFtDKqMh1byEkhc8eF610ZB33QD/HkPLssrw9HempsqvyGWlxnl9llcoY8SDgJ2KOoSd6oL+Lt+nZdqsXVdcmeS7g4D3vouLWy6WWVwv6tf+lp9ipn2cS7HibiyZx9lU/mCZk7biGHZRVrY5XC3qqNqXE6TIaJTx4Lc9y84TaK5sgFN4jh2F/h2xrJ/VUaxEFM93Kr6G1TLdvlKCoXKcWas7/wJg+MuRNkk+4rOocey+X7j4Fl1y7PtlwNrn8Lg5h1SsVfmLkVRxEyrFlxhQwRNnTK3BW4qt3iiW52kTx3TX9u4Qz9VV26b7V2aN8i3CGLKJ9drAf3eo/sHM+fGxqBUyhnwvlWn4uGRJzEi7dWPopv75N0m5JxR/HtNaX7v+VeOb/yOOW9jm7TOK21vwAAAP//">
+            <vector name="origin" x="20" y="37"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="2" width="45" height="39" pixFormat="1" magLevel="0" bytedata="eJy81lFu2kAQBmCOQG5gbgBSLxDS9xSJvPcleTeII+QAlOc+cQOk9gJIPUBEpR6AA9imtoxZPN3fw9i77tq1pageRcRe+dvxeHZhMOh5BEW8/xG8nd5O7yiLpN1P4ReHTI/Ex2NPt5QN19KJvgYIoj7u/XmSlFpg/GdnTb3coHBTHWyX6iy7P5t2r5z1/Qs1y2BAhj3LWF0ojJh2jzprdZNvchaQNefpxfZI7w4s8pL7ubqSO+xBYMyZ9LALBTab8uxFvVOpTPkOeK7OMp6eTal1Ja8yLulzyr4Xd7ZvmaIa/NTleyyC6PAbQYTsJf9uMjLd5L+o2f6u+4sr4cXPZ6IOnXHrNcnYJcNFEOGKFxN9zjlaujkYRuLUq1HJUufXC1cfNpEHt7kmhszroTqzuqMIuIWdsNsiB7t8GKHf3NEkw+VotIMjDSPc0cWt7NeLvMAfeU3mrtEZs+yyXW6V9TDa5Ry+Eg3uQR3UPt2nlTxJF4rvkU++JmO2PIx8Ja6vxuE+hXjbG2s5Y13jfvlsumZmDBVh5Gy8vyPhHU7SpRqE3Bl1ma8t1bSUJePSdXbGkY50F03P88vqenfiVVNVVXao5XV+mV+mZ8heLJWAPQ7b5G3+IX25vlxX+fJqumwvFFyMwx4ZbqOsc1knsH/SN/qYPal5NnX2wzR90KNP6kGvkIXhlnJgq+iNdQJ7l291TJJRPIpd8iTV1/UOt835GSXg+hGc6lv41iOFv078yI/4Xe5y7GR/R5XlOLSDlbLnqm94XQ/MuU/ZZt0VPIYc7Wj6xQDZtO2ntaPFdR+BH4nOVXEHnrwSxyFq2NBxpQwRNnSuuSlI1LPFim53UXnJmv/MwAj/1V1+b827c7WLSIYiIlx22Q/m/Q7ZuF6sG55BqmDXROpbXxctFTEqXu5axSyus39Ut60y5iyus7bq/m/Z/kVfm8c+6+m2zdNZ+wMAAP//">
+            <vector name="origin" x="20" y="37"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="3" width="45" height="39" pixFormat="1" magLevel="0" bytedata="eJy81kFu2kAUBmCOQG4ANwCpFwhhn0Yi+26avUEchLLuihsgNRfgBhGVegAOYBtsDWaY6fx+PM/YHTu2hOqnCGzL37z5PTbp9TpuYV7338KP48fxjjJLxv0a/bifbGcfOq6j62dN23M39/E8TgstdL5ZWf8MUVp36da4whTZhfqSPZ6rdmvXXD+XLxkMyLBfMlLnEmes3alno67VWpGArqnPQVI+Q6l0yDnvi6+ndLl32L3QGTPtsFJyBTaZPPc8b0HJTE/U5DK7jdVaxuzJ5Kwd2dha708ok2w4SFrbt06RBs26uI9Oaf1u7hjdWZ7Bp0nnva7VH11vw0VpPUgwg2+KqmF13NYad1wnLzPOGVkMEnwfNLr9mJ1qGtU8kDylTzLcdjI9D3bv36QLO4VLVWOHW9WPsd78VSuL74Jv4PTklw+6H+OKNq5r9+NAbhWqsvroDWY6Jtln+1xXJnerAska3L3cy53YCSuPxVzSNfxJx/hcWbYdBzKQo2gnIN7ejZWe8Vzjev6sO+Z2DBXl9Ozcv4PGPRyLhexFtDKqMh1byEkhc8eF610ZB33QD/HkPLssrw9HempsqvyGWlxnl9llcoY8SDgJ2KOoSd6oL+Lt+nZdqsXVdcmeS7g4D3vouLWy6WWVwv6tf+lp9ipn2cS7HibiyZx9lU/mCZk7biGHZRVrY5XC3qqNqXE6TIaJTx4Lc9y84TaK5sgFN4jh2F/h2xrJ/VUaxEFM93Kr6G1TLdvlKCoXKcWas7/wJg+MuRNkk+4rOocey+X7j4Fl1y7PtlwNrn8Lg5h1SsVfmLkVRxEyrFlxhQwRNnTK3BW4qt3iiW52kTx3TX9u4Qz9VV26b7V2aN8i3CGLKJ9drAf3eo/sHM+fGxqBUyhnwvlWn4uGRJzEi7dWPopv75N0m5JxR/HtNaX7v+VeOb/yOOW9jm7TOK21vwAAAP//">
+            <vector name="origin" x="20" y="37"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+    </imgdir>
+    <imgdir name="cry">
+        <canvas name="0" width="35" height="39" pixFormat="1" magLevel="0" bytedata="eJyslj1y2kAUgDmCfAPCjA+ASA5gBK4JYJyasa24NU1wCgrbsWsmjTEXSOWKJs4pUrmKT5CZRfujlQAreno8/TjGGMN+w6B9u/vx9i0jKZd7RWMh6zb2m2/G0l/XEzpq4/UtG3BEng04cptxfHXW9oSOY+fD+M0eqAY7DR2fxrvjyLOaKVo/FENxyo+d/Tm7oQtHXmcYSqDLu/xzyH7sqUa8X+YKx27ULw3cqK4AbN7KUHWIBSY2UAN1p//O7jQwUF8kYIvEYQvoVXjJKTmV8Ps/D7t2bXnt/vQI6AMtWRUJLdmKIuABU8bDrvSRAq70Dx+g/pHakxWRsCeRiihxJOVhl96hi1x6APUO3aaqyDRNhZREgRd4ScQW9s1rqgMNbDkI9oCmotiWY0krtlgSLAVukocdaEs1XFhz4UPtL3xyNFxLYQyilgIaLmLKgigIU0YW1vDKCqjr80mOBcGfWY6dTxpew6vrssIYRXEeYsp3Aog8rO6ZLtCZz8cVnUlZp2MUNd2yRkwXLUUVWfyiC3SmGcs0G0uiOx5SzFg++kUNnEy32YMGbsU2O5lS7FZko7FF5yWQtcB8+CSOxIPRh3DOcgvMAtBhcIOTB6PJjEUWGMMsyGHOzBl5MEq7g3nPWWgcMkbSFgJygTqjp6hiR/SvQweOY7Y7HlmoCgBZelHWqUxiS4+RZRR8n40Cg9uP9qPB4ZrAM+yxxBI7woaWHsM90RqoLl2TKzkv2E/aQR4cvQ9eBs+o7WNNn97qaPRs+hJtH9Y/b0jfeRMMJy9hVdvPS8PJji00pFyjAH43L7EWkEFeYi6jYIWnUvR7o3kl0LNCFk8yug9wZ3PL6i1c3efwJgaZGE5tXFv9WT2vTD98E4NMzqZvsjw5reUV+QcAAP//">
+            <vector name="origin" x="14" y="39"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="1" width="35" height="38" pixFormat="1" magLevel="0" bytedata="eJyslj1y2kAYhjkCvgFhhgNIJAcIP64dwDg1Y5u4NU2wCwrs2LUnjbEvkMqVmzincJUqPkFmFu2PVkKY6NXHIsmBGAL7DEj7avfZHzFImcxShUWsV9gjf+RrWkLHzvBqbcsGHJvZk8wGDKHj1Fl/NafOkfNu+N+eaDdOQsfH4fYw8qxmivrfiltxwo+cvSnboWvpfUZ/Cbq8yz+F7M081Yi3r7nCazfqhwY3qitAmzdTVB3DAhMbqIF60L/HDxoM1GcJ2iJ2tAVqFV50ik4lPP7lYdduW1673z0D6qApqyKmKZtRAg9MKQ+71IcKXOpvPjD1Q7UrKyJmVxIVUeREwsMuvAOXuPCAqR24DVWRSRqKKIo8z/OimFnYF6+h9jXYcgiqgYYy2ZZTluWZpSxhyXPbeNi+Lqu6iz7nPvb+3DeOultWlCEtK1B3CVvmRV7YMrKwuldSoKbPRhk2mfwaZ9jZqO7VvZouKcpMSu0IW74RIPKwmme7oDNtTz06o5JOZia13ZImbJcsloosvuWCTpCyBOksTt97hJWyfPAtDY6DArsTT/pJ34kCOw7SWZzOLDonQdpSYE8afWJH7KEUn8WWAgNwoE/SYTxxi0WW5DrQB44sj6GM5gTXPAs5sHs0Eshye2yP28/tZxzhMSumschhqdlMMrD0mLHQKMmZAGRwUCuaMznSll40ToHdT8DXMR2T58bSoz1OOVDiezC/P53TejAeWrZ8eGIHecD95Oc/iUdr+bDM/bcLM1ztB4uh0Sy1wJAwGbJOTsLa8nMy6ySvLP1MYf0gJ2lH+gE8+F71eUQO2g3yIFvRE63npWXl+US/mqwzfX9iV+E70M7yz8XUmvoB3nwwk34wtaxeXt6TVxx/AAAA//8=">
+            <vector name="origin" x="13" y="38"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="2" width="35" height="39" pixFormat="1" magLevel="0" bytedata="eJyslj1y2kAUgDmCjkCY4QCI5AA24JoAxqkZ29it0wSnoPBM7JpJY8wFUqWiiXOKVO44QWYW7Y9WGrCybx9PPwSMMexXoH1v99PTQyMpl3vFYIZdB/vD92MZ7Ooxjvp0d8seHNazB0duP46v3s4e47j0Pkzf7IFusGvj+DQ9mlrPdia7fyRG4ppfeicLjowLM68zjCTQ4z1+YTiJPTXL+00uk3tQvzXwoHoC6PJ2hppHrDGxoRqqR/13/qiBofoiga5IHF0Bsyove2Wvan7/87B7vyvv/V8BAXOgLWsioS3bNgIeMGU87E6fK+BO/wgBmp+rY1kVCccSqYoyR1Iedhuc+chtANDszG+pqkzTUkhZFHiBl0VsYd+CljrVq2mpikxDlooES4G75GGnuqKa/ipH06+oZZo+4sqCKAhXWgtrBocKaOhmkKWhMZOloRFXvhOA9bBG4PrIoc5C8SxJFi0lZS1hyUc+zwiKZKMYPwiQUsbyMSxp4GpWZIu7m13NMAbRXBwt2nhs0XkJZC1F9lPAOoAc6EGKbGLWbLbgKsLhDk/baAWwzgI5qCVxuHN3nvXAiomeaFi3ykL5TZaJjsxAT0nFDnvXoQPzWO1BQBbqAkCWvq06VUls6TOyjKPv83Hk8O5z99nhcEyAZaL7LLHEDjPQ0md4TbQHukvH5IKVAF5P2kEezD5FL4P/USfEni4/6ih7M3uJTgj7VxvST94Ex8tL2NUJ89Lxsrm1hpRrHMF58xJ7ARXkJdYyjrZ4K9nzjRedQM8WVSxV9BThlS0s2w+ze8DhSwwqcbz6tL79u3rRmYH5EoNKbmZvsiz9W5s78g8AAP//">
+            <vector name="origin" x="14" y="39"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+        <canvas name="3" width="35" height="38" pixFormat="1" magLevel="0" bytedata="eJyslj1y2kAYhjkCvgFhhgNIJAcIP64dwDg1Y5u4NU2wCwrs2LUnjbEvkMqVmzincJUqPkFmFu2PVkKY6NXHIsmBGAL7DEj7avfZHzFImcxShUWsV9gjf+RrWkLHzvBqbcsGHJvZk8wGDKHj1Fl/NafOkfNu+N+eaDdOQsfH4fYw8qxmivrfiltxwo+cvSnboWvpfUZ/Cbq8yz+F7M081Yi3r7nCazfqhwY3qitAmzdTVB3DAhMbqIF60L/HDxoM1GcJ2iJ2tAVqFV50ik4lPP7lYdduW1673z0D6qApqyKmKZtRAg9MKQ+71IcKXOpvPjD1Q7UrKyJmVxIVUeREwsMuvAOXuPCAqR24DVWRSRqKKIo8z/OimFnYF6+h9jXYcgiqgYYy2ZZTluWZpSxhyXPbeNi+Lqu6iz7nPvb+3DeOultWlCEtK1B3CVvmRV7YMrKwuldSoKbPRhk2mfwaZ9jZqO7VvZouKcpMSu0IW74RIPKwmme7oDNtTz06o5JOZia13ZImbJcsloosvuWCTpCyBOksTt97hJWyfPAtDY6DArsTT/pJ34kCOw7SWZzOLDonQdpSYE8afWJH7KEUn8WWAgNwoE/SYTxxi0WW5DrQB44sj6GM5gTXPAs5sHs0Eshye2yP28/tZxzhMSumschhqdlMMrD0mLHQKMmZAGRwUCuaMznSll40ToHdT8DXMR2T58bSoz1OOVDiezC/P53TejAeWrZ8eGIHecD95Oc/iUdr+bDM/bcLM1ztB4uh0Sy1wJAwGbJOTsLa8nMy6ySvLP1MYf0gJ2lH+gE8+F71eUQO2g3yIFvRE63npWXl+US/mqwzfX9iV+E70M7yz8XUmvoB3nwwk34wtaxeXt6TVxx/AAAA//8=">
+            <vector name="origin" x="13" y="38"/>
+            <int name="z" value="0"/>
+            <vector name="lt" x="-15" y="-40"/>
+            <vector name="rb" x="22" y="0"/>
+        </canvas>
+    </imgdir>
+    <imgdir name="sit">
+        <uol name="0" value="../rest0/0"/>
+        <uol name="1" value="../rest0/1"/>
+        <uol name="2" value="../rest0/2"/>
+        <uol name="3" value="../rest0/3"/>
+    </imgdir>
+    <imgdir name="fly">
+        <uol name="0" value="../jump/0"/>
+    </imgdir>
+    <imgdir name="no">
+        <uol name="0" value="../angry/0"/>
+        <uol name="1" value="../angry/1"/>
+        <uol name="2" value="../angry/2"/>
+        <uol name="3" value="../angry/3"/>
+        <uol name="4" value="../angry/4"/>
+        <uol name="5" value="../angry/5"/>
+        <uol name="6" value="../angry/6"/>
+    </imgdir>
+</imgdir>
