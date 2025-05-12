@@ -412,7 +412,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction {
         String map = "Cash";
 
         // Log to Console
-        Gachapon.log(getPlayer(), item.getId(), map);
+        // Gachapon.log(getPlayer(), item.getId(), map);
 
         // Rare Only
         if (item.getTier() > 1)
