@@ -9,24 +9,91 @@ public class GachaponCash extends GachaponItems
     @Override
     public int[] getCommonItems()
     {
-        // Roll for a category first
-        int categoryRoll = rand.nextInt(12); // 0-11 for the 12 categories
+        // Get the length of each category
+        int capLength = getCapItems().length;
+        int faceLength = getFaceItems().length;
+        int eyeLength = getEyeItems().length;
+        int earringLength = getEarringItems().length;
+        int coatLength = getCoatItems().length;
+        int longcoatLength = getLongcoatItems().length;
+        int pantsLength = getPantsItems().length;
+        int shoesLength = getShoesItems().length;
+        int gloveLength = getGloveItems().length;
+        int shieldLength = getShieldItems().length;
+        int capeLength = getCapeItems().length;
+        int accessoryLength = getAccessoryItems().length;
+        int weaponLength = getWeaponItems().length;
 
-        return switch (categoryRoll) {
-            case 0 -> getCapItems();
-            case 1 -> getFaceItems();
-            case 2 -> getEyeItems();
-            case 3 -> getEarringItems();
-            case 4 -> getCoatItems();
-            case 5 -> getLongcoatItems();
-            case 6 -> getPantsItems();
-            case 7 -> getShoesItems();
-            case 8 -> getGloveItems();
-            case 9 -> getShieldItems();
-            case 10 -> getCapeItems();
-            case 11 -> getAccessoryItems();
-            default -> getWeaponItems();
-        };
+        // Calculate total items
+        int totalItems = capLength + faceLength + eyeLength + earringLength + coatLength + 
+                         longcoatLength + pantsLength + shoesLength + gloveLength + 
+                         shieldLength + capeLength + accessoryLength + weaponLength;
+
+        // Roll a random number between 0 and totalItems-1
+        int itemRoll = rand.nextInt(totalItems);
+
+        // Determine which category the item belongs to based on the ranges
+        if (itemRoll < capLength) {
+            return getCapItems();
+        }
+        itemRoll -= capLength;
+
+        if (itemRoll < faceLength) {
+            return getFaceItems();
+        }
+        itemRoll -= faceLength;
+
+        if (itemRoll < eyeLength) {
+            return getEyeItems();
+        }
+        itemRoll -= eyeLength;
+
+        if (itemRoll < earringLength) {
+            return getEarringItems();
+        }
+        itemRoll -= earringLength;
+
+        if (itemRoll < coatLength) {
+            return getCoatItems();
+        }
+        itemRoll -= coatLength;
+
+        if (itemRoll < longcoatLength) {
+            return getLongcoatItems();
+        }
+        itemRoll -= longcoatLength;
+
+        if (itemRoll < pantsLength) {
+            return getPantsItems();
+        }
+        itemRoll -= pantsLength;
+
+        if (itemRoll < shoesLength) {
+            return getShoesItems();
+        }
+        itemRoll -= shoesLength;
+
+        if (itemRoll < gloveLength) {
+            return getGloveItems();
+        }
+        itemRoll -= gloveLength;
+
+        if (itemRoll < shieldLength) {
+            return getShieldItems();
+        }
+        itemRoll -= shieldLength;
+
+        if (itemRoll < capeLength) {
+            return getCapeItems();
+        }
+        itemRoll -= capeLength;
+
+        if (itemRoll < accessoryLength) {
+            return getAccessoryItems();
+        }
+
+        // If we've gone through all other categories, it must be a weapon
+        return getWeaponItems();
     }
 
     public int[] getCapItems()
