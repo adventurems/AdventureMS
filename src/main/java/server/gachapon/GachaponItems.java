@@ -32,27 +32,16 @@ public abstract class GachaponItems {
     public abstract int[] getUncommonItems();
     public abstract int[] getRareItems();
 
-    private final int[] commonItems;
-    private final int[] uncommonItems;
-    private final int[] rareItems;
-
-    public GachaponItems() {
-        this.commonItems = getCommonItems();
-        this.uncommonItems = getUncommonItems();
-        this.rareItems = getRareItems();
-    }
-
     public final int[] getItems(int tier) {
         switch (tier) {
         case 0:
-            return commonItems;
+            return getCommonItems();
         case 1:
-            return uncommonItems;
+            return getUncommonItems();
         case 2:
-            return rareItems;
+            return getRareItems();
         default:
             return null;
         }
     }
 }
-
