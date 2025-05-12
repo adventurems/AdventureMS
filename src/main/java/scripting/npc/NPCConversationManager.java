@@ -419,6 +419,9 @@ public class NPCConversationManager extends AbstractPlayerInteraction {
         {
             Server.getInstance().broadcastMessage(c.getWorld(), PacketCreator.gachaponMessage(itemGained, map, getPlayer()));
         }
+
+        // Send the ID for debugging
+        getPlayer().yellowMessage("Cash Gachapon ID (report bad items in Discord!): " + item.getId());
     }
 
     // AdventureMS Custom
