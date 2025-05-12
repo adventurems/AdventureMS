@@ -5,32 +5,32 @@ var status;
 
 // Open the shop
 function start() {status = -1; action(1,0,0);}
-function action(mode, type, selection) { if (mode == 1) {status++;} else {status--;}
+function action(mode, type, selection) { if (mode === 1) {status++;} else {status--;}
 
     // Store Selected Pet / Equip
     var foundPets = [];
     var petEquips = [];
 
-    if (status == -1) {cm.dispose();}
+    if (status === -1) {cm.dispose();}
 
     // Ask if they want to see the shop or Make a sacrifice
-    else if (status == 0)
+    else if (status === 0)
     {
-        cm.sendSimple("What would you like to do?\r\n\r\n #L0#See the shop!#l \r\n #L1#Make a #r#eSacrifice#k#n!#l");
+        cm.sendSimple("What would you like to do?\r\n\r\n #L0#See the shop!#l"); // Sacrifice currently blocked  \r\n #L1#Make a #r#eSacrifice#k#n!#l"
     }
 
     // They've chosen a selection
-    else if (status == 1)
+    else if (status === 1)
     {
         // See the Shop
-        if (selection == 0)
+        if (selection === 0)
         {
             cm.openShopNPC(4000);
             cm.dispose();
         }
 
         // Make a Sacrifice was selected
-        else if (selection == 1)
+        else if (selection === 1)
         {
             // Create an array of available pets to trade
             var pets =
@@ -79,7 +79,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
     }
 
     // They've made a selection to sacrifice a pet
-    else if (status == 2)
+    else if (status === 2)
     {
         // Make sure they can hold an equip
         if (cm.canHold(1802000))
