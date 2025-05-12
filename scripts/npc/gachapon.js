@@ -108,7 +108,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         }
 
         // Check if it is chair Gachapon NPC
-        else if (NPC === 9100102)
+        else if (NPC === 9100111)
         {
             // Make sure they have a slot available in SETUP inventory
             if(cm.canHold(3010000))
