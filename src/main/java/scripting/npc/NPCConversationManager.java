@@ -407,7 +407,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction {
         // Gain Cash Item
         Item itemGained = gainItem(item.getId(), (short) 1, false, true);
 
-        sendOk("You have obtained a #b#t" + item.getId() + "##k.");
+        sendOk("You received the following item:\r\n\r\n#v" + item.getId() + "# #b#t" + item.getId() + "##k");
 
         String map = "Cash";
 
