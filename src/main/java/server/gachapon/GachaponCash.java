@@ -4,7 +4,7 @@ import java.util.Random;
 // AdventureMS Custom Gachapon System
 public class GachaponCash extends GachaponItems
 {
-    private final Random rand = new Random();
+    private static final Random rand = new Random();
 
     @Override
     public int[] getCommonItems()
