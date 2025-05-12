@@ -32,63 +32,78 @@ public class GachaponCash extends GachaponItems
         // Roll a random number between 0 and totalItems-1
         int itemRoll = rand.nextInt(totalItems);
 
-        // Determine which category the item belongs to based on the ranges
-        if (itemRoll < capLength) {
+        // Determine which category the item belongs to based on the roll
+        int currentPosition = 0;
+
+        // Check caps
+        currentPosition += capLength;
+        if (itemRoll < currentPosition) {
             return getCapItems();
         }
-        itemRoll -= capLength;
 
-        if (itemRoll < faceLength) {
+        // Check face
+        currentPosition += faceLength;
+        if (itemRoll < currentPosition) {
             return getFaceItems();
         }
-        itemRoll -= faceLength;
 
-        if (itemRoll < eyeLength) {
+        // Check eye
+        currentPosition += eyeLength;
+        if (itemRoll < currentPosition) {
             return getEyeItems();
         }
-        itemRoll -= eyeLength;
 
-        if (itemRoll < earringLength) {
+        // Check earring
+        currentPosition += earringLength;
+        if (itemRoll < currentPosition) {
             return getEarringItems();
         }
-        itemRoll -= earringLength;
 
-        if (itemRoll < coatLength) {
+        // Check coat
+        currentPosition += coatLength;
+        if (itemRoll < currentPosition) {
             return getCoatItems();
         }
-        itemRoll -= coatLength;
 
-        if (itemRoll < longcoatLength) {
+        // Check longcoat
+        currentPosition += longcoatLength;
+        if (itemRoll < currentPosition) {
             return getLongcoatItems();
         }
-        itemRoll -= longcoatLength;
 
-        if (itemRoll < pantsLength) {
+        // Check pants
+        currentPosition += pantsLength;
+        if (itemRoll < currentPosition) {
             return getPantsItems();
         }
-        itemRoll -= pantsLength;
 
-        if (itemRoll < shoesLength) {
+        // Check shoes
+        currentPosition += shoesLength;
+        if (itemRoll < currentPosition) {
             return getShoesItems();
         }
-        itemRoll -= shoesLength;
 
-        if (itemRoll < gloveLength) {
+        // Check glove
+        currentPosition += gloveLength;
+        if (itemRoll < currentPosition) {
             return getGloveItems();
         }
-        itemRoll -= gloveLength;
 
-        if (itemRoll < shieldLength) {
+        // Check shield
+        currentPosition += shieldLength;
+        if (itemRoll < currentPosition) {
             return getShieldItems();
         }
-        itemRoll -= shieldLength;
 
-        if (itemRoll < capeLength) {
+        // Check cape
+        currentPosition += capeLength;
+        if (itemRoll < currentPosition) {
             return getCapeItems();
         }
-        itemRoll -= capeLength;
 
-        if (itemRoll < accessoryLength) {
+        // Check accessory
+        currentPosition += accessoryLength;
+        if (itemRoll < currentPosition) {
             return getAccessoryItems();
         }
 
