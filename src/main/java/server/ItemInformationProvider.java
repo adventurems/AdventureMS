@@ -1406,7 +1406,7 @@ public class ItemInformationProvider {
         equip.setMp(getRandStatWithStimulant(equip.getMp(), 3));
         return equip;
     }
-    
+
     // AdventureMS Custom
     public Equip randomizeStats(Equip equip) 
     {
@@ -2327,12 +2327,27 @@ public class ItemInformationProvider {
         List<Pair<Integer, Integer>> items = new LinkedList<>();
 
         try (Connection con = DatabaseConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement("SELECT req_item, count FROM makerrecipedata WHERE itemid = ? AND req_item >= 4260000 AND req_item < 4270000")) {
+             PreparedStatement ps = con.prepareStatement("SELECT req_item, count FROM makerrecipedata WHERE itemid = ?")) {
             ps.setInt(1, itemId);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    items.add(new Pair<>(rs.getInt("req_item"), rs.getInt("count") / 2));   // return to the player half of the crystals needed
+                    int reqItem = rs.getInt("req_item");
+                    int count = rs.getInt("count");
+
+                    // Calculate guaranteed returns (1 for every 3 quantity)
+                    int returnCount = count / 3;
+
+                    // Calculate remainder chance (1/3 chance for each remainder)
+                    int remainder = count % 3;
+                    if (remainder > 0 && Math.random() < (remainder / 3.0)) {
+                        returnCount++;
+                    }
+
+                    // Add to the list if we're returning any
+                    if (returnCount > 0) {
+                        items.add(new Pair<>(reqItem, returnCount));
+                    }
                 }
             }
         } catch (Exception e) {
@@ -2349,8 +2364,8 @@ public class ItemInformationProvider {
             ps.setInt(1, itemId);
 
             try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {   // cost is 13.6363~ % of the original value, trim by 1000.
-                    float val = (float) (rs.getInt("req_meso") * 0.13636363636364);
+                if (rs.next()) {   // cost is 50% of the original value, trim by 1000.
+                    float val = (float) (rs.getInt("req_meso") * 0.5);
                     fee = (int) (val / 1000);
                     fee *= 1000;
                 }

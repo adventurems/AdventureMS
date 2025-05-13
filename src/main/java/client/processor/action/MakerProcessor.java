@@ -80,16 +80,48 @@ public class MakerProcessor {
                     if (it != null && it.getItemId() == toCreate) {
                         toDisassemble = toCreate;
 
-                        Pair<Integer, List<Pair<Integer, Integer>>> pair = generateDisassemblyInfo(toDisassemble);
-                        if (pair != null) {
-                            recipe = MakerItemFactory.generateDisassemblyCrystalEntry(toDisassemble, pair.getLeft(), pair.getRight());
-                        } else {
-                            c.sendPacket(PacketCreator.serverNotice(1, ii.getName(toCreate) + " is unavailable for Monster Crystal disassembly."));
+                        // Get the list of items that would be returned from disassembly
+                        List<Pair<Integer, Integer>> disassembledItems = ii.getMakerDisassembledItems(toDisassemble);
+
+                        // Check if the list is empty
+                        if (disassembledItems.isEmpty()) {
+                            c.sendPacket(PacketCreator.serverNotice(1, ii.getName(toCreate) + " is unavailable for disassembly. If this seems wrong, please report in Discord!"));
                             c.sendPacket(PacketCreator.makerEnableActions());
                             return;
                         }
+
+                        // Check if player has room for at least one of each ingredient
+                        List<Integer> addItemIds = new LinkedList<>();
+                        List<Integer> addQuantities = new LinkedList<>();
+                        List<Integer> rmvItemIds = new LinkedList<>();
+                        List<Integer> rmvQuantities = new LinkedList<>();
+
+                        // We're removing the item being disassembled
+                        rmvItemIds.add(toDisassemble);
+                        rmvQuantities.add(1);
+
+                        for (Pair<Integer, Integer> item : disassembledItems) {
+                            addItemIds.add(item.getLeft());
+                            addQuantities.add(1); // We only need to check for room for 1 of each
+                        }
+
+                        if (!c.getAbstractPlayerInteraction().canHoldAllAfterRemoving(addItemIds, addQuantities, rmvItemIds, rmvQuantities)) {
+                            c.sendPacket(PacketCreator.serverNotice(1, "You don't have enough inventory space to disassemble this item."));
+                            c.sendPacket(PacketCreator.makerEnableActions());
+                            return;
+                        }
+
+                        // Get the fee
+                        int recvFee = ii.getMakerDisassembledFee(toDisassemble);
+                        if (recvFee < 0) {
+                            c.sendPacket(PacketCreator.serverNotice(1, ii.getName(toCreate) + " is unavailable for disassembly. If this seems wrong, please report in Discord!"));
+                            c.sendPacket(PacketCreator.makerEnableActions());
+                            return;
+                        }
+
+                        recipe = MakerItemFactory.generateDisassemblyCrystalEntry(toDisassemble, recvFee, disassembledItems);
                     } else {
-                        c.sendPacket(PacketCreator.serverNotice(1, "An unknown error occurred when trying to apply that item for disassembly."));
+                        c.sendPacket(PacketCreator.serverNotice(1, "Something went wrong disassembling " + ii.getName(toCreate) + ". Please report in Discord!"));
                         c.sendPacket(PacketCreator.makerEnableActions());
                         return;
                     }
@@ -304,17 +336,6 @@ public class MakerProcessor {
         }
     }
 
-    private static Pair<Integer, List<Pair<Integer, Integer>>> generateDisassemblyInfo(int itemId) {
-        int recvFee = ii.getMakerDisassembledFee(itemId);
-        if (recvFee > -1) {
-            List<Pair<Integer, Integer>> gains = ii.getMakerDisassembledItems(itemId);
-            if (!gains.isEmpty()) {
-                return new Pair<>(recvFee, gains);
-            }
-        }
-
-        return null;
-    }
 
     public static int getMakerSkillLevel(Character chr) {
         return chr.getSkillLevel((chr.getJob().getId() / 1000) * 10000000 + 1007);
