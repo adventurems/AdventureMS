@@ -53,7 +53,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // They have completed the quest
         else 
         {
-            cm.sendOk("Thank you...\r\n\r\nOddly enough, I get weaker when I equip bad gear here. Huh, who knew? I'll need to head back home to experience the power...");
+            cm.sendOk("Thank you...\r\n\r\nOddly enough, I get weaker when I equip bad gear here. Huh, who knew? I'll need to head back home to experience the power...\r\n\r\nBefore I go though, I did find this recipe: 4 STR Crystal Ore, 4 DEX Crystal Ore, 4 INT Crystal Ore, 4 LUK Crystal Ore and 1 Maple Leaf. Not sure what it makes though!");
             cm.dispose();
         }
     }
