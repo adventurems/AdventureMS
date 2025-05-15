@@ -6273,6 +6273,9 @@ public class Character extends AbstractCharacterObject {
             // Get the branch
             int jobBranch = GameConstants.getJobBranch(newJob);
 
+            // Debugging
+            yellowMessage("Job Branch: " + jobBranch);
+
             // Check for additional SP gain
             if (jobBranch == 100) {expectedSp += 30;}
             else if (jobBranch == 300 || jobBranch == 500) {expectedSp += 20;}
