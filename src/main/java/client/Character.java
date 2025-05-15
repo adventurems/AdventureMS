@@ -6276,6 +6276,9 @@ public class Character extends AbstractCharacterObject {
             else if (jobBranch == 400) {expectedSp += 10;}
         }
 
+        // Debugging
+        yellowMessage("curSp: " + curSp + " expectedSp: " + expectedSp);
+
         if (curSp < expectedSp) {
             spGain += (expectedSp - curSp);
         }
