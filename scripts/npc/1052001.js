@@ -25,7 +25,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Set Action to 2nd Job
             actionx["2ndJob"] = true;
 
-            if (cm.getZoneProgress() === 3)
+            if (cm.getZoneProgress() >= 3)
             {
                 // Start the prompt
                 cm.sendSimple("Ah #h #, you've done it!\r\n\r\nYou are looking great, congratulations on reaching level 30 and clearing #bZone 3#k!" +
