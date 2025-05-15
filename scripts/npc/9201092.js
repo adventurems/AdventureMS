@@ -1,5 +1,20 @@
 // AdventureMS Collector
 
+// Category Completion Configuration
+// Set to true to enable a category for completion counting
+var categoryCompletionConfig = {
+    "Zone 1": true,
+    "Zone 2": true,
+    "Zone 3": true,
+    "Zone 4": false,
+    "Maker Resources": false,
+    "Overworld": false,
+    "Pet Equipment": false,
+    "Pets": false,
+    "Potions": false,
+    "Stars / Bullets / Arrows": false
+};
+
 // Global Variables
 var turnIn = false; // Used for the first option which is to turn in items
 var newCollector = false; // Used to track collector status
@@ -258,7 +273,10 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
                 // If category is complete, increment counter and add to list
                 if (categoryComplete) {
-                    completedCategories++;
+                    // Check if this category is enabled for completion counting
+                    if (categoryCompletionConfig[category]) {
+                        completedCategories++;
+                    }
                     completedCategoryNames.push(category);
                 }
             }
@@ -268,7 +286,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             {
                 // Build the message
                 var message = "#e#bRing Upgrade Status#k#n\r\n\r\n";
-                message += "You have completed " + completedCategories + " out of " + totalCategories + " collection categories.\r\n\r\nUpgrades are available per completed category. Get out there and start collecting!";
+                message += "You have completed " + completedCategories + " out of " + totalCategories + " collection categories.\r\n\r\nUpgrades are only available for Zone 1, Zone 2 and Zone 3 right now. Get out there and start collecting!";
 
                 // Send the message
                 cm.sendOk(message);
@@ -280,7 +298,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             {
                 // Build the message
                 var message = "#e#bRing Upgrade Status#k#n\r\n\r\n";
-                message += "You have completed " + completedCategories + " out of " + totalCategories + " collection categories.\r\n\r\n";
+                message += "You have completed " + completedCategories + " out of " + totalCategories + " collection categories. Upgrades are only available for Zone 1, Zone 2 and Zone 3 right now.\r\n\r\n";
 
                 // Store which ring they have
                 var curRing = 0;
@@ -352,7 +370,6 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                             cm.sendOk("You already have the highest possible ring based on your completion status!\r\n\r\nYou can upgrade your ring once you complete more categories!");
                             cm.dispose();
                         }
-
                     }
                 }
             }
