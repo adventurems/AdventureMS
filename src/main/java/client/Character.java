@@ -6264,6 +6264,9 @@ public class Character extends AbstractCharacterObject {
         int spGain = 0;
         int expectedSp = getJobLevelSp(level - 10, newJob, GameConstants.getJobBranch(newJob));
 
+        // Debugging
+        yellowMessage("getUsedSp: " + getUsedSp(newJob) + ", getJobRemainingSp: " + getJobRemainingSp(newJob) + ", expectedSp: " + expectedSp);
+
         // AdventureMS Custom - Handle additional SP checks
         if (getLevel() >= 30)
         {
