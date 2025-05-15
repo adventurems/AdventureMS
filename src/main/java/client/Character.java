@@ -1213,7 +1213,7 @@ public class Character extends AbstractCharacterObject {
             addhp += Randomizer.rand(300, 350);
             addmp += Randomizer.rand(150, 200);
         }
-        
+
         /*
         //aran perks?
         int newJobId = newJob.getId();
@@ -1297,7 +1297,7 @@ public class Character extends AbstractCharacterObject {
         if (guild != null) {
             guild.broadcast(packet, id);
         }
-        
+
         /*
         if(partnerid > 0) {
             partner.sendPacket(packet); not yet implemented
@@ -6262,7 +6262,20 @@ public class Character extends AbstractCharacterObject {
     private int getChangedJobSp(Job newJob) {
         int curSp = getUsedSp(newJob) + getJobRemainingSp(newJob);
         int spGain = 0;
-        int expectedSp = getJobLevelSp(level - 10, newJob, GameConstants.getJobBranch(newJob)) + 10;
+        int expectedSp = getJobLevelSp(level - 10, newJob, GameConstants.getJobBranch(newJob));
+
+        // AdventureMS Custom - Handle additional SP checks
+        if (getLevel() >= 30)
+        {
+            // Get the branch
+            int jobBranch = GameConstants.getJobBranch(newJob);
+
+            // Check for additional SP gain
+            if (jobBranch == 100 || jobBranch == 300 || jobBranch == 400 || jobBranch == 500) {
+                expectedSp += 10; // Additional SP for specific job branches
+            }
+        }
+
         if (curSp < expectedSp) {
             spGain += (expectedSp - curSp);
         }
@@ -7382,7 +7395,7 @@ public class Character extends AbstractCharacterObject {
                         }
                     }
                 }
-                
+
                 ret.buddylist.loadFromDb(charid);
                 ret.storage = wserv.getAccountStorage(ret.accountid);
 
@@ -7393,7 +7406,7 @@ public class Character extends AbstractCharacterObject {
                     wserv.loadAccountStorage(ret.accountid);
                     ret.storage = wserv.getAccountStorage(ret.accountid);
                 }
-                
+
                 int startHp = ret.hp, startMp = ret.mp;
                 ret.reapplyLocalStats();
                 ret.changeHpMp(startHp, startMp, true);
@@ -9199,7 +9212,7 @@ public class Character extends AbstractCharacterObject {
                         ps.executeBatch();
                     }
                 }
-                
+
                 con.commit();
                 return true;
             } catch (Exception e) {
