@@ -248,26 +248,44 @@ public class Shop {
         }
     }
 
+    // AdventureMS Custom - Rechargeable Arrows
     public void recharge(Client c, short slot) {
         ItemInformationProvider ii = ItemInformationProvider.getInstance();
         Item item = c.getPlayer().getInventory(InventoryType.USE).getItem(slot);
         if (item == null || !ItemConstants.isRechargeable(item.getItemId())) {
             return;
         }
+
         short slotMax = ii.getSlotMax(c, item.getItemId());
         if (item.getQuantity() < 0) {
             return;
         }
-        if (item.getQuantity() < slotMax) {
-            int price = (int) Math.ceil(ii.getUnitPrice(item.getItemId()) * (slotMax - item.getQuantity()));
-            if (c.getPlayer().getMeso() >= price) {
-                item.setQuantity(slotMax);
-                c.getPlayer().forceUpdateItem(item);
-                c.getPlayer().gainMeso(-price, false, true, false);
-                c.sendPacket(PacketCreator.shopTransaction((byte) 0x8));
-            } else {
-                c.sendPacket(PacketCreator.shopTransaction((byte) 0x2));
-            }
+
+        int currentQuantity = item.getQuantity();
+        int missingAmount = slotMax - currentQuantity;
+        if (missingAmount <= 0) {
+            c.sendPacket(PacketCreator.shopTransaction((byte) 0x8));
+            c.getPlayer().dropMessage(1, "This item is already fully recharged.");
+            return;
+        }
+
+        double unitPrice = ii.getUnitPrice(item.getItemId());
+        if (unitPrice <= 0) {
+            unitPrice = 1.0; // Fallback unit price
+        }
+
+        int affordableAmount = (int) Math.floor(c.getPlayer().getMeso() / unitPrice);
+        int rechargeAmount = Math.min(affordableAmount, missingAmount);
+
+        if (rechargeAmount > 0) {
+            int cost = (int) Math.ceil(rechargeAmount * unitPrice);
+            item.setQuantity((short) (currentQuantity + rechargeAmount));
+            c.getPlayer().forceUpdateItem(item);
+            c.getPlayer().gainMeso(-cost, false, true, false);
+            c.sendPacket(PacketCreator.shopTransaction((byte) 0x8));
+        } else {
+            c.sendPacket(PacketCreator.shopTransaction((byte) 0x2));
+            c.getPlayer().dropMessage(1, "You do not have enough mesos to recharge this item.");
         }
     }
 
