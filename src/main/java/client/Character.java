@@ -6265,7 +6265,7 @@ public class Character extends AbstractCharacterObject {
         int expectedSp = getJobLevelSp(level - 10, newJob, GameConstants.getJobBranch(newJob));
 
         // AdventureMS Custom - Handle additional SP checks
-        /*if (getLevel() >= 30)
+        if (getLevel() >= 30)
         {
             // Get the branch
             int jobBranch = GameConstants.getJobBranch(newJob);
@@ -6274,7 +6274,7 @@ public class Character extends AbstractCharacterObject {
             if (jobBranch == 100 || jobBranch == 300 || jobBranch == 400 || jobBranch == 500) {
                 expectedSp += 10; // Additional SP for specific job branches
             }
-        }*/
+        }
 
         if (curSp < expectedSp) {
             spGain += (expectedSp - curSp);
