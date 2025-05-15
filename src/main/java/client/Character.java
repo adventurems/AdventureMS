@@ -1166,9 +1166,10 @@ public class Character extends AbstractCharacterObject {
                 spGain += 2;
             }
 
-            if (YamlConfig.config.server.USE_ENFORCE_JOB_SP_RANGE) {
+            // AdventureMS Custom - SP Gain Not sure why this exists, removing
+            /*if (YamlConfig.config.server.USE_ENFORCE_JOB_SP_RANGE) {
                 spGain = getChangedJobSp(newJob);
-            }
+            }*/
         }
 
         if (spGain > 0) {
@@ -6328,13 +6329,11 @@ public class Character extends AbstractCharacterObject {
         }
 
         int spGain = 3;
+        gainSp(spGain, GameConstants.getSkillBook(job.getId()), true);
+        /*
         if (YamlConfig.config.server.USE_ENFORCE_JOB_SP_RANGE && !GameConstants.hasSPTable(job)) {
             spGain = getSpGain(spGain, job);
-        }
-
-        if (spGain > 0) {
-            gainSp(spGain, GameConstants.getSkillBook(job.getId()), true);
-        }
+        }*/
     }
 
     public synchronized void levelUp(boolean takeexp) {

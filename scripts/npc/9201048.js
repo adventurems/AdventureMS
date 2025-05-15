@@ -20,16 +20,12 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         }
 
         // They are ready for 2nd job
-        else if (cm.getLevel() >= 30 && Job == 2100)
+        else if (cm.getLevel() >= 30 && Job === 2100)
         {
-            // Disable 2nd job
-            cm.sendOk("2nd job is not currently available :(, I'm working on it...");
-            cm.dispose();
-
-            /*/ Set Action to 1st Job
+            // Set Action to 2nd Job
             actionx["2ndJob"] = true;
 
-            if (cm.getZoneProgress() == 3)
+            if (cm.getZoneProgress() >= 3)
             {
                 // Start the prompt
                 cm.sendNext("Ah #h #, you've done it!\r\n\r\nYou are looking great, congratulations on reaching level 30 and clearing #bZone 3#k!" +
@@ -40,7 +36,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             {
                 cm.sendOk("You are level 30, but you have not cleared #bZone 3#k! Clear #bThe Vault#k!");
                 cm.dispose();
-            }*/
+            }
         }
 
         // Not ready for a job advancement
@@ -99,7 +95,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             newJob = 2110;
 
             // Send Message
-            cm.sendOk("Congratulations on your success! You've proven to be a great adventurer and have achieved a new level of power! You are now a #r" + newJobName + "#k!\r\n\r\n" +
+            cm.sendOk("Congratulations on your success! You've proven to be a great adventurer and have achieved a new level of power! You are now an #r" + newJobName + "#k!\r\n\r\n" +
             "As part of your transformation, you've gained 4 slots in each category!\r\n\r\nIf your exp was locked, it is now UNLOCKED." +
             "\r\n\r\nGood luck on your journey, come back to me once you've reached level 70!");
 

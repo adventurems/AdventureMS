@@ -90,7 +90,7 @@ public class ServerConfig {
     public boolean USE_ENFORCE_HPMP_SWAP;
     public boolean USE_ENFORCE_MOB_LEVEL_RANGE;
     public boolean USE_ENFORCE_JOB_LEVEL_RANGE;
-    public boolean USE_ENFORCE_JOB_SP_RANGE;
+    // public boolean USE_ENFORCE_JOB_SP_RANGE; AdventureMS Custom - Remove this bool
     public boolean USE_ENFORCE_ITEM_SUGGESTION;
     public boolean USE_ENFORCE_UNMERCHABLE_CASH;
     public boolean USE_ENFORCE_UNMERCHABLE_PET;

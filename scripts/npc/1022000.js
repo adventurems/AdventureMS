@@ -44,7 +44,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         {
             switch (Job)
             {
-                // Archers
+                // Warriors
                 case 100:
                 case 110:
                 case 111:
