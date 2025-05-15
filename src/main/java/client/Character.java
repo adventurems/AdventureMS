@@ -1166,10 +1166,9 @@ public class Character extends AbstractCharacterObject {
                 spGain += 2;
             }
 
-            // AdventureMS Custom - SP Gain Not sure why this exists, removing
-            /*if (YamlConfig.config.server.USE_ENFORCE_JOB_SP_RANGE) {
+            if (YamlConfig.config.server.USE_ENFORCE_JOB_SP_RANGE) {
                 spGain = getChangedJobSp(newJob);
-            }*/
+            }
         }
 
         if (spGain > 0) {
@@ -6263,7 +6262,7 @@ public class Character extends AbstractCharacterObject {
     private int getChangedJobSp(Job newJob) {
         int curSp = getUsedSp(newJob) + getJobRemainingSp(newJob);
         int spGain = 0;
-        int expectedSp = getJobLevelSp(level - 10, newJob, GameConstants.getJobBranch(newJob));
+        int expectedSp = getJobLevelSp(level - 10, newJob, GameConstants.getJobBranch(newJob)) + 10;
         if (curSp < expectedSp) {
             spGain += (expectedSp - curSp);
         }
@@ -6329,11 +6328,13 @@ public class Character extends AbstractCharacterObject {
         }
 
         int spGain = 3;
-        gainSp(spGain, GameConstants.getSkillBook(job.getId()), true);
-        /*
         if (YamlConfig.config.server.USE_ENFORCE_JOB_SP_RANGE && !GameConstants.hasSPTable(job)) {
             spGain = getSpGain(spGain, job);
-        }*/
+        }
+
+        if (spGain > 0) {
+            gainSp(spGain, GameConstants.getSkillBook(job.getId()), true);
+        }
     }
 
     public synchronized void levelUp(boolean takeexp) {
@@ -6579,7 +6580,7 @@ public class Character extends AbstractCharacterObject {
         } else if (level == 23 && zoneprogress == 1) {
             yellowMessage("Your EXP has been LOCKED until you clear Zone 2!");
         } else if (level == 30) {
-            yellowMessage("2nd Job advancement is not available for open beta :(");
+            yellowMessage("You can job advance once you complete Zone 3! You will not lose SP for over leveling!");
         }
         else if (level == 32) {
             yellowMessage("Your EXP has been LOCKED for the open beta!");
