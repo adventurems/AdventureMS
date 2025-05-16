@@ -29,8 +29,8 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 if (cm.getPlayer().isPartyLeader())
                 {
                     // Determine the tier of the Dungeon
-                    // if (monsterLvl < 32) {dungeonTier = 1;}
-                    // else if (monsterLvl < 32) {dungeonTier = 2;}
+                    if (monsterLvl <= 38) {dungeonTier = 1;}
+                    else if (monsterLvl <= 46) {dungeonTier = 2;}
                     // else {dungeonTier = 3;}
 
                     // Check for ready

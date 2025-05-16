@@ -1,12 +1,12 @@
 // AdventureMS Custom Dungeon
 
 // Varied Dungeon Information
-const dungeonName = "Dungeon1";
-const dungeonTier = 1;
+const dungeonName = "Dungeon2";
+const dungeonTier = 2;
 const startMap = 3000000 + dungeonTier - 1;
 const minMapId = 3000000 + dungeonTier - 1;
 const maxMapId = 3000030 + dungeonTier - 1;
-let bossId = 3300008;
+let bossId = 9400597;
 
 // Default Dungeon Information
 const isPq = true;
@@ -44,37 +44,36 @@ function setup(level, lobbyid, monsterId, mapId)
         var mapPlatforms = [
             // First map (startMap)
             [0, [
-                [3864, 193, 6],    // Platform 1
-                [403,195, 9],    // Platform 2
-                [595,-109, 8],    // Platform 3
-                [2901,97, 6],   // Platform 4
-                [2256,182, 5],   // Platform 5
-                [1985,98, 5],   // Platform 6
-                [1938,-109, 10],  // Platform 7
-                [1903,-210, 7]   // Platform 8
+                [855, 798, 6],    // Platform 1
+                [234, 678, 6],    // Platform 2
+                [384, 378, 6],    // Platform 3
+                [304, -162, 9],   // Platform 4
+                [888, -462, 9],   // Platform 5
+                [154, -762, 8],   // Platform 6
+                [684, -1122, 8],  // Platform 7
+                [227, -1422, 7]   // Platform 8
             ]],
 
             // Second map (startMap + 10)
             [10, [
-                [3845,-82, 9],  // Platform 1
-                [3721,5, 9],  // Platform 2
-                [1514,-262, 8],  // Platform 3
-                [2144,178, 8], // Platform 4
-                [371,-1, 12], // Platform 5
-                [1151,96, 5], // Platform 6
-                [592,181, 6] // Platform 7
+                [475, -1487, 5],  // Platform 1
+                [232, -1187, 5],  // Platform 2
+                [922, -1067, 7],  // Platform 3
+                [1583, -1436, 8], // Platform 4
+                [2033, -1099, 9], // Platform 5
+                [3555, -1234, 5], // Platform 6
+                [3015, -1055, 6], // Platform 7
+                [2791, -1436, 7]  // Platform 8
             ]],
 
             // Third map (startMap + 20)
             [20, [
-                [500,219, 9],     // Platform 1
-                [43,561, 5],    // Platform 2
-                [712,560, 3],    // Platform 3
-                [741,663, 7],   // Platform 4
-                [-159,849, 8],   // Platform 5
-                [730,962, 5],
-                [302,983, 6],
-                [11,1083, 11]
+                [585, 68, 8],     // Platform 1
+                [585, 188, 7],    // Platform 2
+                [675, -52, 9],    // Platform 3
+                [675, -832, 9],   // Platform 4
+                [585, -952, 8],   // Platform 5
+                [675, -1072, 7],  // Platform 6
             ]]
         ];
     }
@@ -86,37 +85,36 @@ function setup(level, lobbyid, monsterId, mapId)
         var mapPlatforms = [
             // First map (startMap)
             [0, [
-                [3864, 193, 2],    // Platform 1
-                [403,195, 3],    // Platform 2
-                [595,-109, 3],    // Platform 3
-                [2901,97, 2],   // Platform 4
-                [2256,182, 2],   // Platform 5
-                [1985,98, 2],   // Platform 6
-                [1938,-109, 2],  // Platform 7
-                [1903,-210, 2]   // Platform 8
+                [855, 798, 2],    // Platform 1
+                [234, 678, 2],    // Platform 2
+                [384, 378, 2],    // Platform 3
+                [304, -162, 3],   // Platform 4
+                [888, -462, 3],   // Platform 5
+                [154, -762, 2],   // Platform 6
+                [684, -1122, 3],  // Platform 7
+                [227, -1422, 2]   // Platform 8
             ]],
 
             // Second map (startMap + 10)
             [10, [
-                [3845,-82, 3],  // Platform 1
-                [3721,5, 3],  // Platform 2
-                [1514,-262, 2],  // Platform 3
-                [2144,178, 3], // Platform 4
-                [371,-1, 4], // Platform 5
-                [1151,96, 2], // Platform 6
-                [592,181, 2] // Platform 7
+                [475, -1487, 1],  // Platform 1
+                [232, -1187, 2],  // Platform 2
+                [922, -1067, 2],  // Platform 3
+                [1583, -1436, 2], // Platform 4
+                [2033, -1099, 3], // Platform 5
+                [3555, -1234, 1], // Platform 6
+                [3015, -1055, 2], // Platform 7
+                [2791, -1436, 2]  // Platform 8
             ]],
 
             // Third map (startMap + 20)
             [20, [
-                [500,219, 3],     // Platform 1
-                [43,561, 2],    // Platform 2
-                [712,560, 1],    // Platform 3
-                [741,663, 2],   // Platform 4
-                [-159,849, 3],   // Platform 5
-                [730,962, 1],
-                [302,983, 2],
-                [11,1083, 3]
+                [585, 68, 2],     // Platform 1
+                [585, 188, 2],    // Platform 2
+                [675, -52, 3],    // Platform 3
+                [675, -832, 3],   // Platform 4
+                [585, -952, 2],   // Platform 5
+                [675, -1072, 2],  // Platform 6
             ]]
         ];
     }
@@ -314,7 +312,7 @@ function spawnBoss(eim, map, bossId) {
     mob.changeDifficultyBasic(eim.getProperty("level") * 2);
 
     // Spawn the boss on the map
-    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(320, 292));
+    map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
 }
 function changedMapInside(eim, mapid) {
     var stage = eim.getIntProperty("curStage");

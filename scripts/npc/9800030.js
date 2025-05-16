@@ -31,6 +31,12 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 // Check that they are the leader of the party
                 if (cm.getPlayer().isPartyLeader())
                 {
+
+                    // Determine the tier of the Dungeon
+                    if (monsterLvl <= 38) {dungeonTier = 1;}
+                    else if (monsterLvl <= 46) {dungeonTier = 2;}
+                    // else {dungeonTier = 3;}
+
                     // Check for ready
                     cm.sendYesNo("Is your party ready to enter the Dungeon?");
                 }
