@@ -155,7 +155,7 @@ public class SkillMakerFetcher {
             status -= 1;
 
             if (status == 2) {   //close item maker data
-                generateUpdatedItemFee();   // for equipments, this will try to update reqMeso to be conformant with the client.
+                // generateUpdatedItemFee();   // for equipments, this will try to update reqMeso to be conformant with the client.
                 makerList.add(new MakerItemEntry(id, itemid, reqLevel, reqMakerLevel, reqItem, reqMeso, reqEquip, catalyst, quantity, tuc, recipeCount, recipeItem, recipeList, randomList));
                 resetMakerDataFields();
             } else if (status == 4) {    //close recipe/random item
