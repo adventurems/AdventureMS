@@ -622,12 +622,8 @@ public class ItemInformationProvider {
         return type[cat - 30];
     }
 
-    private static double testYourLuck(double prop, int dices) {   // revamped testYourLuck author: David A.
-        return Math.pow(1.0 - prop, dices);
-    }
-
     public static boolean rollSuccessChance(double propPercent) {
-        return Math.random() >= testYourLuck(propPercent / 100.0, YamlConfig.config.server.SCROLL_CHANCE_ROLLS);
+        return Math.random() >= propPercent / 100.0;
     }
 
     private static short getMaximumShortMaxIfOverflow(int value1, int value2) {
@@ -642,54 +638,8 @@ public class ItemInformationProvider {
         return (short) Randomizer.rand(-range, range);
     }
 
-    public void scrollOptionEquipWithChaos(Equip nEquip, int range, boolean option) {
-        // option: watk, matk, wdef, mdef, spd, jump, hp, mp
-        //   stat: dex, luk, str, int, avoid, acc
-
-        if (!option) {
-            if (nEquip.getStr() > 0) {
-                if (YamlConfig.config.server.USE_ENHANCED_CHSCROLL) {
-                    nEquip.setStr(getMaximumShortMaxIfOverflow(nEquip.getStr(), (nEquip.getStr() + chscrollRandomizedStat(range))));
-                } else {
-                    nEquip.setStr(getMaximumShortMaxIfOverflow(0, (nEquip.getStr() + chscrollRandomizedStat(range))));
-                }
-            }
-            if (nEquip.getDex() > 0) {
-                if (YamlConfig.config.server.USE_ENHANCED_CHSCROLL) {
-                    nEquip.setDex(getMaximumShortMaxIfOverflow(nEquip.getDex(), (nEquip.getDex() + chscrollRandomizedStat(range))));
-                } else {
-                    nEquip.setDex(getMaximumShortMaxIfOverflow(0, (nEquip.getDex() + chscrollRandomizedStat(range))));
-                }
-            }
-            if (nEquip.getInt() > 0) {
-                if (YamlConfig.config.server.USE_ENHANCED_CHSCROLL) {
-                    nEquip.setInt(getMaximumShortMaxIfOverflow(nEquip.getInt(), (nEquip.getInt() + chscrollRandomizedStat(range))));
-                } else {
-                    nEquip.setInt(getMaximumShortMaxIfOverflow(0, (nEquip.getInt() + chscrollRandomizedStat(range))));
-                }
-            }
-            if (nEquip.getLuk() > 0) {
-                if (YamlConfig.config.server.USE_ENHANCED_CHSCROLL) {
-                    nEquip.setLuk(getMaximumShortMaxIfOverflow(nEquip.getLuk(), (nEquip.getLuk() + chscrollRandomizedStat(range))));
-                } else {
-                    nEquip.setLuk(getMaximumShortMaxIfOverflow(0, (nEquip.getLuk() + chscrollRandomizedStat(range))));
-                }
-            }
-            if (nEquip.getAcc() > 0) {
-                if (YamlConfig.config.server.USE_ENHANCED_CHSCROLL) {
-                    nEquip.setAcc(getMaximumShortMaxIfOverflow(nEquip.getAcc(), (nEquip.getAcc() + chscrollRandomizedStat(range))));
-                } else {
-                    nEquip.setAcc(getMaximumShortMaxIfOverflow(0, (nEquip.getAcc() + chscrollRandomizedStat(range))));
-                }
-            }
-            if (nEquip.getAvoid() > 0) {
-                if (YamlConfig.config.server.USE_ENHANCED_CHSCROLL) {
-                    nEquip.setAvoid(getMaximumShortMaxIfOverflow(nEquip.getAvoid(), (nEquip.getAvoid() + chscrollRandomizedStat(range))));
-                } else {
-                    nEquip.setAvoid(getMaximumShortMaxIfOverflow(0, (nEquip.getAvoid() + chscrollRandomizedStat(range))));
-                }
-            }
-        } else {
+    public void scrollOptionEquipWithChaos(Equip nEquip, int range) {
+        // option: All stats randomized
             if (nEquip.getWatk() > 0) {
                 if (YamlConfig.config.server.USE_ENHANCED_CHSCROLL) {
                     nEquip.setWatk(getMaximumShortMaxIfOverflow(nEquip.getWatk(), (nEquip.getWatk() + chscrollRandomizedStat(range))));
@@ -748,7 +698,6 @@ public class ItemInformationProvider {
                 }
             }
         }
-    }
 
     private void scrollEquipWithChaos(Equip nEquip, int range) {
         if (YamlConfig.config.server.CHSCROLL_STAT_RATE > 0) {
@@ -1241,56 +1190,62 @@ public class ItemInformationProvider {
         return nEquip.copy();
     }
 
+    // AdventureMS Custom - Divine Forge
+    public Equip divineForge(Equip equip)
+    {
+        equip.setStr((short) (equip.getStr() + 10));
+        equip.setDex((short) (equip.getDex() + 10));
+        equip.setInt((short) (equip.getInt() + 10));
+        equip.setLuk((short) (equip.getLuk() + 10));
+        equip.setWatk((short) (equip.getWatk() + 10));
+        equip.setWdef((short) (equip.getWdef() + 10));
+        equip.setMatk((short) (equip.getMatk() + 10));
+        equip.setMdef((short) (equip.getMdef() + 10));
+        equip.setAcc((short) (equip.getAcc() + 10));
+        equip.setAvoid((short) (equip.getAvoid() + 10));
+        equip.setSpeed((short) (equip.getSpeed() + 10));
+        equip.setJump((short) (equip.getJump() + 10));
+        equip.setHp((short) (equip.getHp() + 10));
+        equip.setMp((short) (equip.getMp() + 10));
+        return equip;
+    }
+
+    // AdventureMS Custom - New Black Crystals
+    public Equip basicBlackCrystal(Equip equip)
+    {
+        equip.setStr(getRandStat(equip.getStr(), 1));
+        equip.setDex(getRandStat(equip.getDex(), 1));
+        equip.setInt(getRandStat(equip.getInt(), 1));
+        equip.setLuk(getRandStat(equip.getLuk(), 1));
+        equip.setAcc(getRandStat(equip.getAcc(), 1));
+        equip.setAvoid(getRandStat(equip.getAvoid(), 1));
+        equip.setJump(getRandStat(equip.getJump(), 1));
+        equip.setSpeed(getRandStat(equip.getSpeed(), 1));
+        equip.setWdef(getRandStat(equip.getWdef(), 3));
+        equip.setMdef(getRandStat(equip.getMdef(), 3));
+        equip.setHp(getRandStat(equip.getHp(), 3));
+        equip.setMp(getRandStat(equip.getMp(), 3));
+        return equip;
+    }
+
     // AdventureMS Custom
-    private static short getRandStatWithStimulant(short defaultValue, int statType) {
-        if (defaultValue == 0) {
-            return 0;
-        }
-
-        int maxRange;
-
-        // Str, Dex, Int, Luk, Acc, Avoid, Jump, Speed
-        if (statType == 1) {
-            if (defaultValue < 5) {
-                maxRange = 1;
-            } else if (defaultValue < 10) {
-                maxRange = 2;
-            } else if (defaultValue < 30) {
-                maxRange = 5;
-            } else if (defaultValue < 50) {
-                maxRange = 7;
-            } else {
-                maxRange = Math.max(7, (int) Math.ceil(defaultValue * 0.1));
-            }
-        }
-        // Matk, Watk
-        else if (statType == 2) {
-            if (defaultValue < 50) {
-                maxRange = 5;
-            } else {
-                maxRange = (int) Math.ceil(defaultValue * 0.1);
-            }
-        }
-        // Wdef, Mdef, Hp, Mp
-        else {
-            if (defaultValue < 50) {
-                maxRange = 10;
-            } else if (defaultValue < 100) {
-                maxRange = 20;
-            } else if (defaultValue < 200) {
-                maxRange = 30;
-            } else if (defaultValue < 400) {
-                maxRange = 40;
-            } else {
-                maxRange = (int) Math.ceil(defaultValue * 0.1);
-            }
-        }
-
-        // Increase maxRange by 20% with a minimum of 1
-        maxRange = Math.max(1, (int) Math.ceil(maxRange * 1.2));
-
-        // Ensure the value cannot be below the base stat
-        return (short) (defaultValue + Math.floor(Randomizer.nextDouble() * (maxRange + 1)));
+    public Equip randomizeStats(Equip equip) 
+    {
+        equip.setStr(getRandStat(equip.getStr(), 1));
+        equip.setDex(getRandStat(equip.getDex(), 1));
+        equip.setInt(getRandStat(equip.getInt(), 1));
+        equip.setLuk(getRandStat(equip.getLuk(), 1));
+        equip.setAcc(getRandStat(equip.getAcc(), 1));
+        equip.setAvoid(getRandStat(equip.getAvoid(), 1));
+        equip.setJump(getRandStat(equip.getJump(), 1));
+        equip.setSpeed(getRandStat(equip.getSpeed(), 1));
+        equip.setMatk(getRandStat(equip.getMatk(), 2));
+        equip.setWatk(getRandStat(equip.getWatk(), 2));
+        equip.setWdef(getRandStat(equip.getWdef(), 3));
+        equip.setMdef(getRandStat(equip.getMdef(), 3));
+        equip.setHp(getRandStat(equip.getHp(), 3));
+        equip.setMp(getRandStat(equip.getMp(), 3));
+        return equip;
     }
 
     // AdventureMS Custom
@@ -1339,6 +1294,26 @@ public class ItemInformationProvider {
         }
 
         return (short) ((defaultValue - maxRange) + Math.floor(Randomizer.nextDouble() * (maxRange * 2 + 1)));
+    }
+
+    // AdventureMS Custom
+    public Equip randomizeChaosStats(Equip equip) 
+    {
+        equip.setStr(getRandChaosStat(equip.getStr(), 1));
+        equip.setDex(getRandChaosStat(equip.getDex(), 1));
+        equip.setInt(getRandChaosStat(equip.getInt(), 1));
+        equip.setLuk(getRandChaosStat(equip.getLuk(), 1));
+        equip.setAcc(getRandChaosStat(equip.getAcc(), 1));
+        equip.setAvoid(getRandChaosStat(equip.getAvoid(), 1));
+        equip.setJump(getRandChaosStat(equip.getJump(), 1));
+        equip.setSpeed(getRandChaosStat(equip.getSpeed(), 1));
+        equip.setMatk(getRandChaosStat(equip.getMatk(), 2));
+        equip.setWatk(getRandChaosStat(equip.getWatk(), 2));
+        equip.setWdef(getRandChaosStat(equip.getWdef(), 3));
+        equip.setMdef(getRandChaosStat(equip.getMdef(), 3));
+        equip.setHp(getRandChaosStat(equip.getHp(), 3));
+        equip.setMp(getRandChaosStat(equip.getMp(), 3));
+        return equip;
     }
 
     // AdventureMS Custom
@@ -1408,43 +1383,55 @@ public class ItemInformationProvider {
     }
 
     // AdventureMS Custom
-    public Equip randomizeStats(Equip equip) 
-    {
-        equip.setStr(getRandStat(equip.getStr(), 1));
-        equip.setDex(getRandStat(equip.getDex(), 1));
-        equip.setInt(getRandStat(equip.getInt(), 1));
-        equip.setLuk(getRandStat(equip.getLuk(), 1));
-        equip.setAcc(getRandStat(equip.getAcc(), 1));
-        equip.setAvoid(getRandStat(equip.getAvoid(), 1));
-        equip.setJump(getRandStat(equip.getJump(), 1));
-        equip.setSpeed(getRandStat(equip.getSpeed(), 1));
-        equip.setMatk(getRandStat(equip.getMatk(), 2));
-        equip.setWatk(getRandStat(equip.getWatk(), 2));
-        equip.setWdef(getRandStat(equip.getWdef(), 3));
-        equip.setMdef(getRandStat(equip.getMdef(), 3));
-        equip.setHp(getRandStat(equip.getHp(), 3));
-        equip.setMp(getRandStat(equip.getMp(), 3));
-        return equip;
-    }
+    private static short getRandStatWithStimulant(short defaultValue, int statType) {
+        if (defaultValue == 0) {
+            return 0;
+        }
 
-    // AdventureMS Custom
-    public Equip randomizeChaosStats(Equip equip) 
-    {
-        equip.setStr(getRandChaosStat(equip.getStr(), 1));
-        equip.setDex(getRandChaosStat(equip.getDex(), 1));
-        equip.setInt(getRandChaosStat(equip.getInt(), 1));
-        equip.setLuk(getRandChaosStat(equip.getLuk(), 1));
-        equip.setAcc(getRandChaosStat(equip.getAcc(), 1));
-        equip.setAvoid(getRandChaosStat(equip.getAvoid(), 1));
-        equip.setJump(getRandChaosStat(equip.getJump(), 1));
-        equip.setSpeed(getRandChaosStat(equip.getSpeed(), 1));
-        equip.setMatk(getRandChaosStat(equip.getMatk(), 2));
-        equip.setWatk(getRandChaosStat(equip.getWatk(), 2));
-        equip.setWdef(getRandChaosStat(equip.getWdef(), 3));
-        equip.setMdef(getRandChaosStat(equip.getMdef(), 3));
-        equip.setHp(getRandChaosStat(equip.getHp(), 3));
-        equip.setMp(getRandChaosStat(equip.getMp(), 3));
-        return equip;
+        int maxRange;
+
+        // Str, Dex, Int, Luk, Acc, Avoid, Jump, Speed
+        if (statType == 1) {
+            if (defaultValue < 5) {
+                maxRange = 1;
+            } else if (defaultValue < 10) {
+                maxRange = 2;
+            } else if (defaultValue < 30) {
+                maxRange = 5;
+            } else if (defaultValue < 50) {
+                maxRange = 7;
+            } else {
+                maxRange = Math.max(7, (int) Math.ceil(defaultValue * 0.1));
+            }
+        }
+        // Matk, Watk
+        else if (statType == 2) {
+            if (defaultValue < 50) {
+                maxRange = 5;
+            } else {
+                maxRange = (int) Math.ceil(defaultValue * 0.1);
+            }
+        }
+        // Wdef, Mdef, Hp, Mp
+        else {
+            if (defaultValue < 50) {
+                maxRange = 10;
+            } else if (defaultValue < 100) {
+                maxRange = 20;
+            } else if (defaultValue < 200) {
+                maxRange = 30;
+            } else if (defaultValue < 400) {
+                maxRange = 40;
+            } else {
+                maxRange = (int) Math.ceil(defaultValue * 0.1);
+            }
+        }
+
+        // Increase maxRange by 10% with a minimum of 1
+        maxRange = Math.max(1, (int) Math.ceil(maxRange * 1.1));
+
+        // Ensure the value cannot be below the base stat
+        return (short) (defaultValue + Math.floor(Randomizer.nextDouble() * (maxRange + 1)));
     }
 
     private static short getRandUpgradedStat(short defaultValue, int maxRange) {

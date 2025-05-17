@@ -37,6 +37,7 @@ import server.MakerItemFactory;
 import server.MakerItemFactory.MakerItemCreateEntry;
 import tools.PacketCreator;
 import tools.Pair;
+import tools.Randomizer;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -134,7 +135,7 @@ public class MakerProcessor {
                             }
                         }
 
-                        int reagents = Math.min(p.readInt(), getMakerReagentSlots(toCreate));
+                        int reagents = Math.min(p.readInt(), 4); // AdventureMS - Allows allow 4 gem slots
                         for (int i = 0; i < reagents; i++) {  // crystals
                             int reagentid = p.readInt();
                             if (ItemConstants.isMakerReagent(reagentid)) {
@@ -169,7 +170,7 @@ public class MakerProcessor {
 
                         if (!reagentids.isEmpty()) {
                             if (!removeOddMakerReagents(toCreate, reagentids)) {
-                                c.sendPacket(PacketCreator.serverNotice(1, "You can only use WATK and MATK Strengthening Gems on weapon items."));
+                                c.sendPacket(PacketCreator.serverNotice(1, "You can only use WATK and MATK Strengthening Gems on weapons."));
                                 c.sendPacket(PacketCreator.makerEnableActions());
                                 return;
                             }
@@ -320,23 +321,6 @@ public class MakerProcessor {
         return true;
     }
 
-    private static int getMakerReagentSlots(int itemId) {
-        try {
-            int eqpLevel = ii.getEquipLevelReq(itemId);
-
-            if (eqpLevel < 78) {
-                return 1;
-            } else if (eqpLevel >= 78 && eqpLevel < 108) {
-                return 2;
-            } else {
-                return 3;
-            }
-        } catch (NullPointerException npe) {
-            return 0;
-        }
-    }
-
-
     public static int getMakerSkillLevel(Character chr) {
         return chr.getSkillLevel((chr.getJob().getId() / 1000) * 10000000 + 1007);
     }
@@ -394,78 +378,134 @@ public class MakerProcessor {
         return true;
     }
 
-    private static boolean addBoostedMakerItem(Client c, int itemid, int stimulantid, Map<Integer, Short> reagentids) {
-        if (stimulantid != -1 && !ItemInformationProvider.rollSuccessChance(90.0)) {
-            return false;
-        }
-
+    // AdventureMS Custom
+    private static boolean addBoostedMakerItem(Client c, int itemid, int stimulantid, Map<Integer, Short> reagentids)
+    {
+        // Create an Item by ID (make sure it's a real item)
         Item item = ii.getEquipById(itemid);
-        if (item == null) {
-            return false;
-        }
+        if (item == null) {return false;}
 
+        // Cast the item to an equip
         Equip eqp = (Equip) item;
-        if (ItemConstants.isAccessory(item.getItemId()) && eqp.getUpgradeSlots() <= 0) {
-            eqp.setUpgradeSlots(3);
-        }
 
-        if (YamlConfig.config.server.USE_ENHANCED_CRAFTING == true) {
-            if (!(c.getPlayer().isGM() && YamlConfig.config.server.USE_PERFECT_GM_SCROLL)) {
-                eqp.setUpgradeSlots((byte) (eqp.getUpgradeSlots() + 1));
-            }
-            item = ItemInformationProvider.getInstance().scrollEquipWithId(eqp, ItemId.CHAOS_SCROll_60, true, ItemId.CHAOS_SCROll_60, c.getPlayer().isGM());
-        }
-
-        if (!reagentids.isEmpty()) {
+        // Check if enhancements were passed
+        if (!reagentids.isEmpty())
+        {
+            // Initialize Variables
             Map<String, Integer> stats = new LinkedHashMap<>();
             List<Short> randOption = new LinkedList<>();
-            List<Short> randStat = new LinkedList<>();
 
-            for (Map.Entry<Integer, Short> r : reagentids.entrySet()) {
+            // Loop through each reagent to get the stat changes
+            for (Map.Entry<Integer, Short> r : reagentids.entrySet())
+            {
+                // Get the stat increase name and value from the DB
                 Pair<String, Integer> reagentBuff = ii.getMakerReagentStatUpgrade(r.getKey());
 
-                if (reagentBuff != null) {
+                // Check to make sure it's a real buff (it's in the DB)
+                if (reagentBuff != null)
+                {
+                    // Get the name of the Stat Increase
                     String s = reagentBuff.getLeft();
 
-                    if (s.substring(0, 4).contains("rand")) {
-                        if (s.substring(4).equals("Stat")) {
-                            randStat.add((short) (reagentBuff.getRight() * r.getValue()));
-                        } else {
-                            randOption.add((short) (reagentBuff.getRight() * r.getValue()));
+                    // Check that it's not a flat stat increase
+                    if (!s.substring(0, 3).contains("inc"))
+                    {
+                        // Check for Black Crystal
+                        if (s.substring(4).equals("Option")) {randOption.add((short) (reagentBuff.getRight() * r.getValue()));}
+
+                        // It's a % increase gem
+                        else if (s.substring(0, 7).contains("special"))
+                        {
+                            String stat = s.substring(7); // Get's the specialSTAT (DEX, STR, MHP, etc...)
+                            Integer d = stats.get(stat); // Gets the stat on the item currently
+
+                            // Calculate the percentage increase based on the current stat value
+                            int currentStat = switch (stat) {
+                                case "STR" -> eqp.getStr();
+                                case "DEX" -> eqp.getDex();
+                                case "INT" -> eqp.getInt();
+                                case "LUK" -> eqp.getLuk();
+                                case "PAD" -> eqp.getWatk();
+                                case "PDD" -> eqp.getWdef();
+                                case "MAD" -> eqp.getMatk();
+                                case "MDD" -> eqp.getMdef();
+                                case "ACC" -> eqp.getAcc();
+                                case "EVA" -> eqp.getAvoid();
+                                case "Speed" -> eqp.getSpeed();
+                                case "Jump" -> eqp.getJump();
+                                case "MHP" -> eqp.getHp();
+                                case "MMP" -> eqp.getMp();
+                                default -> 0;
+                            };
+
+                            // Calculate the increase amount (percentage of current stat)
+                            int increaseAmount = (int) Math.ceil((currentStat * reagentBuff.getRight() * r.getValue()) / 100.0);
+
+                            // Add to stats map
+                            if (d == null) {stats.put(stat, increaseAmount);} // If the item doesn't currently have the stat, it just set's the items stat to the reagent stat
+                            else {stats.put(stat, d + increaseAmount);} // Add the reagent stat to the item stat
                         }
-                    } else {
-                        String stat = s.substring(3);
 
-                        if (!stat.equals("ReqLevel")) {    // improve req level... really?
-                            switch (stat) {
-                                case "MaxHP":
-                                    stat = "MHP";
-                                    break;
+                        // It's the flat allSTAT gem
+                        else if (s.contains("allSTAT"))
+                        {
+                            // Add 20 to each main stat
+                            Integer dex = stats.get("DEX");
+                            Integer str = stats.get("STR");
+                            Integer int_ = stats.get("INT");
+                            Integer luk = stats.get("LUK");
 
-                                case "MaxMP":
-                                    stat = "MMP";
-                                    break;
+                            stats.put("DEX", (dex == null ? 20 : dex + 20));
+                            stats.put("STR", (str == null ? 20 : str + 20));
+                            stats.put("INT", (int_ == null ? 20 : int_ + 20));
+                            stats.put("LUK", (luk == null ? 20 : luk + 20));
+                        }
+
+                        else if (s.contains("slot"))
+                        {
+                            // Get the slot value from the reagent
+                            int slotValue = reagentBuff.getRight();
+
+                            // Determine the number of slots to add based on the reagent value
+                            int slotsToAdd = 0;
+                            if (slotValue == 1) {
+                                // 0-1 slots
+                                slotsToAdd = Randomizer.nextInt(2); // 0 or 1
+                            } else if (slotValue == 2) {
+                                // 1-2 slots
+                                slotsToAdd = Randomizer.nextInt(2) + 1; // 1 or 2
+                            } else if (slotValue == 3) {
+                                // 2-3 slots
+                                slotsToAdd = Randomizer.nextInt(2) + 2; // 2 or 3
                             }
 
+                            // Add the slots to the stats map
+                            String stat = "incSlot";
                             Integer d = stats.get(stat);
-                            if (d == null) {
-                                stats.put(stat, reagentBuff.getRight() * r.getValue());
-                            } else {
-                                stats.put(stat, d + (reagentBuff.getRight() * r.getValue()));
-                            }
+                            if (d == null) {stats.put(stat, slotsToAdd);}
+                            else {stats.put(stat, d + slotsToAdd);}
                         }
+                    }
+
+                    // It's a normal flat stat, pass it along
+                    else
+                    {
+                        String stat = s.substring(3); // Get's the incSTAT (DEX, STR, MHP, etc...)
+                        Integer d = stats.get(stat); // Gets the stat on the item currently
+                        if (d == null) {stats.put(stat, reagentBuff.getRight() * r.getValue());} // If the item doesn't currently have the stat, it just set's the items stat to the reagent stat
+                        else {stats.put(stat, d + (reagentBuff.getRight() * r.getValue()));} // Add the reagent stat to the item stat
                     }
                 }
             }
 
             ItemInformationProvider.improveEquipStats(eqp, stats);
 
-            for (Short sh : randStat) {
-                ii.scrollOptionEquipWithChaos(eqp, sh, false);
-            }
-
-            for (Short sh : randOption) {
-                ii.scrollOptionEquipWithChaos(eqp, sh, true);
+            // Apply different effects based on randOption value (1-3)
+            for (Short sh : randOption)
+            {
+                if (sh == 1) {eqp = ii.basicBlackCrystal(eqp);}
+                else if (sh == 2) {eqp = ii.randomizeStats(eqp);}
+                else if (sh == 3) {eqp = ii.randomizeChaosStats(eqp);}
             }
         }
 
@@ -475,10 +515,10 @@ public class MakerProcessor {
             eqp = ii.randomizeStatsWithStimulant(eqp);
         }
 
-        else
+        // AdventureMS Custom - Divine Forge
+        if (Math.random() < 0.125)
         {
-            // AdventureMS Custom - Always randomize maker equipment
-            eqp = ii.randomizeStats(eqp);
+            eqp = ii.divineForge(eqp);
         }
 
         InventoryManipulator.addFromDrop(c, item, false, -1);
