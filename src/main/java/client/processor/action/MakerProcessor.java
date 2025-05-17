@@ -516,9 +516,13 @@ public class MakerProcessor {
         }
 
         // AdventureMS Custom - Divine Forge
-        if (Math.random() < 0.125)
+        else if (Math.random() < 0.125)
         {
-            eqp = ii.divineForge(eqp);
+            eqp = ii.randomizeStatsWithStimulant(eqp);
+
+            // Play sound and send message to the player
+            c.getPlayer().getMap().broadcastMessage(PacketCreator.playSound("AdventureMS/divineForge"));
+            c.sendPacket(PacketCreator.serverNotice(5, "A crack of thunder and the maple gods have blessed your craft with divine power!"));
         }
 
         InventoryManipulator.addFromDrop(c, item, false, -1);

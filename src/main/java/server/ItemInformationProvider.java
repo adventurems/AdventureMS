@@ -1190,26 +1190,6 @@ public class ItemInformationProvider {
         return nEquip.copy();
     }
 
-    // AdventureMS Custom - Divine Forge
-    public Equip divineForge(Equip equip)
-    {
-        equip.setStr((short) (equip.getStr() + 10));
-        equip.setDex((short) (equip.getDex() + 10));
-        equip.setInt((short) (equip.getInt() + 10));
-        equip.setLuk((short) (equip.getLuk() + 10));
-        equip.setWatk((short) (equip.getWatk() + 10));
-        equip.setWdef((short) (equip.getWdef() + 10));
-        equip.setMatk((short) (equip.getMatk() + 10));
-        equip.setMdef((short) (equip.getMdef() + 10));
-        equip.setAcc((short) (equip.getAcc() + 10));
-        equip.setAvoid((short) (equip.getAvoid() + 10));
-        equip.setSpeed((short) (equip.getSpeed() + 10));
-        equip.setJump((short) (equip.getJump() + 10));
-        equip.setHp((short) (equip.getHp() + 10));
-        equip.setMp((short) (equip.getMp() + 10));
-        return equip;
-    }
-
     // AdventureMS Custom - New Black Crystals
     public Equip basicBlackCrystal(Equip equip)
     {
