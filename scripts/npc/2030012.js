@@ -48,6 +48,13 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                     cm.dispose();
                     break;
                 }
+
+                case 4: // Zone 4 Complete
+                {
+                    cm.openShopNPC(104);
+                    cm.dispose();
+                    break;
+                }
                 // Zone Progress bugged(?)
                 default: cm.dispose(); break;
             }
