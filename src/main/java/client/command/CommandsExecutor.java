@@ -25,37 +25,14 @@ package client.command;
 
 import client.Client;
 import client.command.commands.gm0.BuyBackCommand;
-import client.command.commands.gm0.ChangeLanguageCommand;
 import client.command.commands.gm0.DisposeCommand;
-import client.command.commands.gm0.DropLimitCommand;
-import client.command.commands.gm0.EnableAuthCommand;
-import client.command.commands.gm0.EquipLvCommand;
-import client.command.commands.gm0.GachaCommand;
 import client.command.commands.gm0.GmCommand;
 import client.command.commands.gm0.HelpCommand;
-import client.command.commands.gm0.JoinEventCommand;
-import client.command.commands.gm0.LeaveEventCommand;
-import client.command.commands.gm0.MapOwnerClaimCommand;
 import client.command.commands.gm0.OnlineCommand;
-import client.command.commands.gm0.RanksCommand;
-import client.command.commands.gm0.RatesCommand;
-import client.command.commands.gm0.ReadPointsCommand;
-import client.command.commands.gm0.ReportBugCommand;
-import client.command.commands.gm0.ShowRatesCommand;
-import client.command.commands.gm0.StaffCommand;
 import client.command.commands.gm0.StatDexCommand;
 import client.command.commands.gm0.StatIntCommand;
 import client.command.commands.gm0.StatLukCommand;
 import client.command.commands.gm0.StatStrCommand;
-import client.command.commands.gm0.TimeCommand;
-import client.command.commands.gm0.ToggleExpCommand;
-import client.command.commands.gm0.UptimeCommand;
-import client.command.commands.gm1.BossHpCommand;
-import client.command.commands.gm1.BuffMeCommand;
-import client.command.commands.gm1.GotoCommand;
-import client.command.commands.gm1.MobHpCommand;
-import client.command.commands.gm1.WhatDropsFromCommand;
-import client.command.commands.gm1.WhoDropsCommand;
 import client.command.commands.gm2.ApCommand;
 import client.command.commands.gm2.BombCommand;
 import client.command.commands.gm2.BuffCommand;
@@ -81,7 +58,6 @@ import client.command.commands.gm2.MaxSkillCommand;
 import client.command.commands.gm2.MaxStatCommand;
 import client.command.commands.gm2.MobSkillCommand;
 import client.command.commands.gm2.ReachCommand;
-import client.command.commands.gm2.RechargeCommand;
 import client.command.commands.gm2.ResetSkillCommand;
 import client.command.commands.gm2.SearchCommand;
 import client.command.commands.gm2.SetSlotCommand;
@@ -94,7 +70,6 @@ import client.command.commands.gm2.UnJailCommand;
 import client.command.commands.gm2.WarpAreaCommand;
 import client.command.commands.gm2.WarpCommand;
 import client.command.commands.gm2.WarpMapCommand;
-import client.command.commands.gm2.WhereaMiCommand;
 import client.command.commands.gm3.BanCommand;
 import client.command.commands.gm3.ChatCommand;
 import client.command.commands.gm3.CheckDmgCommand;
@@ -341,33 +316,14 @@ public class CommandsExecutor {
     private void registerLv0Commands() {
         levelCommandsCursor = new Pair<>(new ArrayList<String>(), new ArrayList<String>());
 
-        addCommand(new String[]{"help", "commands"}, HelpCommand.class);
-        // addCommand("droplimit", DropLimitCommand.class);
-        // addCommand("time", TimeCommand.class);
-        // addCommand("credits", StaffCommand.class);
-        // addCommand("uptime", UptimeCommand.class);
-        // addCommand("gacha", GachaCommand.class);
+        addCommand("commands", HelpCommand.class);
         addCommand("dispose", DisposeCommand.class);
-        // addCommand("changel", ChangeLanguageCommand.class);
-        // addCommand("equiplv", EquipLvCommand.class);
-        // addCommand("showrates", ShowRatesCommand.class);
-        // addCommand("rates", RatesCommand.class);
         addCommand("gm", GmCommand.class);
-        // addCommand("reportbug", ReportBugCommand.class);
-        // addCommand("points", ReadPointsCommand.class);
-        // addCommand("joinevent", JoinEventCommand.class);
-        // addCommand("leaveevent", LeaveEventCommand.class);
-        // addCommand("ranks", RanksCommand.class);
         addCommand("str", StatStrCommand.class);
         addCommand("dex", StatDexCommand.class);
         addCommand("int", StatIntCommand.class);
         addCommand("luk", StatLukCommand.class);
         addCommand("buyback", BuyBackCommand.class);
-        // addCommand("enableauth", EnableAuthCommand.class);
-        // addCommand("toggleexp", ToggleExpCommand.class);
-        // addCommand("mylawn", MapOwnerClaimCommand.class);
-        addCommand("bosshp", BossHpCommand.class);
-        addCommand("mobhp", MobHpCommand.class);
 
         commandsNameDesc.add(levelCommandsCursor);
     }
@@ -376,11 +332,6 @@ public class CommandsExecutor {
     private void registerLv1Commands() {
         levelCommandsCursor = new Pair<>(new ArrayList<String>(), new ArrayList<String>());
 
-        // addCommand("whatdropsfrom", 1, WhatDropsFromCommand.class);
-        // addCommand("whodrops", 1, WhoDropsCommand.class);
-        // addCommand("buffme", 1, BuffMeCommand.class);
-        // addCommand("goto", 1, GotoCommand.class);
-
         commandsNameDesc.add(levelCommandsCursor);
     }
 
@@ -388,8 +339,6 @@ public class CommandsExecutor {
     private void registerLv2Commands() {
         levelCommandsCursor = new Pair<>(new ArrayList<String>(), new ArrayList<String>());
 
-        // addCommand("recharge", 2, RechargeCommand.class);
-        // addCommand("whereami", 2, WhereaMiCommand.class);
         addCommand("online", 2,  OnlineCommand.class);
         addCommand("hide", 2, HideCommand.class);
         addCommand("unhide", 2, UnHideCommand.class);
