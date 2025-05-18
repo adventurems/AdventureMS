@@ -9038,6 +9038,38 @@ public class Character extends AbstractCharacterObject {
         return gogglesEquipped;
     }
 
+    // AdventureMS Custom - Gear Checker for custom quests
+    public boolean checkQuestGear(int questId)
+    {
+        boolean questGear = false;
+
+        // Figure out what to check
+        switch (questId)
+        {
+            case 1026:
+            {
+                // Create Item Instance
+                Item item = getInventory(InventoryType.EQUIPPED).getItem((short) -17);
+
+                // Check if null & get ID
+                if (item != null)
+                {
+                    int itemId = item.getItemId();
+
+                    // Check for Lost In Time
+                    if (itemId == 1122901)
+                    {
+                        questGear = true;
+                    }
+                }
+
+                break;
+            }
+        }
+
+        return questGear;
+    }
+
     public void saveLocationOnWarp() {  // suggestion to remember the map before warp command thanks to Lei
         Portal closest = map.findClosestPortal(getPosition());
         int curMapid = getMapId();
