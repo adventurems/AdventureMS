@@ -6,8 +6,6 @@ function enter(pi)
 
     if (pi.getPlayer().checkQuestGear(1032))
     {
-        pi.playPortalSound();
-
         if (curMap === 106010105)
         {
             pi.warp(106010121, "out00");
@@ -31,4 +29,7 @@ function enter(pi)
             pi.warp(106010104, "out00");
         }
     }
+
+    pi.playPortalSound();
+    return true;
 }
