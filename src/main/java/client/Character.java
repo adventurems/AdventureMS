@@ -9067,6 +9067,9 @@ public class Character extends AbstractCharacterObject {
             }
         }
 
+        // Debugging
+        yellowMessage("questGear: " + questGear);
+
         return questGear;
     }
 
