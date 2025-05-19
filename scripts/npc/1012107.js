@@ -22,7 +22,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
             // Send first message
             cm.sendSimple("Hey #h #!\r\n\r\n My grandma and I think you are ready to get your first pet skill! I can teach your pet to be super fast my like hedgehog, Sonic." +
-                "\r\n\r\nAll you gotta do is bonk those chickens as fast as you can and get the #rgolden egg#k before time runs out. You think you can do that?\r\n\r\n" +
+                "\r\n\r\n#eKeep in mind, this is the ONLY pet that will get this skill (for now).#n\r\n\r\nAll you gotta do is bonk those chickens as fast as you can and get the #rgolden egg#k before time runs out. It's best to use a melee weapon for this test! You think you can do that?\r\n\r\n" +
                 "#L0#I'm ready to give it a go!#l\r\n#L1#Hmmm, not quite yet, I'll be back!#l");
         }
 
