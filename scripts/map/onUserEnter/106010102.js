@@ -1,7 +1,7 @@
-// AdventureMS Standard Map Script
+// AdventureMS Robin & Corine Dual Quest Start
 
-var quest = 999;
-var start = false;
+var quest = 1014;
+var start = true;
 var end = false;
 
 // Standard Map Script Start

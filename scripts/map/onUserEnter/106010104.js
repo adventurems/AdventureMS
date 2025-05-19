@@ -1,7 +1,7 @@
 // AdventureMS Standard Map Script
 
-var quest = 999;
-var start = false;
+var quest = 1019;
+var start = true;
 var end = false;
 
 // Standard Map Script Start
