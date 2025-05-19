@@ -409,6 +409,15 @@ public class MapleMap {
     // AdventureMS Custom - Spawn Dungeon Portal
     public void spawnDungeonPortal(final Character chr, final Monster monster)
     {
+        // If a dungeon npc already exists on the map, return
+        List<MapObject> npcs = getMapObjectsInRange(new Point(0, 0), Double.POSITIVE_INFINITY, Arrays.asList(MapObjectType.NPC));
+        for (MapObject obj : npcs) {
+            NPC npc = (NPC) obj;
+            if (npc.getId() == 9800017 || npc.getId() == 9800030) {
+                return;
+            }
+        }
+
         // Determine if the door will spawn
         final int PORTAL_MIN_LEVEL = 30;
         final int PORTAL_MAX_LEVEL = 150;
@@ -869,7 +878,7 @@ public class MapleMap {
                                 delay);
                     }
                 } 
-                
+
                 else 
                 {
                     // Roll to see if it's a chaos item
@@ -929,7 +938,7 @@ public class MapleMap {
                         // It's a normal item
                         else {idrop = ii.randomizeStats((Equip) ii.getEquipById(de.itemId));}
                     }
-                    
+
                     else 
                     {
                         idrop = new Item(de.itemId, (short) 0, (short) (de.Maximum != 1 ? Randomizer.nextInt(de.Maximum - de.Minimum) + de.Minimum : 1));
@@ -2554,7 +2563,7 @@ public class MapleMap {
 
         chr.setMapId(mapid);
         chr.updateActiveEffects();
-        
+
         if (this.getHPDec() > 0) {
             getWorldServer().addPlayerHpDecrease(chr);
         } else {
