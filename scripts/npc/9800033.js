@@ -1,4 +1,4 @@
-// AdventureMS Shuang
+// AdventureMS Nuris
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
