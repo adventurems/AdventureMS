@@ -10,6 +10,10 @@ var dungeons2 = 5;
 
 function enter(pi)
 {
+
+    // Debugging
+    pi.getPlayer().yellowMessage("baseid: " + baseid + "Current Map: " + pi.getMapId());
+
     // They've already defeated the guardian, warp to outdoors
     if (cm.getQuestStatus(1028) === 2)
     {
@@ -89,7 +93,6 @@ function enter(pi)
     // Leaving the chamber
     else
     {
-        var map = pi.getMapId();
         pi.resetMapObjects(map);
         pi.getMap().clearDrops();
         pi.playPortalSound();
