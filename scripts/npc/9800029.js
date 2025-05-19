@@ -1,20 +1,5 @@
 // AdventureMS Scon
 
-// Get the items from the inventory
-var zeroStatItems = cm.getPlayer().checkItemsWithZeroStats();
-
-// Prepare the items for access
-for (var i = 0; i < zeroStatItems.size(); i++)
-{
-    var item = zeroStatItems.get(i);
-    var itemId = item.get("id");
-    var slot = item.get("slot");
-    var str = item.get("str");
-    var dex = item.get("dex");
-    var int = item.get("int");
-    var luk = item.get("luk");
-}
-
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
 function action(mode, type, selection) { if (mode == 1) {status++;} else {status--;} if (status == -1) {cm.dispose();}
@@ -25,6 +10,21 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // Check if they have completed the quest
         if (cm.getQuestStatus(1019) < 2)
         {
+            // Get the items from the inventory
+            var zeroStatItems = cm.getPlayer().checkItemsWithZeroStats();
+
+            // Prepare the items for access
+            for (var i = 0; i < zeroStatItems.size(); i++)
+            {
+                var item = zeroStatItems.get(i);
+                var itemId = item.get("id");
+                var slot = item.get("slot");
+                var str = item.get("str");
+                var dex = item.get("dex");
+                var int = item.get("int");
+                var luk = item.get("luk");
+            }
+
             // Check if the list is not empty before proceeding
             if (zeroStatItems != null && zeroStatItems.size() > 0)
             {
