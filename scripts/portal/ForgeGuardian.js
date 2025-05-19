@@ -86,7 +86,7 @@ function enter(pi)
     // Leaving the chamber
     else
     {
-        pi.resetMapObjects(map);
+        pi.resetMapObjects(pi.getPlayer().getMap());
         pi.getMap().clearDrops();
         pi.playPortalSound();
         pi.warp(baseid, "in00");
