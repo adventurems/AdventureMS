@@ -20,6 +20,9 @@ function enter(pi)
     else if (cm.getQuestStatus(1023) === 2) {dungeon2 = true;} // They've helped Vicious, they can now fight the real boss
     else {dungeon1 = true;} // They haven't helped Vicious yet, give the impossible bosses
 
+    // Debugging
+    pi.getPlayer().yellowMessage("baseid: " + baseid + "Current Map: " + pi.getMapId());
+
     // Check the base map
     if (pi.getMapId() === baseid)
     {
