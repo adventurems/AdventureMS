@@ -11,7 +11,7 @@ function start(ms)
     {
         if (ms.getQuestStatus(quest) === 0)
         {
-            ms.startQuest(quest);
+            ms.openNpc(9800028);
         }
     }
 
