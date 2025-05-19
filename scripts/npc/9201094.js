@@ -90,7 +90,7 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
             cm.gainItem(1041061, -1); // Remove top
             cm.gainItem(1061057, -1); // Remove bottom
             cm.gainItem(1142204, 1); // Corine Medal
-            cm.gainExp(75000); // Give exp
+            cm.gainExp(90000); // Give exp
             cm.gainFame(1); // Give fame
 
             // Complete the quest

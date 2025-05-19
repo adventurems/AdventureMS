@@ -68,7 +68,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         cm.gainItem(4001126, 1);
 
         // Give Exp
-        cm.gainExp(75000);
+        cm.gainExp(90000);
         
         // Remove the items from the inventory
         var equip = cm.getPlayer().getInventory(1);
