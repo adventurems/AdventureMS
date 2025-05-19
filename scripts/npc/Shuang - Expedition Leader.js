@@ -1,4 +1,4 @@
-// AdventureMS
+// AdventureMS Shuang
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
@@ -7,7 +7,8 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
     // Initial Click
     else if (status === 0)
     {
-
+        cm.sendOk("Hello, I'm Shuang. I'm here to help you with your quests. If you have any questions, please ask me.");
+        cm.dispose();
     }
 
     // After pressing yes/next
