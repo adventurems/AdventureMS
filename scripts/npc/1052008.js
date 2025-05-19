@@ -3,7 +3,7 @@
 function start()
 {
     // Check that we have started Hill's quest
-    if (cm.getQuestStatus(1016) === 1)
+    if (cm.haveItem(3997006, 1))
     {
         // Check that we can hold the Moon Rock
         if (cm.canHold(4011007, 1))
@@ -41,9 +41,15 @@ function start()
     }
 
     // They haven't started the Hill quest yet and don't have the map
-    else
+    else if (cm.getQuestStatus(1016) === 0)
     {
         cm.sendOk("You haven't traded for the map from #bHill#k yet!");
+        cm.dispose();
+    }
+
+    else
+    {
+        cm.sendOk("Something isn't right, report this in Discord! (1052008)");
         cm.dispose();
     }
 }
