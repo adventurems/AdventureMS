@@ -58,7 +58,7 @@ function monsterKilled(mob, eim) {
     var map = mob.getMap();
 
     // Check if this was the last monster on the map
-    if (map.countMonsters() == 0) {
+    if (map.countMonsters() === 0) {
 
         // Create the item object
         const Item = Java.type('client.inventory.Item');
