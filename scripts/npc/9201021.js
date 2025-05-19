@@ -38,11 +38,21 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
         // They chose Corine to give gear to
         else if (cm.getQuestStatus(1018) === 2)
         {
-            cm.sendYesNo("I can't believe it. Do NOT talk to me again. Well, at least she doesn't have these #rfancy gloves#k I found. They make my hands look so nice...\r\n\r\nOh? You want to know how I got them?" +
-            "I suppose I could share how for a price... If you'd chosen me I would have given the recipe up freely!\r\n\r\nHow about #r" + recipePrice + "#k mesos? How does that sound?");
+            if (!cm.haveItem(4007033))
+            {
+                cm.sendYesNo("I can't believe it. Do NOT talk to me again. Well, at least she doesn't have these #rfancy gloves#k I found. They make my hands look so nice...\r\n\r\nOh? You want to know how I got them?" +
+                    "I suppose I could share how for a price... If you'd chosen me I would have given the recipe up freely!\r\n\r\nHow about #r" + recipePrice + "#k mesos? How does that sound?");
 
-            // They may have selected yes
-            buyGloveRecipe = true;
+                // They may have selected yes
+                buyGloveRecipe = true;
+            }
+
+            // They do have the recipe already
+            else
+            {
+                cm.sendOk("I can't believe it. Do NOT talk to me again.");
+                cm.dispose();
+            }
         }
     }
 
