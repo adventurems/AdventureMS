@@ -7,7 +7,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
     if (status == 0)
     {
-        if (cm.getQuestStatus(1021) < 2)
+        if (cm.getQuestStatus(1021) === 1)
         {
             // Set the Event
             em = cm.getEventManager("TheFarmEvent");
