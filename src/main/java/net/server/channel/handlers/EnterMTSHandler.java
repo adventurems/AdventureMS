@@ -103,10 +103,17 @@ public final class EnterMTSHandler extends AbstractPacketHandler {
 
         // Check if we are in a badMap
         boolean isBadMap = false;
-        for (int badMap : badMaps) {
-            if (playerMap == badMap) {
-                isBadMap = true;
-                break;  // No need to check further once we find a match
+
+        // Check if map ID is in the range 3000000 to 4000000 (inclusive of 3000000 but not 4000000)
+        if (playerMap >= 3000000 && playerMap < 4000000) {
+            isBadMap = true;
+        } else {
+            // Check individual bad maps
+            for (int badMap : badMaps) {
+                if (playerMap == badMap) {
+                    isBadMap = true;
+                    break;  // No need to check further once we find a match
+                }
             }
         }
 
