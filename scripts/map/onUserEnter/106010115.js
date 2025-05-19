@@ -1,13 +1,13 @@
 // AdventureMS Standard Map Script
 
 var quest = 1028;
-var start = false;
-var end = true;
+var startQuest = false;
+var endQuest = true;
 
 // Standard Map Script Start
 function start(ms)
 {
-    if (start)
+    if (startQuest)
     {
         if (ms.getQuestStatus(quest) === 0)
         {
@@ -15,7 +15,7 @@ function start(ms)
         }
     }
 
-    else if (end)
+    else if (endQuest)
     {
         if (ms.getQuestStatus(quest) <= 1)
         {
