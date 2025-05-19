@@ -3182,7 +3182,7 @@ public class Character extends AbstractCharacterObject {
                 levelUp(true);
 
                 // Recheck our level and stop leveling / reset exp if it should be zone locked or we are max level now
-                if (level == getMaxLevel() || (level == 10 && zoneprogress == 0) || (level == 23 && zoneprogress == 1) || level == 32)
+                if (level == getMaxLevel() || (level == 10 && zoneprogress == 0) || (level == 23 && zoneprogress == 1) || (level == 32 && zoneprogress == 2) || level == 47)
                 {
                     setExp(0);
                     updateSingleStat(Stat.EXP, 0);
@@ -6589,7 +6589,7 @@ public class Character extends AbstractCharacterObject {
         } else if (level == 30) {
             yellowMessage("You can job advance once you complete Zone 3! You will not lose SP for over leveling!");
         }
-        else if (level == 32) {
+        else if (level == 47) {
             yellowMessage("Your EXP has been LOCKED for the open beta!");
         }
     }

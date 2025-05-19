@@ -12,7 +12,8 @@ var categoryCompletionConfig = {
     "Pet Equipment": false,
     "Pets": false,
     "Potions": false,
-    "Stars / Bullets / Arrows": false
+    "Stars / Bullets / Arrows": false,
+    "Character Effects": false,
 };
 
 // Global Variables
