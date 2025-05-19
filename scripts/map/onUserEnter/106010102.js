@@ -1,6 +1,6 @@
 // AdventureMS Robin & Corine Dual Quest Start
 
-var quest = 99999;
+var quest = 100000;
 var startQuest = false;
 var endQuest = true;
 

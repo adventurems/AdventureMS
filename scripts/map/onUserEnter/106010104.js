@@ -1,8 +1,8 @@
-// AdventureMS Standard Map Script
+// AdventureMS Scon Custom Quest
 
-var quest = 1019;
-var startQuest = true;
-var endQuest = false;
+var quest = 100001;
+var startQuest = false;
+var endQuest = true;
 
 // Standard Map Script Start
 function start(ms)
