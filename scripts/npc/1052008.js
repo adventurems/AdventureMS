@@ -19,7 +19,7 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
             if (cm.canHold(4011007, 1))
             {
                 // Send Message
-                cm.sendNext("You found the chest! You eagerly break it open to find:\r\n#v5200002# 1,000,000 Mesos\r\n#v4011007# #t4011007#!");
+                cm.sendNext("You found the chest! You eagerly break it open to find:\r\n#v5200002# 1,000,000 Mesos\r\n#v4011007# #t4011007#");
             }
 
             // Their ETC inventory is full
@@ -59,9 +59,6 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
         cm.gainItem(3997006, -1) // Take the Map
         cm.gainMeso(1000000); // Mesos
         cm.gainExp(75000); // Exp
-
-        // Complete Quest
-        cm.completeQuest(1016);
 
         // Warp back to Kora
         cm.warp(100000203, "west00");
