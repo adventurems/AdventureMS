@@ -10,22 +10,15 @@ var dungeons2 = 5;
 
 function enter(pi)
 {
-
-    // Debugging
-    pi.getPlayer().yellowMessage("baseid: " + baseid + "Current Map: " + pi.getMapId());
-
     // They've already defeated the guardian, warp to outdoors
-    if (cm.getQuestStatus(1028) === 2)
+    if (pi.getQuestStatus(1028) === 2)
     {
         pi.playPortalSound();
         pi.warp(106010115, "in00");
         return true;
     }
-    else if (cm.getQuestStatus(1023) === 2) {dungeon2 = true;} // They've helped Vicious, they can now fight the real boss
+    else if (pi.getQuestStatus(1023) === 2) {dungeon2 = true;} // They've helped Vicious, they can now fight the real boss
     else {dungeon1 = true;} // They haven't helped Vicious yet, give the impossible bosses
-
-    // Debugging
-    pi.getPlayer().yellowMessage("baseid: " + baseid + "Current Map: " + pi.getMapId());
 
     // Check the base map
     if (pi.getMapId() === baseid)
