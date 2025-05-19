@@ -4,7 +4,7 @@ function enter(pi)
 {
     var curMap = pi.getPlayer().getMap().getId();
 
-    if (pi.getPlayer().checkQuestGear(1026))
+    if (pi.getPlayer().checkQuestGear(1032))
     {
         pi.playPortalSound();
 

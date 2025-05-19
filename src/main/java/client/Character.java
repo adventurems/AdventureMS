@@ -9046,7 +9046,7 @@ public class Character extends AbstractCharacterObject {
         // Figure out what to check
         switch (questId)
         {
-            case 1026:
+            case 1032:
             {
                 // Create Item Instance
                 Item item = getInventory(InventoryType.EQUIPPED).getItem((short) -17);
@@ -9057,7 +9057,7 @@ public class Character extends AbstractCharacterObject {
                     int itemId = item.getItemId();
 
                     // Check for Lost In Time
-                    if (itemId == 1122901)
+                    if (itemId == 1122901 && getQuestStatus(questId) < 2)
                     {
                         questGear = true;
                     }

@@ -34,9 +34,16 @@ function start()
     }
 
     // They've already looted the chest
-    else
+    else if (cm.getQuestStatus(1016) === 2)
     {
         cm.sendOk("You've already looted the chest!");
+        cm.dispose();
+    }
+
+    // They haven't started the Hill quest yet and don't have the map
+    else
+    {
+        cm.sendOk("You haven't traded for the map from #bHill#k yet!");
         cm.dispose();
     }
 }
