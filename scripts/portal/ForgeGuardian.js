@@ -40,7 +40,7 @@ function enter(pi)
                     if(pi.startDungeonInstance(dungeonid1 + i))
                     {
                         pi.playPortalSound();
-                        pi.warp(dungeonid1 + i, "out00");
+                        pi.warp(dungeonid1 + i, "in00");
                         pi.playerMessage(5, "The Forge Guardian is protecting the Forge!");
                         pi.resetMapObjects(dungeonid1 + i);
                         pi.spawnMonster(8644814, -1024, -479);
@@ -60,7 +60,7 @@ function enter(pi)
                     if(pi.startDungeonInstance(dungeonid2 + i))
                     {
                         pi.playPortalSound();
-                        pi.warp(dungeonid2 + i, "out00");
+                        pi.warp(dungeonid2 + i, "in00");
                         pi.playerMessage(5, "The Forge Guardians are blocking the way!");
                         pi.resetMapObjects(dungeonid2 + i);
                         pi.spawnMonster(8644815, -1069, -46);
