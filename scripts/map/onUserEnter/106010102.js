@@ -1,8 +1,8 @@
 // AdventureMS Robin & Corine Dual Quest Start
 
-var quest = 1014;
-var startQuest = true;
-var endQuest = false;
+var quest = 99999;
+var startQuest = false;
+var endQuest = true;
 
 // Standard Map Script Start
 function start(ms)
@@ -11,7 +11,7 @@ function start(ms)
     {
         if (ms.getQuestStatus(quest) === 0)
         {
-            ms.openNpc(9800028);
+            ms.startQuest(quest);
         }
     }
 
