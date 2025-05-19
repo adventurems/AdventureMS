@@ -23,7 +23,7 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
             // They don't have the items
             else
             {
-                cm.sendOk("No gear yet? Surely a capable adventurer such as yourself is going to deliver! Is #bRobin#k trying to make you feel all good inside? Don't pay any attention... I'm not convinced she isn't a witch!");
+                cm.sendOk("Hey Beautiful! It's alright you don't have the gear yet. I'm waiting for you ;)! Is #bRobin#k trying to make you feel all good inside? Don't pay any attention... I'm not convinced she isn't a witch!");
                 cm.dispose();
             }
         }
@@ -53,7 +53,7 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
         if (buyGloveRecipe)
         {
             // Check that they have enough mesos
-            if (cm.getMeso >= recipePrice)
+            if (cm.getMeso() >= recipePrice)
             {
                 // Check that they can hold it
                 if (cm.canHold(4007033))

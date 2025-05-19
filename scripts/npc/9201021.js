@@ -53,7 +53,7 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
         if (buyGloveRecipe)
         {
             // Check that they have enough mesos
-            if (cm.getMeso >= recipePrice)
+            if (cm.getMeso() >= recipePrice)
             {
                 // Check that they can hold it
                 if (cm.canHold(4007033))
