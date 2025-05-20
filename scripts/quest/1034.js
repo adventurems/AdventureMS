@@ -43,6 +43,7 @@ function end(mode, type, selection) { if (mode === 1) {status++;} else {status--
         qm.gainItem(4007030, -1); // Take heart
         qm.gainItem(1142205, 1); // Gain medal
         qm.gainExp(150000); // Gain exp
+        qm.completeQuest(1034); // Complete quest
         qm.getPlayer().updateZoneProgress(); // increase zone progress
         qm.sendOk("You did it! You solved the mysteries of the ruins. You crafted the #rHeart of the Forge#k, proved your worth as an aspiring forge master and conquered #bZone 4#k!");
         qm.dispose();
