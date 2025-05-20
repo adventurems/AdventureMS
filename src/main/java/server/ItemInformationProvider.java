@@ -622,8 +622,12 @@ public class ItemInformationProvider {
         return type[cat - 30];
     }
 
+    private static double testYourLuck(double prop, int dices) {   // revamped testYourLuck author: David A.
+        return Math.pow(1.0 - prop, dices);
+    }
+
     public static boolean rollSuccessChance(double propPercent) {
-        return Math.random() >= propPercent / 100.0;
+        return Math.random() >= testYourLuck(propPercent / 100.0, YamlConfig.config.server.SCROLL_CHANCE_ROLLS);
     }
 
     private static short getMaximumShortMaxIfOverflow(int value1, int value2) {
