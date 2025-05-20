@@ -19,7 +19,7 @@ function end(mode, type, selection) { if (mode === 1) {status++;} else {status--
         {
             if (qm.canHold(1142205))
             {
-                qm.sendNext("The heart! You have it. Let me see it, quick!\\n\\n(#bMoki#k holds it against the black heart, pulls back his arm, hammer in hand and gently taps the heart with his eyes closed. He and the heart begin to glow. Nothing happens, but then... you hear a feint noise...)\\n\\n(It starts slow and quiet................ thump............... thump........... thump...... thump.. thump)\\n\\n(It builds up and the room begins to swirl! The heart breaks free from it's black casing. The glass shards shatter all around you. As you open your eyes, you are greeted with a beautiful blue shine. The heart lives on and the #Manaforge#k lives once more!!!)");
+                qm.sendNext("The heart! You have it. Let me see it, quick!\r\n\r\n(#bMoki#k holds it against the black heart, pulls back his arm, hammer in hand and gently taps the heart with his eyes closed. He and the heart begin to glow. Nothing happens, but then... you hear a feint noise...)\r\n\r\n(It starts slow and quiet................ thump............... thump........... thump...... thump.. thump)\r\n\r\n(It builds up and the room begins to swirl! The heart breaks free from it's black casing. The glass shards shatter all around you. As you open your eyes, you are greeted with a beautiful blue shine. The heart lives on and the #bManaforge#k lives once more!!!)");
             }
 
             else
