@@ -1,5 +1,7 @@
 // AdventureMS Scon
 
+var questStart = false;
+
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
 function action(mode, type, selection) { if (mode == 1) {status++;} else {status--;} if (status == -1) {cm.dispose();}
@@ -8,7 +10,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
     else if (status == 0)
     {
         // Check if they have completed the quest
-        if (cm.getQuestStatus(1019) < 2)
+        if (cm.getQuestStatus(1019) === 1)
         {
             // Get the items from the inventory
             var zeroStatItems = cm.getPlayer().checkItemsWithZeroStats();
@@ -49,6 +51,13 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 cm.dispose();
             }
         }
+
+        else if (cm.getQuestStatus(1019) === 0)
+        {
+            cm.startQuest(1019);
+            questStart = true;
+            cm.sendNext("Hello friend.\r\n\r\nI am Scon.\r\n\r\nI am your friend.\r\n\r\n(why is he talking like this? \"Hey Scon, I'm #h #\")\r\n\r\nOh? You speak the same language as me? Haha, that's great! I wasn't sure since I'm not from around here. This will make negotiations easy then.");
+        }
         
         // They have completed the quest
         else 
@@ -60,25 +69,42 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
     // After pressing yes/next
     else if (status == 1)
     {
-        // Send message
-        cm.sendOk("#eYES! ULTIMATE POWER!#n\r\n\r\n... ...\r\n\r\nWait a minute, I don't feel any stronger, I need to head back home to experience the power...\r\n\r\n" +
-            "Well, a deals a deal. Take this #rMaple Leaf#k!");
-        
-        // Gain Maple Leaf
-        cm.gainItem(4001126, 1);
-
-        // Give Exp
-        cm.gainExp(90000);
-        
-        // Remove the items from the inventory
-        var equip = cm.getPlayer().getInventory(1);
-        for (var i = 0; i < zeroStatItems.size(); i++)
+        // First time chatting
+        if (questStart)
         {
-            var item = zeroStatItems.get(i);
-            equip.removeItem(item.get("slot"), 1);
+            cm.sendNext("You see, where I'm from. You get stronger by having bad gear, and I mean really bad. Doesn't make sense, right?\r\n\r\nIt used to be the same as here, but everyone got so strong, the Maple gods, flipped the tables on us and started rewarding casual players. Who knew?\r\n\r\nSo now, I've come here. To an earlier time where the gear ain't so great, ya know?\r\n\r\n(that one stings a little, but okay)\r\n\r\nCould you find me some of the worst possible gear? I mean #rterrible#k gear. These items should roll with #r0 main stats#k on them... I need the following items:\r\n\r\n#e1.#n #rBronze Ring#k\r\n#e2.#n #rWhite Gomushin#k\r\n#e3.#n #rWork Gloves#k\r\n\r\nCould you find those for me? I've got a rare item to trade for in-return.");
         }
-        
-        // Kill Convo
+
+        // Normal interaction
+        else
+        {
+            // Send message
+            cm.sendOk("#eYES! ULTIMATE POWER!#n\r\n\r\n... ...\r\n\r\nWait a minute, I don't feel any stronger, I need to head back home to experience the power...\r\n\r\n" +
+                "Well, a deals a deal. Take this #rMaple Leaf#k!");
+
+            // Gain Maple Leaf
+            cm.gainItem(4001126, 1);
+
+            // Give Exp
+            cm.gainExp(90000);
+
+            // Remove the items from the inventory
+            var equip = cm.getPlayer().getInventory(1);
+            for (var i = 0; i < zeroStatItems.size(); i++)
+            {
+                var item = zeroStatItems.get(i);
+                equip.removeItem(item.get("slot"), 1);
+            }
+
+            // Kill Convo
+            cm.dispose();
+        }
+    }
+
+    // Quest Start
+    else if (status == 2)
+    {
+        cm.sendOk("Alright, come chat when you have the \"bads\". Ha, see what I did there?");
         cm.dispose();
     }
 }

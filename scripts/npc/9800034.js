@@ -7,7 +7,8 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
     // Initial Click
     else if (status === 0)
     {
-        cm.sendOk("Hello, I'm Shawn. I'm here to help you with your quests. If you have any questions, please ask me.");
+        cm.sendOk("Wow, we've been at this for some time. We help explorer after explorer try to tackle the ruins. Not many make it though...\r\n\r\n" +
+        "You look like you have a good shot. Keep your head up and get to training!\r\n\r\n#eI hear Adventure is thinking about an exchange quest for this zone. What do you think?#n");
         cm.dispose();
     }
 

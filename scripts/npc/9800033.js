@@ -7,7 +7,8 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
     // Initial Click
     else if (status === 0)
     {
-        cm.sendOk("Hello, I'm Nuris. I'm here to help you with your quests. If you have any questions, please ask me.");
+        cm.sendOk("Well, what do you know. Another adventurer, thinking they are so smart and capable. They don't call me a scientist for nothing, ya know?\r\n\r\n" +
+        "I will admit, however, there are some that come through, quick thinking little whipper snappers. Is that you by chance? I guess we'll see.\r\n\r\nI'll help you out, just a bit. There are some some different colored snakes in that #rcave#k on the other side of the room.");
         cm.dispose();
     }
 
