@@ -7,9 +7,19 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
     // Initial Click
     else if (status === 0)
     {
-        cm.sendOk("Hello, I'm Shuang. I lead the expedition here at the #bManaforge#k. I work closely with #bMoki#k the forge master.\r\n\r\n" +
-        "The forge is not well these days. The heart has turned black and the the automatons run rampant across the land. Hopefully you are the one we need. So many others have come and fall before you.");
-        cm.dispose();
+        if (cm.getQuestStatus(1034) < 2)
+        {
+            cm.sendOk("Hello, I'm Shuang. I lead the expedition here at the #bManaforge#k. I work closely with #bMoki#k the forge master.\r\n\r\n" +
+                "The forge is not well these days. The heart has turned black and the the automatons run rampant across the land. Hopefully you are the one we need. So many others have come and fall before you.");
+            cm.dispose();
+        }
+
+        // They cleared the forge already
+        else
+        {
+            cm.sendOk("You did it, you saved the #bManaforge#k and saved these lands!\r\n\r\nMake sure you take your time to solve all the mysteries!");
+            cm.dispose();
+        }
     }
 
     // After pressing yes/next
