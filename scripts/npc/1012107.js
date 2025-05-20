@@ -42,7 +42,6 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         {
             if (cm.getParty() == null)
             {
-                /*
                 // Cancel Buffs
                 cm.getPlayer().cancelAllBuffs(false);
 
@@ -62,7 +61,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
                     // Apply the SEAL debuff to the player using Disease (not MobSkillType)
                     cm.getPlayer().giveDebuff(sealDisease, sealMobSkill); // Pass Disease (not MobSkillType) to giveDebuff
-                }*/
+                }
 
                 if (!em.startInstance(cm.getPlayer()))
                 {
