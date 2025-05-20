@@ -1,4 +1,4 @@
-// AdventureMS Default ETC Reactor
+// AdventureMS Default Monster Spawn
 const PacketCreator = Java.type('tools.PacketCreator');
 
 function act()
