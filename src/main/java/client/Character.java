@@ -6265,7 +6265,7 @@ public class Character extends AbstractCharacterObject {
         int expectedSp = getJobLevelSp(level - 10, newJob, GameConstants.getJobBranch(newJob));
 
         // AdventureMS Custom - Handle additional SP checks
-        if (getLevel() >= 30 && ((newJob.getId() >= 100 && newJob.getId() < 200) || (newJob.getId() >= 300 && newJob.getId() < 600)))
+        if (getLevel() >= 30 && ((newJob.getId() >= 100 && newJob.getId() < 200) || (newJob.getId() >= 300 && newJob.getId() < 400) || (newJob.getId() >= 420 && newJob.getId() < 600)))
         {
             curSp -= 10;
         }
@@ -9011,6 +9011,29 @@ public class Character extends AbstractCharacterObject {
     {
         Item weapon_item = getInventory(InventoryType.EQUIPPED).getItem((short) -11);
         return weapon_item != null;
+    }
+
+    // AdventureMS Custom
+    public boolean isMeleeEquipped()
+    {
+        Item weapon_item = getInventory(InventoryType.EQUIPPED).getItem((short) -11);
+        if (weapon_item == null) {
+            return false;
+        }
+
+        final var weaponId = weapon_item.getItemId();
+
+        // Get the first three digits of the item ID
+        int firstThreeDigits = weaponId / 10000;
+
+        // Return false if the first three digits are 146, 145, 147, or 149
+        if (firstThreeDigits == 146 || firstThreeDigits == 145 || 
+            firstThreeDigits == 147 || firstThreeDigits == 149) {
+            return false;
+        }
+
+        // For all other weapon types, return true
+        return true;
     }
 
     // AdventureMS Custom

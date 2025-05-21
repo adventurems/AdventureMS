@@ -10,7 +10,7 @@ let bossId = 3300008;
 
 // Default Dungeon Information
 const isPq = true;
-let eventTime = 5; // 5 minutes
+let eventTime = 10; // 5 minutes
 const minPlayers = 1, maxPlayers = 6;
 const minLevel = 1, maxLevel = 255;
 
@@ -50,7 +50,7 @@ function setup(level, lobbyid, monsterId, mapId)
                 [2901,97, 6],   // Platform 4
                 [2256,182, 5],   // Platform 5
                 [1985,98, 5],   // Platform 6
-                [1938,-109, 10],  // Platform 7
+                [1938,-20, 10],  // Platform 7
                 [1903,-210, 7]   // Platform 8
             ]],
 

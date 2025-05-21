@@ -67,7 +67,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         }
     }
     // After pressing yes/next
-    else if (status == 1)
+    else if (status === 1)
     {
         // First time chatting
         if (questStart)
@@ -78,23 +78,33 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // Normal interaction
         else
         {
+            // Import Java Class
+            const InventoryType = Java.type('client.inventory.InventoryType');
+
+            // Get the items from the inventory
+            var zeroStatItems = cm.getPlayer().checkItemsWithZeroStats();
+
+            // Remove the items
+            for (var i = 0; i < zeroStatItems.size(); i++) {
+                var itemMap = zeroStatItems.get(i);
+                var slot = itemMap.get("slot");
+
+                // Get the actual Item object from the inventory using the slot
+                var item = cm.getPlayer().getInventory(InventoryType.EQUIP).getItem(slot);
+
+                // Now pass the Item object to removeEquipFromInventory
+                cm.removeEquipFromInventory(item);
+            }
+
             // Send message
             cm.sendOk("#eYES! ULTIMATE POWER!#n\r\n\r\n... ...\r\n\r\nWait a minute, I don't feel any stronger, I need to head back home to experience the power...\r\n\r\n" +
                 "Well, a deals a deal. Take this #rMaple Leaf#k!");
 
-            // Gain Maple Leaf
-            cm.gainItem(4001126, 1);
-
-            // Give Exp
-            cm.gainExp(90000);
-
-            // Remove the items from the inventory
-            var equip = cm.getPlayer().getInventory(1);
-            for (var i = 0; i < zeroStatItems.size(); i++)
-            {
-                var item = zeroStatItems.get(i);
-                equip.removeItem(item.get("slot"), 1);
-            }
+            cm.gainItem(4001126, 1);  // Gain Maple Leaf
+            cm.gainExp(90000); // Give Exp
+            cm.gainFame(3); // Give Fame
+            cm.gainItem(5220010, 2); // Two chair gachapon tickets
+            cm.completeQuest(1019); // Complete Quest
 
             // Kill Convo
             cm.dispose();

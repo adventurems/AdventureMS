@@ -1004,6 +1004,16 @@ public class AbstractPlayerInteraction {
     }
 
     // AdventureMS Custom
+    public void removeEquipFromInventory(Item item)
+    {
+        final int itemId = item.getItemId();
+
+        // Get the inventory type
+        final var inventoryType = ItemConstants.getInventoryType(itemId);
+        InventoryManipulator.removeFromSlot(c, inventoryType, item.getPosition(), (short) 1, false);
+    }
+
+    // AdventureMS Custom
     public int addItemFromBuyback(Object equip)
     {
         // Make sure it can be type cast
