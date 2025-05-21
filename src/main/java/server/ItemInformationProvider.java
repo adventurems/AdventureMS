@@ -1363,6 +1363,7 @@ public class ItemInformationProvider {
         equip.setMdef(getRandStatWithStimulant(equip.getMdef(), 3));
         equip.setHp(getRandStatWithStimulant(equip.getHp(), 3));
         equip.setMp(getRandStatWithStimulant(equip.getMp(), 3));
+
         return equip;
     }
 
@@ -2348,7 +2349,7 @@ public class ItemInformationProvider {
         return fee;
     }
 
-    public int getMakerStimulant(int itemId) {  // thanks to Arnah
+    public int getMakerStimulant(int itemId) {
         Integer itemid = makerCatalystCache.get(itemId);
         if (itemid != null) {
             return itemid;
@@ -2356,12 +2357,13 @@ public class ItemInformationProvider {
 
         itemid = -1;
         for (Data md : etcData.getData("ItemMake.img").getChildren()) {
-            Data me = md.getChildByPath(StringUtil.getLeftPaddedStr(Integer.toString(itemId), '0', 8));
-
-            if (me != null) {
-                itemid = DataTool.getInt(me.getChildByPath("catalyst"), -1);
-                break;
+            for (Data category : md.getChildren()) {
+                if (category.getName().equals(Integer.toString(itemId))) {
+                    itemid = DataTool.getInt(category.getChildByPath("catalyst"), -1);
+                    break;
+                }
             }
+            if (itemid != -1) break;
         }
 
         makerCatalystCache.put(itemId, itemid);

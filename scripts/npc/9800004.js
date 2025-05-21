@@ -33,11 +33,12 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             cm.dispose();
         }
 	}
+
 	// Status 1
 	else if (status == 1)
 	{
 	    // Check to see if they have their weapon unequiped
-	    if (cm.getPlayer().isWeaponEquipped() === 0)
+	    if (cm.getPlayer().isWeaponEquipped() === false)
 	    {
 	        // Check to see if they already have the key shaft
 	        if (!cm.haveItem(3996009) && !cm.haveItem(3997002))

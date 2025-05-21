@@ -379,7 +379,9 @@ public class MakerProcessor {
     {
         // Create an Item by ID (make sure it's a real item)
         Item item = ii.getEquipById(itemid);
-        if (item == null) {return false;}
+        if (item == null) {
+            return false;
+        }
 
         // Cast the item to an equip
         Equip eqp = (Equip) item;

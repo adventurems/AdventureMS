@@ -6291,11 +6291,8 @@ public class Character extends AbstractCharacterObject {
         return spUsed;
     }
 
-    private int getJobLevelSp(int level, Job job, int jobBranch) {
-        if (getJobStyleInternal(job.getId(), (byte) 0x40) == Job.MAGICIAN) {
-            level += 2;  // starts earlier, level 8
-        }
-
+    private int getJobLevelSp(int level, Job job, int jobBranch)
+    {
         return 3 * level + GameConstants.getChangeJobSpUpgrade(jobBranch);
     }
 
@@ -9010,7 +9007,9 @@ public class Character extends AbstractCharacterObject {
     public boolean isWeaponEquipped()
     {
         Item weapon_item = getInventory(InventoryType.EQUIPPED).getItem((short) -11);
-        return weapon_item != null;
+
+        if (weapon_item == null) {return false;}
+        else {return true;}
     }
 
     // AdventureMS Custom
