@@ -130,7 +130,7 @@ public class MakerProcessor {
                     if (ItemConstants.isEquipment(toCreate)) {   // only equips uses stimulant and reagents
                         if (p.readByte() != 0) {  // stimulant
                             stimulantid = ii.getMakerStimulant(toCreate);
-                            if (!c.getAbstractPlayerInteraction().haveItem(stimulantid) || !isValidCatalyst(stimulantid)) {
+                            if (!c.getAbstractPlayerInteraction().haveItem(stimulantid)) {
                                 stimulantid = -1;
                             }
                         }
@@ -249,6 +249,7 @@ public class MakerProcessor {
                             if (cost > 0) {
                                 c.getPlayer().gainMeso(-cost, false);
                             }
+
                             makerSucceeded = addBoostedMakerItem(c, toCreate, stimulantid, reagentids);
                         }
 
@@ -272,11 +273,6 @@ public class MakerProcessor {
                 c.releaseClient();
             }
         }
-    }
-
-    // AdventureMS Custom - Catalyst Validation
-    private static boolean isValidCatalyst(int itemId) {
-        return ItemConstants.isCatalyst(itemId);
     }
 
     // checks and prevents hackers from PE'ing Maker operations with invalid operations

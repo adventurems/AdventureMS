@@ -235,9 +235,4 @@ public final class ItemConstants {
     public static boolean isHair(int itemId) {
         return itemId >= 30000 && itemId < 35000;
     }
-
-    // AdventureMS Custom
-    public static boolean isCatalyst(int itemId) {
-        return itemId / 1000 == 4130;
-    }
 }
