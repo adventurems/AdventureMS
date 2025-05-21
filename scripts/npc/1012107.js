@@ -7,31 +7,21 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
 
     if (status === 0)
     {
-        if (cm.getQuestStatus(1021) === 1)
+        // Set the Event
+        em = cm.getEventManager("TheFarmEvent");
+
+        // Error Checking
+        if (em == null)
         {
-            // Set the Event
-            em = cm.getEventManager("TheFarmEvent");
-
-            // Error Checking
-            if (em == null)
-            {
-                cm.sendOk("The Farm has encountered an error. Please report this in the bugs section of #bDiscord#k!");
-                cm.dispose();
-                return;
-            }
-
-            // Send first message
-            cm.sendSimple("Hey #h #!\r\n\r\n My grandma and I think you are ready to get your first pet skill! I can teach your pet to be super fast my like hedgehog, Sonic." +
-                "\r\n\r\n#eKeep in mind, this is the ONLY pet that will get this skill (for now).#n\r\n\r\nAll you gotta do is bonk those chickens as fast as you can and get the #rgolden egg#k before time runs out. It's best to use a melee weapon for this test! You think you can do that?\r\n\r\n" +
-                "#L0#I'm ready to give it a go!#l\r\n#L1#Hmmm, not quite yet, I'll be back!#l");
-        }
-
-        // No active quests right now
-        else
-        {
-            cm.sendOk("Doesn't seem like there is anything I can teach you right now! Get back out there and start training!");
+            cm.sendOk("The Farm has encountered an error. Please report this in the bugs section of #bDiscord#k!");
             cm.dispose();
+            return;
         }
+
+        // Send first message
+        cm.sendSimple("Hey #h #!\r\n\r\n My grandma can teach your pet to be super fast like my hedgehog, Sonic." +
+            "\r\n\r\n#eKeep in mind, this is the ONLY pet that will get this skill. You'll have to get an egg each time you want a fast pet!#n\r\n\r\nAll you gotta do is bonk those chickens as fast as you can and get the #rgolden egg#k before time runs out. You have to use a melee weapon for this test! You think you can do that?\r\n\r\n" +
+            "#L0#I'm ready to give it a go!#l\r\n#L1#Hmmm, not quite yet, I'll be back!#l");
     }
 
     // They made a choice
@@ -44,7 +34,7 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
             if (cm.getParty() == null)
             {
                 // Melee Check
-                if (cm.getPlayer.isMeleeEquipped())
+                if (cm.getPlayer().isMeleeEquipped())
                 {
                     // Cancel Buffs
                     cm.getPlayer().cancelAllBuffs(false);

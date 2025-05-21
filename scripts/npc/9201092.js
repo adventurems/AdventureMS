@@ -16,11 +16,48 @@ var categoryCompletionConfig = {
     "Character Effects": false,
 };
 
+// Import Java classes
+const InventoryType = Java.type('client.inventory.InventoryType');
+
 // Global Variables
 var turnIn = false; // Used for the first option which is to turn in items
+var seeCollection = false; // Used for the second option which is to see the collection
 var newCollector = false; // Used to track collector status
 var collectableItems = []; // Creates an array of itemids that we have and can be turned in
 var selectionSlot = -1;
+var selectedCategory = ""; // Used to store the selected category for collection view
+var categoryList = []; // Used to store the list of categories for selection
+
+// Helper function to check if player has any collecting ring (in inventory or equipped)
+function hasAnyCollectingRing() {
+    // Array of all collecting ring IDs
+    var ringIds = [1112930, 1112932, 1112933, 1112934, 1112935, 1112936,
+                  1112937, 1112938, 1112939, 1112940, 1112941];
+
+    // Check if player has any of the rings in inventory
+    for (var i = 0; i < ringIds.length; i++) {
+        if (cm.haveItem(ringIds[i])) {
+            return true;
+        }
+    }
+
+    // Check if player has any of the rings equipped in slots -12, -13, -15, -16
+    var ringSlots = [-12, -13, -15, -16];
+    for (var j = 0; j < ringSlots.length; j++) {
+        var item = cm.getPlayer().getInventory(InventoryType.EQUIPPED).getItem(ringSlots[j]);
+        if (item != null) {
+            var itemId = item.getItemId();
+            // Check if this equipped item is one of the collecting rings
+            for (var k = 0; k < ringIds.length; k++) {
+                if (itemId == ringIds[k]) {
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
+}
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
@@ -32,7 +69,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // Check the status of the quest, have they chatted with the collector before?
         if(cm.getQuestStatus(1006) < 2)
         {
-            // Check if they can hold a ring
+            // Check if they can hold the base collecting ring
             if (cm.canHold(1112930))
             {
                 // Update quest status
@@ -51,27 +88,27 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 // They are not new, but this is the first time they've chatted with the collector on this character
                 else
                 {
-                    // Check if they have a ring somehow, and grant them one if they don't
-                    if (!cm.haveItem(1112930))
+                    // Check if they have any collecting ring, and grant them the base ring if they don't
+                    if (!hasAnyCollectingRing())
                     {
                         cm.gainItem(1112930, 1);
                         cm.sendOk("Hmmmm, you seem familiar...\r\n\r\nAh, yes, I see now. We've interacted before on one of your other alias'. That's gotta be it.\r\n\r\nI suppose you want a ring on this character as well then? I can do that for ya...");
                         cm.dispose();
                     }
 
-                    // First time chatting, and they have a ring already? Cheating probably
+                    // First time chatting, and they have a collecting ring already? Cheating probably
                     else
                     {
-                        cm.sendOk("Hold on, you seem familiar...\r\n\r\nYes, we've interacted on another character of yours. Yet this is the first time we've chatted on this character, and you somehow have a ring already.\r\n\r\nHow might I ask?");
+                        cm.sendOk("Hold on, you seem familiar...\r\n\r\nYes, we've interacted on another character of yours. Yet this is the first time we've chatted on this character, and you somehow have a collecting ring already.\r\n\r\nHow might I ask?");
                         cm.dispose();
                     }
                 }
             }
 
-            // They don't have room for a ring.
+            // They don't have room for the base collecting ring.
             else
             {
-                cm.sendOk("I'd like to give you something nice, but you don't have any room in your EQP tab. Please make room!");
+                cm.sendOk("I'd like to give you the base collecting ring, but you don't have any room in your EQP tab. Please make room!");
                 cm.dispose();
             }
         }
@@ -79,7 +116,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         else
         {
             // Send selection message
-            cm.sendSimple("What would you like to do?\r\n\r\n #L0# Trade in items #l \r\n #L1# See my collection(s) #l \r\n #L2# Upgrade my ring #l");
+            cm.sendSimple("#e#rREMINDER:#k#n Your collection is account wide!\r\n\r\nWhat would you like to do?\r\n\r\n #L0# Trade in items #l \r\n #L1# See my collection(s) #l \r\n #L2# Upgrade my ring #l");
         }
 
         // If we get here, set it to false
@@ -87,7 +124,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
     }
 
     // They've chosen a selection
-    else if (status == 1)
+    else if (status === 1)
     {
         // Check if this is a brand new account interacting with the collector
         if (newCollector)
@@ -95,8 +132,8 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Send Message
             cm.sendOk("You've been registered as a collector!\r\n\r\nJust sign here, little blood oughta do. What? I mean ink, yeah, just ink...\r\n\r\nHere's your #rCollecting Ring#k!  Get out there and collect #rthings#k!!!");
 
-            // Check if they have a ring somehow, and grant them one if they don't
-            if (!cm.haveItem(1112930))
+            // Check if they have any collecting ring, and grant them the base ring if they don't
+            if (!hasAnyCollectingRing())
             {
                 cm.gainItem(1112930, 1);
             }
@@ -105,7 +142,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         }
 
         // They want to trade items
-        if (selection == 0 || turnIn == true)
+        if (selection === 0 || turnIn === true)
         {
             // Initialize arrays
             var missingItems = cm.getPlayer().getCollectorMissing();
@@ -147,88 +184,36 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         }
 
         // They want to see their collection
-        if (selection == 1)
+        if (selection === 1)
         {
             // Import the CollectorItemsProvider
             const CollectorItemsProvider = Java.type('server.CollectorItemsProvider');
 
-            // Get all missing items
-            var missingItems = cm.getPlayer().getCollectorMissing();
-
-            // Convert missing items to a Map for efficient lookup
-            var missingMap = {};
-            for (var i = 0; i < missingItems.length; i++) {
-                missingMap[missingItems[i]] = true;
-            }
-
             // Get all categories and their items from CollectorItemsProvider
             var categoryItems = CollectorItemsProvider.getInstance().getAllCategorizedItems();
 
-            // Store counts
-            var totalEntries = 0;
-            var completeEntries = 0;
+            // Create a list of selections based on available categories
+            var message = "Which collection would you like to view?\r\n\r\n";
+            var selectionIndex = 0;
 
-            // Create a string for each category
-            var categoryStrings = {};
-            var categoryCompletionStatus = {};
+            // Clear the category list
+            categoryList = [];
 
-            // Iterate through each category
-            var categories = categoryItems.keySet().toArray();
-            for (var i = 0; i < categories.length; i++) {
-                var category = categories[i];
-                var items = categoryItems.get(category);
-
-                // Initialize the category string with the category name
-                categoryStrings[category] = "\r\n\r\n#e" + category + "#n";
-
-                // Track completion status for this category
-                var categoryTotal = 0;
-                var categoryComplete = 0;
-
-                // Iterate through each item in the category
-                for (var j = 0; j < items.size(); j++) {
-                    var itemId = items.get(j);
-                    totalEntries++;
-                    categoryTotal++;
-
-                    // Check if the item is missing
-                    var isComplete = !missingMap[itemId];
-                    if (isComplete) {
-                        completeEntries++;
-                        categoryComplete++;
-                    }
-
-                    // Add the item to the category string
-                    categoryStrings[category] += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (isComplete ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
-                }
-
-                // Check if the category is complete
-                categoryCompletionStatus[category] = (categoryComplete === categoryTotal);
-
-                // Add completion status to the category header if complete
-                if (categoryCompletionStatus[category]) {
-                    var headerEnd = categoryStrings[category].indexOf("\r\n\t");
-                    if (headerEnd !== -1) {
-                        categoryStrings[category] = "\r\n\r\n#e" + category + " #b(COMPLETE)#k#n" + categoryStrings[category].substring(headerEnd);
-                    }
+            // Iterate through categoryCompletionConfig to maintain order
+            for (var category in categoryCompletionConfig) {
+                // Check if this category exists in the categoryItems
+                if (categoryItems.containsKey(category)) {
+                    message += "#L" + selectionIndex + "# " + category + " #l\r\n";
+                    categoryList.push(category); // Store the category in our list
+                    selectionIndex++;
                 }
             }
 
-            // Calculate progress
-            var collectorProgress = Math.round((completeEntries / totalEntries) * 100);
+            // Set the seeCollection flag to true
+            seeCollection = true;
 
-            // Build the final string
-            var defaultString = "#e#bTotal Progress#k\r\n#B" + collectorProgress + "# (" + collectorProgress + "%)#n\r\n\r\nBelow you will find the status on all the collectable items in the game!\r\n";
-            var finalString = defaultString;
-
-            // Add each category string to the final string
-            for (var i = 0; i < categories.length; i++) {
-                finalString += categoryStrings[categories[i]];
-            }
-
-            // Send the finalized message
-            cm.sendOk(finalString);
-            cm.dispose();
+            // Send the message with category selections
+            cm.sendSimple(message);
         }
 
         // They want to upgrade their ring
@@ -379,6 +364,13 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
      else if (status == 2)
      {
+         // They selected a category to view
+         if (seeCollection)
+         {
+             // Store the selected category
+             selectedCategory = categoryList[selection];
+         }
+
          // They chose to add items to their collection
          if (turnIn)
          {
@@ -415,6 +407,87 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
 
              // Send the final text with a Next button instead of OK
              cm.sendNext(defaultString);
+         }
+
+         if (seeCollection)
+        {
+            // Import the CollectorItemsProvider
+            const CollectorItemsProvider = Java.type('server.CollectorItemsProvider');
+
+            // Get all missing items
+            var missingItems = cm.getPlayer().getCollectorMissing();
+
+            // Convert missing items to a Map for efficient lookup
+            var missingMap = {};
+            for (var i = 0; i < missingItems.length; i++) {
+                missingMap[missingItems[i]] = true;
+            }
+
+            // Get all categories and their items from CollectorItemsProvider
+            var categoryItems = CollectorItemsProvider.getInstance().getAllCategorizedItems();
+
+            // Store counts
+            var totalEntries = 0;
+            var completeEntries = 0;
+
+            // Create a string for the selected category
+            var categoryString = "";
+            var categoryCompletionStatus = false;
+
+            // Get the items for the selected category
+            var items = categoryItems.get(selectedCategory);
+
+            if (items) {
+                // Initialize the category string with the category name
+                categoryString = "\r\n\r\n#e" + selectedCategory + "#n";
+
+                // Track completion status for this category
+                var categoryTotal = 0;
+                var categoryComplete = 0;
+
+                // Iterate through each item in the category
+                for (var j = 0; j < items.size(); j++) {
+                    var itemId = items.get(j);
+                    totalEntries++;
+                    categoryTotal++;
+
+                    // Check if the item is missing
+                    var isComplete = !missingMap[itemId];
+                    if (isComplete) {
+                        completeEntries++;
+                        categoryComplete++;
+                    }
+
+                    // Add the item to the category string
+                    categoryString += "\r\n\t#v" + itemId + "# #t" + itemId + "#: " + (isComplete ? "#bCOMPLETE#k" : "#rINCOMPLETE#k");
+                }
+
+                // Check if the category is complete
+                categoryCompletionStatus = (categoryComplete === categoryTotal);
+
+                // Add completion status to the category header if complete
+                if (categoryCompletionStatus) {
+                    var headerEnd = categoryString.indexOf("\r\n\t");
+                    if (headerEnd !== -1) {
+                        categoryString = "\r\n\r\n#e" + selectedCategory + " #b(COMPLETE)#k#n" + categoryString.substring(headerEnd);
+                    }
+                }
+
+                // Calculate category progress
+                var categoryProgress = Math.round((categoryComplete / categoryTotal) * 100);
+
+                // Build the final string
+                var finalString = "#e#b" + selectedCategory + " Collection Progress#k\r\n#B" + categoryProgress + "# (" + categoryProgress + "%)#n\r\n\r\nBelow you will find the status of all items in the " + selectedCategory + " collection:\r\n";
+                finalString += categoryString;
+
+                // Send the finalized message
+                cm.sendOk(finalString);
+                cm.dispose();
+            } else {
+                // Category not found
+                cm.sendOk("Sorry, I couldn't find any information about the " + selectedCategory + " collection.");
+                cm.dispose();
+            }
          }
     }
 }
