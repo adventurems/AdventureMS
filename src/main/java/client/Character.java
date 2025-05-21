@@ -8993,17 +8993,17 @@ public class Character extends AbstractCharacterObject {
             }
         }
 
-        // Check if we found at least one of each required item ID
-        boolean foundAllRequiredItems = true;
+        // Check if we found at least one of the required item IDs
+        boolean foundAnyRequiredItem = false;
         for (boolean found : foundItems.values()) {
-            if (!found) {
-                foundAllRequiredItems = false;
+            if (found) {
+                foundAnyRequiredItem = true;
                 break;
             }
         }
 
-        // Only return the results if we found at least one of each required item ID
-        return foundAllRequiredItems ? results : new ArrayList<>();
+        // Return the results if we found at least one of the required item IDs
+        return foundAnyRequiredItem ? results : new ArrayList<>();
     }
 
     // AdventureMS Custom
