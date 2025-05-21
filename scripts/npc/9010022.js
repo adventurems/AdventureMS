@@ -17,18 +17,38 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
         // Loop through tokens array
         for (var i = 0; i < tokens.length; i++)
         {
+            // Debugging
+            cm.getPlayer().yellowMessage("Token " + tokens[i] + "| Quest " + quests[i] + "| Status: " + cm.getQuestStatus(quests[i]));
+
             // If we have a token in our possession and the corresponding quest isn't finished
-            if (cm.haveItem(tokens[i]) && cm.getQuestStatus(quests[i]) === 0)
+            if (cm.haveItem(tokens[i]) && cm.getQuestStatus(quests[i]) <= 2)
             {
-                // If we get here, the player has a token for a quest that's not completed
+                // Check if any quests are already complete (we've talked to him before) if so, give different text
+                var anyQuestComplete = false;
+                for (var k = 0; k < quests.length; k++) {
+                    if (cm.getQuestStatus(quests[k]) === 2) {
+                        anyQuestComplete = true;
+                        break;
+                    }
+                }
+
+                // They've turned in a token
+                if (anyQuestComplete)
+                {
+                    cm.sendOk("Ah, another #rWarp Token#k! I see you've already unlocked some warps before.\r\n\r\nYou know the drill - toss it in my mouth and I'll add another destination to your warp network!\r\n\r\nRemember, #e#rthe more warps you unlock, the more it costs to use them#k#n!\r\n\r\n*CHOMP* Mmm, delicious as always! Your new warp is ready to use!");
+                }
+
+                else
+                {
+                    cm.sendOk("Ooooooo, a #rWarp Token#k!\r\n\r\nWell, that's what your lot call 'em anyway. Us wardens call 'em super-tasty, incredibly-delicious, interdimensional biscuits! #r#eS.T.I.D.I.B#n#k's\r\n\r\nAnyway, here's how it works. You toss it in my mouth, yes, the portal is my mouth. I munch and crunch it up. Voila, you get a new fast warp!\r\n\r\nOh yeah, #e#rit costs mesos to warp#k#n! The cost goes up as you unlock more warps!\r\n\r\nThrow it in there! (Om nom nom 'crunch', 'munch'...)\r\n\r\nDelicious! Just like that, you get a new warp! Thanks!");
+                }
+
                 // Remove the item
                 cm.gainItem(tokens[i], -1);
 
                 // Complete the quest
                 cm.completeQuest(quests[i]);
 
-                // They've turned in a token
-                cm.sendOk("Ooooooo, a #rWarp Token#k!\r\n\r\nWell, that's what your lot call 'em anyway. Us wardens call 'em super-tasty, incredibly-delicious, interdimensional biscuits! #r#eS.T.I.D.I.B#n#k's\r\n\r\nAnyway, here's how it works. You toss it in my mouth, yes, the portal is my mouth. I munch and crunch it up. Voila, you get a new fast warp!\r\n\r\nOh yeah, #e#rit costs mesos to warp#k#n! The cost goes up as you unlock more warps!\r\n\r\nThrow it in there! (Om nom nom 'crunch', 'munch'...)\r\n\r\nDelicious! Just like that, you get a new warp! Thanks!");
                 cm.dispose();
                 return;
             }
