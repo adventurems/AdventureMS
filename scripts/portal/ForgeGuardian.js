@@ -10,6 +10,9 @@ var dungeons2 = 5;
 
 function enter(pi)
 {
+    // Add debugging
+    pi.getPlayer().yellowMessage("1028 Status: " + pi.getQuestStatus(1028) + "| 1023 Status: " + pi.getQuestStatus(1023));
+
     // They've already defeated the guardian, warp to outdoors
     if (pi.getQuestStatus(1028) === 2)
     {
