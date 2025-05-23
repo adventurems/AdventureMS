@@ -1132,6 +1132,9 @@ public class ItemInformationProvider {
                 case "MMP":
                     nEquip.setMp(getShortMaxIfOverflow(nEquip.getMp() + stat.getValue().intValue()));
                     break;
+                case "tuc":
+                    nEquip.setUpgradeSlots((byte) (nEquip.getUpgradeSlots() + stat.getValue().intValue()));
+                    break;
                 case "afterImage":
                     break;
             }
@@ -1343,7 +1346,7 @@ public class ItemInformationProvider {
             }
         }
 
-        return (short) ((defaultValue - maxRange) + Math.floor(Randomizer.nextDouble() * (maxRange * 2 + 1)));
+        return (short) Math.max(0, ((defaultValue - maxRange) + Math.floor(Randomizer.nextDouble() * (maxRange * 2 + 1))));
     }
 
     // AdventureMS Custom

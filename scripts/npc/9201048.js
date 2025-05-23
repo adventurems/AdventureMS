@@ -108,6 +108,12 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             cm.getPlayer().gainSlots(3, 4, true);
             cm.getPlayer().gainSlots(4, 4, true);
 
+            // Teach Aran Skills
+            cm.teachSkill(21100002, 0, 30, -1, true);
+            // cm.teachSkill(21101003, 0, 20, -1, true);
+            cm.teachSkill(21100004, 0, 20, -1, true);
+            cm.teachSkill(21100005, 0, 20, -1, true);
+
             // Turn off EXP Block
             cm.getPlayer().stopExpOff();
 
@@ -128,6 +134,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             // Required Variables
             var jobid = 2100;
             var weapon1 = 1442077;
+            var skill1 = 21100000;
 
             // Optional Variables
             var weapon2;
@@ -146,6 +153,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 cm.gainItem(weapon1, 1); // Gain weapon1
                 if (weapon2) {cm.gainItem(weapon2, 1);} // Gain weapon2
                 if (throwable) {cm.gainItem(throwable, throwableAmount)}; // Gain Throwable
+                cm.teachSkill(skill1, 10, 30, -1, true); // Teach Polearm Mastery
 
                 // The Same for All Jobs
                 if (cm.haveItem(3991000)) {cm.gainItem(3991000, -1);} // Remove Key if they have it

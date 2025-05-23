@@ -58,6 +58,7 @@ public class MakerProcessor {
                 int toCreate = p.readInt();
                 int toDisassemble = -1, pos = -1;
                 boolean makerSucceeded = true;
+                boolean isDivineForge = false;
 
                 MakerItemCreateEntry recipe;
                 Map<Integer, Short> reagentids = new LinkedHashMap<>();
@@ -229,10 +230,23 @@ public class MakerProcessor {
                                 c.getPlayer().gainMeso(-cost, false);
                             }
 
-                            for (Pair<Integer, Integer> pair : recipe.getGainItems()) {
-                                c.getPlayer().setCS(true);
-                                c.getAbstractPlayerInteraction().gainItem(pair.getLeft(), pair.getRight().shortValue(), false);
-                                c.getPlayer().setCS(false);
+                            // Check for divine forge once and store the result
+                            isDivineForge = Math.random() < 0.125 && ItemConstants.isEquipment(recipe.getGainItems().get(0).getLeft());
+
+                            // AdventureMS Custom - Divine Forge for items without stimulant or reagents
+                            if (isDivineForge)
+                            {
+                                toCreate = recipe.getGainItems().get(0).getLeft();
+                                makerSucceeded = divineForge(c, toCreate);
+                            }
+
+                            else
+                            {
+                                for (Pair<Integer, Integer> pair : recipe.getGainItems()) {
+                                    c.getPlayer().setCS(true);
+                                    c.getAbstractPlayerInteraction().gainItem(pair.getLeft(), pair.getRight().shortValue(), false);
+                                    c.getPlayer().setCS(false);
+                                }
                             }
                         } else {
                             toCreate = recipe.getGainItems().get(0).getLeft();
@@ -262,8 +276,18 @@ public class MakerProcessor {
                             c.sendPacket(PacketCreator.makerResult(makerSucceeded, recipe.getGainItems().get(0).getLeft(), recipe.getGainItems().get(0).getRight(), recipe.getCost(), recipe.getReqItems(), stimulantid, new LinkedList<>(reagentids.keySet())));
                         }
 
-                        c.sendPacket(PacketCreator.showMakerEffect(makerSucceeded));
-                        c.getPlayer().getMap().broadcastMessage(c.getPlayer(), PacketCreator.showForeignMakerEffect(c.getPlayer().getId(), makerSucceeded), false);
+                        if (!isDivineForge)
+                        {
+                            c.sendPacket(PacketCreator.showMakerEffect(makerSucceeded));
+                            c.getPlayer().getMap().broadcastMessage(c.getPlayer(), PacketCreator.showForeignMakerEffect(c.getPlayer().getId(), makerSucceeded), false);
+                        }
+
+                        else
+                        {
+                            c.getPlayer().getMap().broadcastMessage(PacketCreator.playSound("AdventureMS/divineForge"));
+                            c.sendPacket(PacketCreator.serverNotice(6, "A crack of thunder and the maple gods have blessed your craft with divine power!"));
+                            c.getPlayer().getMap().broadcastMessage(c.getPlayer(), PacketCreator.showForeignMakerEffect(c.getPlayer().getId(), makerSucceeded), false);
+                        }
 
                         if (toCreate == 4260003 && type == 3 && c.getPlayer().getQuestStatus(6033) == 1) {
                             c.getAbstractPlayerInteraction().setQuestProgress(6033, 1);
@@ -396,14 +420,58 @@ public class MakerProcessor {
             // Loop through each reagent to get the stat changes
             for (Map.Entry<Integer, Short> r : reagentids.entrySet())
             {
+
+                // Check if this is a white crystal (slot increase reagent)
+                // White crystal IDs: 4251400, 4251401, 4251402
+                if (r.getKey() >= 4251400 && r.getKey() <= 4251402) {
+
+                    // Get the current upgrade slots from the equip
+                    int currentSlots = eqp.getUpgradeSlots();
+
+                    // Determine slot value based on crystal type
+                    int slotValue;
+                    switch (r.getKey()) {
+                        case 4251400:
+                            slotValue = 1; // Basic White Crystal adds 1 slot
+                            break;
+                        case 4251401:
+                            slotValue = 2; // Intermediate White Crystal adds 2 slots
+                            break;
+                        case 4251402:
+                            slotValue = 3; // Advanced White Crystal adds 3 slots
+                            break;
+                        default:
+                            slotValue = 1; // Default to 1 slot
+                    }
+
+                    // Multiply by quantity
+                    slotValue *= r.getValue();
+
+                    // Add the slots to the stats map
+                    String stat = "tuc";
+                    Integer d = stats.get(stat);
+
+                    if (d == null) {
+                        // Just store the reagent value, let improveEquipStats add it to current slots
+                        stats.put(stat, slotValue);
+                    }
+                    else {
+                        // Add to any existing reagent values
+                        int newValue = d + slotValue;
+                        stats.put(stat, newValue);
+                    }
+                }
+
                 // Get the stat increase name and value from the DB
                 Pair<String, Integer> reagentBuff = ii.getMakerReagentStatUpgrade(r.getKey());
+
 
                 // Check to make sure it's a real buff (it's in the DB)
                 if (reagentBuff != null)
                 {
                     // Get the name of the Stat Increase
                     String s = reagentBuff.getLeft();
+
 
                     // Check that it's not a flat stat increase
                     if (!s.substring(0, 3).contains("inc"))
@@ -464,24 +532,23 @@ public class MakerProcessor {
                             // Get the slot value from the reagent
                             int slotValue = reagentBuff.getRight();
 
-                            // Determine the number of slots to add based on the reagent value
-                            int slotsToAdd = 0;
-                            if (slotValue == 1) {
-                                // 0-1 slots
-                                slotsToAdd = Randomizer.nextInt(2); // 0 or 1
-                            } else if (slotValue == 2) {
-                                // 1-2 slots
-                                slotsToAdd = Randomizer.nextInt(2) + 1; // 1 or 2
-                            } else if (slotValue == 3) {
-                                // 2-3 slots
-                                slotsToAdd = Randomizer.nextInt(2) + 2; // 2 or 3
-                            }
+                            // Get the current upgrade slots from the equip
+                            int currentSlots = eqp.getUpgradeSlots();
 
                             // Add the slots to the stats map
-                            String stat = "incSlot";
+                            String stat = "tuc";  // Changed from "incSlot" to "tuc"
                             Integer d = stats.get(stat);
-                            if (d == null) {stats.put(stat, slotsToAdd);}
-                            else {stats.put(stat, d + slotsToAdd);}
+
+
+                            if (d == null) {
+                                // Just store the reagent value, let improveEquipStats add it to current slots
+                                stats.put(stat, slotValue);
+                            }
+                            else {
+                                // Add to any existing reagent values
+                                int newValue = d + slotValue;
+                                stats.put(stat, newValue);
+                            }
                         }
                     }
 
@@ -513,16 +580,26 @@ public class MakerProcessor {
             eqp = ii.randomizeStatsWithStimulant(eqp);
         }
 
-        // AdventureMS Custom - Divine Forge
-        else if (Math.random() < 0.125)
-        {
-            eqp = ii.randomizeStatsWithStimulant(eqp);
+        InventoryManipulator.addFromDrop(c, item, false, -1);
+        return true;
+    }
 
-            // Play sound and send message to the player
-            c.getPlayer().getMap().broadcastMessage(PacketCreator.playSound("AdventureMS/divineForge"));
-            c.sendPacket(PacketCreator.serverNotice(5, "A crack of thunder and the maple gods have blessed your craft with divine power!"));
+    // AdventureMS Custom - Divine Forge method
+    private static boolean divineForge(Client c, int itemid)
+    {
+        // Create a basic item by ID
+        Item item = ii.getEquipById(itemid);
+        if (item == null) {
+            return false;
         }
 
+        // Cast the item to an equip
+        Equip eqp = (Equip) item;
+
+        // Manipulate it with randomizeStatsWithStimulant
+        eqp = ii.randomizeStatsWithStimulant(eqp);
+
+        // Add the item to the player's inventory
         InventoryManipulator.addFromDrop(c, item, false, -1);
         return true;
     }

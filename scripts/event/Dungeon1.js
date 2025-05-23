@@ -10,7 +10,7 @@ let bossId = 3300008;
 
 // Default Dungeon Information
 const isPq = true;
-let eventTime = 10; // 5 minutes
+let eventTime = 5; // 5 minutes
 const minPlayers = 1, maxPlayers = 6;
 const minLevel = 1, maxLevel = 255;
 

@@ -966,7 +966,15 @@ public class StatEffect {
         // AdventureMS Custom - Illusion
         if (sourceid == Hunter.ILLUSION || sourceid == Crossbowman.ILLUSION)
         {
-            statups.set(0, new Pair<>(BuffStat.AVOID, getX() * 2));
+            if (primary)
+            {
+                statups.set(0, new Pair<>(BuffStat.AVOID, getX() * 2));
+            }
+
+            else
+            {
+                statups.set(0, new Pair<>(BuffStat.AVOID, getX()));
+            }
         }
 
         if (primary) {
@@ -1175,20 +1183,6 @@ public class StatEffect {
 
     private int applyBuff(Character applyfrom, boolean useMaxRange) {
         int affectedc = 1;
-
-        // AdventureMS Custom - Meditation
-        if (sourceid == FPWizard.MEDITATION || sourceid == ILWizard.MEDITATION)
-        {
-            int matkchange = 0;
-            matkchange = (int) Math.round(applyfrom.getTotalMagic() * (getX() / 100.0));
-            statups.set(0, new Pair<>(BuffStat.MATK, matkchange));
-        }
-
-        // AdventureMS Custom - Illusion
-        if (sourceid == Hunter.ILLUSION || sourceid == Crossbowman.ILLUSION)
-        {
-            statups.set(0, new Pair<>(BuffStat.AVOID, getX()));
-        }
 
         if (isPartyBuff() && (applyfrom.getParty() != null || isGmBuff())) {
             Rectangle bounds = (!useMaxRange) ? calculateBoundingBox(applyfrom.getPosition(), applyfrom.isFacingLeft()) : new Rectangle(Integer.MIN_VALUE / 2, Integer.MIN_VALUE / 2, Integer.MAX_VALUE, Integer.MAX_VALUE);

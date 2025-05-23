@@ -971,10 +971,15 @@ public class AbstractPlayerInteraction {
             var itemId = item.getItemId();
 
             // Check if the item is a cash item
-            if (ii.isCash(itemId))
-            {
-                // Add itemId to return list
-                cashItems.add(itemId);
+            if (ii.isCash(itemId)) {
+                String idStr = String.valueOf(itemId);
+                if (idStr.length() >= 3) {
+                    String firstThree = idStr.substring(0, 3);
+                    if (!firstThree.equals("180") && !firstThree.equals("181")) {
+                        // Add itemId to return list
+                        cashItems.add(itemId);
+                    }
+                }
             }
         }
 

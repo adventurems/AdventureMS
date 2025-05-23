@@ -45,6 +45,6 @@ public class LegendCreator extends CharacterFactory {
     }
 
     public static int createCharacter(Client c, String name, int face, int hair, int skin, int top, int bottom, int shoes, int weapon, int gender) {
-        return createNewCharacter(c, name, face, hair, skin, gender, createRecipe(Job.LEGEND, 1, 100000203, top, bottom, shoes, weapon));
+        return createNewCharacter(c, name, face, hair, skin, gender, createRecipe(Job.LEGEND, 1, 100000203, top, bottom, shoes, 1302000));
     }
 }

@@ -40,7 +40,7 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
     {
         // Store vars for use
         var equipStats = cm.getPlayer().getEquipStats(); // Returns all stats for equipment
-        var goalSpeed = 200; // This is the goal speed to have on gear
+        var goalSpeed = 250; // This is the goal speed to have on gear
         var speeddif = goalSpeed - equipStats[2]; // Calculate the difference
 
         if (equipStats[2] >= goalSpeed)
@@ -55,10 +55,10 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
             // Store the default text
             var defaultString = "Yeaaahhhh, you ain't fast enough yet.\r\n\r\n";
 
-            if (speeddif <= 25) {cm.sendOk(defaultString + "#rYou are very close... " + speeddif + " Speed left to go...#k");}
-            else if (speeddif <= 50) {cm.sendOk(defaultString + "#rMore than three quarters of the way there...#k");}
-            else if (speeddif <= 100) {cm.sendOk(defaultString + "#rKeep going, you are past halfway...#k");}
-            else if (speeddif <= 150) {cm.sendOk(defaultString + "#rYou have a long way to go still...just past a quarter of the way...#k");}
+            if (speeddif <= 50) {cm.sendOk(defaultString + "#rYou are very close... " + speeddif + " Speed left to go...#k");}
+            else if (speeddif <= 100) {cm.sendOk(defaultString + "#rMoving on to the final stretch...#k");}
+            else if (speeddif <= 150) {cm.sendOk(defaultString + "#rYou are just about half way...keep it up...#k");}
+            else if (speeddif <= 200) {cm.sendOk(defaultString + "#rYou have a long way to go still...about a quarter of the way...#k");}
             else {cm.sendOk(defaultString + "#rYou are not close at all...#k");}
 
             // Kill the convo
@@ -72,7 +72,7 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
         // Check if they can hold it
         if (cm.canHold(1142206))
         {
-            cm.sendOk("Not many people with one of these out there...\r\n\r\nYou've earned it though, a real speed demon, deserving of the title...\r\n\r\n#i1142200# #t1142200#");
+            cm.sendOk("Not many people with one of these out there...\r\n\r\nYou've earned it though, a real speed demon, deserving of the title...\r\n\r\n#i1142206# #t1142206#");
             cm.gainItem(1142206, 1);
             cm.completeQuest(1029);
             cm.dispose();

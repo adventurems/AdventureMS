@@ -33,6 +33,7 @@ import client.command.commands.gm0.StatDexCommand;
 import client.command.commands.gm0.StatIntCommand;
 import client.command.commands.gm0.StatLukCommand;
 import client.command.commands.gm0.StatStrCommand;
+import client.command.commands.gm2.MobHpCommand;
 import client.command.commands.gm2.ApCommand;
 import client.command.commands.gm2.BombCommand;
 import client.command.commands.gm2.BuffCommand;
@@ -53,7 +54,6 @@ import client.command.commands.gm2.JailCommand;
 import client.command.commands.gm2.JobCommand;
 import client.command.commands.gm2.LevelCommand;
 import client.command.commands.gm2.LevelProCommand;
-import client.command.commands.gm2.LootCommand;
 import client.command.commands.gm2.MaxSkillCommand;
 import client.command.commands.gm2.MaxStatCommand;
 import client.command.commands.gm2.MobSkillCommand;
@@ -70,6 +70,7 @@ import client.command.commands.gm2.UnJailCommand;
 import client.command.commands.gm2.WarpAreaCommand;
 import client.command.commands.gm2.WarpCommand;
 import client.command.commands.gm2.WarpMapCommand;
+import client.command.commands.gm3.LootCommand;
 import client.command.commands.gm3.BanCommand;
 import client.command.commands.gm3.ChatCommand;
 import client.command.commands.gm3.CheckDmgCommand;
@@ -340,6 +341,7 @@ public class CommandsExecutor {
         levelCommandsCursor = new Pair<>(new ArrayList<String>(), new ArrayList<String>());
 
         addCommand("online", 2,  OnlineCommand.class);
+        addCommand("mobhp", 2,  MobHpCommand.class);
         addCommand("hide", 2, HideCommand.class);
         addCommand("unhide", 2, UnHideCommand.class);
         addCommand("sp", 2, SpCommand.class);
@@ -373,7 +375,6 @@ public class CommandsExecutor {
         addCommand("unbug", 2, UnBugCommand.class);
         addCommand("id", 2, IdCommand.class);
         addCommand("gachalist", GachaListCommand.class);
-        addCommand("loot", LootCommand.class);
         addCommand("mobskill", MobSkillCommand.class);
 
         commandsNameDesc.add(levelCommandsCursor);
@@ -383,6 +384,7 @@ public class CommandsExecutor {
         levelCommandsCursor = new Pair<>(new ArrayList<String>(), new ArrayList<String>());
 
         addCommand("debuff", 3, DebuffCommand.class);
+        addCommand("loot", 3, LootCommand.class);
         addCommand("fly", 3, FlyCommand.class);
         addCommand("spawn", 3, SpawnCommand.class);
         addCommand("mutemap", 3, MuteMapCommand.class);
