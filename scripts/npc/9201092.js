@@ -105,6 +105,12 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 }
             }
 
+            else if (cm.getQuestStatus(1006) === 2 && !hasAnyCollectingRing())
+            {
+                cm.sendOk("Hmmmm, lost your ring? Seems a bit noobish...JK, here ya go! Have fun out there!");
+                cm.dispose();
+            }
+
             // They don't have room for the base collecting ring.
             else
             {
