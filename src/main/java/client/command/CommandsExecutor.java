@@ -384,7 +384,7 @@ public class CommandsExecutor {
         levelCommandsCursor = new Pair<>(new ArrayList<String>(), new ArrayList<String>());
 
         addCommand("debuff", 3, DebuffCommand.class);
-        addCommand("loot", 3, LootCommand.class);
+        // addCommand("loot", 3, LootCommand.class);
         addCommand("fly", 3, FlyCommand.class);
         addCommand("spawn", 3, SpawnCommand.class);
         addCommand("mutemap", 3, MuteMapCommand.class);
