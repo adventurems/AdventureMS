@@ -133,11 +133,11 @@ public class Skill {
             {
                 switch (skillLevel)
                 {
-                    case 30: case 29: case 28: case 27: case 26: case 25: { spellMAD = 10; } break;
-                    case 24: case 23: case 22: case 21: case 20: case 19: { spellMAD = 9; } break;
-                    case 18: case 17: case 16: case 15: case 14: case 13: { spellMAD = 8; } break;
-                    case 12: case 11: case 10: case 9:  case 8:  case 7:  { spellMAD = 7; } break;
-                    case 6:  case 5:  case 4:  case 3:  case 2:  case 1:  { spellMAD = 6; } break;
+                    case 30: case 29: case 28: case 27: case 26: case 25: { spellMAD = 15; } break;
+                    case 24: case 23: case 22: case 21: case 20: case 19: { spellMAD = 13; } break;
+                    case 18: case 17: case 16: case 15: case 14: case 13: { spellMAD = 11; } break;
+                    case 12: case 11: case 10: case 9:  case 8:  case 7:  { spellMAD = 9; } break;
+                    case 6:  case 5:  case 4:  case 3:  case 2:  case 1:  { spellMAD = 7; } break;
                 } break;
             }
         }
