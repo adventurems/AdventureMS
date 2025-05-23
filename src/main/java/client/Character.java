@@ -6265,7 +6265,7 @@ public class Character extends AbstractCharacterObject {
         int expectedSp = getJobLevelSp(level - 10, newJob, GameConstants.getJobBranch(newJob));
 
         // AdventureMS Custom - Handle additional SP checks
-        if (getLevel() >= 30 && ((newJob.getId() >= 100 && newJob.getId() < 200) || (newJob.getId() >= 300 && newJob.getId() < 400) || (newJob.getId() >= 420 && newJob.getId() < 600)))
+        if (getLevel() >= 30 && ((newJob.getId() >= 100 && newJob.getId() < 200) || (newJob.getId() >= 300 && newJob.getId() < 400) || (newJob.getId() >= 420)))
         {
             curSp -= 10;
         }
