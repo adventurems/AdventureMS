@@ -49,18 +49,21 @@ public final class CreateCharHandler extends AbstractPacketHandler {
 
         int status;
         switch (job) {
-        case 0: // Knights of Cygnus
-            status = NoblesseCreator.createCharacter(c, name, face, hair + haircolor, skincolor, top, bottom, shoes, weapon, gender);
-            break;
-        case 1: // Adventurer
-            status = BeginnerCreator.createCharacter(c, name, face, hair + haircolor, skincolor, top, bottom, shoes, weapon, gender);
-            break;
-        case 2: // Aran
-            status = LegendCreator.createCharacter(c, name, face, hair + haircolor, skincolor, top, bottom, shoes, weapon, gender);
-            break;
-        default:
-            c.sendPacket(PacketCreator.deleteCharResponse(0, 9));
-            return;
+            case 0: // Knights of Cygnus
+                // Block Noblesse creation and send a message
+                c.sendPacket(PacketCreator.serverNotice(1, "Cygnus Knights are currently not available. Please choose another job."));
+                c.sendPacket(PacketCreator.deleteCharResponse(0, 9)); // Send error response
+                return; // Exit the method without creating the character
+
+            case 1: // Adventurer
+                status = BeginnerCreator.createCharacter(c, name, face, hair + haircolor, skincolor, top, bottom, shoes, weapon, gender);
+                break;
+            case 2: // Aran
+                status = LegendCreator.createCharacter(c, name, face, hair + haircolor, skincolor, top, bottom, shoes, weapon, gender);
+                break;
+            default:
+                c.sendPacket(PacketCreator.deleteCharResponse(0, 9));
+                return;
         }
 
         if (status == -2) {
