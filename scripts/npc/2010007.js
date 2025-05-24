@@ -2,6 +2,9 @@
 
 // AdventureMS Heracle
 var status;
+var createGuild = false;
+var disbandGuild = false;
+var increaseGuildCapacity = false;
 
 // Standard Status Code
 function start() {status = -1; action(1,0,0);}
@@ -29,7 +32,8 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 // They aren't in one, ask to create
                 else
                 {
-                    cm.sendYesNo("Creating a Guild costs #b 1500000 mesos#k, are you sure you want to continue?");
+                    cm.sendYesNo("Creating a Guild costs #r1,500,000#k mesos, are you sure you want to continue?");
+                    createGuild = true;
                 }
             }
 
@@ -47,6 +51,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 else
                 {
                     cm.sendYesNo("Are you sure you want to disband your Guild?\r\n\r\nAll your legacy will be lost and you will not be able to recover it.\r\n\r\nThis decision is final...");
+                    disbandGuild = true;
                 }
             }
 
@@ -65,6 +70,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 {
                     var Guild = Java.type("net.server.guild.Guild");  // thanks Conrad for noticing an issue due to call on a static method here
                     cm.sendYesNo("Increasing your Guild capacity by #r5#k costs #r " + Guild.getIncreaseGuildCost(cm.getPlayer().getGuild().getCapacity()) + " mesos#k, are you sure you want to continue?");
+                    increaseGuildCapacity = true;
                 }
             }
 
@@ -74,7 +80,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         else if (status == 2)
         {
             // Create a guild
-            if (selection == 0 && cm.getPlayer().getGuildId() <= 0)
+            if (createGuild && cm.getPlayer().getGuildId() <= 0)
             {
                 cm.getPlayer().genericGuildMessage(1);
                 cm.dispose();
@@ -84,14 +90,14 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             else if (cm.getPlayer().getGuildId() > 0 && cm.getPlayer().getGuildRank() == 1)
             {
                 // Disband Guild
-                if (selection == 1)
+                if (disbandGuild)
                 {
                     cm.getPlayer().disbandGuild();
                     cm.dispose();
                 }
 
                 // Increase guild capacity
-                else if (selection == 2)
+                else if (increaseGuildCapacity)
                 {
                     cm.getPlayer().increaseGuildCapacity();
                     cm.dispose();
