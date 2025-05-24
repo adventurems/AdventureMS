@@ -472,7 +472,6 @@ public class MakerProcessor {
                     // Get the name of the Stat Increase
                     String s = reagentBuff.getLeft();
 
-
                     // Check that it's not a flat stat increase
                     if (!s.substring(0, 3).contains("inc"))
                     {
@@ -480,7 +479,7 @@ public class MakerProcessor {
                         if (s.substring(4).equals("Option")) {randOption.add((short) (reagentBuff.getRight() * r.getValue()));}
 
                         // It's a % increase gem
-                        else if (s.substring(0, 7).contains("special"))
+                        else if (s.startsWith("special"))
                         {
                             String stat = s.substring(7); // Get's the specialSTAT (DEX, STR, MHP, etc...)
                             Integer d = stats.get(stat); // Gets the stat on the item currently
@@ -525,30 +524,6 @@ public class MakerProcessor {
                             stats.put("STR", (str == null ? 20 : str + 20));
                             stats.put("INT", (int_ == null ? 20 : int_ + 20));
                             stats.put("LUK", (luk == null ? 20 : luk + 20));
-                        }
-
-                        else if (s.contains("slot"))
-                        {
-                            // Get the slot value from the reagent
-                            int slotValue = reagentBuff.getRight();
-
-                            // Get the current upgrade slots from the equip
-                            int currentSlots = eqp.getUpgradeSlots();
-
-                            // Add the slots to the stats map
-                            String stat = "tuc";  // Changed from "incSlot" to "tuc"
-                            Integer d = stats.get(stat);
-
-
-                            if (d == null) {
-                                // Just store the reagent value, let improveEquipStats add it to current slots
-                                stats.put(stat, slotValue);
-                            }
-                            else {
-                                // Add to any existing reagent values
-                                int newValue = d + slotValue;
-                                stats.put(stat, newValue);
-                            }
                         }
                     }
 
