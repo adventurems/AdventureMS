@@ -320,10 +320,10 @@ public class CommandsExecutor {
         addCommand("commands", HelpCommand.class);
         addCommand("dispose", DisposeCommand.class);
         addCommand("gm", GmCommand.class);
-        addCommand("str", StatStrCommand.class);
-        addCommand("dex", StatDexCommand.class);
-        addCommand("int", StatIntCommand.class);
-        addCommand("luk", StatLukCommand.class);
+        // addCommand("str", StatStrCommand.class);
+        // addCommand("dex", StatDexCommand.class);
+        // addCommand("int", StatIntCommand.class);
+        // addCommand("luk", StatLukCommand.class);
         addCommand("buyback", BuyBackCommand.class);
 
         commandsNameDesc.add(levelCommandsCursor);
