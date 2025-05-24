@@ -17,9 +17,6 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
         // Loop through tokens array
         for (var i = 0; i < tokens.length; i++)
         {
-            // Debugging
-            cm.getPlayer().yellowMessage("Token " + tokens[i] + "| Quest " + quests[i] + "| Status: " + cm.getQuestStatus(quests[i]));
-
             // If we have a token in our possession and the corresponding quest isn't finished
             if (cm.haveItem(tokens[i]) && cm.getQuestStatus(quests[i]) <= 2)
             {
