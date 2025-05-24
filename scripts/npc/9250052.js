@@ -7,7 +7,7 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
     // Initial Click
     else if (status === 0)
     {
-        sendOk("Coming soon!");
+        cm.sendOk("Coming soon!");
         cm.dispose();
     }
 
