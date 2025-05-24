@@ -54,7 +54,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         }
 
         // They are not in the party that spawned this portal, see if they are solo
-        if (cm.getPlayer().getId() === player)
+        else if (cm.getPlayer().getId() === player)
         {
             // Check that they are the leader of the party
             if (cm.getPlayer().isPartyLeader())
@@ -108,7 +108,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             var partyMembers = party.getPartyMembersOnline();
             for (var i = 0; i < partyMembers.size(); i++) {
                 var member = partyMembers.get(i);
-                if (member.getMapId() === cm.getPlayer().getMapId()) {
+                if (member.getMapId() == cm.getPlayer().getMapId()) {
                     eligibleMembers.push(member);
                 }
             }
