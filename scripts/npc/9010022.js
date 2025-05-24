@@ -18,7 +18,7 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
         for (var i = 0; i < tokens.length; i++)
         {
             // If we have a token in our possession and the corresponding quest isn't finished
-            if (cm.haveItem(tokens[i]) && cm.getQuestStatus(quests[i]) <= 2)
+            if (cm.haveItem(tokens[i]) && cm.getQuestStatus(quests[i]) < 2)
             {
                 // Check if any quests are already complete (we've talked to him before) if so, give different text
                 var anyQuestComplete = false;
