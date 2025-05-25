@@ -71,7 +71,7 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
                     cm.gainMeso(-recipePrice); // Take Mesos
                     cm.gainItem(4007033, 1); // Give Recipe
                     cm.sendOk("Here, take the recipe, don't talk to me again...");
-                    cm.completeQuest()
+                    cm.completeQuest(1030);
                 }
 
                 // They can't hold it

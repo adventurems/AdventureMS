@@ -1256,7 +1256,7 @@ public class Monster extends AbstractLoadedLife {
             int webDamage = (int) (getMaxHp() / 50.0 + 0.999);
             status.setValue(MonsterStatus.SHADOW_WEB, Integer.valueOf(webDamage));
             animationTime = broadcastStatusEffect(status);
-            
+
             overtimeAction = new DamageTask(webDamage, from, status, 1);
             overtimeDelay = 3500;
             */
@@ -1468,7 +1468,7 @@ public class Monster extends AbstractLoadedLife {
             if (mp < mpCon) {
                 return false;
             }
-            
+
             /*
             if (!this.applyAnimationIfRoaming(-1, toUse)) {
                 return false;
@@ -1538,7 +1538,7 @@ public class Monster extends AbstractLoadedLife {
             if (mp < mpCon) {
                 return -1;
             }
-            
+
             /*
             if (!this.applyAnimationIfRoaming(attackPos, null)) {
                 return -1;
@@ -1644,29 +1644,32 @@ public class Monster extends AbstractLoadedLife {
                 service.interruptMobStatus(map.getId(), status);
             }
 
-            if (damage > 0)
-            {
+            // Current code
+            if (damage > 0) {
                 lockMonster();
 
-                try
-                {
+                try {
                     applyDamage(chr, damage, false, false);
                 }
 
-                finally
-                {
+                finally {
                     unlockMonster();
                 }
 
-                if (type == 1)
-                {
+                // Add check here to see if monster died from poison damage
+                if (hp.get() <= 0) {
+                    MobStatusService service = (MobStatusService) map.getChannelServer().getServiceAccess(ChannelServices.MOB_STATUS);
+                    service.interruptMobStatus(map.getId(), status);
+                    map.killMonster(monster, chr, true, (short) 1);
+                    return; // Exit the method if monster is killed
+                }
+
+                if (type == 1) {
                     map.broadcastMessage(PacketCreator.damageMonster(getObjectId(), damage), getPosition());
                 }
 
-                else if (type == 2)
-                {
-                    if (damage < dealDamage)
-                    {    // ninja ambush (type 2) is already displaying DOT to the caster
+                else if (type == 2) {
+                    if (damage < dealDamage) {    // ninja ambush (type 2) is already displaying DOT to the caster
                         map.broadcastMessage(PacketCreator.damageMonster(getObjectId(), damage), getPosition());
                     }
                 }
@@ -2079,11 +2082,11 @@ public class Monster extends AbstractLoadedLife {
                 this.setControllerHasAggro(true);
                 this.aggroUpdatePuppetVisibility();
             }
-            
+
             /*
             For some reason, some mobs loses aggro on controllers if other players also attacks them.
             Maybe Nexon intended to interchange controllers at every attack...
-            
+
             else if (chrController != null) {
                 chrController.sendPacket(PacketCreator.stopControllingMonster(this.getObjectId()));
                 aggroMonsterControl(chrController.getClient(), this, true);

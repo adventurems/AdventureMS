@@ -1249,6 +1249,8 @@ public class ItemInformationProvider {
                 maxRange = 1;
             } else if (defaultValue < 10) {
                 maxRange = 3;
+            } else if (defaultValue < 20) {
+                maxRange = 5;
             } else if (defaultValue < 30) {
                 maxRange = 7;
             } else if (defaultValue < 50) {
@@ -1315,12 +1317,14 @@ public class ItemInformationProvider {
                 maxRange = 2;
             } else if (defaultValue < 10) {
                 maxRange = 6;
+            } else if (defaultValue < 20) {
+                maxRange = 10;
             } else if (defaultValue < 30) {
                 maxRange = 14;
             } else if (defaultValue < 50) {
                 maxRange = 24;
             } else {
-                maxRange = Math.max(14, (int) Math.ceil(defaultValue * 0.1));
+                maxRange = Math.max(24, (int) Math.ceil(defaultValue * 0.1));
             }
         }
         // Matk, Watk
@@ -1383,13 +1387,15 @@ public class ItemInformationProvider {
             if (defaultValue < 5) {
                 maxRange = 1;
             } else if (defaultValue < 10) {
-                maxRange = 2;
-            } else if (defaultValue < 30) {
+                maxRange = 3;
+            } else if (defaultValue < 20) {
                 maxRange = 5;
-            } else if (defaultValue < 50) {
+            } else if (defaultValue < 30) {
                 maxRange = 7;
+            } else if (defaultValue < 50) {
+                maxRange = 12;
             } else {
-                maxRange = Math.max(7, (int) Math.ceil(defaultValue * 0.1));
+                maxRange = Math.max(12, (int) Math.ceil(defaultValue * 0.1));
             }
         }
         // Matk, Watk

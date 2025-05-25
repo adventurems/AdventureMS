@@ -1167,7 +1167,7 @@ public class Client extends ChannelInboundHandlerAdapter {
             try {
                 if (lastPong < pingedAt) {
                     if (ioChannel.isActive()) {
-                        log.info("Disconnected {} due to idling. Reason: {}", remoteAddress, event.state());
+                        // log.info("Disconnected {} due to idling. Reason: {}", remoteAddress, event.state());
                         updateLoginState(Client.LOGIN_NOTLOGGEDIN);
                         disconnectSession();
                     }

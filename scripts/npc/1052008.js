@@ -37,16 +37,9 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
             cm.dispose();
         }
 
-        // They haven't started the Hill quest yet and don't have the map
-        else if (cm.getQuestStatus(1016) === 0)
-        {
-            cm.sendOk("You haven't traded for the map from #bHill#k yet!");
-            cm.dispose();
-        }
-
         else
         {
-            cm.sendOk("Something isn't right, report this in Discord! (1052008)");
+            cm.sendOk("You don't have the map from #rHill#k!");
             cm.dispose();
         }
     }
