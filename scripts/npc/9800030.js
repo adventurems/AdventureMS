@@ -101,7 +101,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
             cm.sendOk("The Dungeon returned an empty instance. Please report this in the bugs section of #bDiscord#k!");
         }
 
-        // Create the instance of the event
+        // Create the instance of the events
         else
         {
             // Get the party and set eligible members

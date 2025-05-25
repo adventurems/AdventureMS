@@ -78,7 +78,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         }
     }
 
-    // They want in the dungeon
+    // They want in the dungeons
     else if (status == 1)
     {
         // Store the Object ID
