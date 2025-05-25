@@ -23,8 +23,8 @@ const goblinGem = 2600420 + dungeonTier - 1;
 
 function setup(level, lobbyid, monsterId, mapId)
 {
-    // Check if it's a rare dungeon
-    if (goblinLoot === monsterId) 
+    // Check if it's a rare dungeons
+    if (goblinLoot == monsterId)
     {
         rare = true;
         bossId = rareBossId;
