@@ -399,6 +399,10 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                                     weaponString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                                     weapon++;  // Increment the weapon counter
                                     break;
+                                default:
+                                    weaponString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l (Other)";
+                                    weapon++;  // Increment the weapon counter
+                                    break;
                             }
                         }
 
@@ -482,7 +486,12 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                                 case "147":
                                 case "148":
                                 case "149":
+                                case "170":
                                     weaponString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l";
+                                    weapon++;  // Increment the weapon counter
+                                    break;
+                                default:
+                                    weaponString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "##l (Other)";
                                     weapon++;  // Increment the weapon counter
                                     break;
                             }
