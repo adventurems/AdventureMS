@@ -253,7 +253,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                 // Default text at the top of the screen
                 defaultString = "#r#eITEM RETRIEVAL#n#k | Available Slots: " + cashSlots + " | Mesos: " + Intl.NumberFormat().format(curMeso) + "\r\n\r\n#L0#Move to item #e#bSTORAGE#n#k#l\r\n\r\n";
 
-                // Get the list of available cash items to store
+                // Get the list of available cash items to remove
                 var storageItems = cm.getPlayer().getCashStorageItems();
 
                 // Check if it's empty
@@ -395,6 +395,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
                                 case "147":
                                 case "148":
                                 case "149":
+                                case "170":
                                     weaponString += "\r\n\t#L" + selectionSlot + "##v" + itemId + "# #t" + itemId + "# x " + quantity + "#l";
                                     weapon++;  // Increment the weapon counter
                                     break;
