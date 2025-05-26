@@ -437,20 +437,5 @@ function handleBossDrops(mob, eim)
 // Helper function to create player-specific drops
 function createPlayerSpecificDrop(map, dropper, player, item, dropPos)
 {
-    // Use the new MapleMap method to create a player-specific drop with spray effect
-    // This method handles all the following automatically:
-    // - Calculating the final drop position with spray effect
-    // - Creating the MapItem with the player as the owner (type 0 - player-specific)
-    // - Adding it to the map
-    // - Registering the item drop for proper cleanup
-    // - Only sending the drop packet to the specific player
-    // - Setting the drop time
-    // - Ensuring it's not marked as picked up initially
     map.spawnPlayerSpecificItemDrop(dropper, player, item, dropPos, true);
-
-    // Note: This implementation creates a truly instanced drop that only the intended player can see
-    // The drop will still follow the normal ownership rules:
-    // - First 10 seconds: Only the owner can pick it up
-    // - Between 10-25 seconds: Owner and party members can pick it up
-    // - After 25 seconds: Anyone can pick it up (but only the owner can see it)
 }

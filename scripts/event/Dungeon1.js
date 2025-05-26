@@ -371,7 +371,7 @@ function monsterKilled(mob, eim) {  // AdventureMS Custom
     }
 }
 function clearPQ(eim) {
-    eim.restartEventTimer(60000);
+    eim.restartEventTimer(30000);
     eim.setEventCleared();
 }
 
