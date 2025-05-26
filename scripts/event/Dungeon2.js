@@ -23,13 +23,13 @@ const goblinGem = 2600420 + dungeonTier - 1;
 
 function setup(level, lobbyid, monsterId, mapId)
 {
-    // Check if it's a rare dungeons
+    /*/ Check if it's a rare dungeons
     if (goblinLoot == monsterId)
     {
         rare = true;
         bossId = rareBossId;
         eventTime = 7;
-    }
+    }*/
 
     // Set up the event
     var eim = em.newInstance(dungeonName + lobbyid); // Create new instance
@@ -311,6 +311,10 @@ function spawnBoss(eim, map, bossId) {
     // Scale monster stats
     mob.changeDifficultyBasic(eim.getProperty("level") * 2);
 
+    // Disable drops for the boss monster - this ensures the base drop table is disabled
+    // before any drops are generated, preventing the issue where boss drops appear for everyone
+    mob.disableDrops();
+
     // Spawn the boss on the map
     map.spawnMonsterOnGroundBelow(mob, new java.awt.Point(811, 368));
 }
@@ -347,6 +351,16 @@ function playerExit(eim, player) {
 }
 function monsterKilled(mob, eim) {  // AdventureMS Custom
     var map = mob.getMap(); // Get the map the monster is on
+
+    // Check if the killed monster is the boss
+    if (mob.getId() === bossId || mob.getId() === rareBossId) {
+        // Disable normal drops for this monster - must be called before any drops are processed
+        mob.disableDrops();
+
+        // Handle instanced boss drops for each player
+        handleBossDrops(mob, eim);
+    }
+
     if (map.countMonsters() === 0)
     {
         eim.showClearEffect(map.getId());  // Show clear effect when all monsters dead
@@ -358,4 +372,85 @@ function monsterKilled(mob, eim) {  // AdventureMS Custom
 function clearPQ(eim) {
     eim.restartEventTimer(30000);
     eim.setEventCleared();
+}
+
+// ---- Instanced Drops ---- //
+
+// Player-specific drop function (from previous solution)
+function handleBossDrops(mob, eim)
+{
+    var map = mob.getMap();
+    var mobPos = mob.getPosition();
+    var players = map.getCharacters();
+    // Convert to ArrayList to support index-based access
+    var playersList = new java.util.ArrayList(players);
+
+    // Get the drop table for the boss
+    var mi = Java.type('server.life.MonsterInformationProvider').getInstance();
+    var dropEntries = mi.retrieveEffectiveDrop(mob.getId());
+
+    // For each player in the map, create their own instanced drops
+    for (var i = 0; i < playersList.size(); i++)
+    {
+        var player = playersList.get(i);
+
+        // Use the exact position where the monster died
+        var dropPos = new java.awt.Point(
+            mobPos.x, 
+            mobPos.y
+        );
+
+        // Process each drop entry and create player-specific drops
+        for (var j = 0; j < dropEntries.size(); j++) {
+            var de = dropEntries.get(j);
+
+            // Check if this item should drop (based on chance)
+            var dropChance = Math.min(de.chance, 2147483647); // Integer.MAX_VALUE
+
+            if (Math.floor(Math.random() * 999999) < dropChance) {
+                // Create the item
+                var itemId = de.itemId;
+                var quantity = Math.min(de.Maximum, Math.max(de.Minimum, Math.floor(Math.random() * (de.Maximum - de.Minimum + 1)) + de.Minimum));
+
+                // Create the item object
+                var ii = Java.type('server.ItemInformationProvider').getInstance();
+                var item;
+
+                if (Java.type('constants.inventory.ItemConstants').getInventoryType(itemId) === Java.type('client.inventory.InventoryType').EQUIP)
+                {
+                    item = ii.getEquipById(itemId);
+                }
+
+                else
+                {
+                    var ItemClass = Java.type('client.inventory.Item');
+                    item = new ItemClass(itemId, 0, quantity);
+                }
+
+                // Use a custom method to create a player-specific drop
+                createPlayerSpecificDrop(map, mob, player, item, dropPos);
+            }
+        }
+    }
+}
+
+// Helper function to create player-specific drops
+function createPlayerSpecificDrop(map, dropper, player, item, dropPos)
+{
+    // Use the new MapleMap method to create a player-specific drop with spray effect
+    // This method handles all the following automatically:
+    // - Calculating the final drop position with spray effect
+    // - Creating the MapItem with the player as the owner (type 0 - player-specific)
+    // - Adding it to the map
+    // - Registering the item drop for proper cleanup
+    // - Only sending the drop packet to the specific player
+    // - Setting the drop time
+    // - Ensuring it's not marked as picked up initially
+    map.spawnPlayerSpecificItemDrop(dropper, player, item, dropPos, true);
+
+    // Note: This implementation creates a truly instanced drop that only the intended player can see
+    // The drop will still follow the normal ownership rules:
+    // - First 10 seconds: Only the owner can pick it up
+    // - Between 10-25 seconds: Owner and party members can pick it up
+    // - After 25 seconds: Anyone can pick it up (but only the owner can see it)
 }

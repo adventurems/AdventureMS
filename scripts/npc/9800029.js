@@ -72,7 +72,7 @@ function action(mode, type, selection) { if (mode == 1) {status++;} else {status
         // First time chatting
         if (questStart)
         {
-            cm.sendNext("You see, where I'm from. You get stronger by having bad gear, and I mean really bad. Doesn't make sense, right?\r\n\r\nIt used to be the same as here, but everyone got so strong, the Maple gods, flipped the tables on us and started rewarding casual players. Who knew?\r\n\r\nSo now, I've come here. To an earlier time where the gear ain't so great, ya know?\r\n\r\n(that one stings a little, but okay)\r\n\r\nCould you find me some of the worst possible gear? I mean #rterrible#k gear. These items should roll with #r0 main stats#k on them... I need the following items:\r\n\r\n#e1.#n #rBronze Ring#k\r\n#e2.#n #rWhite Gomushin#k\r\n#e3.#n #rWork Gloves#k\r\n\r\nCould you find those for me? I've got a rare item to trade for in-return.");
+            cm.sendNext("You see, where I'm from. You get stronger by having bad gear, and I mean really bad. Doesn't make sense, right?\r\n\r\nIt used to be the same as here, but everyone got so strong, the Maple gods, flipped the tables on us and started rewarding casual players. Who knew?\r\n\r\nSo now, I've come here. To an earlier time where the gear ain't so great, ya know?\r\n\r\n(that one stings a little, but okay)\r\n\r\nCould you find me some of the worst possible gear? I mean #rterrible#k gear. These items should roll with #r0 main stats#k on them... I need #eone#n of the following items:\r\n\r\n#e1.#n #rBronze Ring#k\r\n#e2.#n #rWhite Gomushin#k\r\n#e3.#n #rWork Gloves#k\r\n\r\nCould you find one for me? I've got some goodies to trade for in-return.");
         }
 
         // Normal interaction

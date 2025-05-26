@@ -225,8 +225,12 @@ public class MakerProcessor {
                         }
 
                         int cost = recipe.getCost();
-                        if (stimulantid == -1 && reagentids.isEmpty()) {
-                            if (cost > 0) {
+
+                        // No stim and no reagents
+                        if (stimulantid == -1 && reagentids.isEmpty())
+                        {
+                            if (cost > 0)
+                            {
                                 c.getPlayer().gainMeso(-cost, false);
                             }
 
@@ -248,7 +252,10 @@ public class MakerProcessor {
                                     c.getPlayer().setCS(false);
                                 }
                             }
-                        } else {
+                        }
+
+                        else
+                        {
                             toCreate = recipe.getGainItems().get(0).getLeft();
 
                             if (stimulantid != -1) {
@@ -264,7 +271,24 @@ public class MakerProcessor {
                                 c.getPlayer().gainMeso(-cost, false);
                             }
 
-                            makerSucceeded = addBoostedMakerItem(c, toCreate, stimulantid, reagentids);
+                            // Check for divine forge once and store the result
+                            isDivineForge = Math.random() < 0.125 && ItemConstants.isEquipment(recipe.getGainItems().get(0).getLeft());
+
+                            if (stimulantid != -1)
+                            {
+                                makerSucceeded = addBoostedMakerItem(c, toCreate, stimulantid, reagentids);
+                            }
+
+                            // AdventureMS Custom - Divine Forge for items without stimulant
+                            else if (isDivineForge)
+                            {
+                                makerSucceeded = addBoostedMakerItem(c, toCreate, 1, reagentids);
+                            }
+
+                            else
+                            {
+                                makerSucceeded = addBoostedMakerItem(c, toCreate, stimulantid, reagentids);
+                            }
                         }
 
                         // thanks inhyuk for noticing missing MAKER_RESULT packets

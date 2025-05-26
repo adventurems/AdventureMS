@@ -421,8 +421,8 @@ public class MapleMap {
         // Determine if the door will spawn
         final int PORTAL_MIN_LEVEL = 30;
         final int PORTAL_MAX_LEVEL = 150;
-        final double PORTAL_BASE_CHANCE = 750;
-        final double PORTAL_MAX_CHANCE = 1500;
+        final double PORTAL_BASE_CHANCE = 850;
+        final double PORTAL_MAX_CHANCE = 1700;
         final int monsterLvl = monster.getLevel(); // Store the monster level for dungeon chance
 
         if (monsterLvl < PORTAL_MIN_LEVEL) {return;} // Exit early if monster level is too low
@@ -435,7 +435,7 @@ public class MapleMap {
         int fh = chr.getMap().getFootholds().findBelow(checkpos).getId();
 
         // Build NPC
-        NPC npc = Randomizer.nextInt(40) == 0 ? LifeFactory.getNPC(9800030) : LifeFactory.getNPC(9800017); // 2.5% chance to spawn rare dungeon
+        NPC npc = LifeFactory.getNPC(9800017); // 2.5% chance to spawn rare dungeon old > Randomizer.nextInt(40) == 0 ? LifeFactory.getNPC(9800030) :
         npc.setPosition(checkpos);
         npc.setCy(ypos);
         npc.setFh(fh);
@@ -2392,6 +2392,51 @@ public class MapleMap {
         }
 
         instantiateItemDrop(mdrop);
+        activateItemReactors(mdrop, owner.getClient());
+    }
+
+    /**
+     * Spawns an item drop that is only visible to a specific player.
+     * This method uses the same drop mechanics as spawnItemDrop (including spray effect),
+     * but only sends the drop packet to the specified player.
+     *
+     * @param dropper The object that dropped the item (usually a monster)
+     * @param owner The player who will be the owner of the drop and the only one who can see it
+     * @param item The item to drop
+     * @param pos The position where the drop should appear
+     * @param playerDrop Whether this is a player drop
+     */
+    public final void spawnPlayerSpecificItemDrop(final MapObject dropper, final Character owner, final Item item, Point pos,
+                                           final boolean playerDrop) {
+
+        // Calculate drop position with spray effect
+        final Point droppos = calcDropPos(pos, pos);
+
+        // Create the MapItem with the player as owner - use type 0 for player-specific drops
+        final MapItem mdrop = new MapItem(item, droppos, dropper, owner, owner.getClient(), (byte) 0, playerDrop);
+        mdrop.setDropTime(Server.getInstance().getCurrentTime());
+
+        // Add the item to the map
+        addMapObject(mdrop);
+
+        // Register the item drop for proper cleanup
+        instantiateItemDrop(mdrop);
+
+        // Create the drop packet
+        mdrop.lockItem();
+        try {
+            // Only send the drop packet to the specific player
+            // Use mod 2 for instant drop (no animation)
+            Packet dropPacket = PacketCreator.dropItemFromMapObject(owner, mdrop, dropper.getPosition(), droppos, (byte) 2, (short) 0);
+            owner.sendPacket(dropPacket);
+        } finally {
+            mdrop.unlockItem();
+        }
+
+        // Ensure it's not marked as picked up initially
+        mdrop.setPickedUp(false);
+
+        // Activate any item reactors
         activateItemReactors(mdrop, owner.getClient());
     }
 

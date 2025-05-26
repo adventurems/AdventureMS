@@ -58,7 +58,7 @@ function action(mode, type, selection) { if (mode === 1) {status++;} else {statu
             if (speeddif <= 50) {cm.sendOk(defaultString + "#rYou are very close... " + speeddif + " Speed left to go...#k");}
             else if (speeddif <= 100) {cm.sendOk(defaultString + "#rMoving on to the final stretch...#k");}
             else if (speeddif <= 150) {cm.sendOk(defaultString + "#rYou are just about half way...keep it up...#k");}
-            else if (speeddif <= 200) {cm.sendOk(defaultString + "#rYou have a long way to go still...about a quarter of the way...#k");}
+            else if (speeddif <= 200) {cm.sendOk(defaultString + "#rYou have a long way to go still...about a fifth of the way...#k");}
             else {cm.sendOk(defaultString + "#rYou are not close at all...#k");}
 
             // Kill the convo
